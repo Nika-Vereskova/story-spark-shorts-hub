@@ -62,7 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Nika's custom palette
+				nika: {
+					pink: '#FCE9F1',
+					yellow: '#FFFBDF', 
+					blue: '#CAF0F8'
 				}
+			},
+			fontFamily: {
+				'baloo': ['Baloo 2', 'cursive'],
+				'inter': ['Inter', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
