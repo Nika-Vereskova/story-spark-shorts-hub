@@ -24,7 +24,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center",
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing pipes can be just as magical as any fairy tale!",
       ageRange: "Ages 4-8",
-      amazonUrl: "#",
+      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE",
       featured: true
     },
     {
@@ -34,7 +34,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop&crop=center",
       blurb: "A young artist discovers that her paintbrush has a mind of its own, creating colorful adventures wherever it goes.",
       ageRange: "Ages 3-7",
-      amazonUrl: "#"
+      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=400&h=600&fit=crop&crop=center",
       blurb: "Join Captain Cookie as she bakes her way through the galaxy, creating treats that bring alien friends together.",
       ageRange: "Ages 5-9",
-      amazonUrl: "#"
+      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
     },
     {
       id: 4,
@@ -52,9 +52,17 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center",
       blurb: "Emma discovers that vegetables have feelings too, and her garden is full of silly, laughing friends waiting to be heard.",
       ageRange: "Ages 4-8",
-      amazonUrl: "#"
+      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
     }
   ];
+
+  const handleBuyBook = (amazonUrl: string, title: string) => {
+    // Track the click for analytics if needed
+    console.log(`User clicked to buy: ${title}`);
+    
+    // Open Amazon KDP link in new tab
+    window.open(amazonUrl, '_blank', 'noopener,noreferrer');
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-rose-50 via-yellow-50 to-sky-50">
@@ -121,7 +129,7 @@ const Books = () => {
                   </p>
                   <Button 
                     className="w-full bg-sky-400 hover:bg-sky-500 text-white rounded-full transition-colors"
-                    onClick={() => window.open(book.amazonUrl, '_blank')}
+                    onClick={() => handleBuyBook(book.amazonUrl, book.title)}
                   >
                     Buy on Amazon KDP
                     <ExternalLink className="ml-2 h-4 w-4" />
