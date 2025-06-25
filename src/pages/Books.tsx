@@ -24,7 +24,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center",
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing pipes can be just as magical as any fairy tale!",
       ageRange: "Ages 4-8",
-      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE",
+      amazonUrl: "https://www.amazon.com/dp/B0FDKKLKQ7",
       featured: true
     },
     {
@@ -34,7 +34,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop&crop=center",
       blurb: "A young artist discovers that her paintbrush has a mind of its own, creating colorful adventures wherever it goes.",
       ageRange: "Ages 3-7",
-      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
+      amazonUrl: "https://www.amazon.com/dp/B0FDWLRLTK"
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=400&h=600&fit=crop&crop=center",
       blurb: "Join Captain Cookie as she bakes her way through the galaxy, creating treats that bring alien friends together.",
       ageRange: "Ages 5-9",
-      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
+      amazonUrl: "https://www.amazon.com/dp/B0FDR1NP2L"
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center",
       blurb: "Emma discovers that vegetables have feelings too, and her garden is full of silly, laughing friends waiting to be heard.",
       ageRange: "Ages 4-8",
-      amazonUrl: "https://www.amazon.com/dp/YOUR_BOOK_ASIN_HERE"
+      amazonUrl: "https://www.amazon.com/dp/B0FF2CML77"
     }
   ];
 
