@@ -24,7 +24,7 @@ const Books = () => {
       coverUrl: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center",
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!",
       ageRange: "Ages 4-8",
-      amazonUrl: "https://www.amazon.com/dp/B0FDKKLKQ7",
+      amazonUrl: "https://amzn.eu/d/hmK81Zj",
       featured: true
     },
     {

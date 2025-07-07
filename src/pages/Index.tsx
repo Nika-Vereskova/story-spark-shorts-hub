@@ -6,6 +6,11 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Link } from 'react-router-dom';
 
 const Index = () => {
+  const handleBuyPlumberella = () => {
+    console.log('User clicked to buy Plumberella');
+    window.open('https://amzn.eu/d/hmK81Zj', '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
@@ -103,7 +108,10 @@ const Index = () => {
                   <p className="text-oxidized-teal/80 mb-6 font-inter">
                     When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!
                   </p>
-                  <Button className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium">
+                  <Button 
+                    className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                    onClick={handleBuyPlumberella}
+                  >
                     Buy on Amazon KDP
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
