@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Book, Play, User, Mail, ExternalLink, ArrowRight, Cog } from 'lucide-react';
+import { Cog, Key, Glasses, Play, User, Mail, ExternalLink, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
@@ -25,9 +25,25 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 px-6">
-        <div className="container mx-auto">
+      {/* Hero Section with Clockwork Animation */}
+      <section className="pt-24 pb-16 px-6 relative overflow-hidden">
+        {/* Animated Clockwork Background */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
+            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
+          </div>
+          <div className="absolute top-40 right-20 w-24 h-24 opacity-15">
+            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
+          </div>
+          <div className="absolute bottom-32 left-1/4 w-20 h-20 opacity-10">
+            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
+          </div>
+          <div className="absolute bottom-20 right-1/3 w-16 h-16 opacity-15">
+            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
+          </div>
+        </div>
+
+        <div className="container mx-auto relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold text-oxidized-teal mb-6 leading-tight font-playfair drop-shadow-text-drop">
@@ -43,13 +59,13 @@ const Index = () => {
                   size="lg" 
                   className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 text-lg border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                 >
-                  <Book className="mr-2 h-5 w-5" />
+                  <Key className="mr-2 h-5 w-5" />
                   Read an Excerpt
                 </Button>
                 <Button 
                   size="lg" 
                   variant="outline" 
-                  className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
                 >
                   <Play className="mr-2 h-5 w-5" />
                   Watch Story Time
@@ -70,7 +86,7 @@ const Index = () => {
                   <img 
                     src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center"
                     alt="Plumberella - Latest Children's Book"
-                    className="w-full h-80 object-cover transition-transform duration-300 hover:scale-110"
+                    className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
                   />
                   <div className="absolute top-4 right-4">
                     <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
@@ -112,7 +128,7 @@ const Index = () => {
               
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
-                  <Book className="mr-2 h-6 w-6" />
+                  <Key className="mr-2 h-6 w-6" />
                   My Books
                 </CardTitle>
               </CardHeader>
@@ -141,7 +157,7 @@ const Index = () => {
               
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
-                  <Play className="mr-2 h-6 w-6" />
+                  <Cog className="mr-2 h-6 w-6" />
                   Story Videos
                 </CardTitle>
               </CardHeader>
@@ -152,7 +168,7 @@ const Index = () => {
                 <Link to="/videos">
                   <Button 
                     variant="outline" 
-                    className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                    className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
                   >
                     Watch Videos
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -170,7 +186,7 @@ const Index = () => {
               
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
-                  <User className="mr-2 h-6 w-6" />
+                  <Glasses className="mr-2 h-6 w-6" />
                   About Me
                 </CardTitle>
               </CardHeader>
@@ -219,7 +235,7 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <p className="text-oxidized-teal/80 font-medium font-inter">© 2024 Nika Vereskova Stories. All rights reserved.</p>
           <div className="flex justify-center space-x-6 mt-4">
-            <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter">YouTube</a>
+            <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter hover:sepia">YouTube</a>
             <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter">Instagram</a>
             <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter">TikTok</a>
           </div>

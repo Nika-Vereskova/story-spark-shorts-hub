@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -147,8 +146,20 @@ export default {
 			},
 			backgroundImage: {
 				'gear-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23E8D4A6\" fill-opacity=\"0.1\"%%3E%3Cpath d=\"M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z\"/%3E%3Cpath d=\"M20 14.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zm0 1a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z\"/%3E%3C/g%%3E%3C/svg%3E')",
+			},
+			filter: {
+				'sepia': 'sepia(80%) saturate(120%) hue-rotate(15deg)',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function({ addUtilities }) {
+			addUtilities({
+				'.sepia': {
+					filter: 'sepia(80%) saturate(120%) hue-rotate(15deg)',
+				},
+			})
+		}
+	],
 } satisfies Config;
