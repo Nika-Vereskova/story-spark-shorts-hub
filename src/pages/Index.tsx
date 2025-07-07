@@ -89,7 +89,7 @@ const Index = () => {
                 
                 <div className="relative overflow-hidden">
                   <img 
-                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center"
+                    src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
                     alt="Plumberella - Latest Children's Book"
                     className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
                   />

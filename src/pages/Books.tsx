@@ -21,7 +21,7 @@ const Books = () => {
       id: 1,
       title: "Plumberella",
       slug: "plumberella",
-      coverUrl: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=400&h=600&fit=crop&crop=center",
+      coverUrl: "/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png",
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!",
       ageRange: "Ages 4-8",
       amazonUrl: "https://amzn.eu/d/hmK81Zj",
