@@ -63,16 +63,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Nika's custom palette
-				nika: {
-					pink: '#FCE9F1',
-					yellow: '#FFFBDF', 
-					blue: '#CAF0F8'
-				}
+				// Steampunk color palette
+				parchment: '#F5E6C5',
+				brass: '#B18A46',
+				'brass-dark': '#8B6A35',
+				'oxidized-teal': '#2E646B',
+				'oxidized-teal-light': '#4A7B83',
+				'gear-etch': '#E8D4A6'
 			},
 			fontFamily: {
-				'baloo': ['Baloo 2', 'cursive'],
+				'playfair': ['Playfair Display', 'serif'],
 				'inter': ['Inter', 'sans-serif'],
+				'baloo': ['Baloo 2', 'cursive'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -115,13 +117,36 @@ export default {
 						transform: 'scale(1)',
 						opacity: '1'
 					}
+				},
+				'steam-puff': {
+					'0%': {
+						opacity: '0',
+						transform: 'scale(0.8) translateY(0px)'
+					},
+					'50%': {
+						opacity: '1',
+						transform: 'scale(1) translateY(-5px)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'scale(1.2) translateY(-10px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out forwards',
-				'scale-in': 'scale-in 0.3s ease-out'
+				'scale-in': 'scale-in 0.3s ease-out',
+				'steam-puff': 'steam-puff 0.8s ease-out'
+			},
+			boxShadow: {
+				'inner-glow': 'inset 0 2px 4px rgba(177, 138, 70, 0.3)',
+				'brass-drop': '2px 4px 8px rgba(139, 106, 53, 0.4)',
+				'text-drop': '2px 2px 4px rgba(139, 106, 53, 0.3)',
+			},
+			backgroundImage: {
+				'gear-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23E8D4A6\" fill-opacity=\"0.1\"%%3E%3Cpath d=\"M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z\"/%3E%3Cpath d=\"M20 14.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zm0 1a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z\"/%3E%3C/g%%3E%3C/svg%3E')",
 			}
 		}
 	},
