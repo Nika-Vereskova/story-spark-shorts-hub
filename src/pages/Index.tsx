@@ -235,9 +235,30 @@ const Index = () => {
         <div className="container mx-auto text-center">
           <p className="text-oxidized-teal/80 font-medium font-inter">© 2024 Nika Vereskova Stories. All rights reserved.</p>
           <div className="flex justify-center space-x-6 mt-4">
-            <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter hover:sepia">YouTube</a>
-            <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter">Instagram</a>
-            <a href="#" className="text-brass hover:text-brass-dark transition-colors font-inter">TikTok</a>
+            <a 
+              href="https://www.youtube.com/@NikaVereskova" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-brass hover:text-brass-dark transition-colors font-inter hover:sepia"
+            >
+              YouTube
+            </a>
+            <a 
+              href="https://www.instagram.com/vereskovanika" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-brass hover:text-brass-dark transition-colors font-inter"
+            >
+              Instagram
+            </a>
+            <a 
+              href="https://www.facebook.com/profile.php?id=61577838015246" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-brass hover:text-brass-dark transition-colors font-inter"
+            >
+              Facebook
+            </a>
           </div>
         </div>
       </footer>
