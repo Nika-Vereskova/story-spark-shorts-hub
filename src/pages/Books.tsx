@@ -12,6 +12,7 @@ interface Book {
   blurb: string;
   ageRange: string;
   amazonUrl: string;
+  englishUrl?: string;
   featured?: boolean;
 }
 
@@ -25,6 +26,7 @@ const Books = () => {
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!",
       ageRange: "Ages 8-108",
       amazonUrl: "https://amzn.eu/d/hmK81Zj",
+      englishUrl: "https://amzn.eu/d/21fxD3o",
       featured: true
     }
   ];
@@ -103,13 +105,25 @@ const Books = () => {
                   <p className="text-oxidized-teal/80 mb-6 text-sm leading-relaxed font-inter">
                     {book.blurb}
                   </p>
-                  <Button 
-                    className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-                    onClick={() => handleBuyBook(book.amazonUrl, book.title)}
-                  >
-                    Buy on Amazon KDP
-                    <ExternalLink className="ml-2 h-4 w-4" />
-                  </Button>
+                  <div className="space-y-2">
+                    <Button 
+                      className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                      onClick={() => handleBuyBook(book.amazonUrl, book.title)}
+                    >
+                      Buy on Amazon KDP
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                    {book.englishUrl && (
+                      <Button 
+                        variant="outline"
+                        className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
+                        onClick={() => handleBuyBook(book.englishUrl!, `${book.title} (English)`)}
+                      >
+                        English Version
+                        <ExternalLink className="ml-2 h-4 w-4" />
+                      </Button>
+                    )}
+                  </div>
                 </CardContent>
               </Card>
             ))}
