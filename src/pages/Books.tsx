@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExternalLink, Star, Cog } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -23,7 +22,7 @@ const Books = () => {
       title: "Plumberella",
       slug: "plumberella",
       coverUrl: "/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png",
-      blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!",
+      blurb: "Plumberella is a witty, heartwarming steampunk fairytale about a girl, a vanishing bathroom, and the invention of truth.",
       ageRange: "Ages 8-108",
       amazonUrl: "https://amzn.eu/d/hmK81Zj",
       englishUrl: "https://amzn.eu/d/21fxD3o",
@@ -110,7 +109,7 @@ const Books = () => {
                       className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                       onClick={() => handleBuyBook(book.amazonUrl, book.title)}
                     >
-                      Buy on Amazon KDP
+                      Swedish Version - Amazon KDP
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                     {book.englishUrl && (
