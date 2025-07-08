@@ -2,6 +2,7 @@ import React from 'react';
 import { ExternalLink, Star, Cog } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Link } from 'react-router-dom';
 
 interface Book {
   id: number;
@@ -42,12 +43,12 @@ const Books = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
           <div className="hidden md:flex space-x-8">
-            <a href="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</a>
-            <a href="/books" className="text-brass font-semibold font-inter">Books</a>
-            <a href="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</a>
-            <a href="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</a>
+            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
+            <Link to="/books" className="text-brass font-semibold font-inter">Books</Link>
+            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
+            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
             <a href="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</a>
-            <a href="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</a>
+            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
           </div>
         </div>
       </nav>
