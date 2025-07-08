@@ -51,7 +51,7 @@ const About = () => {
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-brass"></div>
                 
                 <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
+                  src="/lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png" 
                   alt="Nika Vereskova"
                   className="w-full h-80 object-cover border-4 border-brass shadow-brass-drop"
                 />
