@@ -23,45 +23,9 @@ const Books = () => {
       slug: "plumberella",
       coverUrl: "/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png",
       blurb: "When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!",
-      ageRange: "Ages 4-8",
+      ageRange: "Ages 8-108",
       amazonUrl: "https://amzn.eu/d/hmK81Zj",
       featured: true
-    },
-    {
-      id: 2,
-      title: "The Dancing Paintbrush",
-      slug: "dancing-paintbrush",
-      coverUrl: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=600&fit=crop&crop=center",
-      blurb: "A young artist discovers that her enchanted paintbrush creates clockwork creatures that dance off the canvas into reality.",
-      ageRange: "Ages 3-7",
-      amazonUrl: "https://www.amazon.com/dp/B0FDWLRLTK"
-    },
-    {
-      id: 3,
-      title: "Captain Cookie's Airship Kitchen",
-      slug: "captain-cookies-airship-kitchen",
-      coverUrl: "https://images.unsplash.com/photo-1526243741027-444d633d7365?w=400&h=600&fit=crop&crop=center",
-      blurb: "Join Captain Cookie as she bakes her way through the clouds in her steam-powered airship, creating treats that bring sky pirates together.",
-      ageRange: "Ages 5-9",
-      amazonUrl: "https://www.amazon.com/dp/B0FDR1NP2L"
-    },
-    {
-      id: 4,
-      title: "The Giggling Greenhouse",
-      slug: "giggling-greenhouse",
-      coverUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop&crop=center",
-      blurb: "Emma discovers that her mechanical greenhouse is full of steam-powered plants with feelings, giggling gears, and whirring hearts.",
-      ageRange: "Ages 4-8",
-      amazonUrl: "https://www.amazon.com/dp/B0FF2CML77"
-    },
-    {
-      id: 5,
-      title: "The Clockwork Dragon",
-      slug: "clockwork-dragon",
-      coverUrl: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop&crop=center",
-      blurb: "When young inventor Lily builds a dragon from brass and steam, she learns that the best friendships are forged in the workshop of the heart.",
-      ageRange: "Ages 6-10",
-      amazonUrl: "https://www.amazon.com/dp/B0FDXM4L69"
     }
   ];
 
