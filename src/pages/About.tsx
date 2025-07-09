@@ -1,17 +1,11 @@
+
 import React from 'react';
-import { Award, Mail, ExternalLink, Cog, Wrench } from 'lucide-react';
+import { Mail, ExternalLink, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 
 const About = () => {
-  const awards = [
-    "Children's Choice Book Award Finalist 2023",
-    "Mom's Choice Award - Gold Recipient", 
-    "Independent Publisher Book Award - Silver Medal",
-    "Readers' Favorite 5-Star Rating"
-  ];
-
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
@@ -35,7 +29,7 @@ const About = () => {
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Meet Nika</h1>
             <p className="text-xl text-brass font-inter">
-              Author, Inventor, and Chief Clockwork-Keeper
+              Author, Engineer, and Eternal Coffee Lover
             </p>
           </div>
 
@@ -74,41 +68,23 @@ const About = () => {
                   </h2>
                   <div className="space-y-4 text-oxidized-teal/80 leading-relaxed font-inter">
                     <p>
-                      Hello, wonderful readers! I'm Nika Vereskova, and I believe that every child deserves to see themselves as the inventor of their own magical adventure. My journey as a steampunk storyteller began when I realized that the most extraordinary tales often spring from the gears and gadgets of imagination.
+                      Hi, I'm Nika Vereskova—an engineer, author, and eternal coffee lover. I write modern fairy tales where strong heroines, clever machines, and timeless questions about truth and justice meet in whimsical, steampunk-inspired worlds.
                     </p>
                     <p>
-                      With a background in early childhood education and a heart full of clockwork wonder, I craft stories that celebrate the courage, creativity, and ingenuity that already tick within every child. Whether it's a princess who chooses plumbing over ball gowns or a garden that hums with mechanical marvels, my books aim to show children that magic isn't something you find—it's something you build.
+                      I have a passion for artificial intelligence and love exploring how technology and creativity can work hand in hand. Beyond writing, I enjoy helping children discover their potential—encouraging them to think boldly, dream freely, and believe in their unique strengths.
                     </p>
                     <p>
-                      When I'm not writing, you'll find me reading to local kindergarten classes, creating story time videos for my YouTube workshop, or plotting my next tale while sipping tea in my garden (which, sadly, hasn't achieved full automation... yet!).
+                      Storytelling has always been my way of exploring the world—not just as it is, but as it could be. In my writing, I weave together fantasy and real-life challenges, creating tales that inspire readers to think deeply, laugh freely, and believe in their own power to make change.
+                    </p>
+                    <p>
+                      When I'm not writing or tinkering with ideas, you'll find me sketching new inventions, learning about AI, or sipping a perfectly brewed cup of coffee in a sunny corner of my garden.
+                    </p>
+                    <p>
+                      Welcome to my little world of stories and ideas—where imagination meets engineering, and every detail has a purpose.
                     </p>
                   </div>
                 </CardContent>
               </Card>
-            </div>
-          </div>
-
-          {/* Awards Section */}
-          <div className="mt-16">
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop flex justify-center items-center">
-              <Cog className="mr-2 h-8 w-8" />
-              Recognition & Awards
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {awards.map((award, index) => (
-                <Card key={index} className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 shadow-brass-drop relative">
-                  {/* Small brass corners */}
-                  <div className="absolute top-0 left-0 w-4 h-4 border-l-2 border-t-2 border-brass"></div>
-                  <div className="absolute top-0 right-0 w-4 h-4 border-r-2 border-t-2 border-brass"></div>
-                  <div className="absolute bottom-0 left-0 w-4 h-4 border-l-2 border-b-2 border-brass"></div>
-                  <div className="absolute bottom-0 right-0 w-4 h-4 border-r-2 border-b-2 border-brass"></div>
-                  
-                  <CardContent className="p-6 flex items-center">
-                    <Award className="text-brass mr-4 h-6 w-6 flex-shrink-0" />
-                    <span className="text-oxidized-teal font-medium font-inter">{award}</span>
-                  </CardContent>
-                </Card>
-              ))}
             </div>
           </div>
 
