@@ -102,11 +102,13 @@ const Index = () => {
                 </div>
                 <CardHeader>
                   <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">Plumberella</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">Ages 4-8 • Steampunk Fairy Tale</CardDescription>
+                  <CardDescription className="text-brass font-medium font-inter">Ages 8-108 • Steampunk Fairy Tale</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-oxidized-teal/80 mb-6 font-inter">
-                    When Princess Ella trades her tiara for a toolbox, she discovers that fixing enchanted pipes can be just as magical as any fairy tale!
+                    Plumberella is a witty, heartwarming steampunk fairytale about a girl, a vanishing bathroom, and the invention of truth.
+                    <br /><br />
+                    When a charming but deceitful stepmother moves in, young Plumberella finds herself banished to the basement while frilly dresses replace her tools. But she isn't the type to mope — she's a certified pipe-wrangler with a talent for fixing more than just faucets.
                   </p>
                   <Button 
                     className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
