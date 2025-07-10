@@ -1,16 +1,18 @@
 
-
 import React, { useState } from 'react';
 import { Cog, Key, Glasses, Play, User, Mail, ExternalLink, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [showExcerpt, setShowExcerpt] = useState(false);
+  const [email, setEmail] = useState('');
+  const { toast } = useToast();
 
   const handleBuyPlumberella = () => {
-    console.log('User clicked to buy Plumberella');
     window.open('https://amzn.eu/d/hmK81Zj', '_blank', 'noopener,noreferrer');
   };
 
@@ -23,8 +25,36 @@ const Index = () => {
   };
 
   const handleWatchStoryTime = () => {
-    console.log('User clicked to watch latest story time video');
     window.open('https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ', '_blank', 'noopener,noreferrer');
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleNewsletterSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      toast({
+        title: "Email Required",
+        description: "Please enter your email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    if (!validateEmail(email)) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive"
+      });
+      return;
+    }
+    toast({
+      title: "Thank you for subscribing!",
+      description: "We'll notify you about new stories and clockwork adventures.",
+    });
+    setEmail('');
   };
 
   return (
@@ -330,16 +360,21 @@ const Index = () => {
             Get notified about new steampunk tales, workshop videos, and special clockwork events. 
             Plus, receive a free downloadable gear-building activity sheet!
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input 
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
+            <Input 
               type="email" 
               placeholder="Your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
             />
-            <Button className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium">
+            <Button 
+              type="submit"
+              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+            >
               Subscribe
             </Button>
-          </div>
+          </form>
         </div>
       </section>
 
