@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Cog, Key, Glasses, Play, User, Mail, ExternalLink, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,6 +19,11 @@ const Index = () => {
 
   const handleCloseExcerpt = () => {
     setShowExcerpt(false);
+  };
+
+  const handleWatchStoryTime = () => {
+    console.log('User clicked to watch latest story time video');
+    window.open('https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ', '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -81,6 +87,7 @@ const Index = () => {
                   size="lg" 
                   variant="outline" 
                   className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
+                  onClick={handleWatchStoryTime}
                 >
                   <Play className="mr-2 h-5 w-5" />
                   Watch Story Time
