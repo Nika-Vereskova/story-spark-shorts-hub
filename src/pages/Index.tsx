@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { Cog, Key, Glasses, Play, User, Mail, ExternalLink, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -71,8 +72,11 @@ const Index = () => {
                 <span className="bg-gradient-to-r from-brass to-oxidized-teal bg-clip-text text-transparent"> Clockwork Adventures</span>
               </h1>
               <p className="text-xl text-oxidized-teal/80 mb-8 max-w-2xl font-inter">
-                Welcome to a world where plumber princesses tinker with enchanted pipes and every tale whirs with wonder. 
-                Discover steampunk fairy tale books that celebrate courage, invention, and the magic in mechanical marvels.
+                Welcome!
+                <br />
+                Step into a world where plumber princesses tinker with enchanted pipes, and every tale hums with wonder. Here, steampunk fairy tales come alive—celebrating courage, clever inventions, and the magic hidden in mechanical marvels.
+                <br /><br />
+                Discover stories that inspire dreamers, builders, and truth-seekers of all ages.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
