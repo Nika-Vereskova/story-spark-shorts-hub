@@ -3,33 +3,23 @@ import React from 'react';
 import { Mail, ExternalLink, Wrench } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
+import { t } from '@/lib/i18n';
+import Navigation from '@/components/Navigation';
 
 const About = () => {
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
-          <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
-            <Link to="/books" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Books</Link>
-            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
-            <Link to="/about" className="text-brass font-semibold font-inter">About</Link>
-            <a href="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</a>
-            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation currentPage="about" />
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Meet Nika</h1>
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+              {t('about.title')}
+            </h1>
             <p className="text-xl text-brass font-inter">
-              Author, Engineer, and Eternal Coffee Lover
+              {t('about.subtitle')}
             </p>
           </div>
 
@@ -64,24 +54,14 @@ const About = () => {
                 <CardContent className="p-8">
                   <h2 className="text-2xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop flex items-center">
                     <Wrench className="mr-2 h-6 w-6" />
-                    My Story
+                    {t('about.myStory')}
                   </h2>
                   <div className="space-y-4 text-oxidized-teal/80 leading-relaxed font-inter">
-                    <p>
-                      Hi, I'm Nika Vereskova—an engineer, author, and eternal coffee lover. I write modern fairy tales where strong heroines, clever machines, and timeless questions about truth and justice meet in whimsical, steampunk-inspired worlds.
-                    </p>
-                    <p>
-                      I have a passion for artificial intelligence and love exploring how technology and creativity can work hand in hand. Beyond writing, I enjoy helping children discover their potential—encouraging them to think boldly, dream freely, and believe in their unique strengths.
-                    </p>
-                    <p>
-                      Storytelling has always been my way of exploring the world—not just as it is, but as it could be. In my writing, I weave together fantasy and real-life challenges, creating tales that inspire readers to think deeply, laugh freely, and believe in their own power to make change.
-                    </p>
-                    <p>
-                      When I'm not writing or tinkering with ideas, you'll find me sketching new inventions, learning about AI, or sipping a perfectly brewed cup of coffee in a sunny corner of my garden.
-                    </p>
-                    <p>
-                      Welcome to my little world of stories and ideas—where imagination meets engineering, and every detail has a purpose.
-                    </p>
+                    <p>{t('about.bio1')}</p>
+                    <p>{t('about.bio2')}</p>
+                    <p>{t('about.bio3')}</p>
+                    <p>{t('about.bio4')}</p>
+                    <p>{t('about.bio5')}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -90,7 +70,9 @@ const About = () => {
 
           {/* Contact Links */}
           <div className="mt-16 text-center">
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">Let's Connect!</h2>
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">
+              {t('about.connect')}
+            </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
@@ -106,7 +88,7 @@ const About = () => {
                 className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
-                Follow on Social
+                {t('about.followSocial')}
               </Button>
             </div>
           </div>
