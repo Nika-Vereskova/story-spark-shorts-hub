@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
 import { t } from '@/lib/i18n';
+import { posthog } from '@/lib/posthog';
 import Navigation from '@/components/Navigation';
 
 const Index = () => {
@@ -14,10 +15,22 @@ const Index = () => {
   const { toast } = useToast();
 
   const handleBuyPlumberella = () => {
+    // Track conversion event
+    posthog.capture('book_purchase_clicked', {
+      book_title: 'Plumberella',
+      source: 'hero_section'
+    });
+    
     window.open('https://amzn.eu/d/hmK81Zj', '_blank', 'noopener,noreferrer');
   };
 
   const handleReadExcerpt = () => {
+    // Track engagement event
+    posthog.capture('excerpt_opened', {
+      book_title: 'Plumberella',
+      source: 'hero_section'
+    });
+    
     setShowExcerpt(true);
   };
 
@@ -26,6 +39,11 @@ const Index = () => {
   };
 
   const handleWatchStoryTime = () => {
+    // Track video engagement
+    posthog.capture('story_video_clicked', {
+      source: 'hero_section'
+    });
+    
     window.open('https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ', '_blank', 'noopener,noreferrer');
   };
 
@@ -51,6 +69,13 @@ const Index = () => {
       });
       return;
     }
+    
+    // Track newsletter signup conversion
+    posthog.capture('newsletter_signup', {
+      email: email,
+      source: 'homepage'
+    });
+    
     toast({
       title: t('common.subscribeSuccess'),
       description: t('common.subscribeSuccessDesc'),
