@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Cog, Key, Glasses, Play, User, Mail, ExternalLink, ArrowRight, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -6,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from 'react-router-dom';
+import { t } from '@/lib/i18n';
+import Navigation from '@/components/Navigation';
 
 const Index = () => {
   const [showExcerpt, setShowExcerpt] = useState(false);
@@ -36,23 +37,23 @@ const Index = () => {
     e.preventDefault();
     if (!email) {
       toast({
-        title: "Email Required",
-        description: "Please enter your email address.",
+        title: t('common.emailRequired'),
+        description: t('common.emailRequiredDesc'),
         variant: "destructive"
       });
       return;
     }
     if (!validateEmail(email)) {
       toast({
-        title: "Invalid Email",
-        description: "Please enter a valid email address.",
+        title: t('common.invalidEmail'),
+        description: t('common.invalidEmailDesc'),
         variant: "destructive"
       });
       return;
     }
     toast({
-      title: "Thank you for subscribing!",
-      description: "We'll notify you about new stories and clockwork adventures.",
+      title: t('common.subscribeSuccess'),
+      description: t('common.subscribeSuccessDesc'),
     });
     setEmail('');
   };
@@ -60,21 +61,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">
-            Nika Vereskova Stories
-          </h1>
-          <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
-            <Link to="/books" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Books</Link>
-            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
-            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
-            <Link to="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</Link>
-            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation currentPage="home" />
 
       {/* Hero Section with Clockwork Animation */}
       <section className="pt-24 pb-16 px-6 relative overflow-hidden">
@@ -98,15 +85,12 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
               <h1 className="text-5xl md:text-6xl font-bold text-oxidized-teal mb-6 leading-tight font-playfair drop-shadow-text-drop">
-                Where Magic Meets
-                <span className="bg-gradient-to-r from-brass to-oxidized-teal bg-clip-text text-transparent"> Clockwork Adventures</span>
+                {t('home.title')}
               </h1>
               <p className="text-xl text-oxidized-teal/80 mb-8 max-w-2xl font-inter">
-                Welcome!
-                <br />
-                Step into a world where plumber princesses tinker with enchanted pipes, and every tale hums with wonder. Here, steampunk fairy tales come alive—celebrating courage, clever inventions, and the magic hidden in mechanical marvels.
+                {t('home.subtitle')}
                 <br /><br />
-                Discover stories that inspire dreamers, builders, and truth-seekers of all ages.
+                {t('home.description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
@@ -115,7 +99,7 @@ const Index = () => {
                   onClick={handleReadExcerpt}
                 >
                   <Key className="mr-2 h-5 w-5" />
-                  Read an Excerpt
+                  {t('home.featuredBook')}
                 </Button>
                 <Button 
                   size="lg" 
@@ -124,7 +108,7 @@ const Index = () => {
                   onClick={handleWatchStoryTime}
                 >
                   <Play className="mr-2 h-5 w-5" />
-                  Watch Story Time
+                  {t('home.watchVideos')}
                 </Button>
               </div>
             </div>
@@ -147,13 +131,13 @@ const Index = () => {
                   <div className="absolute top-4 right-4">
                     <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
                       <Cog className="w-3 h-3 mr-1" />
-                      Latest Release
+                      {t('common.featured')}
                     </span>
                   </div>
                 </div>
                 <CardHeader>
                   <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">Plumberella</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">Ages 8-108 • Steampunk Fairy Tale</CardDescription>
+                  <CardDescription className="text-brass font-medium font-inter">{t('common.ageRange')} • Steampunk Fairy Tale</CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-oxidized-teal/80 mb-6 font-inter">
@@ -260,7 +244,7 @@ const Index = () => {
       {/* Quick Links Section */}
       <section className="py-16 px-6 bg-gear-etch/20">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">Explore My Clockwork Realm</h2>
+          <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative">
               {/* Ornate brass corners */}
@@ -272,19 +256,19 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
                   <Key className="mr-2 h-6 w-6" />
-                  My Books
+                  {t('nav.books')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-oxidized-teal/80 mb-4 font-inter">
-                  Discover all my published steampunk fairy tales, from whimsical adventures to heartwarming clockwork stories.
+                  {t('books.subtitle')}
                 </p>
                 <Link to="/books">
                   <Button 
                     variant="outline" 
                     className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                   >
-                    Browse Books
+                    {t('home.exploreBooks')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -301,19 +285,19 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
                   <Cog className="mr-2 h-6 w-6" />
-                  Story Videos
+                  {t('nav.videos')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-oxidized-teal/80 mb-4 font-inter">
-                  Watch my YouTube adventures featuring quick steampunk tales and behind-the-scenes workshop magic!
+                  {t('videos.subtitle')}
                 </p>
                 <Link to="/videos">
                   <Button 
                     variant="outline" 
                     className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
                   >
-                    Watch Videos
+                    {t('home.watchVideos')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -330,19 +314,19 @@ const Index = () => {
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
                   <Glasses className="mr-2 h-6 w-6" />
-                  About Me
+                  {t('nav.about')}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-oxidized-teal/80 mb-4 font-inter">
-                  Learn about my journey as a steampunk storyteller and the clockwork inspiration behind my tales.
+                  {t('about.subtitle')}
                 </p>
                 <Link to="/about">
                   <Button 
                     variant="outline" 
                     className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                   >
-                    Meet Nika
+                    {t('home.learnMore')}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
@@ -355,15 +339,14 @@ const Index = () => {
       {/* Newsletter Signup Section */}
       <section className="py-16 px-6 bg-gradient-to-r from-brass/20 to-oxidized-teal/20">
         <div className="container mx-auto max-w-2xl text-center">
-          <h2 className="text-4xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">Join the Inventor's Guild</h2>
+          <h2 className="text-4xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">{t('contact.newsletterTitle')}</h2>
           <p className="text-oxidized-teal/80 text-lg mb-8 font-inter">
-            Get notified about new steampunk tales, workshop videos, and special clockwork events. 
-            Plus, receive a free downloadable gear-building activity sheet!
+            {t('contact.newsletterDesc')}
           </p>
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <Input 
               type="email" 
-              placeholder="Your email address"
+              placeholder={t('contact.emailPlaceholder')}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
@@ -372,7 +355,7 @@ const Index = () => {
               type="submit"
               className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
             >
-              Subscribe
+              {t('contact.subscribe')}
             </Button>
           </form>
         </div>
