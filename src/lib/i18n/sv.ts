@@ -1,8 +1,7 @@
-
 export const sv = {
   nav: {
     home: "Hem",
-    books: "Böcker",
+    books: "Böcker", 
     videos: "Videor",
     about: "Om mig",
     blog: "Blogg",
@@ -74,6 +73,13 @@ export const sv = {
     invalidEmailDesc: "Vänligen ange en giltig e-postadress.",
     subscribeSuccess: "Tack för att du prenumererar!",
     subscribeSuccessDesc: "Vi kommer att meddela dig om nya berättelser och kugghjulsäventyr."
+  },
+  moved: {
+    title: "Sidan Flyttad!",
+    subtitle: "Denna kugghjuls-krönika har flyttat till en ny verkstad!",
+    description: "Du kan nu hitta alla Nikas steampunk-berättelser på den nya platsen.",
+    enterWorkshop: "Gå in i Den Nya Verkstaden",
+    updateBookmarks: "Vänligen uppdatera dina bokmärken till den nya platsen"
   },
   notFound: {
     title: "404",

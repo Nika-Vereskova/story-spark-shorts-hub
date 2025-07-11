@@ -1,8 +1,7 @@
-
 export const en = {
   nav: {
     home: "Home",
-    books: "Books",
+    books: "Books", 
     videos: "Videos",
     about: "About",
     blog: "Blog",
@@ -74,6 +73,13 @@ export const en = {
     invalidEmailDesc: "Please enter a valid email address.",
     subscribeSuccess: "Thank you for subscribing!",
     subscribeSuccessDesc: "We'll notify you about new stories and clockwork adventures."
+  },
+  moved: {
+    title: "Site Moved!",
+    subtitle: "This clockwork chronicle has relocated to a new workshop!",
+    description: "You can now find all of Nika's steampunk tales at the new location.",
+    enterWorkshop: "Enter the New Workshop",
+    updateBookmarks: "Please update your bookmarks to the new location"
   },
   notFound: {
     title: "404",

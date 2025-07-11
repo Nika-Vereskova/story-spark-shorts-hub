@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +14,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import VisitorCounter from "./components/VisitorCounter";
 import LocaleRouter from "./components/LocaleRouter";
+import Moved from "./pages/Moved";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +46,9 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+              
+              {/* Moved notice for old URL visitors */}
+              <Route path="/moved" element={<Moved />} />
               
               {/* Catch-all route */}
               <Route path="*" element={<NotFound />} />
