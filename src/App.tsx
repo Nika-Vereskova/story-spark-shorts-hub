@@ -12,6 +12,7 @@ import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import VisitorCounter from "./components/VisitorCounter";
+import LocaleRouter from "./components/LocaleRouter";
 
 const queryClient = new QueryClient();
 
@@ -21,17 +22,29 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/videos" element={<Videos />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <VisitorCounter />
+        <LocaleRouter>
+          <Routes>
+            {/* Locale-prefixed routes */}
+            <Route path="/:locale" element={<Index />} />
+            <Route path="/:locale/books" element={<Books />} />
+            <Route path="/:locale/videos" element={<Videos />} />
+            <Route path="/:locale/about" element={<About />} />
+            <Route path="/:locale/blog" element={<Blog />} />
+            <Route path="/:locale/contact" element={<Contact />} />
+            
+            {/* Root route - will be redirected by LocaleRouter */}
+            <Route path="/" element={<Index />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            
+            {/* Catch-all route */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <VisitorCounter />
+        </LocaleRouter>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
