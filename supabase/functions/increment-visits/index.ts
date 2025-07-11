@@ -20,37 +20,26 @@ Deno.serve(async (req) => {
 
     console.log('Attempting to increment visit counter...')
 
-    // Use upsert to either insert or update the record
-    const { data, error } = await supabase
+    // First, try to get the current count and increment it
+    const { data: currentData, error: selectError } = await supabase
       .from('site_metrics')
-      .upsert(
-        { 
-          id: 'global', 
-          total_visits: 1,
-          updated_at: new Date().toISOString()
-        },
-        { 
-          onConflict: 'id',
-          ignoreDuplicates: false
-        }
-      )
       .select('total_visits')
+      .eq('id', 'global')
       .single()
 
-    if (error) {
-      console.error('Upsert failed, trying manual increment:', error)
-      
-      // If upsert fails, try to increment manually
-      const { data: currentData, error: selectError } = await supabase
+    if (selectError) {
+      console.error('Error selecting current visits:', selectError)
+      // If no record exists, create one
+      const { data: insertData, error: insertError } = await supabase
         .from('site_metrics')
+        .insert({ id: 'global', total_visits: 1 })
         .select('total_visits')
-        .eq('id', 'global')
-        .maybeSingle()
+        .single()
 
-      if (selectError) {
-        console.error('Error selecting current visits:', selectError)
+      if (insertError) {
+        console.error('Error inserting initial record:', insertError)
         return new Response(
-          JSON.stringify({ error: 'Database query failed' }),
+          JSON.stringify({ error: 'Failed to create initial record' }),
           { 
             status: 500, 
             headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -58,73 +47,42 @@ Deno.serve(async (req) => {
         )
       }
 
-      const currentCount = currentData?.total_visits || 0
-      const newCount = currentCount + 1
-
-      if (!currentData) {
-        // Insert new record
-        const { data: insertData, error: insertError } = await supabase
-          .from('site_metrics')
-          .insert({ id: 'global', total_visits: newCount })
-          .select('total_visits')
-          .single()
-
-        if (insertError) {
-          console.error('Error inserting record:', insertError)
-          return new Response(
-            JSON.stringify({ error: 'Failed to create record' }),
-            { 
-              status: 500, 
-              headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-            }
-          )
+      return new Response(
+        JSON.stringify({ total_visits: insertData.total_visits }),
+        {
+          status: 200,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         }
-
-        console.log('Successfully created record with visits:', insertData.total_visits)
-        return new Response(
-          JSON.stringify({ total_visits: insertData.total_visits }),
-          {
-            status: 200,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-          }
-        )
-      } else {
-        // Update existing record
-        const { data: updateData, error: updateError } = await supabase
-          .from('site_metrics')
-          .update({ 
-            total_visits: newCount,
-            updated_at: new Date().toISOString()
-          })
-          .eq('id', 'global')
-          .select('total_visits')
-          .single()
-
-        if (updateError) {
-          console.error('Error updating visits:', updateError)
-          return new Response(
-            JSON.stringify({ error: 'Failed to increment visits' }),
-            { 
-              status: 500, 
-              headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-            }
-          )
-        }
-
-        console.log('Successfully incremented visits to:', updateData.total_visits)
-        return new Response(
-          JSON.stringify({ total_visits: updateData.total_visits }),
-          {
-            status: 200,
-            headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-          }
-        )
-      }
+      )
     }
 
-    console.log('Successfully upserted visits to:', data.total_visits)
+    // Increment the counter
+    const newCount = (currentData.total_visits || 0) + 1
+    const { data: updateData, error: updateError } = await supabase
+      .from('site_metrics')
+      .update({ 
+        total_visits: newCount,
+        updated_at: new Date().toISOString()
+      })
+      .eq('id', 'global')
+      .select('total_visits')
+      .single()
+
+    if (updateError) {
+      console.error('Error updating visits:', updateError)
+      return new Response(
+        JSON.stringify({ error: 'Failed to increment visits' }),
+        { 
+          status: 500, 
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        }
+      )
+    }
+
+    console.log('Successfully incremented visits to:', updateData.total_visits)
+
     return new Response(
-      JSON.stringify({ total_visits: data.total_visits }),
+      JSON.stringify({ total_visits: updateData.total_visits }),
       {
         status: 200,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -133,7 +91,7 @@ Deno.serve(async (req) => {
   } catch (error) {
     console.error('Unexpected error:', error)
     return new Response(
-      JSON.stringify({ error: 'Internal server error', details: error.message }),
+      JSON.stringify({ error: 'Internal server error' }),
       { 
         status: 500, 
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
