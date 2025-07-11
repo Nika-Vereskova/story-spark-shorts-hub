@@ -1,10 +1,8 @@
-
 import React from 'react';
-import { ExternalLink, Cog } from 'lucide-react';
+import { ExternalLink, Star, Cog } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { t } from '@/lib/i18n';
-import Navigation from '@/components/Navigation';
+import { Link } from 'react-router-dom';
 
 interface Book {
   id: number;
@@ -26,7 +24,7 @@ const Books = () => {
       slug: "plumberella",
       coverUrl: "/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png",
       blurb: "Plumberella is a witty, heartwarming steampunk fairytale about a girl, a vanishing bathroom, and the invention of truth.",
-      ageRange: t('common.ageRange'),
+      ageRange: "Ages 8-108",
       amazonUrl: "https://amzn.eu/d/hmK81Zj",
       englishUrl: "https://amzn.eu/d/21fxD3o",
       featured: true
@@ -40,17 +38,29 @@ const Books = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <Navigation currentPage="books" />
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
+          <div className="hidden md:flex space-x-8">
+            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
+            <Link to="/books" className="text-brass font-semibold font-inter">Books</Link>
+            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
+            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
+            <a href="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</a>
+            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
+          </div>
+        </div>
+      </nav>
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('books.title')}
-            </h1>
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">My Clockwork Chronicles</h1>
             <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
-              {t('books.subtitle')}
+              Discover enchanting steampunk fairy tales that celebrate courage, invention, and the magic in mechanical marvels.
+              Each book is forged with wonder to inspire young inventors and spark imagination.
             </p>
           </div>
 
@@ -80,7 +90,7 @@ const Books = () => {
                     <div className="absolute top-4 right-4 z-20">
                       <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
                         <Cog className="w-3 h-3 mr-1" />
-                        {t('common.featured')}
+                        Featured
                       </span>
                     </div>
                   )}
@@ -100,7 +110,7 @@ const Books = () => {
                       className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                       onClick={() => handleBuyBook(book.amazonUrl, book.title)}
                     >
-                      {t('books.swedishVersion')}
+                      Swedish Version - Amazon KDP
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                     {book.englishUrl && (
@@ -109,7 +119,7 @@ const Books = () => {
                         className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
                         onClick={() => handleBuyBook(book.englishUrl!, `${book.title} (English)`)}
                       >
-                        {t('books.englishVersion')}
+                        English Version
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </Button>
                     )}
@@ -127,17 +137,15 @@ const Books = () => {
             <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('books.cantFind')}
-            </h2>
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Can't Find What You're Looking For?</h2>
             <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
-              {t('books.cantFindDesc')}
+              I'm always tinkering with new stories in my workshop! Join the Inventor's Guild to be the first to know about upcoming clockwork tales.
             </p>
             <Button 
               size="lg" 
               className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
             >
-              {t('books.joinGuild')}
+              Join the Inventor's Guild
             </Button>
           </div>
         </div>

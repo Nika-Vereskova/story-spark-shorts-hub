@@ -5,8 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { t } from '@/lib/i18n';
-import Navigation from '@/components/Navigation';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const [email, setEmail] = useState('');
@@ -14,22 +13,22 @@ const Contact = () => {
 
   const socialLinks = [
     {
-      name: t('contact.youtube'),
+      name: 'YouTube',
       url: 'https://www.youtube.com/@NikaVereskova',
       icon: Youtube,
-      description: t('contact.youtubeDesc')
+      description: 'Watch story time videos and behind-the-scenes content'
     },
     {
-      name: t('contact.instagram'),
+      name: 'Instagram',
       url: 'https://www.instagram.com/vereskovanika',
       icon: Instagram,
-      description: t('contact.instagramDesc')
+      description: 'Follow my daily adventures and book updates'
     },
     {
-      name: t('contact.facebook'),
+      name: 'Facebook',
       url: 'https://www.facebook.com/profile.php?id=61577838015246',
       icon: Facebook,
-      description: t('contact.facebookDesc')
+      description: 'Join the community discussions and events'
     }
   ];
 
@@ -41,40 +40,51 @@ const Contact = () => {
     e.preventDefault();
     if (!email) {
       toast({
-        title: t('common.emailRequired'),
-        description: t('common.emailRequiredDesc'),
+        title: "Email Required",
+        description: "Please enter your email address.",
         variant: "destructive"
       });
       return;
     }
     if (!validateEmail(email)) {
       toast({
-        title: t('common.invalidEmail'),
-        description: t('common.invalidEmailDesc'),
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
         variant: "destructive"
       });
       return;
     }
     toast({
-      title: t('common.subscribeSuccess'),
-      description: t('common.subscribeSuccessDesc'),
+      title: "Thank you for subscribing!",
+      description: "We'll notify you about new stories and clockwork adventures.",
     });
     setEmail('');
   };
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <Navigation currentPage="contact" />
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
+          <div className="hidden md:flex space-x-8">
+            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
+            <Link to="/books" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Books</Link>
+            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
+            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
+            <a href="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</a>
+            <Link to="/contact" className="text-brass font-semibold font-inter">Contact</Link>
+          </div>
+        </div>
+      </nav>
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('contact.title')}
-            </h1>
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Get in Touch</h1>
             <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
-              {t('contact.subtitle')}
+              I'd love to hear from you! Whether you have questions about my books, want to invite me for a reading, or just want to chat about steampunk adventures.
             </p>
           </div>
 
@@ -90,10 +100,10 @@ const Contact = () => {
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center">
                   <Mail className="mr-2 h-6 w-6" />
-                  {t('contact.emailDirect')}
+                  Email Me Directly
                 </CardTitle>
                 <CardDescription className="text-oxidized-teal/80 font-inter">
-                  {t('contact.emailDesc')}
+                  For book inquiries, reading invitations, or just to say hello
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -111,9 +121,7 @@ const Contact = () => {
 
           {/* Social Media Links */}
           <div className="mb-12">
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop">
-              {t('contact.socialTitle')}
-            </h2>
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop">Connect on Social Media</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {socialLinks.map((social, index) => {
                 const IconComponent = social.icon;
@@ -140,7 +148,7 @@ const Contact = () => {
                         className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
                         onClick={() => window.open(social.url, '_blank', 'noopener,noreferrer')}
                       >
-                        {t('contact.visit')} {social.name}
+                        Visit {social.name}
                         <ExternalLink className="ml-2 h-4 w-4" />
                       </Button>
                     </CardContent>
@@ -158,16 +166,15 @@ const Contact = () => {
             <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('contact.newsletterTitle')}
-            </h2>
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Join the Inventor's Guild</h2>
             <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
-              {t('contact.newsletterDesc')}
+              Get notified about new steampunk tales, workshop videos, and special clockwork events. 
+              Plus, receive a free downloadable gear-building activity sheet!
             </p>
             <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
               <Input 
                 type="email" 
-                placeholder={t('contact.emailPlaceholder')}
+                placeholder="Your email address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
@@ -176,7 +183,7 @@ const Contact = () => {
                 type="submit"
                 className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               >
-                {t('contact.subscribe')}
+                Subscribe
               </Button>
             </form>
           </div>

@@ -3,8 +3,7 @@ import React from 'react';
 import { Play, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { t } from '@/lib/i18n';
-import Navigation from '@/components/Navigation';
+import { Link } from 'react-router-dom';
 
 const Videos = () => {
   const videos = [
@@ -14,7 +13,7 @@ const Videos = () => {
       description: "A quick steampunk tale from Nika's workshop",
       youtubeUrl: "https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ",
       embedId: "5H1QWVRqPBU",
-      type: t('common.short')
+      type: "Short"
     }
   ];
 
@@ -25,17 +24,29 @@ const Videos = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <Navigation currentPage="videos" />
+      {/* Navigation */}
+      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
+          <div className="hidden md:flex space-x-8">
+            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
+            <Link to="/books" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Books</Link>
+            <Link to="/videos" className="text-brass font-semibold font-inter">Videos</Link>
+            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
+            <a href="/blog" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Blog</a>
+            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
+          </div>
+        </div>
+      </nav>
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('videos.title')}
-            </h1>
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Clockwork Chronicles on Screen</h1>
             <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
-              {t('videos.subtitle')}
+              Watch my YouTube adventures featuring quick steampunk tales and behind-the-scenes workshop magic! 
+              Discover the stories that inspire my books and get a glimpse into my creative process.
             </p>
           </div>
 
@@ -89,7 +100,7 @@ const Videos = () => {
                     className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                     onClick={() => handleWatchVideo(video.youtubeUrl, video.title)}
                   >
-                    {t('videos.watchOnYoutube')}
+                    Watch on YouTube
                     <ExternalLink className="ml-2 h-4 w-4" />
                   </Button>
                 </CardContent>
@@ -105,18 +116,16 @@ const Videos = () => {
             <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              {t('videos.subscribeTitle')}
-            </h2>
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">Subscribe for More Adventures!</h2>
             <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
-              {t('videos.subscribeDesc')}
+              Don't miss out on new steampunk stories and workshop videos. Subscribe to my YouTube channel for regular clockwork chronicles!
             </p>
             <Button 
               size="lg" 
               className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               onClick={() => window.open('https://www.youtube.com/@NikaVereskova', '_blank', 'noopener,noreferrer')}
             >
-              {t('videos.subscribeButton')}
+              Subscribe on YouTube
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </div>
