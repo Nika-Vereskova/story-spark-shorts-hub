@@ -30,15 +30,16 @@ const Moved = () => {
         </p>
         
         <div className="space-y-4">
-          <Link 
-            to={`/${locale}`} 
+          <a 
+            href="https://nika-vereskova.lovable.app/en/" 
             className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium rounded text-lg"
           >
             Enter the New Workshop
-          </Link>
+          </a>
           
           <p className="text-sm text-oxidized-teal/80 mt-4">
-            Please update your bookmarks to the new location
+            Please update your bookmarks to: <br />
+            <span className="font-mono text-brass">https://nika-vereskova.lovable.app/en/</span>
           </p>
         </div>
       </div>
