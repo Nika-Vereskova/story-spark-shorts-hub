@@ -28,8 +28,9 @@ const App = () => (
         <BrowserRouter>
           <LocaleRouter>
             <Routes>
-              {/* Auth route - accessible to everyone */}
+              {/* Auth routes - accessible to everyone, both with and without locale */}
               <Route path="/auth" element={<Auth />} />
+              <Route path="/:locale/auth" element={<Auth />} />
               
               {/* Protected routes - only for admins */}
               <Route path="/:locale" element={

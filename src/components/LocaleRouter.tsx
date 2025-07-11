@@ -14,6 +14,13 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
 
   useEffect(() => {
     const currentPath = location.pathname;
+    
+    // Don't redirect auth routes - they should work with or without locale
+    if (currentPath === '/auth' || currentPath.endsWith('/auth')) {
+      setIsInitialized(true);
+      return;
+    }
+    
     const pathParts = currentPath.split('/').filter(Boolean);
     const pathLocale = pathParts[0] as Locale;
     
