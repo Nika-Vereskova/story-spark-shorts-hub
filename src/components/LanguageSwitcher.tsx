@@ -2,7 +2,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { getCurrentLocale, switchLocale, type Locale } from '@/lib/i18n';
-import LogoutButton from './LogoutButton';
 
 const LanguageSwitcher = () => {
   const currentLocale = getCurrentLocale();
@@ -36,7 +35,6 @@ const LanguageSwitcher = () => {
           <span className="hidden sm:inline text-xs font-medium">{lang.code.toUpperCase()}</span>
         </Button>
       ))}
-      <LogoutButton />
     </div>
   );
 };
