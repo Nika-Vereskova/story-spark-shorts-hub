@@ -26,7 +26,7 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
       setCurrentLocale(pathLocale);
       setIsInitialized(true);
     } else {
-      // No locale in path, determine where to redirect
+      // No locale in path, determine the locale but don't redirect for root path
       const storedLocale = typeof window !== 'undefined' ? localStorage.getItem('preferred-locale') as Locale : null;
       const browserLocale = detectBrowserLocale();
       
@@ -40,9 +40,12 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
       
       setCurrentLocale(targetLocale);
       
-      // Redirect to the appropriate locale path
-      const newPath = `/${targetLocale}${currentPath}`;
-      navigate(newPath, { replace: true });
+      // Only redirect if we're not on the root path
+      if (currentPath !== '/') {
+        const newPath = `/${targetLocale}${currentPath}`;
+        navigate(newPath, { replace: true });
+      }
+      
       setIsInitialized(true);
     }
   }, [location.pathname, navigate]);

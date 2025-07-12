@@ -28,14 +28,24 @@ const App = () => (
         <LocaleRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/:locale" element={<Index />} />
+            <Route path="/:locale/about" element={<About />} />
             <Route path="/about" element={<About />} />
+            <Route path="/:locale/books" element={<Books />} />
             <Route path="/books" element={<Books />} />
+            <Route path="/:locale/videos" element={<Videos />} />
             <Route path="/videos" element={<Videos />} />
+            <Route path="/:locale/blog" element={<Blog />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/:locale/contact" element={<Contact />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/:locale/admin" element={<Admin />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/:locale/privacy" element={<Privacy />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/:locale/terms" element={<Terms />} />
             <Route path="/terms" element={<Terms />} />
+            <Route path="/:locale/clockwork-adventures" element={<Moved />} />
             <Route path="/clockwork-adventures" element={<Moved />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
