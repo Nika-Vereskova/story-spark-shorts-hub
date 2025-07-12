@@ -6,10 +6,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { t } from '@/lib/i18n';
+import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 
 const Contact = () => {
   const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
   const socialLinks = [
@@ -37,8 +39,30 @@ const Contact = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
+  const sendConfirmationEmail = async (email: string) => {
+    try {
+      const { data, error } = await supabase.functions.invoke('send-newsletter-confirmation', {
+        body: { email }
+      });
+      
+      if (error) {
+        console.error('Error sending confirmation email:', error);
+        throw error;
+      }
+      
+      console.log('Confirmation email sent successfully:', data);
+      return data;
+    } catch (error) {
+      console.error('Failed to send confirmation email:', error);
+      throw error;
+    }
+  };
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isSubmitting) return;
+    
     if (!email) {
       toast({
         title: t('common.emailRequired'),
@@ -55,12 +79,29 @@ const Contact = () => {
       });
       return;
     }
-    toast({
-      title: t('common.subscribeSuccess'),
-      description: t('common.subscribeSuccessDesc'),
-      duration: 6000, // Show for 6 seconds since it's a longer message
-    });
-    setEmail('');
+
+    setIsSubmitting(true);
+
+    try {
+      // Send confirmation email
+      await sendConfirmationEmail(email);
+      
+      toast({
+        title: t('common.subscribeSuccess'),
+        description: t('common.subscribeSuccessDesc'),
+        duration: 6000, // Show for 6 seconds since it's a longer message
+      });
+      setEmail('');
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to subscribe. Please try again.',
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -171,13 +212,15 @@ const Contact = () => {
                 placeholder={t('contact.emailPlaceholder')}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                disabled={isSubmitting}
                 className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
               />
               <Button 
                 type="submit"
-                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                disabled={isSubmitting}
+                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
               >
-                {t('contact.subscribe')}
+                {isSubmitting ? 'Subscribing...' : t('contact.subscribe')}
               </Button>
             </form>
           </div>

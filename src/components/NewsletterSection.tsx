@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { t } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
+import { supabase } from '@/integrations/supabase/client';
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
@@ -31,6 +32,25 @@ const NewsletterSection = () => {
       hash = hash & hash; // Convert to 32-bit integer
     }
     return Math.abs(hash).toString();
+  };
+
+  const sendConfirmationEmail = async (email: string) => {
+    try {
+      const { data, error } = await supabase.functions.invoke('send-newsletter-confirmation', {
+        body: { email }
+      });
+      
+      if (error) {
+        console.error('Error sending confirmation email:', error);
+        throw error;
+      }
+      
+      console.log('Confirmation email sent successfully:', data);
+      return data;
+    } catch (error) {
+      console.error('Failed to send confirmation email:', error);
+      throw error;
+    }
   };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -61,6 +81,9 @@ const NewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
+      // Send confirmation email
+      await sendConfirmationEmail(sanitizedEmail);
+      
       // Track newsletter signup conversion with privacy-preserving hash
       posthog.capture('newsletter_signup', {
         email_hash: hashEmail(sanitizedEmail),
