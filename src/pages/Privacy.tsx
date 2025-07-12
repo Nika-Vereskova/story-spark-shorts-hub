@@ -18,12 +18,17 @@ const Privacy = () => {
           
           <section>
             <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Information We Collect</h2>
-            <p>We collect information you provide directly to us, such as when you subscribe to our newsletter or contact us.</p>
+            <p>We collect information you provide directly to us, such as when you subscribe to our newsletter or contact us. We do not store personal email addresses in our analytics systems.</p>
           </section>
           
           <section>
             <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Cookies and Tracking</h2>
-            <p>We use cookies and similar tracking technologies to track activity on our website and store certain information. We use Google Analytics and PostHog for analytics purposes.</p>
+            <p>We use cookies and similar tracking technologies to track activity on our website and store certain information. We use PostHog for analytics purposes with privacy-preserving practices:</p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>We track user interactions without storing personal identifiers</li>
+              <li>Email addresses are hashed before any analytics processing</li>
+              <li>We collect anonymized usage statistics to improve our services</li>
+            </ul>
           </section>
           
           <section>
@@ -33,7 +38,18 @@ const Privacy = () => {
           
           <section>
             <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Data Protection</h2>
-            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Our security practices include:</p>
+            <ul className="list-disc pl-6 mt-2">
+              <li>Input validation and sanitization</li>
+              <li>Secure data transmission</li>
+              <li>Privacy-preserving analytics</li>
+              <li>Regular security reviews</li>
+            </ul>
+          </section>
+          
+          <section>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Your Rights</h2>
+            <p>You have the right to access, update, or delete your personal information. Since we minimize data collection and use privacy-preserving techniques, most interactions are anonymous by design.</p>
           </section>
           
           <section>
