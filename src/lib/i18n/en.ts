@@ -1,3 +1,4 @@
+
 export const en = {
   nav: {
     home: "Home",
@@ -71,8 +72,8 @@ export const en = {
     emailRequiredDesc: "Please enter your email address.",
     invalidEmail: "Invalid Email",
     invalidEmailDesc: "Please enter a valid email address.",
-    subscribeSuccess: "Thank you for subscribing!",
-    subscribeSuccessDesc: "We'll notify you about new stories and clockwork adventures."
+    subscribeSuccess: "Welcome to the Inventor's Guild!",
+    subscribeSuccessDesc: "Thank you for subscribing! You'll now receive all the latest news about new steampunk stories, workshop videos, and exclusive clockwork adventures. Keep an eye on your inbox for magical updates!"
   },
   moved: {
     title: "Site Moved!",

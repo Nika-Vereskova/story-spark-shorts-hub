@@ -58,6 +58,7 @@ const Contact = () => {
     toast({
       title: t('common.subscribeSuccess'),
       description: t('common.subscribeSuccessDesc'),
+      duration: 6000, // Show for 6 seconds since it's a longer message
     });
     setEmail('');
   };
