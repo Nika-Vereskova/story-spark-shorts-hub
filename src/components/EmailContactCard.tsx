@@ -30,7 +30,7 @@ const EmailContactCard = () => {
           onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com'}
         >
           <Mail className="mr-2 h-5 w-5" />
-          nika.vereskova@gmail.com
+          Send email
         </Button>
       </CardContent>
     </Card>
