@@ -109,6 +109,59 @@ export const sv = {
     emailPlaceholder: "Din e-postadress",
     subscribe: "Prenumerera"
   },
+  blog: {
+    title: "Kugghjuls-krönikor Blogg",
+    subtitle: "Följ min skrivresa, kreativa process och den magiska världen av steampunk-berättande.",
+    latestUpdates: "Senaste Uppdateringarna",
+    readPlumberella: "Läs Plumberella nu:",
+    readExcerpt: "Läs Utdraget",
+    hideExcerpt: "Dölj Utdrag",
+    followMe: "📌 Följ mig för uppdateringar, konst och magibakom kulisserna:",
+    inspirationalQuote: "\"Låt oss inspirera nästa generation av tänkare och byggare – en berättelse i taget.\"",
+    post1: {
+      title: "Min Första Bok är Här! ☀️",
+      date: "Sommar 2025",
+      excerpt: "Min sommar har varit produktiv hittills... Jag skrev och publicerade min första bok!",
+      content: `Min sommar har varit produktiv hittills... Jag skrev och publicerade min första bok!
+
+Plumberella är inte din typiska saga. Det är en kviptig, hjärtlig steampunk-berättelse om en modig, uppfinningsrik flicka som skapar sanning istället för att vänta på magi.
+
+Denna berättelse blandar:
+• Smarta hjältinnor och kritiskt tänkande
+• Magin av uppfinning och mod
+• Bemyndigande för unga läsare och drömmare i alla åldrar
+
+Jag skrev Plumberella för dem som tror att vänlighet och klokhet kan förändra världen.`,
+      bookExcerpt: `**Kapitel 2. Plumberella**
+
+Som du redan vet, överskuggades Plumberellas födelse av tragedi. När tiden kom att namnge den nyfödda, Henry, förlorad och hjärtekrossad, sökte någon slags förankring i det bekanta. Han tittade på duschen i badrummet, där han precis hade lugnat barnet, och tänkte: "Plumberella. Söt, ren, som mitt livs sanna kallelse att göra världen renare. Jag är rörmokaren!" Och så fick hon namnet Plumberella—inte bara officiellt, utan också av kärlek.
+
+Flickan växte upp lugn, smart och snäll. Så snart hon lärde sig att hålla en skiftnyckel stadigt i händerna, började hon omedelbart hjälpa sin far. Ibland tog han med henne på jobb—tack och lov gjorde kunderna inte något emot det, och flickan var tystare än vatten och mycket kapabel.
+
+Ibland gav hon honom en åtta millimeters skiftnyckel, eller trådklipparen, eller fiskade ut den exakta delen från verktygslådan som genom magi.
+
+Vid sjutton års ålder var Plumberella redan ganska skicklig inom rörmokeri. Henry övervägde stolt: kanske var det dags att ge henne sitt första soloarbete? Särskilt eftersom hon inte bara lärde sig av honom—hon gick i rörmokargilllets skola. Naturligtvis var hon den enda flickan där. Dessutom den yngsta: efter inträdesproverna hade hon fått hoppa över två nivåer direkt.
+
+Men varken det eller den mansdominerade miljön skrämde henne. Plumberella respekterades. För sin intelligens, lugn och rättframhet. Några av pojkarna var till och med lite rädda för henne: hon kände inte bara strukturen på en sifon bättre än någon av dem, utan hon kunde också ge ett skarpt svar om någon började vara oförskämd. Kolven—i hennes händer—var både ett verktyg och en symbol för rättvisa.
+
+Och Plumberella älskade att läsa. Böcker var som portaler för henne—hon kunde fördjupa sig i vilken roll som helst: en prinsessa, en scout, en rymdtrollkarl... Men det fanns ingen magi i hennes liv. Det fanns rör, kranar och arbete. Ändå kunde du i sällsynta fria timmar hitta henne på biblioteket—bland torn av böcker och doften av gammalt papper.
+
+Den morgonen hade pappa gått tidigt. Och eftersom Plumberellas lektioner började senare, unnade hon sig nöjet att dröja under täcket och lyssna på fåglarna som sjöng utanför fönstret. I köket väntade varma croissanter på henne—kärleksfullt lämnade av hennes far. Hon åt två och ångrade sig inte—dagen lovade att bli intressant.
+
+När hon gjorde sig i ordning, ordnade hon noggrant sina verktyg i sin rosa verktygslåda—en present från sin far på hennes femtonde födelsedag. Allt var sorterat efter färg: skiftnycklar—gröna, skruvmejslar—blå, tänger—lila, som hennes lavendelhandskar. Det gjorde det lättare för henne att tänka.
+
+Dagen på skolan började livligt. Dagens ämne var konstruktion av toaletttankar. Teorin gick smidigt, men en överraskning väntade eleverna under praktiken. Medan läraren var distraherad och kontrollerade anteckningsböcker, bestämde sig några pojkar från klassen för att spela ett spratt. Vattentanken på träningstoaletten öppnades i hemlighet, och tjock grön slem—hemifrånt av en av eleverna—hälldes i.
+
+Läraren, utan att märka något, började sin förklaring:
+
+"Så, kära lärlingar, idag kommer vi att lära oss hur man diagnostiserar fel i spolningsmekanismen. En av er monterade träningsuppsättningen igår. Låt oss se. Jag trycker på knappen—och..."`,
+      links: {
+        english: "Engelska",
+        swedish: "Svenska",
+        russian: "Ryska"
+      }
+    }
+  },
   common: {
     ageRange: "Ålder 8-108",
     featured: "Utvald",
