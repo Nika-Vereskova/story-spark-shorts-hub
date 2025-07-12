@@ -54,6 +54,14 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage }) => {
             {t('nav.videos')}
           </Link>
           <Link 
+            to={getLocalizedPath('/services')} 
+            className={`transition-colors font-medium font-inter ${
+              isActive('services') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
+            }`}
+          >
+            {t('nav.services')}
+          </Link>
+          <Link 
             to={getLocalizedPath('/about')} 
             className={`transition-colors font-medium font-inter ${
               isActive('about') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'

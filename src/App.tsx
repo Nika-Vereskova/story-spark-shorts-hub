@@ -11,6 +11,7 @@ import Books from "./pages/Books";
 import Videos from "./pages/Videos";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Services from "./pages/Services";
 import Admin from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
@@ -35,6 +36,8 @@ const App = () => (
             <Route path="/books" element={<Books />} />
             <Route path="/:locale/videos" element={<Videos />} />
             <Route path="/videos" element={<Videos />} />
+            <Route path="/:locale/services" element={<Services />} />
+            <Route path="/services" element={<Services />} />
             <Route path="/:locale/blog" element={<Blog />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/:locale/contact" element={<Contact />} />

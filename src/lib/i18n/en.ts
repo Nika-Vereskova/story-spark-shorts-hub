@@ -6,7 +6,8 @@ export const en = {
     videos: "Videos",
     about: "About",
     blog: "Blog",
-    contact: "Contact"
+    contact: "Contact",
+    services: "Services"
   },
   home: {
     title: "Nika Vereskova Stories",
@@ -45,6 +46,50 @@ export const en = {
     bio5: "Welcome to my little world of stories and ideas—where imagination meets engineering, and every detail has a purpose.",
     connect: "Let's Connect!",
     followSocial: "Follow on Social"
+  },
+  services: {
+    title: "My Services",
+    subtitle: "From enchanting stories to cutting-edge technology, I offer a range of services that blend creativity with innovation. Whether you're looking to learn, build, or tell your own story, I'm here to help.",
+    webinars: {
+      title: "Interactive Webinars",
+      description: "Engaging workshops on storytelling, AI, and creative technology",
+      feature1: "Live interactive sessions with Q&A",
+      feature2: "Storytelling techniques for all ages",
+      feature3: "Creative writing with AI assistance",
+      cta: "Book a Webinar"
+    },
+    websites: {
+      title: "Website Development",
+      description: "Beautiful, functional websites that tell your story",
+      feature1: "Custom design with steampunk flair",
+      feature2: "Responsive and mobile-friendly",
+      feature3: "SEO optimized and fast loading",
+      cta: "Get Your Website"
+    },
+    chapters: {
+      title: "Book Chapters & Writing",
+      description: "Custom stories and book chapters for your projects",
+      feature1: "Personalized fairy tales and stories",
+      feature2: "Educational content with narrative",
+      feature3: "Character development and world-building",
+      cta: "Commission a Story"
+    },
+    apps: {
+      title: "App Development",
+      description: "Interactive applications that bring ideas to life",
+      feature1: "Educational apps for children",
+      feature2: "Creative tools and utilities",
+      feature3: "AI-powered interactive experiences",
+      cta: "Build Your App"
+    },
+    ai: {
+      title: "AI Courses & Consulting",
+      description: "Learn about artificial intelligence and its creative applications",
+      feature1: "Beginner-friendly AI workshops",
+      feature2: "Creative AI for storytellers",
+      feature3: "Custom AI solutions consulting",
+      cta: "Explore AI with Me"
+    }
   },
   contact: {
     title: "Get in Touch",
