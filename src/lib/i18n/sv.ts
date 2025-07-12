@@ -1,3 +1,4 @@
+
 export const sv = {
   nav: {
     home: "Hem",
@@ -5,7 +6,8 @@ export const sv = {
     videos: "Videor",
     about: "Om mig",
     blog: "Blogg",
-    contact: "Kontakt"
+    contact: "Kontakt",
+    services: "Tjänster"
   },
   home: {
     title: "Nika Vereskova Berättelser",
@@ -44,6 +46,50 @@ export const sv = {
     bio5: "Välkommen till min lilla värld av berättelser och idéer—där fantasi möter teknik och varje detalj har ett syfte.",
     connect: "Låt Oss Höra Av Varandra!",
     followSocial: "Följ på Sociala Medier"
+  },
+  services: {
+    title: "Mina Tjänster",
+    subtitle: "Från förtrollande berättelser till banbrytande teknik erbjuder jag en rad tjänster som blandar kreativitet med innovation. Oavsett om du vill lära dig, bygga eller berätta din egen historia, jag är här för att hjälpa.",
+    webinars: {
+      title: "Interaktiva Webbinarier",
+      description: "Engagerande workshops om berättande, AI och kreativ teknik",
+      feature1: "Livesändningar med frågor och svar",
+      feature2: "Berättartekniker för alla åldrar",
+      feature3: "Kreativt skrivande med AI-hjälp",
+      cta: "Boka ett Webbinarium"
+    },
+    websites: {
+      title: "Webbutveckling",
+      description: "Vackra, funktionella webbplatser som berättar din historia",
+      feature1: "Anpassad design med steampunk-flärd",
+      feature2: "Responsiv och mobilvänlig",
+      feature3: "SEO-optimerad och snabbladdande",
+      cta: "Få Din Webbplats"
+    },
+    chapters: {
+      title: "Bokkapitel och Skrivande",
+      description: "Anpassade berättelser och bokkapitel för dina projekt",
+      feature1: "Personliga sagor och berättelser",
+      feature2: "Pedagogiskt innehåll med narrativ",
+      feature3: "Karaktärsutveckling och världsbyggande",
+      cta: "Beställ en Berättelse"
+    },
+    apps: {
+      title: "Apputveckling",
+      description: "Interaktiva applikationer som ger liv åt idéer",
+      feature1: "Pedagogiska appar för barn",
+      feature2: "Kreativa verktyg och hjälpmedel",
+      feature3: "AI-drivna interaktiva upplevelser",
+      cta: "Bygg Din App"
+    },
+    ai: {
+      title: "AI-kurser och Rådgivning",
+      description: "Lär dig om artificiell intelligens och dess kreativa tillämpningar",
+      feature1: "Nybörjarvänliga AI-workshops",
+      feature2: "Kreativ AI för berättare",
+      feature3: "Anpassade AI-lösningar rådgivning",
+      cta: "Utforska AI med Mig"
+    }
   },
   contact: {
     title: "Hör Av Dig",
