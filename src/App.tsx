@@ -15,7 +15,6 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
-import VisitorCounter from "./components/VisitorCounter";
 import LocaleRouter from "./components/LocaleRouter";
 import Moved from "./pages/Moved";
 
@@ -60,7 +59,6 @@ const App = () => {
               {/* Catch-all route */}
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <VisitorCounter />
           </LocaleRouter>
         </BrowserRouter>
       </TooltipProvider>
