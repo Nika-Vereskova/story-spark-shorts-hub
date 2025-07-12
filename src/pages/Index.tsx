@@ -416,6 +416,20 @@ const Index = () => {
               Facebook
             </a>
           </div>
+          <div className="flex justify-center space-x-6 mt-4">
+            <Link 
+              to="/privacy" 
+              className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+            >
+              Privacy Policy
+            </Link>
+            <Link 
+              to="/terms" 
+              className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+            >
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </footer>
     </div>

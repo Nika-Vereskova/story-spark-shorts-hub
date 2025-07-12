@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,6 +12,8 @@ import Videos from "./pages/Videos";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import VisitorCounter from "./components/VisitorCounter";
 import LocaleRouter from "./components/LocaleRouter";
@@ -38,6 +41,8 @@ const App = () => {
               <Route path="/:locale/about" element={<About />} />
               <Route path="/:locale/blog" element={<Blog />} />
               <Route path="/:locale/contact" element={<Contact />} />
+              <Route path="/:locale/privacy" element={<Privacy />} />
+              <Route path="/:locale/terms" element={<Terms />} />
               
               {/* Root route - will be redirected by LocaleRouter */}
               <Route path="/" element={<Index />} />
@@ -46,6 +51,8 @@ const App = () => {
               <Route path="/about" element={<About />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
               
               {/* Moved notice for old URL visitors */}
               <Route path="/moved" element={<Moved />} />
