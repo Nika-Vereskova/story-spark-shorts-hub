@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
 
 interface NavigationProps {
   currentPage?: string;
@@ -17,22 +17,30 @@ const Navigation = ({ currentPage }: NavigationProps) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
+  const locale = getCurrentLocale();
 
   const navItems = [
-    { name: t('nav.home'), path: '/', key: 'home' },
-    { name: t('nav.about'), path: '/about', key: 'about' }, 
-    { name: t('nav.services'), path: '/services', key: 'services' },
-    { name: t('nav.books'), path: '/books', key: 'books' },
-    { name: t('nav.videos'), path: '/videos', key: 'videos' },
-    { name: t('nav.blog'), path: '/blog', key: 'blog' },
-    { name: t('nav.contact'), path: '/contact', key: 'contact' },
+    { name: t('nav.home'), path: `/${locale}`, key: 'home' },
+    { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
+    { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
+    { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
+    { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' },
+    { name: t('nav.blog'), path: `/${locale}/blog`, key: 'blog' },
+    { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
   ];
 
   const isCurrentPage = (itemKey: string) => {
     if (currentPage) {
-      return currentPage === itemKey || location.pathname === `/${itemKey}`;
+      return currentPage === itemKey || location.pathname === `/${locale}/${itemKey}` || (itemKey === 'home' && location.pathname === `/${locale}`);
     }
-    return location.pathname === '/' ? itemKey === 'home' : location.pathname.startsWith(`/${itemKey}`);
+    
+    // Handle home page - both root and locale-prefixed
+    if (itemKey === 'home') {
+      return location.pathname === '/' || location.pathname === `/${locale}` || location.pathname === `/${locale}/`;
+    }
+    
+    // Handle other pages
+    return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
   };
 
   return (
@@ -40,7 +48,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b-2 border-brass/50 shadow-brass-drop">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="text-2xl font-playfair font-bold text-oxidized-teal hover:text-brass transition-colors">
+            <Link to={`/${locale}`} className="text-2xl font-playfair font-bold text-oxidized-teal hover:text-brass transition-colors">
               Nika Vereskova Stories
             </Link>
             
