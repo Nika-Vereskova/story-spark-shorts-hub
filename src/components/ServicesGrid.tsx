@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -33,16 +32,27 @@ const ServicesGrid = () => {
 
     setLoading(serviceName);
     try {
+      console.log('Creating payment for:', serviceName);
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: { serviceName }
       });
 
-      if (error) throw error;
-      window.open(data.url, '_blank');
+      if (error) {
+        console.error('Payment error:', error);
+        throw error;
+      }
+
+      console.log('Payment response:', data);
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      } else {
+        throw new Error('No payment URL received');
+      }
     } catch (error) {
+      console.error('Payment creation failed:', error);
       toast({
         title: "Error",
-        description: "Failed to create payment session",
+        description: error.message || "Failed to create payment session",
         variant: "destructive",
       });
     } finally {
@@ -58,16 +68,27 @@ const ServicesGrid = () => {
 
     setLoading(`subscription-${tier}`);
     try {
+      console.log('Creating subscription for tier:', tier);
       const { data, error } = await supabase.functions.invoke('create-subscription', {
         body: { subscriptionTier: tier }
       });
 
-      if (error) throw error;
-      window.open(data.url, '_blank');
+      if (error) {
+        console.error('Subscription error:', error);
+        throw error;
+      }
+
+      console.log('Subscription response:', data);
+      if (data?.url) {
+        window.open(data.url, '_blank');
+      } else {
+        throw new Error('No subscription URL received');
+      }
     } catch (error) {
+      console.error('Subscription creation failed:', error);
       toast({
         title: "Error",
-        description: "Failed to create subscription session",
+        description: error.message || "Failed to create subscription session",
         variant: "destructive",
       });
     } finally {

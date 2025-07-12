@@ -19,35 +19,52 @@ serve(async (req) => {
   );
 
   try {
-    const authHeader = req.headers.get("Authorization")!;
+    console.log("Starting subscription creation");
+    
+    const authHeader = req.headers.get("Authorization");
+    if (!authHeader) {
+      throw new Error("No authorization header");
+    }
+
     const token = authHeader.replace("Bearer ", "");
     const { data } = await supabaseClient.auth.getUser(token);
     const user = data.user;
-    if (!user?.email) throw new Error("User not authenticated");
+    if (!user?.email) {
+      throw new Error("User not authenticated");
+    }
+
+    console.log("User authenticated:", user.email);
 
     const { subscriptionTier } = await req.json();
+    console.log("Subscription tier:", subscriptionTier);
     
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2023-10-16",
     });
 
+    // Check for existing customer
     const customers = await stripe.customers.list({ email: user.email, limit: 1 });
     let customerId;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
+      console.log("Found existing customer:", customerId);
+    } else {
+      console.log("No existing customer found");
     }
 
     const priceData = subscriptionTier === 'yearly' ? {
       currency: "sek",
       product_data: { name: "AI Courses - Yearly" },
-      unit_amount: 100000, // 1000 SEK
+      unit_amount: 100000, // 1000 SEK in öre
       recurring: { interval: "year" as const },
     } : {
       currency: "sek", 
       product_data: { name: "AI Courses - Monthly" },
-      unit_amount: 10000, // 100 SEK
+      unit_amount: 10000, // 100 SEK in öre
       recurring: { interval: "month" as const },
     };
+
+    console.log("Creating checkout session with price data:", priceData);
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -63,12 +80,18 @@ serve(async (req) => {
       cancel_url: `${req.headers.get("origin")}/services?subscription=cancelled`,
     });
 
+    console.log("Checkout session created:", session.id);
+
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
   } catch (error) {
-    return new Response(JSON.stringify({ error: error.message }), {
+    console.error("Error in create-subscription:", error);
+    return new Response(JSON.stringify({ 
+      error: error.message,
+      details: error.stack 
+    }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 500,
     });
