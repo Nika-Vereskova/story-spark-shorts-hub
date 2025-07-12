@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Calendar, ExternalLink, Heart, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +9,7 @@ const Blog = () => {
     {
       id: 1,
       title: "My First Book is Here! ☀️",
-      date: "Summer 2024",
+      date: "Summer 2025",
       excerpt: "My summer has been productive so far… I wrote and published my first book!",
       content: `My summer has been productive so far… I wrote and published my first book!
 
@@ -62,7 +61,6 @@ The teacher, noticing nothing, began his explanation:
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      {/* Navigation */}
       <Navigation currentPage="blog" />
 
       <div className="pt-24 pb-16 px-6">
