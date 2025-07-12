@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,33 +7,91 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
-import { Send, Users, Mail } from 'lucide-react';
+import { Send, Users, Mail, Lock } from 'lucide-react';
+import { User } from '@supabase/supabase-js';
 
 const Admin = () => {
   const [subject, setSubject] = useState('');
   const [content, setContent] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  // Load subscriber count on component mount
-  React.useEffect(() => {
-    const loadSubscriberCount = async () => {
+  // Check authentication and admin status
+  useEffect(() => {
+    const checkAuth = async () => {
       try {
-        const { count, error } = await supabase
-          .from('newsletter_subscribers')
-          .select('*', { count: 'exact', head: true })
-          .eq('is_active', true);
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (!session?.user) {
+          setUser(null);
+          setIsAdmin(false);
+          setIsLoading(false);
+          return;
+        }
 
-        if (error) throw error;
-        setSubscriberCount(count || 0);
+        setUser(session.user);
+
+        // Check if user has admin role
+        const { data: hasAdminRole, error } = await supabase.rpc('has_role', {
+          _user_id: session.user.id,
+          _role: 'admin'
+        });
+
+        if (error) {
+          console.error('Error checking admin role:', error);
+          setIsAdmin(false);
+        } else {
+          setIsAdmin(hasAdminRole || false);
+        }
       } catch (error) {
-        console.error('Error loading subscriber count:', error);
+        console.error('Auth check error:', error);
+        setIsAdmin(false);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    loadSubscriberCount();
+    checkAuth();
+
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session?.user) {
+        setUser(session.user);
+        checkAuth();
+      } else {
+        setUser(null);
+        setIsAdmin(false);
+        setIsLoading(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
+
+  // Load subscriber count on component mount (only if admin)
+  useEffect(() => {
+    if (isAdmin) {
+      const loadSubscriberCount = async () => {
+        try {
+          const { count, error } = await supabase
+            .from('newsletter_subscribers')
+            .select('*', { count: 'exact', head: true })
+            .eq('is_active', true);
+
+          if (error) throw error;
+          setSubscriberCount(count || 0);
+        } catch (error) {
+          console.error('Error loading subscriber count:', error);
+        }
+      };
+
+      loadSubscriberCount();
+    }
+  }, [isAdmin]);
 
   const handleSendNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -95,6 +153,108 @@ const Admin = () => {
     }
   };
 
+  const handleSignIn = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email: prompt('Enter your email:') || '',
+        password: prompt('Enter your password:') || ''
+      });
+
+      if (error) {
+        toast({
+          title: 'Sign In Failed',
+          description: error.message,
+          variant: 'destructive'
+        });
+      }
+    } catch (error: any) {
+      toast({
+        title: 'Sign In Error',
+        description: 'An error occurred during sign in.',
+        variant: 'destructive'
+      });
+    }
+  };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-parchment bg-gear-pattern">
+        <Navigation currentPage="admin" />
+        <div className="pt-24 pb-16 px-6">
+          <div className="container mx-auto max-w-4xl">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
+              <p className="text-oxidized-teal mt-4 font-inter">Loading...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Not authenticated
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-parchment bg-gear-pattern">
+        <Navigation currentPage="admin" />
+        <div className="pt-24 pb-16 px-6">
+          <div className="container mx-auto max-w-4xl">
+            <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
+              <CardHeader className="text-center">
+                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
+                  <Lock className="mr-2 h-6 w-6" />
+                  Authentication Required
+                </CardTitle>
+                <CardDescription className="text-oxidized-teal/80 font-inter">
+                  Please sign in to access the admin panel
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <Button
+                  onClick={handleSignIn}
+                  className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                >
+                  Sign In
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Not admin
+  if (!isAdmin) {
+    return (
+      <div className="min-h-screen bg-parchment bg-gear-pattern">
+        <Navigation currentPage="admin" />
+        <div className="pt-24 pb-16 px-6">
+          <div className="container mx-auto max-w-4xl">
+            <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
+              <CardHeader className="text-center">
+                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
+                  <Lock className="mr-2 h-6 w-6" />
+                  Access Denied
+                </CardTitle>
+                <CardDescription className="text-oxidized-teal/80 font-inter">
+                  You don't have permission to access the admin panel
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="text-center">
+                <p className="text-oxidized-teal/70 font-inter">
+                  Only administrators can access this page. If you believe this is an error, please contact the site administrator.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Admin user - show full admin panel
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       <Navigation currentPage="admin" />
