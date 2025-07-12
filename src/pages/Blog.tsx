@@ -3,7 +3,7 @@ import React from 'react';
 import { Calendar, ExternalLink, Heart, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
 
 const Blog = () => {
   const posts = [
@@ -63,19 +63,7 @@ The teacher, noticing nothing, began his explanation:
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">Nika Vereskova Stories</h1>
-          <div className="hidden md:flex space-x-8">
-            <Link to="/" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Home</Link>
-            <Link to="/books" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Books</Link>
-            <Link to="/videos" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Videos</Link>
-            <Link to="/about" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">About</Link>
-            <Link to="/blog" className="text-brass font-semibold font-inter">Blog</Link>
-            <Link to="/contact" className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter">Contact</Link>
-          </div>
-        </div>
-      </nav>
+      <Navigation currentPage="blog" />
 
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-4xl">
