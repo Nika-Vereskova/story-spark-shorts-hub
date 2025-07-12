@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Mail, ExternalLink, Facebook, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -39,25 +38,6 @@ const Contact = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const sendConfirmationEmail = async (email: string) => {
-    try {
-      const { data, error } = await supabase.functions.invoke('send-newsletter-confirmation', {
-        body: { email }
-      });
-      
-      if (error) {
-        console.error('Error sending confirmation email:', error);
-        throw error;
-      }
-      
-      console.log('Confirmation email sent successfully:', data);
-      return data;
-    } catch (error) {
-      console.error('Failed to send confirmation email:', error);
-      throw error;
-    }
-  };
-
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -83,13 +63,37 @@ const Contact = () => {
     setIsSubmitting(true);
 
     try {
+      // Save subscriber to database
+      const { error: subscribeError } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email }]);
+
+      if (subscribeError) {
+        if (subscribeError.code === '23505') { // Unique constraint violation
+          toast({
+            title: 'Already Subscribed',
+            description: 'This email is already subscribed to our newsletter.',
+            variant: "destructive"
+          });
+          return;
+        }
+        throw subscribeError;
+      }
+
       // Send confirmation email
-      await sendConfirmationEmail(email);
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
+        body: { email }
+      });
+      
+      if (emailError) {
+        console.error('Error sending confirmation email:', emailError);
+        // Don't throw here - subscription was successful even if email failed
+      }
       
       toast({
         title: t('common.subscribeSuccess'),
         description: t('common.subscribeSuccessDesc'),
-        duration: 6000, // Show for 6 seconds since it's a longer message
+        duration: 6000,
       });
       setEmail('');
     } catch (error) {

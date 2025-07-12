@@ -4,66 +4,45 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { initPostHog } from "./lib/posthog";
+import LocaleRouter from "@/components/LocaleRouter";
 import Index from "./pages/Index";
+import About from "./pages/About";
 import Books from "./pages/Books";
 import Videos from "./pages/Videos";
-import About from "./pages/About";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
-import LocaleRouter from "./components/LocaleRouter";
 import Moved from "./pages/Moved";
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  useEffect(() => {
-    initPostHog();
-  }, []);
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <LocaleRouter>
-            <Routes>
-              {/* Locale-prefixed routes */}
-              <Route path="/:locale" element={<Index />} />
-              <Route path="/:locale/books" element={<Books />} />
-              <Route path="/:locale/videos" element={<Videos />} />
-              <Route path="/:locale/about" element={<About />} />
-              <Route path="/:locale/blog" element={<Blog />} />
-              <Route path="/:locale/contact" element={<Contact />} />
-              <Route path="/:locale/privacy" element={<Privacy />} />
-              <Route path="/:locale/terms" element={<Terms />} />
-              
-              {/* Root route - will be redirected by LocaleRouter */}
-              <Route path="/" element={<Index />} />
-              <Route path="/books" element={<Books />} />
-              <Route path="/videos" element={<Videos />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              
-              {/* Moved notice for old URL visitors */}
-              <Route path="/moved" element={<Moved />} />
-              
-              {/* Catch-all route */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </LocaleRouter>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <LocaleRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/videos" element={<Videos />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/clockwork-adventures" element={<Moved />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </LocaleRouter>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

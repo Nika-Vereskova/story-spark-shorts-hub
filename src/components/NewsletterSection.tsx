@@ -13,44 +13,22 @@ const NewsletterSection = () => {
   const { toast } = useToast();
 
   const validateEmail = (email: string) => {
-    // Enhanced email validation
     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    return emailRegex.test(email) && email.length <= 254; // RFC 5321 limit
+    return emailRegex.test(email) && email.length <= 254;
   };
 
   const sanitizeInput = (input: string) => {
-    // Remove potentially harmful characters
     return input.trim().replace(/[<>]/g, '');
   };
 
   const hashEmail = (email: string) => {
-    // Simple hash function for privacy
     let hash = 0;
     for (let i = 0; i < email.length; i++) {
       const char = email.charCodeAt(i);
       hash = ((hash << 5) - hash) + char;
-      hash = hash & hash; // Convert to 32-bit integer
+      hash = hash & hash;
     }
     return Math.abs(hash).toString();
-  };
-
-  const sendConfirmationEmail = async (email: string) => {
-    try {
-      const { data, error } = await supabase.functions.invoke('send-newsletter-confirmation', {
-        body: { email }
-      });
-      
-      if (error) {
-        console.error('Error sending confirmation email:', error);
-        throw error;
-      }
-      
-      console.log('Confirmation email sent successfully:', data);
-      return data;
-    } catch (error) {
-      console.error('Failed to send confirmation email:', error);
-      throw error;
-    }
   };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
@@ -81,8 +59,32 @@ const NewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
+      // Save subscriber to database
+      const { error: subscribeError } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: sanitizedEmail }]);
+
+      if (subscribeError) {
+        if (subscribeError.code === '23505') { // Unique constraint violation
+          toast({
+            title: 'Already Subscribed',
+            description: 'This email is already subscribed to our newsletter.',
+            variant: "destructive"
+          });
+          return;
+        }
+        throw subscribeError;
+      }
+
       // Send confirmation email
-      await sendConfirmationEmail(sanitizedEmail);
+      const { error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
+        body: { email: sanitizedEmail }
+      });
+      
+      if (emailError) {
+        console.error('Error sending confirmation email:', emailError);
+        // Don't throw here - subscription was successful even if email failed
+      }
       
       // Track newsletter signup conversion with privacy-preserving hash
       posthog.capture('newsletter_signup', {
@@ -94,7 +96,7 @@ const NewsletterSection = () => {
       toast({
         title: t('common.subscribeSuccess'),
         description: t('common.subscribeSuccessDesc'),
-        duration: 6000, // Show for 6 seconds since it's a longer message
+        duration: 6000,
       });
       setEmail('');
     } catch (error) {

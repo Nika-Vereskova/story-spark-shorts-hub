@@ -14,6 +14,57 @@ export type Database = {
   }
   public: {
     Tables: {
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          is_active: boolean
+          subscribed_at: string
+          unsubscribe_token: string
+        }
+        Insert: {
+          email: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+          unsubscribe_token?: string
+        }
+        Update: {
+          email?: string
+          id?: string
+          is_active?: boolean
+          subscribed_at?: string
+          unsubscribe_token?: string
+        }
+        Relationships: []
+      }
+      newsletters: {
+        Row: {
+          content: string
+          created_by: string
+          id: string
+          recipient_count: number
+          sent_at: string
+          subject: string
+        }
+        Insert: {
+          content: string
+          created_by: string
+          id?: string
+          recipient_count?: number
+          sent_at?: string
+          subject: string
+        }
+        Update: {
+          content?: string
+          created_by?: string
+          id?: string
+          recipient_count?: number
+          sent_at?: string
+          subject?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string | null
