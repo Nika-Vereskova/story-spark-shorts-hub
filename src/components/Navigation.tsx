@@ -1,92 +1,172 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { getCurrentLocale, t } from '@/lib/i18n';
+import { Menu, X, User, LogOut } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useAuth } from '@/contexts/AuthContext';
+import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
+import { t } from '@/lib/i18n';
 
 interface NavigationProps {
   currentPage?: string;
 }
 
-const Navigation: React.FC<NavigationProps> = ({ currentPage }) => {
-  const locale = getCurrentLocale();
+const Navigation = ({ currentPage }: NavigationProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
-  
-  // Extract current locale from path if present
-  const pathParts = location.pathname.split('/').filter(Boolean);
-  const pathLocale = ['en', 'sv', 'ru'].includes(pathParts[0]) ? pathParts[0] : locale;
-  
-  const getLocalizedPath = (path: string) => {
-    return `/${pathLocale}${path === '/' ? '' : path}`;
+
+  const navItems = [
+    { name: t('nav.home'), path: '/', key: 'home' },
+    { name: t('nav.about'), path: '/about', key: 'about' }, 
+    { name: t('nav.services'), path: '/services', key: 'services' },
+    { name: t('nav.books'), path: '/books', key: 'books' },
+    { name: t('nav.videos'), path: '/videos', key: 'videos' },
+    { name: t('nav.blog'), path: '/blog', key: 'blog' },
+    { name: t('nav.contact'), path: '/contact', key: 'contact' },
+  ];
+
+  const isCurrentPage = (itemKey: string) => {
+    if (currentPage) {
+      return currentPage === itemKey || location.pathname === `/${itemKey}`;
+    }
+    return location.pathname === '/' ? itemKey === 'home' : location.pathname.startsWith(`/${itemKey}`);
   };
-  
-  const isActive = (page: string) => currentPage === page;
 
   return (
-    <nav className="fixed top-0 w-full bg-parchment/95 backdrop-blur-md z-50 border-b border-brass/30 shadow-brass-drop">
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-oxidized-teal font-playfair drop-shadow-text-drop">
-          {t('home.title')}
-        </h1>
-        <div className="hidden md:flex items-center space-x-8">
-          <Link 
-            to={getLocalizedPath('/')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('home') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.home')}
-          </Link>
-          <Link 
-            to={getLocalizedPath('/books')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('books') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.books')}
-          </Link>
-          <Link 
-            to={getLocalizedPath('/videos')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('videos') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.videos')}
-          </Link>
-          <Link 
-            to={getLocalizedPath('/services')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('services') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.services')}
-          </Link>
-          <Link 
-            to={getLocalizedPath('/about')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('about') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.about')}
-          </Link>
-          <a 
-            href="/blog" 
-            className="text-oxidized-teal hover:text-brass transition-colors font-medium font-inter"
-          >
-            {t('nav.blog')}
-          </a>
-          <Link 
-            to={getLocalizedPath('/contact')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('contact') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            {t('nav.contact')}
-          </Link>
-          <LanguageSwitcher />
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b-2 border-brass/50 shadow-brass-drop">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="text-2xl font-playfair font-bold text-oxidized-teal hover:text-brass transition-colors">
+              Nika Vereskova Stories
+            </Link>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.path}
+                  className={`font-inter font-medium transition-colors hover:text-brass ${
+                    isCurrentPage(item.key) 
+                      ? 'text-brass border-b-2 border-brass' 
+                      : 'text-oxidized-teal'
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              
+              <LanguageSwitcher />
+              
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <User className="w-4 h-4 text-brass" />
+                    <span className="text-oxidized-teal text-sm">
+                      {user.email}
+                      {subscribed && (
+                        <span className="ml-2 text-brass text-xs">
+                          ({subscriptionTier})
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={signOut}
+                    className="border-brass text-brass hover:bg-brass hover:text-parchment"
+                  >
+                    <LogOut className="w-4 h-4 mr-1" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  onClick={() => setAuthModalOpen(true)}
+                  className="bg-brass hover:bg-brass-dark text-parchment"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  Sign In
+                </Button>
+              )}
+            </div>
+
+            <button
+              className="md:hidden text-oxidized-teal hover:text-brass transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+          
+          {isOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-brass/30">
+              <div className="flex flex-col space-y-4 pt-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.key}
+                    to={item.path}
+                    className={`font-inter font-medium transition-colors hover:text-brass ${
+                      isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+                
+                <div className="pt-2 border-t border-brass/30">
+                  <LanguageSwitcher />
+                </div>
+                
+                {user ? (
+                  <div className="space-y-2 pt-2 border-t border-brass/30">
+                    <div className="text-oxidized-teal text-sm flex items-center">
+                      <User className="w-4 h-4 text-brass mr-2" />
+                      {user.email}
+                      {subscribed && (
+                        <span className="ml-2 text-brass text-xs">
+                          ({subscriptionTier})
+                        </span>
+                      )}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={signOut}
+                      className="border-brass text-brass hover:bg-brass hover:text-parchment"
+                    >
+                      <LogOut className="w-4 h-4 mr-1" />
+                      Sign Out
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      setAuthModalOpen(true);
+                      setIsOpen(false);
+                    }}
+                    className="bg-brass hover:bg-brass-dark text-parchment"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Sign In
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    </nav>
+      </nav>
+      
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+      />
+    </>
   );
 };
 
