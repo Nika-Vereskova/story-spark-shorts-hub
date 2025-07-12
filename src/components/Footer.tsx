@@ -80,6 +80,12 @@ const Footer = () => {
           >
             Terms of Service
           </Link>
+          <Link 
+            to="/admin" 
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </footer>

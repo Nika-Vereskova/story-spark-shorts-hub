@@ -75,14 +75,6 @@ const Navigation: React.FC<NavigationProps> = ({ currentPage }) => {
           >
             {t('nav.contact')}
           </Link>
-          <Link 
-            to={getLocalizedPath('/admin')} 
-            className={`transition-colors font-medium font-inter ${
-              isActive('admin') ? 'text-brass font-semibold' : 'text-oxidized-teal hover:text-brass'
-            }`}
-          >
-            Admin
-          </Link>
           <LanguageSwitcher />
         </div>
       </div>
