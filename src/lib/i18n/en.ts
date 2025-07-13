@@ -50,6 +50,10 @@ export const en = {
   services: {
     title: "My Services",
     subtitle: "From enchanting stories to cutting-edge technology, I offer a range of services that blend creativity with innovation. Whether you're looking to learn, build, or tell your own story, I'm here to help.",
+    disclaimer: {
+      title: "Services Under Construction",
+      description: "Please note that all services listed below are currently under construction and not yet available for purchase. This page is for demonstration purposes only. We're working hard to bring these services to you soon!"
+    },
     webinars: {
       title: "Interactive Webinars",
       description: "Engaging workshops on storytelling, AI, and creative technology",
@@ -78,7 +82,7 @@ export const en = {
       title: "App Development",
       description: "Interactive applications that bring ideas to life",
       feature1: "Educational apps for children",
-      feature2: "Creative tools and utilities",
+      feature2: "Creative tools and utilities", 
       feature3: "AI-powered interactive experiences",
       cta: "Build Your App"
     },

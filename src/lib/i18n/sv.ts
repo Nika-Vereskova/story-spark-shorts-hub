@@ -50,6 +50,10 @@ export const sv = {
   services: {
     title: "Mina Tjänster",
     subtitle: "Från förtrollande berättelser till banbrytande teknik erbjuder jag en rad tjänster som blandar kreativitet med innovation. Oavsett om du vill lära dig, bygga eller berätta din egen historia, jag är här för att hjälpa.",
+    disclaimer: {
+      title: "Tjänster Under Konstruktion",
+      description: "Observera att alla tjänster som listas nedan för närvarande är under konstruktion och ännu inte tillgängliga för köp. Denna sida är endast för demonstrationsändamål. Vi arbetar hårt för att ge dig dessa tjänster snart!"
+    },
     webinars: {
       title: "Interaktiva Webbinarier",
       description: "Engagerande workshops om berättande, AI och kreativ teknik",
