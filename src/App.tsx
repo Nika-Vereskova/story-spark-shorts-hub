@@ -18,6 +18,7 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 import Moved from "./pages/Moved";
+import NewsletterConfirmed from "./pages/NewsletterConfirmed";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,9 @@ const App = () => (
             <Routes>
               {/* Root route - will be handled by LocaleRouter */}
               <Route path="/" element={<Index />} />
+              
+              {/* Newsletter confirmation route - standalone, no locale handling */}
+              <Route path="/newsletter-confirmed" element={<NewsletterConfirmed />} />
               
               {/* Locale-prefixed routes */}
               <Route path="/:locale" element={<Index />} />
