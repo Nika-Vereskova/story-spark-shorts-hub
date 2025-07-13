@@ -21,6 +21,16 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
     const validLocales = ['en', 'sv', 'ru'];
     const hasLocaleInPath = validLocales.includes(pathLocale);
     
+    // Special handling for newsletter confirmation - don't redirect
+    if (currentPath === '/newsletter-confirmed') {
+      const storedLocale = typeof window !== 'undefined' ? localStorage.getItem('preferred-locale') as Locale : null;
+      const browserLocale = detectBrowserLocale();
+      const targetLocale = storedLocale && validLocales.includes(storedLocale) ? storedLocale : browserLocale;
+      setCurrentLocale(targetLocale);
+      setIsInitialized(true);
+      return;
+    }
+    
     if (hasLocaleInPath) {
       // Set the current locale based on the path
       setCurrentLocale(pathLocale);

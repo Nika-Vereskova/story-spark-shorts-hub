@@ -82,9 +82,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Successfully confirmed subscription: ${data[0].email}`);
 
-    // Redirect to the confirmation page instead of showing HTML
-    const baseUrl = url.origin;
-    const redirectUrl = `${baseUrl}/newsletter-confirmed`;
+    // Get the correct redirect URL - check for custom domain or use the request origin
+    const requestUrl = new URL(req.url);
+    const redirectUrl = `${requestUrl.protocol}//${requestUrl.host}/newsletter-confirmed`;
+    
+    console.log("Redirecting to:", redirectUrl);
     
     return new Response(null, {
       status: 302,
