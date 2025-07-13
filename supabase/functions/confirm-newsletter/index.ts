@@ -96,7 +96,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   } catch (error: any) {
     console.error("Error in newsletter confirmation function:", error);
-    const origin = new URL(req.url).origin.replace(/functions\/v1\/confirm-newsletter.*/, '').replace /\/$/, '');
+    const origin = new URL(req.url).origin.replace(/functions\/v1\/confirm-newsletter.*/, '').replace(/\/$/, '');
     return new Response(null, {
       status: 302,
       headers: { 
