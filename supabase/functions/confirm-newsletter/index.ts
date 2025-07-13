@@ -18,7 +18,10 @@ const handler = async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
     const token = url.searchParams.get('token');
 
+    console.log("Confirmation token received:", token);
+
     if (!token) {
+      console.error("Missing confirmation token");
       return new Response(
         `<html><body><h1>Invalid confirmation link</h1><p>The confirmation token is missing.</p></body></html>`,
         { 
@@ -31,8 +34,16 @@ const handler = async (req: Request): Promise<Response> => {
     // Initialize Supabase client with service role key for admin operations
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
     );
+
+    console.log("Attempting to confirm subscription with token:", token);
 
     // Update subscriber status to confirmed
     const { data, error } = await supabaseClient
@@ -48,7 +59,7 @@ const handler = async (req: Request): Promise<Response> => {
     if (error) {
       console.error('Error confirming subscription:', error);
       return new Response(
-        `<html><body><h1>Error</h1><p>Failed to confirm subscription. Please try again.</p></body></html>`,
+        `<html><body><h1>Error</h1><p>Failed to confirm subscription. Please try again.</p><p>Error: ${error.message}</p></body></html>`,
         { 
           status: 500, 
           headers: { "Content-Type": "text/html", ...corsHeaders } 
@@ -56,7 +67,10 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log("Database update result:", data);
+
     if (!data || data.length === 0) {
+      console.log("No rows updated - subscription may already be confirmed or token invalid");
       return new Response(
         `<html><body><h1>Already Confirmed</h1><p>This email is already confirmed or the link is invalid.</p></body></html>`,
         { 
@@ -101,7 +115,7 @@ const handler = async (req: Request): Promise<Response> => {
   } catch (error: any) {
     console.error("Error in newsletter confirmation function:", error);
     return new Response(
-      `<html><body><h1>Error</h1><p>An unexpected error occurred. Please try again.</p></body></html>`,
+      `<html><body><h1>Error</h1><p>An unexpected error occurred: ${error.message}</p></body></html>`,
       { 
         status: 500, 
         headers: { "Content-Type": "text/html", ...corsHeaders } 
