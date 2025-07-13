@@ -69,11 +69,12 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    // Get all active subscribers
+    // Get all active AND confirmed subscribers
     const { data: subscribers, error: subscribersError } = await supabaseClient
       .from('newsletter_subscribers')
       .select('email, unsubscribe_token')
-      .eq('is_active', true);
+      .eq('is_active', true)
+      .eq('is_confirmed', true);
 
     if (subscribersError) {
       console.error('Error fetching subscribers:', subscribersError);
@@ -84,13 +85,13 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (!subscribers || subscribers.length === 0) {
-      return new Response(JSON.stringify({ message: "No active subscribers found" }), {
+      return new Response(JSON.stringify({ message: "No confirmed active subscribers found" }), {
         status: 200,
         headers: { "Content-Type": "application/json", ...corsHeaders },
       });
     }
 
-    console.log(`Sending newsletter to ${subscribers.length} subscribers`);
+    console.log(`Sending newsletter to ${subscribers.length} confirmed subscribers`);
 
     const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -181,7 +182,7 @@ const handler = async (req: Request): Promise<Response> => {
       console.error('Error saving newsletter record:', saveError);
     }
 
-    console.log(`Newsletter sent successfully to ${sentCount} subscribers`);
+    console.log(`Newsletter sent successfully to ${sentCount} confirmed subscribers`);
     
     return new Response(JSON.stringify({ 
       success: true, 
@@ -203,3 +204,4 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
+

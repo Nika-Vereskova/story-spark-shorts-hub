@@ -16,23 +16,32 @@ export type Database = {
     Tables: {
       newsletter_subscribers: {
         Row: {
+          confirmation_token: string
+          confirmed_at: string | null
           email: string
           id: string
           is_active: boolean
+          is_confirmed: boolean
           subscribed_at: string
           unsubscribe_token: string
         }
         Insert: {
+          confirmation_token?: string
+          confirmed_at?: string | null
           email: string
           id?: string
           is_active?: boolean
+          is_confirmed?: boolean
           subscribed_at?: string
           unsubscribe_token?: string
         }
         Update: {
+          confirmation_token?: string
+          confirmed_at?: string | null
           email?: string
           id?: string
           is_active?: boolean
+          is_confirmed?: boolean
           subscribed_at?: string
           unsubscribe_token?: string
         }

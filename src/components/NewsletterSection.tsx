@@ -59,16 +59,18 @@ const NewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
-      // Save subscriber to database
-      const { error: subscribeError } = await supabase
+      // Save subscriber to database (not confirmed yet)
+      const { data: insertData, error: subscribeError } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email: sanitizedEmail }]);
+        .insert([{ email: sanitizedEmail }])
+        .select('confirmation_token')
+        .single();
 
       if (subscribeError) {
         if (subscribeError.code === '23505') { // Unique constraint violation
           toast({
             title: 'Already Subscribed',
-            description: 'This email is already subscribed to our newsletter.',
+            description: 'This email is already in our system. Please check your inbox for the confirmation email.',
             variant: "destructive"
           });
           return;
@@ -78,25 +80,28 @@ const NewsletterSection = () => {
 
       // Send confirmation email
       const { error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
-        body: { email: sanitizedEmail }
+        body: { 
+          email: sanitizedEmail,
+          confirmationToken: insertData.confirmation_token
+        }
       });
       
       if (emailError) {
         console.error('Error sending confirmation email:', emailError);
-        // Don't throw here - subscription was successful even if email failed
+        throw emailError;
       }
       
-      // Track newsletter signup conversion with privacy-preserving hash
-      posthog.capture('newsletter_signup', {
+      // Track newsletter signup attempt with privacy-preserving hash
+      posthog.capture('newsletter_signup_initiated', {
         email_hash: hashEmail(sanitizedEmail),
         source: 'homepage',
         timestamp: new Date().toISOString()
       });
       
       toast({
-        title: t('common.subscribeSuccess'),
-        description: t('common.subscribeSuccessDesc'),
-        duration: 6000,
+        title: 'Check Your Email!',
+        description: 'We\'ve sent you a confirmation email. Please click the link in the email to complete your subscription.',
+        duration: 8000,
       });
       setEmail('');
     } catch (error) {
@@ -143,3 +148,4 @@ const NewsletterSection = () => {
 };
 
 export default NewsletterSection;
+

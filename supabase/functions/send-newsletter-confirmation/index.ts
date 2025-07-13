@@ -1,6 +1,7 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -12,6 +13,7 @@ const corsHeaders = {
 
 interface NewsletterConfirmationRequest {
   email: string;
+  confirmationToken: string;
   locale?: string;
 }
 
@@ -24,13 +26,15 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
+    const { email, confirmationToken, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
     console.log("Sending newsletter confirmation to:", email);
+
+    const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/confirm-newsletter?token=${confirmationToken}`;
 
     const emailResponse = await resend.emails.send({
       from: "Nika Vereskova <noreply@resend.dev>",
       to: [email],
-      subject: "Welcome to the Inventor's Guild! ⚙️",
+      subject: "Please confirm your subscription to the Inventor's Guild! ⚙️",
       html: `
         <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); padding: 20px; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 30px;">
@@ -45,11 +49,17 @@ const handler = async (req: Request): Promise<Response> => {
             </p>
             
             <p style="color: #2c5530; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
-              Thank you for joining the Inventor's Guild! You've just taken the first step into a world of clockwork wonders and steampunk adventures.
+              Thank you for your interest in joining the Inventor's Guild! To complete your subscription and start receiving our clockwork adventures, please confirm your email address by clicking the button below.
             </p>
             
+            <div style="text-align: center; margin: 30px 0;">
+              <a href="${confirmationUrl}" style="background: #8b7355; color: #f4f1e8; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; border: 2px solid #2c5530; box-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+                Confirm Your Subscription
+              </a>
+            </div>
+            
             <p style="color: #2c5530; font-size: 16px; line-height: 1.6; margin: 0 0 15px 0;">
-              As a member of the guild, you'll receive:
+              Once confirmed, you'll receive:
             </p>
             
             <ul style="color: #2c5530; font-size: 16px; line-height: 1.8; margin: 0 0 15px 20px;">
@@ -59,8 +69,8 @@ const handler = async (req: Request): Promise<Response> => {
               <li>🎁 Special surprises and downloadable content</li>
             </ul>
             
-            <p style="color: #2c5530; font-size: 16px; line-height: 1.6; margin: 0;">
-              Keep your goggles polished and your gears turning – magical updates are heading your way!
+            <p style="color: #2c5530; font-size: 14px; line-height: 1.6; margin: 20px 0 0 0; font-style: italic;">
+              If you didn't sign up for this newsletter, you can safely ignore this email.
             </p>
           </div>
           
@@ -97,3 +107,4 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
+
