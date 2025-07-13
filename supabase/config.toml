@@ -1,1 +1,61 @@
+
+# The space above helps tools understand the schema
+
 project_id = "srzxvvbxmcrxsplwutxv"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[graphql]
+enabled = true
+port = 54322
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+
+[inbucket]
+enabled = true
+port = 54324
+# Uncomment to expose additional ports on localhost
+# smtp_port = 1025
+# pop3_port = 1110
+
+[realtime]
+enabled = true
+ip_version = "ipv4"
+port = 54323
+max_header_length = 4096
+
+[studio]
+enabled = true
+port = 54323
+api_url = "http://127.0.0.1:54321"
+openai_api_key = "env(OPENAI_API_KEY)"
+
+# Email template
+[auth.email.template.invite]
+subject = "You have been invited"
+content_path = "./supabase/templates/invite.html"
+
+[auth.email.template.confirmation]
+subject = "Confirm your signup"
+content_path = "./supabase/templates/confirmation.html"
+
+[auth.email.template.recovery]
+subject = "Reset your password"
+content_path = "./supabase/templates/recovery.html"
+
+[auth.email.template.magic_link]
+subject = "Your magic link"
+content_path = "./supabase/templates/magic_link.html"
+
+# Make the send-newsletter-confirmation function public (no auth required)
+[functions.send-newsletter-confirmation]
+verify_jwt = false
+
+# Make the confirm-newsletter function public (no auth required)
+[functions.confirm-newsletter]
+verify_jwt = false

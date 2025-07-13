@@ -83,7 +83,7 @@ const NewsletterSection = () => {
 
       console.log('Successfully inserted subscriber, token:', insertData.confirmation_token);
 
-      // Send confirmation email
+      // Send confirmation email using the correct Supabase function call
       console.log('Calling send-newsletter-confirmation function...');
       const { data: emailData, error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
         body: { 
