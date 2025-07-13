@@ -28,10 +28,10 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Initialize Supabase client
+    // Initialize Supabase client with service role key for admin operations
     const supabaseClient = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
-      Deno.env.get("SUPABASE_ANON_KEY") ?? ""
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
     // Update subscriber status to confirmed
@@ -111,4 +111,3 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
-
