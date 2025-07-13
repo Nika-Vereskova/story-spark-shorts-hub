@@ -59,6 +59,8 @@ const NewsletterSection = () => {
     setIsSubmitting(true);
     
     try {
+      console.log('Attempting to subscribe email:', sanitizedEmail);
+      
       // Save subscriber to database (not confirmed yet)
       const { data: insertData, error: subscribeError } = await supabase
         .from('newsletter_subscribers')
@@ -67,6 +69,7 @@ const NewsletterSection = () => {
         .single();
 
       if (subscribeError) {
+        console.error('Database insert error:', subscribeError);
         if (subscribeError.code === '23505') { // Unique constraint violation
           toast({
             title: 'Already Subscribed',
@@ -78,8 +81,11 @@ const NewsletterSection = () => {
         throw subscribeError;
       }
 
+      console.log('Successfully inserted subscriber, token:', insertData.confirmation_token);
+
       // Send confirmation email
-      const { error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
+      console.log('Calling send-newsletter-confirmation function...');
+      const { data: emailData, error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
         body: { 
           email: sanitizedEmail,
           confirmationToken: insertData.confirmation_token
@@ -90,6 +96,8 @@ const NewsletterSection = () => {
         console.error('Error sending confirmation email:', emailError);
         throw emailError;
       }
+      
+      console.log('Email function response:', emailData);
       
       // Track newsletter signup attempt with privacy-preserving hash
       posthog.capture('newsletter_signup_initiated', {
@@ -148,4 +156,3 @@ const NewsletterSection = () => {
 };
 
 export default NewsletterSection;
-

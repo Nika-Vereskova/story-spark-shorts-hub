@@ -1,7 +1,6 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -28,8 +27,21 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const { email, confirmationToken, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
     console.log("Sending newsletter confirmation to:", email);
+    console.log("Confirmation token:", confirmationToken);
+
+    if (!email || !confirmationToken) {
+      console.error("Missing email or confirmation token");
+      return new Response(JSON.stringify({ error: "Email and confirmation token are required" }), {
+        status: 400,
+        headers: {
+          "Content-Type": "application/json",
+          ...corsHeaders,
+        },
+      });
+    }
 
     const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/confirm-newsletter?token=${confirmationToken}`;
+    console.log("Confirmation URL:", confirmationUrl);
 
     const emailResponse = await resend.emails.send({
       from: "Nika Vereskova <noreply@resend.dev>",
@@ -107,4 +119,3 @@ const handler = async (req: Request): Promise<Response> => {
 };
 
 serve(handler);
-
