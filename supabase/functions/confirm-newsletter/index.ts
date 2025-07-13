@@ -82,17 +82,35 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Successfully confirmed subscription: ${data[0].email}`);
 
-    // Redirect to the confirmation page instead of showing HTML
-    const baseUrl = url.origin;
-    const redirectUrl = `${baseUrl}/newsletter-confirmed`;
-    
-    return new Response(null, {
-      status: 302,
-      headers: {
-        "Location": redirectUrl,
-        ...corsHeaders
+    return new Response(
+      `<html>
+        <head>
+          <title>Email Confirmed Successfully</title>
+          <style>
+            body { font-family: Georgia, serif; max-width: 600px; margin: 50px auto; padding: 20px; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); }
+            .container { background: rgba(255,255,255,0.7); padding: 30px; border-radius: 8px; border: 2px solid #8b7355; text-align: center; }
+            h1 { color: #2c5530; margin-bottom: 20px; }
+            p { color: #2c5530; line-height: 1.6; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <h1>Email Confirmed Successfully! ⚙️</h1>
+            <p>Thank you for confirming your email address. You are now subscribed to the Inventor's Guild newsletter and will receive updates about new steampunk fairy tales, workshop videos, and exclusive clockwork adventures.</p>
+            <p>Keep your goggles polished and your gears turning – magical updates are heading your way!</p>
+            <p style="margin-top: 30px; font-style: italic;">
+              With clockwork wishes,<br>
+              <strong>Nika Vereskova</strong><br>
+              <em>Chief Inventor & Storyteller</em>
+            </p>
+          </div>
+        </body>
+      </html>`,
+      { 
+        status: 200, 
+        headers: { "Content-Type": "text/html", ...corsHeaders } 
       }
-    });
+    );
 
   } catch (error: any) {
     console.error("Error in newsletter confirmation function:", error);
