@@ -21,20 +21,6 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
     const validLocales = ['en', 'sv', 'ru'];
     const hasLocaleInPath = validLocales.includes(pathLocale);
     
-    // Special routes that don't need locale handling
-    const specialRoutes = ['/newsletter-confirmed'];
-    const isSpecialRoute = specialRoutes.some(route => currentPath.startsWith(route));
-    
-    if (isSpecialRoute) {
-      // For special routes, set locale from storage/browser but don't redirect
-      const storedLocale = typeof window !== 'undefined' ? localStorage.getItem('preferred-locale') as Locale : null;
-      const browserLocale = detectBrowserLocale();
-      const targetLocale = storedLocale && validLocales.includes(storedLocale) ? storedLocale : browserLocale;
-      setCurrentLocale(targetLocale);
-      setIsInitialized(true);
-      return;
-    }
-    
     if (hasLocaleInPath) {
       // Set the current locale based on the path
       setCurrentLocale(pathLocale);

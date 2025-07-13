@@ -22,14 +22,13 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!token) {
       console.error("Missing confirmation token");
-      const redirectUrl = `${url.protocol}//${url.host}/newsletter-confirmed?error=missing_token`;
-      return new Response(null, {
-        status: 302,
-        headers: {
-          "Location": redirectUrl,
-          ...corsHeaders
+      return new Response(
+        `<html><body><h1>Invalid confirmation link</h1><p>The confirmation token is missing.</p></body></html>`,
+        { 
+          status: 400, 
+          headers: { "Content-Type": "text/html", ...corsHeaders } 
         }
-      });
+      );
     }
 
     // Initialize Supabase client with service role key for admin operations
@@ -59,36 +58,33 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (error) {
       console.error('Error confirming subscription:', error);
-      const redirectUrl = `${url.protocol}//${url.host}/newsletter-confirmed?error=database_error`;
-      return new Response(null, {
-        status: 302,
-        headers: {
-          "Location": redirectUrl,
-          ...corsHeaders
+      return new Response(
+        `<html><body><h1>Error</h1><p>Failed to confirm subscription. Please try again.</p><p>Error: ${error.message}</p></body></html>`,
+        { 
+          status: 500, 
+          headers: { "Content-Type": "text/html", ...corsHeaders } 
         }
-      });
+      );
     }
 
     console.log("Database update result:", data);
 
     if (!data || data.length === 0) {
       console.log("No rows updated - subscription may already be confirmed or token invalid");
-      const redirectUrl = `${url.protocol}//${url.host}/newsletter-confirmed?error=invalid_token`;
-      return new Response(null, {
-        status: 302,
-        headers: {
-          "Location": redirectUrl,
-          ...corsHeaders
+      return new Response(
+        `<html><body><h1>Already Confirmed</h1><p>This email is already confirmed or the link is invalid.</p></body></html>`,
+        { 
+          status: 200, 
+          headers: { "Content-Type": "text/html", ...corsHeaders } 
         }
-      });
+      );
     }
 
     console.log(`Successfully confirmed subscription: ${data[0].email}`);
 
-    // Successful confirmation redirect
-    const redirectUrl = `${url.protocol}//${url.host}/newsletter-confirmed?success=true`;
-    
-    console.log("Redirecting to:", redirectUrl);
+    // Redirect to the confirmation page instead of showing HTML
+    const baseUrl = url.origin;
+    const redirectUrl = `${baseUrl}/newsletter-confirmed`;
     
     return new Response(null, {
       status: 302,
@@ -100,15 +96,13 @@ const handler = async (req: Request): Promise<Response> => {
 
   } catch (error: any) {
     console.error("Error in newsletter confirmation function:", error);
-    const url = new URL(req.url);
-    const redirectUrl = `${url.protocol}//${url.host}/newsletter-confirmed?error=server_error`;
-    return new Response(null, {
-      status: 302,
-      headers: {
-        "Location": redirectUrl,
-        ...corsHeaders
+    return new Response(
+      `<html><body><h1>Error</h1><p>An unexpected error occurred: ${error.message}</p></body></html>`,
+      { 
+        status: 500, 
+        headers: { "Content-Type": "text/html", ...corsHeaders } 
       }
-    });
+    );
   }
 };
 
