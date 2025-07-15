@@ -12,7 +12,7 @@ const Videos = () => {
       id: 1,
       title: "Steampunk Story Time",
       description: "A quick steampunk tale from Nika's workshop",
-      youtubeUrl: "https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ",
+      youtubeUrl: "https://www.youtube.com/@NikaVereskova/videos",
       embedId: "5H1QWVRqPBU",
       type: t('common.short')
     }
@@ -114,7 +114,7 @@ const Videos = () => {
             <Button 
               size="lg" 
               className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-              onClick={() => window.open('https://www.youtube.com/@NikaVereskova', '_blank', 'noopener,noreferrer')}
+              onClick={() => window.open('https://www.youtube.com/@NikaVereskova/videos', '_blank', 'noopener,noreferrer')}
             >
               {t('videos.subscribeButton')}
               <ExternalLink className="ml-2 h-4 w-4" />

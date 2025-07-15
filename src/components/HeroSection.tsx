@@ -25,7 +25,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
       source: 'hero_section'
     });
     
-    window.open('https://youtube.com/shorts/5H1QWVRqPBU?si=zUufNsODmSQceVdZ', '_blank', 'noopener,noreferrer');
+    window.open('https://www.youtube.com/@NikaVereskova/videos', '_blank', 'noopener,noreferrer');
   };
 
   return (
