@@ -5,7 +5,7 @@ export const sv = {
     books: "Böcker", 
     videos: "Videor",
     about: "Om mig",
-    blog: "Blogg/AI Nyheter",
+    blog: "Blogg/ AI Nyheter",
     contact: "Kontakt",
     services: "Tjänster"
   },
@@ -114,7 +114,7 @@ export const sv = {
     subscribe: "Prenumerera"
   },
   blog: {
-    title: "Blogg/AI Nyheter",
+    title: "Blogg/ AI Nyheter",
     subtitle: "Följ min skrivresa, kreativa process och den magiska världen av steampunk-berättande.",
     latestUpdates: "Senaste Uppdateringarna",
     readPlumberella: "Läs Plumberella nu:",

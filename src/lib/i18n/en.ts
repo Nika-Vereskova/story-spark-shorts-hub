@@ -5,7 +5,7 @@ export const en = {
     books: "Books", 
     videos: "Videos",
     about: "About",
-    blog: "Blog/AI News",
+    blog: "Blog/ AI News",
     contact: "Contact",
     services: "Services"
   },
@@ -114,7 +114,7 @@ export const en = {
     subscribe: "Subscribe"
   },
   blog: {
-    title: "Blog/AI News",
+    title: "Blog/ AI News",
     subtitle: "Follow my writing journey, creative process, and the magical world of steampunk storytelling.",
     latestUpdates: "Latest Updates",
     readPlumberella: "Read Plumberella now:",
