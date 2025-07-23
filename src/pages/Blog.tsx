@@ -1,17 +1,21 @@
 
 import React, { useState } from 'react';
-import { Calendar, ExternalLink, Heart, BookOpen, Plus, Send } from 'lucide-react';
+import { Calendar, ExternalLink, Heart, BookOpen, Plus, Send, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 import Navigation from '@/components/Navigation';
+import { useUserRole } from '@/hooks/useUserRole';
+import { useAuth } from '@/contexts/AuthContext';
 import { t } from '@/lib/i18n';
 
 const Blog = () => {
   const { toast } = useToast();
+  const { user } = useAuth();
+  const { isAdmin, loading: roleLoading } = useUserRole();
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [newPost, setNewPost] = useState({ title: '', content: '' });
   const [webhookUrl, setWebhookUrl] = useState('');
@@ -37,6 +41,15 @@ const Blog = () => {
   ]});
   
   const handleCreatePost = async () => {
+    if (!isAdmin) {
+      toast({
+        title: "Access Denied",
+        description: "Only administrators can create blog posts.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!newPost.title.trim() || !newPost.content.trim()) {
       toast({
         title: t('common.emailRequired'),
@@ -117,20 +130,32 @@ const Blog = () => {
               {t('blog.subtitle')}
             </p>
             
-            {/* Create Post Button */}
-            <div className="mt-8">
-              <Button
-                onClick={() => setShowCreateForm(!showCreateForm)}
-                className="bg-brass hover:bg-brass-dark text-parchment px-6 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-              >
-                <Plus className="mr-2 h-4 w-4" />
-                {t('common.createPost')}
-              </Button>
-            </div>
+            {/* Create Post Button - Only for Admins */}
+            {user && isAdmin && (
+              <div className="mt-8">
+                <Button
+                  onClick={() => setShowCreateForm(!showCreateForm)}
+                  className="bg-brass hover:bg-brass-dark text-parchment px-6 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                >
+                  <Plus className="mr-2 h-4 w-4" />
+                  {t('common.createPost')}
+                </Button>
+              </div>
+            )}
           </div>
 
-          {/* Create Post Form */}
-          {showCreateForm && (
+          {/* Admin Access Notice */}
+          {user && !isAdmin && !roleLoading && (
+            <div className="mt-8 p-4 bg-brass/10 border border-brass/30 rounded-lg">
+              <div className="flex items-center text-brass">
+                <Shield className="mr-2 h-4 w-4" />
+                <span className="font-inter text-sm">Blog post creation is restricted to administrators.</span>
+              </div>
+            </div>
+          )}
+
+          {/* Create Post Form - Only for Admins */}
+          {showCreateForm && isAdmin && (
             <Card className="mb-8 bg-parchment/90 border-2 border-brass shadow-brass-drop">
               <CardHeader>
                 <CardTitle className="text-oxidized-teal font-playfair">{t('common.createPost')}</CardTitle>
