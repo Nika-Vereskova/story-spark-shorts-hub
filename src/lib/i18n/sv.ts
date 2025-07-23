@@ -5,7 +5,7 @@ export const sv = {
     books: "Böcker", 
     videos: "Videor",
     about: "Om mig",
-    blog: "Blogg",
+    blog: "Blogg/AI Nyheter",
     contact: "Kontakt",
     services: "Tjänster"
   },
@@ -114,7 +114,7 @@ export const sv = {
     subscribe: "Prenumerera"
   },
   blog: {
-    title: "Kugghjuls-krönikor Blogg",
+    title: "Blogg/AI Nyheter",
     subtitle: "Följ min skrivresa, kreativa process och den magiska världen av steampunk-berättande.",
     latestUpdates: "Senaste Uppdateringarna",
     readPlumberella: "Läs Plumberella nu:",
@@ -175,7 +175,18 @@ Läraren, utan att märka något, började sin förklaring:
     invalidEmail: "Ogiltig E-post",
     invalidEmailDesc: "Vänligen ange en giltig e-postadress.",
     subscribeSuccess: "Tack för att du prenumererar!",
-    subscribeSuccessDesc: "Vi kommer att meddela dig om nya berättelser och kugghjulsäventyr."
+    subscribeSuccessDesc: "Vi kommer att meddela dig om nya berättelser och kugghjulsäventyr.",
+    createPost: "Skapa nytt inlägg",
+    postTitle: "Inläggstitel",
+    postContent: "Inläggsinnehåll",
+    publishPost: "Publicera inlägg",
+    postCreated: "Inlägg skapat!",
+    postCreatedDesc: "Ditt inlägg har skapats och publicerats framgångsrikt.",
+    zapierWebhook: "Zapier Webhook URL",
+    webhookPlaceholder: "Ange din Zapier webhook URL",
+    triggerZap: "Utlös Zap",
+    zapTriggered: "Zap utlöst!",
+    zapTriggeredDesc: "Din Zapier webhook har utlösts framgångsrikt."
   },
   moved: {
     title: "Sidan Flyttad!",

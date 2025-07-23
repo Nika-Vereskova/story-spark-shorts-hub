@@ -5,7 +5,7 @@ export const ru = {
     books: "Книги",
     videos: "Видео", 
     about: "Обо мне",
-    blog: "Блог",
+    blog: "Блог/AI Новости",
     contact: "Контакты",
     services: "Услуги"
   },
@@ -114,7 +114,7 @@ export const ru = {
     subscribe: "Подписаться"
   },
   blog: {
-    title: "Блог Хроники Часовых Механизмов",
+    title: "Блог/AI Новости",
     subtitle: "Следите за моим писательским путешествием, творческим процессом и волшебным миром стимпанк-повествования.",
     latestUpdates: "Последние обновления",
     readPlumberella: "Читать Сантехничеллу сейчас:",
@@ -175,7 +175,18 @@ export const ru = {
     invalidEmail: "Неверный email",
     invalidEmailDesc: "Пожалуйста, введите действительный адрес электронной почты.",
     subscribeSuccess: "Спасибо за подписку!",
-    subscribeSuccessDesc: "Мы будем уведомлять вас о новых историях и приключениях с часовыми механизмами."
+    subscribeSuccessDesc: "Мы будем уведомлять вас о новых историях и приключениях с часовыми механизмами.",
+    createPost: "Создать новую запись",
+    postTitle: "Заголовок записи",
+    postContent: "Содержание записи",
+    publishPost: "Опубликовать запись",
+    postCreated: "Запись создана!",
+    postCreatedDesc: "Ваша запись была успешно создана и опубликована.",
+    zapierWebhook: "Zapier Webhook URL",
+    webhookPlaceholder: "Введите URL вашего Zapier webhook",
+    triggerZap: "Запустить Zap",
+    zapTriggered: "Zap запущен!",
+    zapTriggeredDesc: "Ваш Zapier webhook был успешно запущен."
   },
   moved: {
     title: "Сайт переехал!",

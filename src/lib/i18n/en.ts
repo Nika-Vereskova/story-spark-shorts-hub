@@ -5,7 +5,7 @@ export const en = {
     books: "Books", 
     videos: "Videos",
     about: "About",
-    blog: "Blog",
+    blog: "Blog/AI News",
     contact: "Contact",
     services: "Services"
   },
@@ -114,7 +114,7 @@ export const en = {
     subscribe: "Subscribe"
   },
   blog: {
-    title: "Clockwork Chronicles Blog",
+    title: "Blog/AI News",
     subtitle: "Follow my writing journey, creative process, and the magical world of steampunk storytelling.",
     latestUpdates: "Latest Updates",
     readPlumberella: "Read Plumberella now:",
@@ -175,7 +175,18 @@ The teacher, noticing nothing, began his explanation:
     invalidEmail: "Invalid Email",
     invalidEmailDesc: "Please enter a valid email address.",
     subscribeSuccess: "Welcome to the Inventor's Guild!",
-    subscribeSuccessDesc: "Thank you for subscribing! You'll now receive all the latest news about new steampunk stories, workshop videos, and exclusive clockwork adventures. Keep an eye on your inbox for magical updates!"
+    subscribeSuccessDesc: "Thank you for subscribing! You'll now receive all the latest news about new steampunk stories, workshop videos, and exclusive clockwork adventures. Keep an eye on your inbox for magical updates!",
+    createPost: "Create New Post",
+    postTitle: "Post Title",
+    postContent: "Post Content",
+    publishPost: "Publish Post",
+    postCreated: "Post Created!",
+    postCreatedDesc: "Your post has been created and published successfully.",
+    zapierWebhook: "Zapier Webhook URL",
+    webhookPlaceholder: "Enter your Zapier webhook URL",
+    triggerZap: "Trigger Zap",
+    zapTriggered: "Zap Triggered!",
+    zapTriggeredDesc: "Your Zapier webhook has been triggered successfully."
   },
   moved: {
     title: "Site Moved!",

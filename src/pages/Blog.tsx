@@ -1,13 +1,26 @@
 
-import React from 'react';
-import { Calendar, ExternalLink, Heart, BookOpen } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, ExternalLink, Heart, BookOpen, Plus, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/components/ui/use-toast';
 import Navigation from '@/components/Navigation';
 import { t } from '@/lib/i18n';
 
 const Blog = () => {
-  const posts = [
+  const { toast } = useToast();
+  const [showCreateForm, setShowCreateForm] = useState(false);
+  const [newPost, setNewPost] = useState({ title: '', content: '' });
+  const [webhookUrl, setWebhookUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
+  // Load posts from localStorage or default
+  const [posts, setPosts] = useState(() => {
+    const savedPosts = localStorage.getItem('blog-posts');
+    return savedPosts ? JSON.parse(savedPosts) : [
     {
       id: 1,
       title: t('blog.post1.title'),
@@ -21,7 +34,68 @@ const Blog = () => {
         { title: t('blog.post1.links.russian'), url: "https://lnkd.in/dX6EdEAs" }
       ]
     }
-  ];
+  ]});
+  
+  const handleCreatePost = async () => {
+    if (!newPost.title.trim() || !newPost.content.trim()) {
+      toast({
+        title: t('common.emailRequired'),
+        description: "Please fill in both title and content.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    const post = {
+      id: Date.now(),
+      title: newPost.title,
+      date: new Date().toLocaleDateString(),
+      excerpt: newPost.content.substring(0, 100) + "...",
+      content: newPost.content,
+      links: []
+    };
+
+    const updatedPosts = [post, ...posts];
+    setPosts(updatedPosts);
+    localStorage.setItem('blog-posts', JSON.stringify(updatedPosts));
+    
+    // Trigger Zapier webhook if provided
+    if (webhookUrl) {
+      try {
+        await fetch(webhookUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          mode: "no-cors",
+          body: JSON.stringify({
+            title: newPost.title,
+            content: newPost.content,
+            timestamp: new Date().toISOString(),
+            source: 'blog_post_created'
+          }),
+        });
+        
+        toast({
+          title: t('common.zapTriggered'),
+          description: t('common.zapTriggeredDesc'),
+        });
+      } catch (error) {
+        console.error("Error triggering webhook:", error);
+      }
+    }
+    
+    setNewPost({ title: '', content: '' });
+    setShowCreateForm(false);
+    setIsLoading(false);
+    
+    toast({
+      title: t('common.postCreated'),
+      description: t('common.postCreatedDesc'),
+    });
+  };
 
   const [expandedExcerpt, setExpandedExcerpt] = React.useState(false);
 
@@ -42,7 +116,86 @@ const Blog = () => {
             <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
               {t('blog.subtitle')}
             </p>
+            
+            {/* Create Post Button */}
+            <div className="mt-8">
+              <Button
+                onClick={() => setShowCreateForm(!showCreateForm)}
+                className="bg-brass hover:bg-brass-dark text-parchment px-6 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                {t('common.createPost')}
+              </Button>
+            </div>
           </div>
+
+          {/* Create Post Form */}
+          {showCreateForm && (
+            <Card className="mb-8 bg-parchment/90 border-2 border-brass shadow-brass-drop">
+              <CardHeader>
+                <CardTitle className="text-oxidized-teal font-playfair">{t('common.createPost')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <Label htmlFor="post-title" className="text-oxidized-teal font-inter font-medium">
+                    {t('common.postTitle')}
+                  </Label>
+                  <Input
+                    id="post-title"
+                    value={newPost.title}
+                    onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+                    className="mt-1 border-brass/30 focus:border-brass"
+                    placeholder={t('common.postTitle')}
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="post-content" className="text-oxidized-teal font-inter font-medium">
+                    {t('common.postContent')}
+                  </Label>
+                  <Textarea
+                    id="post-content"
+                    value={newPost.content}
+                    onChange={(e) => setNewPost({ ...newPost, content: e.target.value })}
+                    className="mt-1 border-brass/30 focus:border-brass min-h-[120px]"
+                    placeholder={t('common.postContent')}
+                  />
+                </div>
+                
+                <div>
+                  <Label htmlFor="webhook-url" className="text-oxidized-teal font-inter font-medium">
+                    {t('common.zapierWebhook')} (Optional)
+                  </Label>
+                  <Input
+                    id="webhook-url"
+                    value={webhookUrl}
+                    onChange={(e) => setWebhookUrl(e.target.value)}
+                    className="mt-1 border-brass/30 focus:border-brass"
+                    placeholder={t('common.webhookPlaceholder')}
+                    type="url"
+                  />
+                </div>
+                
+                <div className="flex gap-3 pt-4">
+                  <Button
+                    onClick={handleCreatePost}
+                    disabled={isLoading}
+                    className="bg-brass hover:bg-brass-dark text-parchment px-4 py-2 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                  >
+                    <Send className="mr-2 h-4 w-4" />
+                    {isLoading ? 'Publishing...' : t('common.publishPost')}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowCreateForm(false)}
+                    className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10"
+                  >
+                    Cancel
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Blog Posts */}
           <div className="space-y-8">
@@ -73,47 +226,51 @@ const Blog = () => {
                   </div>
                   
                   {/* Book Links */}
-                  <div className="space-y-4">
-                    <h3 className="text-oxidized-teal font-semibold font-playfair flex items-center">
-                      <Heart className="w-4 h-4 mr-2" />
-                      {t('blog.readPlumberella')}
-                    </h3>
-                    <div className="flex flex-wrap gap-3">
-                      {post.links.map((link, linkIndex) => (
-                        <Button
-                          key={linkIndex}
-                          variant="outline"
-                          className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-                          onClick={() => handleLinkClick(link.url, link.title)}
-                        >
-                          {link.title}
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </Button>
-                      ))}
+                  {post.links && post.links.length > 0 && (
+                    <div className="space-y-4">
+                      <h3 className="text-oxidized-teal font-semibold font-playfair flex items-center">
+                        <Heart className="w-4 h-4 mr-2" />
+                        {t('blog.readPlumberella')}
+                      </h3>
+                      <div className="flex flex-wrap gap-3">
+                        {post.links.map((link, linkIndex) => (
+                          <Button
+                            key={linkIndex}
+                            variant="outline"
+                            className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                            onClick={() => handleLinkClick(link.url, link.title)}
+                          >
+                            {link.title}
+                            <ExternalLink className="ml-2 h-4 w-4" />
+                          </Button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  {/* Excerpt Toggle */}
-                  <div className="pt-4 border-t border-brass/30">
-                    <Button
-                      variant="outline"
-                      className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium mb-4"
-                      onClick={() => setExpandedExcerpt(!expandedExcerpt)}
-                    >
-                      <BookOpen className="mr-2 h-4 w-4" />
-                      {expandedExcerpt ? t('blog.hideExcerpt') : t('blog.readExcerpt')}
-                    </Button>
-                    
-                    {expandedExcerpt && (
-                      <div className="bg-brass/5 p-6 rounded-lg border border-brass/20 animate-fade-in">
-                        <div className="prose prose-oxidized-teal max-w-none">
-                          <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed text-sm">
-                            {post.bookExcerpt}
+                  {/* Excerpt Toggle - only for posts with book excerpts */}
+                  {post.bookExcerpt && (
+                    <div className="pt-4 border-t border-brass/30">
+                      <Button
+                        variant="outline"
+                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium mb-4"
+                        onClick={() => setExpandedExcerpt(!expandedExcerpt)}
+                      >
+                        <BookOpen className="mr-2 h-4 w-4" />
+                        {expandedExcerpt ? t('blog.hideExcerpt') : t('blog.readExcerpt')}
+                      </Button>
+                      
+                      {expandedExcerpt && (
+                        <div className="bg-brass/5 p-6 rounded-lg border border-brass/20 animate-fade-in">
+                          <div className="prose prose-oxidized-teal max-w-none">
+                            <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed text-sm">
+                              {post.bookExcerpt}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
+                      )}
+                    </div>
+                  )}
                   
                   {/* Social Media Follow */}
                   <div className="pt-4 border-t border-brass/30">
