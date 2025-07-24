@@ -26,6 +26,15 @@ const Blog = () => {
     const savedPosts = localStorage.getItem('blog-posts');
     return savedPosts ? JSON.parse(savedPosts) : [
     {
+      id: 2,
+      title: t('blog.post2.title'),
+      date: t('blog.post2.date'),
+      excerpt: t('blog.post2.excerpt'),
+      content: t('blog.post2.content'),
+      bookExcerpt: t('blog.post2.bookExcerpt'),
+      links: []
+    },
+    {
       id: 1,
       title: t('blog.post1.title'),
       date: t('blog.post1.date'),
