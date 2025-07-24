@@ -164,6 +164,38 @@ The teacher, noticing nothing, began his explanation:
         swedish: "Swedish",
         russian: "Russian"
       }
+    },
+    post2: {
+      title: "AI Adventures: July 24, 2025 Edition",
+      date: "July 24, 2025",
+      excerpt: "The latest updates from the AI frontier: fraud-busting bots, Netflix's VFX revolution, and teens' new digital confidants.",
+      content: `**1. Fraud-busting—AI style!**
+OpenAI's CEO, Sam Altman, just rang the alarm about an "AI fraud crisis." Voice-mimicking bots can replicate your voice so convincingly that even voice-auth systems are shaky. The fix? Rethinking how we verify identity—from voice to maybe mood, gesture, or time-based codes!
+⚙️ Fun twist: Imagine your AI guard-duck that quacks a secret code before unlocking your vault. 🦆
+
+**2. Netflix goes post-apoc—with style!**
+Netflix dropped the first on‑screen VFX scene in *El Eternauta* using generative AI. A collapsing building generated *10× faster* (and cheaper!) than traditional VFX. The future of film is looking like "cheap and breathtaking."
+
+**3. Teens tell AI secrets**
+A new survey shows teens are spilling life questions to AI chatbots—from friendship dilemmas to career pep talks. One Kansas student said, "Everyone uses AI for everything now… to get out of thinking." AI: the ultimate teenage BFF? Or just procrastination gone digital?
+
+**4. Steam's game-changer: GenAI everywhere**
+Gaming is getting an AI makeover! On Steam, 20% of new titles in 2025 use GenAI—mostly for visuals, audio, and even in-game storytelling. AI Roguelite is leading the pack, generating content as you play!
+
+**5. AI goes global (and political)**
+President Trump's new "AI Action Plan" aims to turbocharge data centre builds, export US AI tech globally, and strip AI bias. Critics worry it's tech-first, safety-later. Meanwhile, the White House drafts an order on "woke AI" neutrality. Politics meets processors!
+
+🔧 **Quick Takeaways**
+
+⚙️ Guard your voice—it's the new password.
+⚙️ Hollywood's special effects toolkit just hit fast-forward.
+⚙️ Teens chatting with bots could reshape future social norms.
+⚙️ Video games now speak AI—in real time.
+⚙️ AI is now boardroom and ballot-box level.
+
+That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, or cheeky call‑out questions in the next post? Just say the word.
+
+**Next post drops in 2 days**—stay tuned! 🚀`
     }
   },
   common: {

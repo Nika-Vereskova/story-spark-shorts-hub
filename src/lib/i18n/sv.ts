@@ -164,6 +164,38 @@ Läraren, utan att märka något, började sin förklaring:
         swedish: "Svenska",
         russian: "Ryska"
       }
+    },
+    post2: {
+      title: "AI-Äventyr: 24 Juli 2025 Utgåva",
+      date: "24 Juli 2025",
+      excerpt: "De senaste uppdateringarna från AI-fronten: bedrägeribekämpande botar, Netflix VFX-revolution och tonåringars nya digitala förtrogna.",
+      content: `**1. Bedrägeribekämpning—AI-stil!**
+OpenAI:s VD, Sam Altman, ringde precis alarmet om en "AI-bedrägerikris." Röstimiterade botar kan replikera din röst så övertygande att även röst-autentiseringssystem är skakiga. Lösningen? Omtänka hur vi verifierar identitet—från röst till kanske humör, gester eller tidsbaserade koder!
+⚙️ Kul twist: Föreställ dig din AI-vaktand som kväker en hemlig kod innan den låser upp ditt valv. 🦆
+
+**2. Netflix blir post-apoc—med stil!**
+Netflix släppte den första VFX-scenen på skärmen i *El Eternauta* med generativ AI. En kollapsande byggnad genererades *10× snabbare* (och billigare!) än traditionell VFX. Filmens framtid ser ut som "billig och hisnande."
+
+**3. Tonåringar berättar AI-hemligheter**
+En ny undersökning visar att tonåringar spiller livsfrågor till AI-chatbotar—från vänskapsproblem till karriärpepptal. En Kansas-student sa: "Alla använder AI för allt nu... för att slippa tänka." AI: den ultimata tonårs-bästa kompisen? Eller bara prokrastination som blivit digital?
+
+**4. Steams spelväxlare: GenAI överallt**
+Spel får en AI-makeover! På Steam använder 20% av nya titlar 2025 GenAI—mest för bilder, ljud och till och med berättelser i spel. AI Roguelite leder gruppen och genererar innehåll medan du spelar!
+
+**5. AI blir global (och politisk)**
+President Trumps nya "AI Action Plan" syftar till att turboladda datacenterbyggen, exportera amerikansk AI-teknik globalt och ta bort AI-fördommar. Kritiker oroar sig för att det är teknik-först, säkerhet-senare. Under tiden utarbetar Vita huset en order om "woke AI"-neutralitet. Politik möter processorer!
+
+🔧 **Snabba Slutsatser**
+
+⚙️ Bevaka din röst—det är det nya lösenordet.
+⚙️ Hollywoods specialeffekt-verktygslåda fick precis snabbspola.
+⚙️ Tonåringar som chattar med botar kan omforma framtida sociala normer.
+⚙️ Videospel talar nu AI—i realtid.
+⚙️ AI är nu styrelserum och vallokals-nivå.
+
+Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omröstningsidéer eller fräcka utrop-frågor i nästa inlägg? Bara säg till.
+
+**Nästa inlägg släpps om 2 dagar**—håll utkik! 🚀`
     }
   },
   common: {
