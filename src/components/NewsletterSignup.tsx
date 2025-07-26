@@ -5,22 +5,22 @@ import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 import { t } from '@/lib/i18n';
 import { supabase } from '@/integrations/supabase/client';
+import { sanitizeInput, validateEmail } from '@/lib/security';
 
 const NewsletterSignup = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const validateEmail = (email: string) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (isSubmitting) return;
     
-    if (!email) {
+    const sanitizedEmail = sanitizeInput(email);
+    
+    if (!sanitizedEmail) {
       toast({
         title: t('common.emailRequired'),
         description: t('common.emailRequiredDesc'),
@@ -28,7 +28,7 @@ const NewsletterSignup = () => {
       });
       return;
     }
-    if (!validateEmail(email)) {
+    if (!validateEmail(sanitizedEmail)) {
       toast({
         title: t('common.invalidEmail'),
         description: t('common.invalidEmailDesc'),
@@ -40,12 +40,12 @@ const NewsletterSignup = () => {
     setIsSubmitting(true);
 
     try {
-      console.log('Attempting to subscribe email:', email);
+      console.log('Attempting to subscribe email:', sanitizedEmail);
       
       // Save subscriber to database (not confirmed yet)
       const { data: insertData, error: subscribeError } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email }])
+        .insert([{ email: sanitizedEmail }])
         .select('confirmation_token')
         .single();
 
@@ -68,7 +68,7 @@ const NewsletterSignup = () => {
       console.log('Calling send-newsletter-confirmation function...');
       const { data: emailData, error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
         body: { 
-          email,
+          email: sanitizedEmail,
           confirmationToken: insertData.confirmation_token
         }
       });

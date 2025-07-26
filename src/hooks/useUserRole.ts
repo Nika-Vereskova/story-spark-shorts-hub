@@ -16,14 +16,19 @@ export const useUserRole = () => {
       }
 
       try {
+        // Use the secure has_role function instead of direct table query
         const { data, error } = await supabase
-          .from('user_roles')
-          .select('role')
-          .eq('user_id', user.id)
-          .eq('role', 'admin')
-          .single();
+          .rpc('has_role', { 
+            _user_id: user.id, 
+            _role: 'admin' 
+          });
 
-        setIsAdmin(!!data && !error);
+        if (error) {
+          console.error('Error checking user role:', error);
+          setIsAdmin(false);
+        } else {
+          setIsAdmin(!!data);
+        }
       } catch (error) {
         console.error('Error checking user role:', error);
         setIsAdmin(false);

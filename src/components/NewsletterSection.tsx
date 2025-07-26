@@ -6,30 +6,13 @@ import { useToast } from '@/hooks/use-toast';
 import { t } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
 import { supabase } from '@/integrations/supabase/client';
+import { sanitizeInput, validateEmail, hashString } from '@/lib/security';
 
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
-  const validateEmail = (email: string) => {
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-    return emailRegex.test(email) && email.length <= 254;
-  };
-
-  const sanitizeInput = (input: string) => {
-    return input.trim().replace(/[<>]/g, '');
-  };
-
-  const hashEmail = (email: string) => {
-    let hash = 0;
-    for (let i = 0; i < email.length; i++) {
-      const char = email.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString();
-  };
 
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -101,7 +84,7 @@ const NewsletterSection = () => {
       
       // Track newsletter signup attempt with privacy-preserving hash
       posthog.capture('newsletter_signup_initiated', {
-        email_hash: hashEmail(sanitizedEmail),
+        email_hash: hashString(sanitizedEmail),
         source: 'homepage',
         timestamp: new Date().toISOString()
       });
