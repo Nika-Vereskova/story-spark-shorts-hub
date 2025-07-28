@@ -9,6 +9,8 @@ import LocaleRouter from "@/components/LocaleRouter";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import AIServices from "./pages/AIServices";
+import AINews from "./pages/AINews";
 import Books from "./pages/Books";
 import Videos from "./pages/Videos";
 import Blog from "./pages/Blog";
@@ -41,6 +43,8 @@ const App = () => (
               <Route path="/:locale" element={<Index />} />
               <Route path="/:locale/about" element={<About />} />
               <Route path="/:locale/services" element={<Services />} />
+              <Route path="/:locale/ai-services" element={<AIServices />} />
+              <Route path="/:locale/ai-news" element={<AINews />} />
               <Route path="/:locale/books" element={<Books />} />
               <Route path="/:locale/videos" element={<Videos />} />
               <Route path="/:locale/blog" element={<Blog />} />
@@ -53,6 +57,8 @@ const App = () => (
               {/* Non-localized routes for backward compatibility */}
               <Route path="/about" element={<About />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/ai-services" element={<AIServices />} />
+              <Route path="/ai-news" element={<AINews />} />
               <Route path="/books" element={<Books />} />
               <Route path="/videos" element={<Videos />} />
               <Route path="/blog" element={<Blog />} />
