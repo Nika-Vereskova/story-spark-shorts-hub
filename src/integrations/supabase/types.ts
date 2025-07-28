@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      news_posts: {
+        Row: {
+          article_url: string | null
+          cover_url: string | null
+          created_at: string
+          id: string
+          published_at: string
+          slug: string
+          summary: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          article_url?: string | null
+          cover_url?: string | null
+          created_at?: string
+          id?: string
+          published_at?: string
+          slug: string
+          summary?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          article_url?: string | null
+          cover_url?: string | null
+          created_at?: string
+          id?: string
+          published_at?: string
+          slug?: string
+          summary?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           confirmation_token: string
