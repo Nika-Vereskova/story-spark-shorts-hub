@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,25 @@ const Navigation = ({ currentPage }: NavigationProps) => {
     { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
   ];
 
+  // Add scroll listener for border effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('.scroll-border');
+      if (nav) {
+        if (window.scrollY > 0) {
+          nav.classList.add('border-b-2');
+          nav.classList.remove('border-b');
+        } else {
+          nav.classList.add('border-b');
+          nav.classList.remove('border-b-2');
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const isCurrentPage = (itemKey: string) => {
     if (currentPage) {
       return currentPage === itemKey || location.pathname === `/${locale}/${itemKey}` || (itemKey === 'home' && location.pathname === `/${locale}`);
@@ -45,11 +64,19 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b-2 border-brass/50 shadow-brass-drop">
-        <div className="container mx-auto px-6 py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
+        <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <Link to={`/${locale}`} className="text-2xl font-playfair font-bold text-oxidized-teal hover:text-brass transition-colors">
-              STEaM LOGIC Studio AB
+            <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
+              <img 
+                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png" 
+                alt="STEaM LOGIC Studio AB"
+                className="h-[52px] md:h-[52px] sm:h-[36px] gear"
+              />
+              <div className="font-playfair font-bold text-teal">
+                <div className="text-xl leading-tight">STEaM LOGIC</div>
+                <div className="text-sm opacity-90">Studio AB</div>
+              </div>
             </Link>
             
             <div className="hidden md:flex items-center space-x-8">

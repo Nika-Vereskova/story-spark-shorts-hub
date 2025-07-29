@@ -24,7 +24,17 @@ const SplitHeroSection = () => {
   };
 
   return (
-    <section className="pt-24 pb-16 px-6 relative overflow-hidden">
+    <section 
+      className="pt-24 pb-16 px-6 relative overflow-hidden hero"
+      style={{
+        backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      {/* Backdrop filter overlay */}
+      <div className="absolute inset-0" style={{ backdropFilter: 'sepia(0.2)' }}></div>
+      
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
@@ -44,7 +54,7 @@ const SplitHeroSection = () => {
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Left Panel - Plumberella */}
-          <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
+          <Card className="card bg-parchment/90 hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
             {/* Ornate brass corners */}
             <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
             <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
@@ -70,17 +80,23 @@ const SplitHeroSection = () => {
             </CardHeader>
             <CardContent>
               <Button 
-                className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium text-lg py-3"
+                variant="steam"
+                className="w-full font-inter font-medium text-lg py-3"
                 onClick={handleBookSample}
               >
                 <Book className="mr-2 h-5 w-5" />
                 Read a Sample Chapter
               </Button>
+              
+              {/* Hidden steam effect SVG */}
+              <svg className="steam hidden">
+                <circle cx="10" cy="10" r="2" fill="white" opacity="0.6"/>
+              </svg>
             </CardContent>
           </Card>
 
           {/* Right Panel - AI Services */}
-          <Card className="bg-gradient-to-br from-brass/10 via-oxidized-teal/10 to-brass/5 border-2 border-oxidized-teal hover:border-brass transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden backdrop-blur-sm">
+          <Card className="card bg-gradient-to-br from-brass/10 via-oxidized-teal/10 to-brass/5 hover:border-brass transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden backdrop-blur-sm">
             {/* Holographic effect overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[slide-in-right_3s_ease-in-out_infinite] pointer-events-none"></div>
             
@@ -123,12 +139,18 @@ const SplitHeroSection = () => {
                 </div>
               </div>
               <Button 
-                className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium text-lg py-3"
+                variant="steam"
+                className="w-full font-inter font-medium text-lg py-3"
                 onClick={handleAIServices}
               >
                 <Sparkles className="mr-2 h-5 w-5" />
                 Explore AI Services
               </Button>
+              
+              {/* Hidden steam effect SVG */}
+              <svg className="steam hidden">
+                <circle cx="10" cy="10" r="2" fill="white" opacity="0.6"/>
+              </svg>
             </CardContent>
           </Card>
         </div>

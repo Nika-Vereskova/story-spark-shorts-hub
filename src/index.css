@@ -2,55 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+/* STEaM LOGIC Studio AB Brand Identity */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* STEaM LOGIC Brand Colors */
+    --brass: #B18A46;
+    --teal: #2E646B;
+    --parchment: #F5E6C5;
+    --iron: #373A40;
+    --cyan: #21F0FF;
+    
+    /* Design System Mapping */
+    --background: 36 26% 91%;  /* Parchment */
+    --foreground: 200 8% 22%;  /* Iron */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 36 26% 91%;        /* Parchment */
+    --card-foreground: 200 8% 22%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 36 26% 91%;
+    --popover-foreground: 200 8% 22%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 195 40% 29%;    /* Teal */
+    --primary-foreground: 36 26% 91%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 42 43% 49%;   /* Brass */
+    --secondary-foreground: 36 26% 91%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 36 20% 85%;
+    --muted-foreground: 200 8% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 187 100% 56%;    /* Cyan */
+    --accent-foreground: 200 8% 22%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 36 26% 91%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 43% 49%;      /* Brass for borders */
+    --input: 36 20% 85%;
+    --ring: 195 40% 29%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 36 26% 91%;
+    --sidebar-foreground: 200 8% 22%;
+    --sidebar-primary: 195 40% 29%;
+    --sidebar-primary-foreground: 36 26% 91%;
+    --sidebar-accent: 36 20% 85%;
+    --sidebar-accent-foreground: 200 8% 22%;
+    --sidebar-border: 42 43% 49%;
+    --sidebar-ring: 195 40% 29%;
   }
 
   .dark {
@@ -98,6 +99,53 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: var(--parchment);
+    color: var(--iron);
+    font-family: Inter, sans-serif;
+  }
+  
+  h1, h2, h3 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+/* STEaM LOGIC Brand Animations */
+@keyframes gearSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes puff {
+  0% { opacity: 0; transform: translateY(0) scale(0.3); }
+  40% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-40px) scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .logo svg.gear {
+    animation: gearSpin 25s linear infinite;
+  }
+}
+
+.hero:hover .steam {
+  animation: puff 1.8s ease-out forwards;
+}
+
+/* STEaM LOGIC Card Styling */
+.card {
+  border: 1px solid var(--brass);
+  border-radius: 8px;
+}
+
+/* STEaM LOGIC Button Styling */
+.btn-steam {
+  background: linear-gradient(180deg, #B18A46 0%, #8B6F33 100%);
+  border: 2px solid var(--teal);
+  transition: box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-steam:hover {
+    box-shadow: 0 0 8px var(--cyan);
   }
 }
