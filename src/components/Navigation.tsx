@@ -49,7 +49,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link to={`/${locale}`} className="text-2xl font-playfair font-bold text-oxidized-teal hover:text-brass transition-colors">
-              Nika Vereskova Stories
+              STEaM LOGIC Studio AB
             </Link>
             
             <div className="hidden md:flex items-center space-x-8">

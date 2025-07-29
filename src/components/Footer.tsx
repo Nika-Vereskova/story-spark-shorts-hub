@@ -29,7 +29,7 @@ const Footer = () => {
   return (
     <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-brass/50">
       <div className="container mx-auto text-center">
-        <p className="text-oxidized-teal/80 font-medium font-inter">© 2025 Nika Vereskova Stories. All rights reserved.</p>
+        <p className="text-oxidized-teal/80 font-medium font-inter">© 2025 STEaM LOGIC Studio AB. All rights reserved.</p>
         <div className="flex justify-between items-center mt-4">
           <div className="flex-1" />
           <div className="flex justify-center space-x-6">
