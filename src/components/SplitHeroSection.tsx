@@ -25,11 +25,12 @@ const SplitHeroSection = () => {
 
   return (
     <section 
-      className="pt-24 pb-16 px-6 relative overflow-hidden hero"
+      className="pt-24 pb-16 px-6 relative overflow-hidden hero min-h-screen"
       style={{
         backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center'
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
       }}
     >
       {/* Backdrop filter overlay */}
