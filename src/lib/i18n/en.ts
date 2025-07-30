@@ -89,41 +89,51 @@ export const en = {
     webinars: {
       title: "Interactive Webinars",
       description: "Engaging workshops on storytelling, AI, and creative technology",
-      feature1: "Live interactive sessions with Q&A",
-      feature2: "Storytelling techniques for all ages",
-      feature3: "Creative writing with AI assistance",
+      features: [
+        "Live interactive sessions with Q&A",
+        "Storytelling techniques for all ages",
+        "Creative writing with AI assistance"
+      ],
       cta: "Book a Webinar"
     },
     websites: {
       title: "Website Development",
       description: "Beautiful, functional websites that tell your story",
-      feature1: "Custom design with steampunk flair",
-      feature2: "Responsive and mobile-friendly",
-      feature3: "SEO optimized and fast loading",
+      features: [
+        "Custom design with steampunk flair",
+        "Responsive and mobile-friendly",
+        "SEO optimized and fast loading"
+      ],
       cta: "Get Your Website"
     },
     chapters: {
       title: "Book Chapters & Writing",
       description: "Custom stories and book chapters for your projects",
-      feature1: "Personalized fairy tales and stories",
-      feature2: "Educational content with narrative",
-      feature3: "Character development and world-building",
+      features: [
+        "Personalized fairy tales and stories",
+        "Educational content with narrative",
+        "Character development and world-building"
+      ],
       cta: "Commission a Story"
     },
     apps: {
       title: "App Development",
       description: "Interactive applications that bring ideas to life",
-      feature1: "Educational apps for children",
-      feature2: "Creative tools and utilities", 
-      feature3: "AI-powered interactive experiences",
+      features: [
+        "Educational apps for children",
+        "Creative tools and utilities",
+        "AI-powered interactive experiences"
+      ],
       cta: "Build Your App"
     },
     ai: {
       title: "AI Courses & Consulting",
       description: "Learn about artificial intelligence and its creative applications",
-      feature1: "Beginner-friendly AI workshops",
-      feature2: "Creative AI for storytellers",
-      feature3: "Custom AI solutions consulting",
+      features: [
+        "Beginner-friendly AI workshops",
+        "Creative AI for storytellers",
+        "Custom AI solutions consulting"
+      ],
       cta: "Explore AI with Me"
     },
     card: {
@@ -134,6 +144,41 @@ export const en = {
       buyNow: "Buy Now - {price}",
       contact: "Contact for Details",
       inquirySubject: "Inquiry about {title}"
+    }
+  },
+  featuredServices: {
+    authorSpeaker: {
+      title: "Author & Speaker",
+      description: "Bringing steampunk stories and AI insights to audiences worldwide",
+      features: [
+        "School visits & storytelling workshops",
+        "Conference keynotes on AI & creativity",
+        "Book readings & character performances",
+        "Educational content for children"
+      ],
+      cta: "Book an Event"
+    },
+    aiConsulting: {
+      title: "AI Consulting",
+      description: "Strategic AI implementation with ethical foundations",
+      features: [
+        "Prompt engineering & optimization",
+        "AI policy development",
+        "Full-stack LLM prototypes",
+        "Team training & workshops"
+      ],
+      cta: "Explore Consulting"
+    },
+    bespokeGpts: {
+      title: "Bespoke GPTs",
+      description: "Custom AI assistants tailored to your specific needs",
+      features: [
+        "Child-safe storytelling bots",
+        "Translation assistants",
+        "Educational content creators",
+        "Business workflow automation"
+      ],
+      cta: "Build a GPT"
     }
   },
   callout: {

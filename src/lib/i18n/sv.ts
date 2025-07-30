@@ -89,41 +89,51 @@ export const sv = {
     webinars: {
       title: "Interaktiva Webbinarier",
       description: "Engagerande workshops om berättande, AI och kreativ teknik",
-      feature1: "Livesändningar med frågor och svar",
-      feature2: "Berättartekniker för alla åldrar",
-      feature3: "Kreativt skrivande med AI-hjälp",
+      features: [
+        "Livesändningar med frågor och svar",
+        "Berättartekniker för alla åldrar",
+        "Kreativt skrivande med AI-hjälp"
+      ],
       cta: "Boka ett Webbinarium"
     },
     websites: {
       title: "Webbutveckling",
       description: "Vackra, funktionella webbplatser som berättar din historia",
-      feature1: "Anpassad design med steampunk-flärd",
-      feature2: "Responsiv och mobilvänlig",
-      feature3: "SEO-optimerad och snabbladdande",
+      features: [
+        "Anpassad design med steampunk-flärd",
+        "Responsiv och mobilvänlig",
+        "SEO-optimerad och snabbladdande"
+      ],
       cta: "Få Din Webbplats"
     },
     chapters: {
       title: "Bokkapitel och Skrivande",
       description: "Anpassade berättelser och bokkapitel för dina projekt",
-      feature1: "Personliga sagor och berättelser",
-      feature2: "Pedagogiskt innehåll med narrativ",
-      feature3: "Karaktärsutveckling och världsbyggande",
+      features: [
+        "Personliga sagor och berättelser",
+        "Pedagogiskt innehåll med narrativ",
+        "Karaktärsutveckling och världsbyggande"
+      ],
       cta: "Beställ en Berättelse"
     },
     apps: {
       title: "Apputveckling",
       description: "Interaktiva applikationer som ger liv åt idéer",
-      feature1: "Pedagogiska appar för barn",
-      feature2: "Kreativa verktyg och hjälpmedel",
-      feature3: "AI-drivna interaktiva upplevelser",
+      features: [
+        "Pedagogiska appar för barn",
+        "Kreativa verktyg och hjälpmedel",
+        "AI-drivna interaktiva upplevelser"
+      ],
       cta: "Bygg Din App"
     },
     ai: {
       title: "AI-kurser och Rådgivning",
       description: "Lär dig om artificiell intelligens och dess kreativa tillämpningar",
-      feature1: "Nybörjarvänliga AI-workshops",
-      feature2: "Kreativ AI för berättare",
-      feature3: "Anpassade AI-lösningar rådgivning",
+      features: [
+        "Nybörjarvänliga AI-workshops",
+        "Kreativ AI för berättare",
+        "Anpassade AI-lösningar rådgivning"
+      ],
       cta: "Utforska AI med Mig"
     },
     card: {
@@ -134,6 +144,41 @@ export const sv = {
       buyNow: "Köp nu - {price}",
       contact: "Kontakta för detaljer",
       inquirySubject: "Förfrågan om {title}"
+    }
+  },
+  featuredServices: {
+    authorSpeaker: {
+      title: "Författare & Talare",
+      description: "Förmedlar steampunkberättelser och AI-insikter till publiken världen över",
+      features: [
+        "Skolbesök och berättarworkshops",
+        "Konferensföreläsningar om AI och kreativitet",
+        "Bokläsningar och karaktärsframträdanden",
+        "Pedagogiskt innehåll för barn"
+      ],
+      cta: "Boka ett Evenemang"
+    },
+    aiConsulting: {
+      title: "AI-konsulting",
+      description: "Strategisk AI-implementering med etisk grund",
+      features: [
+        "Promptutveckling och optimering",
+        "Utveckling av AI-policy",
+        "Fullständiga LLM-prototyper",
+        "Teamträning och workshops"
+      ],
+      cta: "Utforska Konsulting"
+    },
+    bespokeGpts: {
+      title: "Skräddarsydda GPT:er",
+      description: "Anpassade AI-assistenter utformade efter dina behov",
+      features: [
+        "Barnsäkra berättarbotar",
+        "Översättningsassistenter",
+        "Skapare av utbildningsinnehåll",
+        "Automatisering av affärsflöden"
+      ],
+      cta: "Bygg en GPT"
     }
   },
   callout: {

@@ -47,7 +47,7 @@ export const detectBrowserLocale = (): Locale => {
 };
 
 // Translation function
-export const t = (key: string): string => {
+export const t = <T = unknown>(key: string): T => {
   const locale = getCurrentLocale();
   const keys = key.split('.');
   let value: unknown = translations[locale];
@@ -74,7 +74,7 @@ export const t = (key: string): string => {
     }
   }
   
-  return typeof value === 'string' ? value : key;
+  return value as T;
 };
 
 export const switchLocale = (locale: Locale) => {
