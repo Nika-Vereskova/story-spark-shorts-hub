@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { t } from '@/lib/i18n';
 import { useAuth } from '@/contexts/AuthContext';
 
 interface AuthModalProps {
@@ -42,13 +43,13 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
       <DialogContent className="bg-parchment border-2 border-brass">
         <DialogHeader>
           <DialogTitle className="text-oxidized-teal font-playfair text-2xl">
-            {mode === 'signin' ? 'Sign In' : 'Sign Up'}
+            {mode === 'signin' ? t('auth.signIn') : t('auth.signUp')}
           </DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email" className="text-oxidized-teal font-inter">Email</Label>
+            <Label htmlFor="email" className="text-oxidized-teal font-inter">{t('auth.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -60,7 +61,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
           </div>
           
           <div>
-            <Label htmlFor="password" className="text-oxidized-teal font-inter">Password</Label>
+            <Label htmlFor="password" className="text-oxidized-teal font-inter">{t('auth.password')}</Label>
             <Input
               id="password"
               type="password"
@@ -76,7 +77,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
             disabled={loading}
             className="w-full bg-brass hover:bg-brass-dark text-parchment"
           >
-            {loading ? 'Loading...' : (mode === 'signin' ? 'Sign In' : 'Sign Up')}
+            {loading ? t('auth.loading') : (mode === 'signin' ? t('auth.signIn') : t('auth.signUp'))}
           </Button>
         </form>
         
@@ -86,7 +87,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
             onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
             className="text-brass hover:text-brass-dark underline font-inter"
           >
-            {mode === 'signin' ? 'Need an account? Sign up' : 'Already have an account? Sign in'}
+            {mode === 'signin' ? t('auth.needAccount') : t('auth.haveAccount')}
           </button>
         </div>
       </DialogContent>

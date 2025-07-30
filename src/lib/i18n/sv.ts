@@ -7,7 +7,9 @@ export const sv = {
     about: "Om mig",
     blog: "Blogg/ AI Nyheter",
     contact: "Kontakt",
-    services: "Tjänster"
+    services: "Tjänster",
+    signIn: "Logga in",
+    signOut: "Logga ut"
   },
   home: {
     title: "Nika Vereskova Berättelser",
@@ -34,6 +36,16 @@ export const sv = {
     subscribeTitle: "Prenumerera för Fler Äventyr!",
     subscribeDesc: "Missa inte nya steampunk-berättelser och verkstadsvideor. Prenumerera på min YouTube-kanal för regelbundna kugghjuls-krönikor!",
     subscribeButton: "Prenumerera på YouTube"
+  },
+  aiNews: {
+    loading: "Laddar AI-nyheter...",
+    latestInsights: "Senaste AI-insikter",
+    tagline: "Färska perspektiv på AI, berättande och framtiden för samverkan mellan människa och maskin",
+    readMore: "Läs mer",
+    viewAll: "Visa alla AI-nyheter",
+    pageTitle: "AI-nyheter & Insikter",
+    pageSubtitle: "De senaste utvecklingarna inom AI-rådgivning, anpassade GPT:er och mötet mellan berättande och artificiell intelligens.",
+    noPosts: "Inga AI-nyhetsinlägg tillgängliga just nu. Kom tillbaka snart för uppdateringar!"
   },
   about: {
     title: "Träffa Nika",
@@ -95,6 +107,16 @@ export const sv = {
       cta: "Utforska AI med Mig"
     }
   },
+  callout: {
+    heading1: "Låt oss bygga världar—",
+    heading2: "på sidan och i kod.",
+    description: "Oavsett om du behöver en berättarworkshop som tänder fantasin eller AI-lösningar som förändrar ditt företag, låt oss skapa något extraordinärt tillsammans.",
+    hireWorkshop: "Anlita mig för en workshop",
+    downloadStory: "Ladda ner en gratis berättelse",
+    trustSchool: "Skolgodkänt innehåll",
+    trustGdpr: "GDPR-kompatibla AI-lösningar",
+    trustAward: "Prisbelönt berättare"
+  },
   contact: {
     title: "Hör Av Dig",
     subtitle: "Jag skulle älska att höra från dig! Oavsett om du har frågor om mina böcker, vill bjuda in mig för en läsning eller bara vill prata om steampunk-äventyr.",
@@ -111,7 +133,28 @@ export const sv = {
     newsletterTitle: "Gå med i Uppfinnar-gildet",
     newsletterDesc: "Få notifieringar om nya steampunk-sagor, verkstadsvideor och speciella kugghjulsevenemang. Plus, få ett gratis nedladdningsbart kugghjulsbyggarens aktivitetsblad!",
     emailPlaceholder: "Din e-postadress",
-    subscribe: "Prenumerera"
+    subscribe: "Prenumerera",
+    sendEmail: "Skicka e-post"
+  },
+  newsletter: {
+    title: "Få gratis berättelser & AI-tips",
+    description: "Få gratis steampunk-sagor och AI-insikter varje tisdag och fredag – där fantasi möter innovation.",
+    subscribing: "Prenumererar...",
+    alreadySubscribedTitle: "Redan prenumererad",
+    alreadySubscribedDesc: "Denna e-postadress finns redan i vårt system. Kontrollera din inkorg för bekräftelsemeddelandet.",
+    checkEmailTitle: "Kolla din e-post!",
+    checkEmailDesc: "Vi har skickat ett bekräftelsemail. Klicka på länken i mailet för att slutföra din prenumeration.",
+    errorTitle: "Fel",
+    errorDesc: "Misslyckades att prenumerera. Försök igen."
+  },
+  auth: {
+    signIn: "Logga in",
+    signUp: "Registrera dig",
+    email: "E-post",
+    password: "Lösenord",
+    loading: "Laddar...",
+    needAccount: "Behöver du ett konto? Registrera dig",
+    haveAccount: "Har du redan ett konto? Logga in"
   },
   blog: {
     title: "Blogg/ AI Nyheter",
@@ -231,5 +274,12 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
     title: "404",
     subtitle: "Hoppsan! Sidan hittades inte",
     returnHome: "Tillbaka till Hem"
+  },
+  footer: {
+    copyright: "© 2025 STEaM LOGIC Studio AB. Alla rättigheter förbehållna.",
+    privacy: "Integritetspolicy",
+    terms: "Användarvillkor",
+    admin: "Admin",
+    visits: "besök"
   }
 };

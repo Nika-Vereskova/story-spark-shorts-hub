@@ -57,7 +57,7 @@ const AINews = () => {
           <div className="container mx-auto px-6">
             <div className="text-center">
               <div className="animate-spin w-8 h-8 border-4 border-brass border-t-transparent rounded-full mx-auto"></div>
-              <p className="mt-4 text-oxidized-teal font-inter">Loading AI news...</p>
+              <p className="mt-4 text-oxidized-teal font-inter">{t('aiNews.loading')}</p>
             </div>
           </div>
         </main>
@@ -75,10 +75,10 @@ const AINews = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">
-              AI News & Insights
+              {t('aiNews.pageTitle')}
             </h1>
             <p className="text-xl text-oxidized-teal/80 max-w-3xl mx-auto font-inter">
-              Latest developments in AI consulting, custom GPTs, and the intersection of storytelling with artificial intelligence.
+              {t('aiNews.pageSubtitle')}
             </p>
           </div>
 
@@ -123,7 +123,7 @@ const AINews = () => {
                       className="w-full border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter"
                       onClick={() => window.open(post.article_url!, '_blank')}
                     >
-                      Read More
+                      {t('aiNews.readMore')}
                       <ExternalLink className="ml-2 h-4 w-4" />
                     </Button>
                   )}
@@ -135,7 +135,7 @@ const AINews = () => {
           {newsPosts.length === 0 && (
             <div className="text-center py-12">
               <p className="text-oxidized-teal/60 text-lg font-inter">
-                No AI news posts available at the moment. Check back soon for updates!
+                {t('aiNews.noPosts')}
               </p>
             </div>
           )}

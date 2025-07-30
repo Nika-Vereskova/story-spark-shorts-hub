@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
+import { t } from '@/lib/i18n';
 
 const Footer = () => {
   const [visitCount, setVisitCount] = useState<number | null>(null);
@@ -29,7 +30,7 @@ const Footer = () => {
   return (
     <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-brass/50">
       <div className="container mx-auto text-center">
-        <p className="text-oxidized-teal/80 font-medium font-inter">© 2025 STEaM LOGIC Studio AB. All rights reserved.</p>
+        <p className="text-oxidized-teal/80 font-medium font-inter">{t('footer.copyright')}</p>
         <div className="flex justify-between items-center mt-4">
           <div className="flex-1" />
           <div className="flex justify-center space-x-6">
@@ -39,7 +40,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-brass hover:text-brass-dark transition-colors font-inter hover:sepia"
             >
-              YouTube
+              {t('contact.youtube')}
             </a>
             <a 
               href="https://www.instagram.com/vereskovanika" 
@@ -47,7 +48,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-brass hover:text-brass-dark transition-colors font-inter"
             >
-              Instagram
+              {t('contact.instagram')}
             </a>
             <a 
               href="https://www.facebook.com/profile.php?id=61577838015246" 
@@ -55,13 +56,13 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-brass hover:text-brass-dark transition-colors font-inter"
             >
-              Facebook
+              {t('contact.facebook')}
             </a>
           </div>
           <div className="flex-1 flex justify-end">
             {visitCount && (
               <span className="text-oxidized-teal/60 font-inter text-xs">
-                {visitCount.toLocaleString()} visits
+                {visitCount.toLocaleString()} {t('footer.visits')}
               </span>
             )}
           </div>
@@ -71,19 +72,19 @@ const Footer = () => {
             to="/privacy" 
             className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
           >
-            Privacy Policy
+            {t('footer.privacy')}
           </Link>
           <Link 
             to="/terms" 
             className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
           >
-            Terms of Service
+            {t('footer.terms')}
           </Link>
           <Link 
             to="/admin" 
             className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
           >
-            Admin
+            {t('footer.admin')}
           </Link>
         </div>
       </div>

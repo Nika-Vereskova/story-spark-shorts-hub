@@ -2,6 +2,7 @@ import React from 'react';
 import { Sparkles, Download, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { posthog } from '@/lib/posthog';
+import { t } from '@/lib/i18n';
 
 const CalloutFooter = () => {
   const handleWorkshopClick = () => {
@@ -36,14 +37,13 @@ const CalloutFooter = () => {
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop leading-tight">
-            Let's build worlds—
+            {t('callout.heading1')}
             <br />
-            <span className="text-brass">on the page and in code.</span>
+            <span className="text-brass">{t('callout.heading2')}</span>
           </h2>
           
           <p className="text-xl text-oxidized-teal/80 mb-12 max-w-2xl mx-auto font-inter leading-relaxed">
-            Whether you need a storytelling workshop that sparks imagination or AI solutions that transform your business, 
-            let's create something extraordinary together.
+            {t('callout.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -53,7 +53,7 @@ const CalloutFooter = () => {
               onClick={handleWorkshopClick}
             >
               <Calendar className="mr-3 h-6 w-6" />
-              Hire Me for a Workshop
+              {t('callout.hireWorkshop')}
             </Button>
             
             <Button 
@@ -63,7 +63,7 @@ const CalloutFooter = () => {
               onClick={handleDownloadClick}
             >
               <Download className="mr-3 h-6 w-6" />
-              Download a Free Story
+              {t('callout.downloadStory')}
             </Button>
           </div>
 
@@ -71,15 +71,15 @@ const CalloutFooter = () => {
           <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-oxidized-teal/60 font-inter">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-brass rounded-full"></div>
-              School-approved content
+              {t('callout.trustSchool')}
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-brass rounded-full"></div>
-              GDPR-compliant AI solutions
+              {t('callout.trustGdpr')}
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-brass rounded-full"></div>
-              Award-winning storyteller
+              {t('callout.trustAward')}
             </div>
           </div>
         </div>

@@ -116,7 +116,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                     className="border-brass text-brass hover:bg-brass hover:text-parchment"
                   >
                     <LogOut className="w-4 h-4 mr-1" />
-                    Sign Out
+                    {t('nav.signOut')}
                   </Button>
                 </div>
               ) : (
@@ -125,7 +125,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                   className="bg-brass hover:bg-brass-dark text-parchment"
                 >
                   <User className="w-4 h-4 mr-2" />
-                  Sign In
+                  {t('nav.signIn')}
                 </Button>
               )}
             </div>
@@ -176,7 +176,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                       className="border-brass text-brass hover:bg-brass hover:text-parchment"
                     >
                       <LogOut className="w-4 h-4 mr-1" />
-                      Sign Out
+                      {t('nav.signOut')}
                     </Button>
                   </div>
                 ) : (
@@ -188,7 +188,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                     className="bg-brass hover:bg-brass-dark text-parchment"
                   >
                     <User className="w-4 h-4 mr-2" />
-                    Sign In
+                    {t('nav.signIn')}
                   </Button>
                 )}
               </div>
