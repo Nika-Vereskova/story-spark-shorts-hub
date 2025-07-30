@@ -29,7 +29,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
   };
 
   return (
-    <section className="pt-40 pb-16 px-6 relative overflow-hidden">
+    <section className="pt-40 pb-40 px-6 relative overflow-hidden min-h-screen">
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
