@@ -34,11 +34,12 @@ export const usePaymentHandlers = () => {
       } else {
         throw new Error('No payment URL received');
       }
-    } catch (error: any) {
-      console.error('Payment creation failed:', error);
+    } catch (error: unknown) {
+      const err = error instanceof Error ? error : new Error('Unknown error');
+      console.error('Payment creation failed:', err);
       toast({
         title: "Error",
-        description: error.message || "Failed to create payment session",
+        description: err.message || "Failed to create payment session",
         variant: "destructive",
       });
     } finally {
@@ -70,11 +71,12 @@ export const usePaymentHandlers = () => {
       } else {
         throw new Error('No subscription URL received');
       }
-    } catch (error: any) {
-      console.error('Subscription creation failed:', error);
+    } catch (error: unknown) {
+      const err = error instanceof Error ? error : new Error('Unknown error');
+      console.error('Subscription creation failed:', err);
       toast({
         title: "Error",
-        description: error.message || "Failed to create subscription session",
+        description: err.message || "Failed to create subscription session",
         variant: "destructive",
       });
     } finally {
