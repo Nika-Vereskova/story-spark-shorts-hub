@@ -18,7 +18,9 @@ export const usePaymentHandlers = () => {
 
     setLoading(serviceName);
     try {
-      console.log('Creating payment for:', serviceName);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Creating payment for:', serviceName);
+      }
       const { data, error } = await supabase.functions.invoke('create-payment', {
         body: { serviceName }
       });
@@ -28,7 +30,9 @@ export const usePaymentHandlers = () => {
         throw error;
       }
 
-      console.log('Payment response:', data);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Payment response:', data);
+      }
       if (data?.url) {
         window.open(data.url, '_blank');
       } else {
@@ -55,7 +59,9 @@ export const usePaymentHandlers = () => {
 
     setLoading(`subscription-${tier}`);
     try {
-      console.log('Creating subscription for tier:', tier);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Creating subscription for tier:', tier);
+      }
       const { data, error } = await supabase.functions.invoke('create-subscription', {
         body: { subscriptionTier: tier }
       });
@@ -65,7 +71,9 @@ export const usePaymentHandlers = () => {
         throw error;
       }
 
-      console.log('Subscription response:', data);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Subscription response:', data);
+      }
       if (data?.url) {
         window.open(data.url, '_blank');
       } else {

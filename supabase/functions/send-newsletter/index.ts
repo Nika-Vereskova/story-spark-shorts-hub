@@ -15,7 +15,9 @@ interface NewsletterRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Send newsletter function called");
+  if (Deno.env.get('NODE_ENV') === 'development') {
+    console.log("Send newsletter function called");
+  }
 
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -91,7 +93,9 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    console.log(`Sending newsletter to ${subscribers.length} confirmed subscribers`);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log(`Sending newsletter to ${subscribers.length} confirmed subscribers`);
+    }
 
     const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -182,7 +186,9 @@ const handler = async (req: Request): Promise<Response> => {
       console.error('Error saving newsletter record:', saveError);
     }
 
-    console.log(`Newsletter sent successfully to ${sentCount} confirmed subscribers`);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log(`Newsletter sent successfully to ${sentCount} confirmed subscribers`);
+    }
     
     return new Response(JSON.stringify({ 
       success: true, 

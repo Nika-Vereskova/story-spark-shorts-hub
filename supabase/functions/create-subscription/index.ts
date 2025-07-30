@@ -19,7 +19,9 @@ serve(async (req) => {
   );
 
   try {
-    console.log("Starting subscription creation");
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Starting subscription creation");
+    }
     
     const authHeader = req.headers.get("Authorization");
     if (!authHeader) {
@@ -33,10 +35,14 @@ serve(async (req) => {
       throw new Error("User not authenticated");
     }
 
-    console.log("User authenticated:", user.email);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("User authenticated:", user.email);
+    }
 
     const { subscriptionTier } = await req.json();
-    console.log("Subscription tier:", subscriptionTier);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Subscription tier:", subscriptionTier);
+    }
     
     const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY") || "", {
       apiVersion: "2023-10-16",
@@ -47,9 +53,13 @@ serve(async (req) => {
     let customerId;
     if (customers.data.length > 0) {
       customerId = customers.data[0].id;
-      console.log("Found existing customer:", customerId);
+      if (Deno.env.get('NODE_ENV') === 'development') {
+        console.log("Found existing customer:", customerId);
+      }
     } else {
-      console.log("No existing customer found");
+      if (Deno.env.get('NODE_ENV') === 'development') {
+        console.log("No existing customer found");
+      }
     }
 
     const priceData = subscriptionTier === 'yearly' ? {
@@ -64,7 +74,9 @@ serve(async (req) => {
       recurring: { interval: "month" as const },
     };
 
-    console.log("Creating checkout session with price data:", priceData);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Creating checkout session with price data:", priceData);
+    }
 
     const session = await stripe.checkout.sessions.create({
       customer: customerId,
@@ -80,7 +92,9 @@ serve(async (req) => {
       cancel_url: `${req.headers.get("origin")}/services?subscription=cancelled`,
     });
 
-    console.log("Checkout session created:", session.id);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Checkout session created:", session.id);
+    }
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },

@@ -8,7 +8,9 @@ const corsHeaders = {
 };
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Unsubscribe function called");
+  if (Deno.env.get('NODE_ENV') === 'development') {
+    console.log("Unsubscribe function called");
+  }
 
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -63,7 +65,9 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log(`Successfully unsubscribed: ${data[0].email}`);
+      if (Deno.env.get('NODE_ENV') === 'development') {
+        console.log(`Successfully unsubscribed: ${data[0].email}`);
+      }
 
     return new Response(
       `<html>

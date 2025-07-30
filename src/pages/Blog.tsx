@@ -122,7 +122,9 @@ const Blog = () => {
   const [expandedExcerpt, setExpandedExcerpt] = React.useState(false);
 
   const handleLinkClick = (url: string, title: string) => {
-    console.log(`User clicked to open: ${title}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`User clicked to open: ${title}`);
+    }
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

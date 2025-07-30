@@ -17,7 +17,9 @@ interface NewsletterConfirmationRequest {
 }
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Newsletter confirmation function called");
+  if (Deno.env.get('NODE_ENV') === 'development') {
+    console.log("Newsletter confirmation function called");
+  }
 
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
@@ -26,8 +28,10 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { email, confirmationToken, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
-    console.log("Sending newsletter confirmation to:", email);
-    console.log("Confirmation token:", confirmationToken);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Sending newsletter confirmation to:", email);
+      console.log("Confirmation token:", confirmationToken);
+    }
 
     if (!email || !confirmationToken) {
       console.error("Missing email or confirmation token");
@@ -54,7 +58,9 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const confirmationUrl = `${Deno.env.get("SUPABASE_URL")}/functions/v1/confirm-newsletter?token=${confirmationToken}`;
-    console.log("Confirmation URL:", confirmationUrl);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Confirmation URL:", confirmationUrl);
+    }
 
     const emailResponse = await resend.emails.send({
       from: "Nika Vereskova <noreply@resend.dev>",
@@ -110,7 +116,9 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    console.log("Email sent successfully:", emailResponse);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Email sent successfully:", emailResponse);
+    }
 
     return new Response(JSON.stringify({ success: true, data: emailResponse }), {
       status: 200,

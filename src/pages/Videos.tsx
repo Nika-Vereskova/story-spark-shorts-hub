@@ -19,7 +19,9 @@ const Videos = () => {
   ];
 
   const handleWatchVideo = (youtubeUrl: string, title: string) => {
-    console.log(`User clicked to watch: ${title}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`User clicked to watch: ${title}`);
+    }
     window.open(youtubeUrl, '_blank', 'noopener,noreferrer');
   };
 
