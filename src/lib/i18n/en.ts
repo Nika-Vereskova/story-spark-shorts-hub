@@ -279,6 +279,69 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
     subtitle: "Oops! Page not found",
     returnHome: "Return to Home"
   },
+  termsPage: {
+    title: "Terms of Service",
+    lastUpdated: "Last updated:",
+    acceptance: {
+      title: "Acceptance of Terms",
+      text: "By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement."
+    },
+    license: {
+      title: "Use License",
+      text: "Permission is granted to temporarily download one copy of the materials on Nika Vereskova Stories' website for personal, non-commercial transitory viewing only."
+    },
+    disclaimer: {
+      title: "Disclaimer",
+      text: "The materials on Nika Vereskova Stories' website are provided on an 'as is' basis. Nika Vereskova Stories makes no warranties, expressed or implied."
+    },
+    limitations: {
+      title: "Limitations",
+      text: "In no event shall Nika Vereskova Stories or its suppliers be liable for any damages arising out of the use or inability to use the materials on this website."
+    },
+    contact: {
+      title: "Contact Information",
+      text: "If you have any questions about these Terms of Service, please contact us through our contact page."
+    }
+  },
+  privacyPage: {
+    title: "Privacy Policy",
+    lastUpdated: "Last updated:",
+    infoCollect: {
+      title: "Information We Collect",
+      text: "We collect information you provide directly to us, such as when you subscribe to our newsletter or contact us. We do not store personal email addresses in our analytics systems."
+    },
+    cookies: {
+      title: "Cookies and Tracking",
+      text: "We use cookies and similar tracking technologies to track activity on our website and store certain information. We use PostHog for analytics purposes with privacy-preserving practices:",
+      list: [
+        "We track user interactions without storing personal identifiers",
+        "Email addresses are hashed before any analytics processing",
+        "We collect anonymized usage statistics to improve our services"
+      ]
+    },
+    advertising: {
+      title: "Third-Party Advertising",
+      text: "We use Google AdSense to serve advertisements on our website. Google may use cookies to serve ads based on your prior visits to our website or other websites. You can opt out of personalized advertising by visiting Google's Ads Settings."
+    },
+    dataProtection: {
+      title: "Data Protection",
+      text: "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. Our security practices include:",
+      list: [
+        "Input validation and sanitization",
+        "Secure data transmission",
+        "Privacy-preserving analytics",
+        "Regular security reviews"
+      ]
+    },
+    rights: {
+      title: "Your Rights",
+      text: "You have the right to access, update, or delete your personal information. Since we minimize data collection and use privacy-preserving techniques, most interactions are anonymous by design."
+    },
+    contact: {
+      title: "Contact Us",
+      text: "If you have any questions about this Privacy Policy, please contact us through our contact page."
+    }
+  },
   footer: {
     copyright: "© 2025 STEaM LOGIC Studio AB. All rights reserved.",
     privacy: "Privacy Policy",

@@ -279,6 +279,69 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
     subtitle: "Hoppsan! Sidan hittades inte",
     returnHome: "Tillbaka till Hem"
   },
+  termsPage: {
+    title: "Användarvillkor",
+    lastUpdated: "Senast uppdaterad:",
+    acceptance: {
+      title: "Godkännande av villkoren",
+      text: "Genom att gå in på och använda denna webbplats accepterar du att vara bunden av villkoren i detta avtal."
+    },
+    license: {
+      title: "Användningslicens",
+      text: "Det är tillåtet att tillfälligt ladda ner en kopia av materialet på Nika Vereskova Stories webbplats för personligt, icke‑kommersiellt, tillfälligt bruk."
+    },
+    disclaimer: {
+      title: "Ansvarsfriskrivning",
+      text: "Materialet på Nika Vereskova Stories webbplats tillhandahålls i befintligt skick. Nika Vereskova Stories ger inga garantier, uttryckliga eller underförstådda."
+    },
+    limitations: {
+      title: "Begränsningar",
+      text: "Nika Vereskova Stories eller dess leverantörer ansvarar inte för några skador som uppstår på grund av användning eller oförmåga att använda materialet på denna webbplats."
+    },
+    contact: {
+      title: "Kontaktinformation",
+      text: "Om du har frågor om dessa användarvillkor, kontakta oss via vår kontaktsida."
+    }
+  },
+  privacyPage: {
+    title: "Integritetspolicy",
+    lastUpdated: "Senast uppdaterad:",
+    infoCollect: {
+      title: "Information vi samlar in",
+      text: "Vi samlar in information som du tillhandahåller direkt till oss, till exempel när du prenumererar på vårt nyhetsbrev eller kontaktar oss. Vi lagrar inte personliga e‑postadresser i våra analysystem."
+    },
+    cookies: {
+      title: "Cookies och spårning",
+      text: "Vi använder cookies och liknande spårningstekniker för att följa aktivitet på vår webbplats och lagra viss information. Vi använder PostHog för analys med integritetsskyddande praxis:",
+      list: [
+        "Vi spårar användarinteraktioner utan att lagra personliga identifierare",
+        "E‑postadresser hash:as innan någon analys behandlas",
+        "Vi samlar in anonymiserad statistik för att förbättra våra tjänster"
+      ]
+    },
+    advertising: {
+      title: "Annonsörer från tredje part",
+      text: "Vi använder Google AdSense för annonser på vår webbplats. Google kan använda cookies för att visa annonser baserade på dina tidigare besök på vår webbplats eller andra webbplatser. Du kan välja bort personanpassad annonsering genom att besöka Googles annonsinställningar."
+    },
+    dataProtection: {
+      title: "Dataskydd",
+      text: "Vi genomför lämpliga säkerhetsåtgärder för att skydda din personliga information mot obehörig åtkomst, ändring, avslöjande eller förstörelse. Våra säkerhetsrutiner inkluderar:",
+      list: [
+        "Inmatningsvalidering och sanering",
+        "Säker överföring av data",
+        "Integritetsbevarande analys",
+        "Regelbundna säkerhetsgranskningar"
+      ]
+    },
+    rights: {
+      title: "Dina rättigheter",
+      text: "Du har rätt att komma åt, uppdatera eller radera din personliga information. Eftersom vi minimerar datainsamlingen och använder integritetsskyddande tekniker är de flesta interaktioner anonyma från början."
+    },
+    contact: {
+      title: "Kontakta oss",
+      text: "Om du har några frågor om denna integritetspolicy, vänligen kontakta oss via vår kontaktsida."
+    }
+  },
   footer: {
     copyright: "© 2025 STEaM LOGIC Studio AB. Alla rättigheter förbehållna.",
     privacy: "Integritetspolicy",
