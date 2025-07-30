@@ -48,7 +48,7 @@ const LanguageSwitcher = () => {
             onClick={() => handleLanguageChange(lang.code)}
             className={`cursor-pointer px-3 py-2 text-sm ${
               currentLocale === lang.code 
-                ? 'bg-brass/20 text-brass font-medium' 
+                ? 'bg-oxidized-teal/20 text-oxidized-teal font-medium' 
                 : 'text-oxidized-teal hover:bg-brass/10 hover:text-brass'
             }`}
           >

@@ -12,7 +12,7 @@ const SplitHeroSection = () => {
       source: 'split_hero'
     });
     // Navigate to books page
-    window.location.href = '/books/plumberella';
+    window.location.href = '/books';
   };
 
   const handleAIServices = () => {
@@ -25,12 +25,11 @@ const SplitHeroSection = () => {
 
   return (
     <section 
-      className="pt-24 pb-16 px-6 relative overflow-hidden hero min-h-screen"
+      className="pt-24 pb-16 px-6 relative overflow-hidden hero h-screen"
       style={{
         backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
+        backgroundPosition: 'center'
       }}
     >
       {/* Backdrop filter overlay */}
@@ -97,7 +96,7 @@ const SplitHeroSection = () => {
           </Card>
 
           {/* Right Panel - AI Services */}
-          <Card className="card bg-gradient-to-br from-brass/10 via-oxidized-teal/10 to-brass/5 hover:border-brass transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden backdrop-blur-sm">
+          <Card className="card bg-parchment/90 hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
             {/* Holographic effect overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[slide-in-right_3s_ease-in-out_infinite] pointer-events-none"></div>
             
