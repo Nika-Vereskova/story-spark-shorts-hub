@@ -10,35 +10,48 @@ const Terms = () => {
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">
         <h1 className="text-4xl font-bold text-oxidized-teal mb-8 text-center font-playfair">
-          Terms of Service
+          {t('termsPage.title')}
         </h1>
         
         <div className="prose prose-lg max-w-none text-oxidized-teal/90 font-inter space-y-6">
-          <p><strong>Last updated:</strong> {new Date().toLocaleDateString()}</p>
+          <p>
+            <strong>{t('termsPage.lastUpdated')}</strong>{' '}
+            {new Date().toLocaleDateString()}
+          </p>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Acceptance of Terms</h2>
-            <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement.</p>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+              {t('termsPage.acceptance.title')}
+            </h2>
+            <p>{t('termsPage.acceptance.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Use License</h2>
-            <p>Permission is granted to temporarily download one copy of the materials on Nika Vereskova Stories' website for personal, non-commercial transitory viewing only.</p>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+              {t('termsPage.license.title')}
+            </h2>
+            <p>{t('termsPage.license.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Disclaimer</h2>
-            <p>The materials on Nika Vereskova Stories' website are provided on an 'as is' basis. Nika Vereskova Stories makes no warranties, expressed or implied.</p>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+              {t('termsPage.disclaimer.title')}
+            </h2>
+            <p>{t('termsPage.disclaimer.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Limitations</h2>
-            <p>In no event shall Nika Vereskova Stories or its suppliers be liable for any damages arising out of the use or inability to use the materials on this website.</p>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+              {t('termsPage.limitations.title')}
+            </h2>
+            <p>{t('termsPage.limitations.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">Contact Information</h2>
-            <p>If you have any questions about these Terms of Service, please contact us through our contact page.</p>
+            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+              {t('termsPage.contact.title')}
+            </h2>
+            <p>{t('termsPage.contact.text')}</p>
           </section>
         </div>
       </div>
