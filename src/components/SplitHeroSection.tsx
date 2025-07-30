@@ -53,15 +53,7 @@ const SplitHeroSection = () => {
           </div>
         </div>
 
-        {/* Banner Title/Content (Optional) */}
-        <div className="container mx-auto relative z-10 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-parchment drop-shadow-lg">
-            {t('hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-parchment/90 mt-4 drop-shadow">
-            {t('hero.subtitle')}
-          </p>
-        </div>
+        {/* Banner Title/Content removed as per request */}
       </section>
 
       {/* Content Section - Featured Book & AI Services */}
