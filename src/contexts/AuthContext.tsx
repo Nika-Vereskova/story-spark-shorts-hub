@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -32,19 +32,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [subscriptionTier, setSubscriptionTier] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const checkSubscription = async () => {
+  const checkSubscription = useCallback(async () => {
     if (!user) return;
-    
+
     try {
       const { data, error } = await supabase.functions.invoke('check-subscription');
       if (error) throw error;
-      
+
       setSubscribed(data.subscribed || false);
       setSubscriptionTier(data.subscription_tier || null);
     } catch (error) {
       console.error('Error checking subscription:', error);
     }
-  };
+  }, [user]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -67,7 +67,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSubscribed(false);
       setSubscriptionTier(null);
     }
-  }, [user]);
+  }, [user, checkSubscription]);
 
   const signUp = async (email: string, password: string) => {
     const redirectUrl = `${window.location.origin}/`;
