@@ -24,11 +24,7 @@ export const getServicesData = (): ServiceData[] => [
     icon: Video,
     title: t('services.webinars.title'),
     description: t('services.webinars.description'),
-    features: [
-      t('services.webinars.feature1'),
-      t('services.webinars.feature2'),
-      t('services.webinars.feature3')
-    ],
+    features: t('services.webinars.features'),
     cta: t('services.webinars.cta'),
     price: "100 SEK",
     serviceName: "Webinars"
@@ -37,11 +33,7 @@ export const getServicesData = (): ServiceData[] => [
     icon: Globe,
     title: t('services.websites.title'),
     description: t('services.websites.description'),
-    features: [
-      t('services.websites.feature1'),
-      t('services.websites.feature2'),
-      t('services.websites.feature3')
-    ],
+    features: t('services.websites.features'),
     cta: t('services.websites.cta'),
     price: "1,000 SEK",
     serviceName: "Website Building"
@@ -50,11 +42,7 @@ export const getServicesData = (): ServiceData[] => [
     icon: BookOpen,
     title: t('services.chapters.title'),
     description: t('services.chapters.description'),
-    features: [
-      t('services.chapters.feature1'),
-      t('services.chapters.feature2'),
-      t('services.chapters.feature3')
-    ],
+    features: t('services.chapters.features'),
     cta: t('services.chapters.cta'),
     price: "10 SEK",
     serviceName: "Book Chapters"
@@ -63,11 +51,7 @@ export const getServicesData = (): ServiceData[] => [
     icon: Smartphone,
     title: t('services.apps.title'),
     description: t('services.apps.description'),
-    features: [
-      t('services.apps.feature1'),
-      t('services.apps.feature2'),
-      t('services.apps.feature3')
-    ],
+    features: t('services.apps.features'),
     cta: t('services.apps.cta'),
     price: "1,000 SEK",
     serviceName: "App Development"
@@ -76,11 +60,7 @@ export const getServicesData = (): ServiceData[] => [
     icon: Brain,
     title: t('services.ai.title'),
     description: t('services.ai.description'),
-    features: [
-      t('services.ai.feature1'),
-      t('services.ai.feature2'),
-      t('services.ai.feature3')
-    ],
+    features: t('services.ai.features'),
     cta: t('services.ai.cta'),
     isSubscription: true
   }

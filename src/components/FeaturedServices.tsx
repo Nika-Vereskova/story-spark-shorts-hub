@@ -1,48 +1,34 @@
 import React from 'react';
-import { Users, Brain, Bot, Calendar, Wrench, Shield } from 'lucide-react';
+import { Users, Brain, Bot, Wrench } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { t } from '@/lib/i18n';
 
 const FeaturedServices = () => {
   const services = [
     {
       icon: Users,
-      title: "Author & Speaker",
-      description: "Bringing steampunk stories and AI insights to audiences worldwide",
-      features: [
-        "School visits & storytelling workshops",
-        "Conference keynotes on AI & creativity", 
-        "Book readings & character performances",
-        "Educational content for children"
-      ],
-      cta: "Book an Event",
+      title: t('featuredServices.authorSpeaker.title'),
+      description: t('featuredServices.authorSpeaker.description'),
+      features: t('featuredServices.authorSpeaker.features') as string[],
+      cta: t('featuredServices.authorSpeaker.cta'),
       action: () => window.open('#', '_blank')
     },
     {
       icon: Brain,
-      title: "AI Consulting",
-      description: "Strategic AI implementation with ethical foundations",
-      features: [
-        "Prompt engineering & optimization",
-        "AI policy development",
-        "Full-stack LLM prototypes",
-        "Team training & workshops"
-      ],
-      cta: "Explore Consulting",
-      action: () => window.location.href = '/ai-services'
+      title: t('featuredServices.aiConsulting.title'),
+      description: t('featuredServices.aiConsulting.description'),
+      features: t('featuredServices.aiConsulting.features') as string[],
+      cta: t('featuredServices.aiConsulting.cta'),
+      action: () => (window.location.href = '/ai-services')
     },
     {
       icon: Bot,
-      title: "Bespoke GPTs",
-      description: "Custom AI assistants tailored to your specific needs",
-      features: [
-        "Child-safe storytelling bots",
-        "Translation assistants",
-        "Educational content creators",
-        "Business workflow automation"
-      ],
-      cta: "Build a GPT",
-      action: () => window.location.href = '/ai-services'
+      title: t('featuredServices.bespokeGpts.title'),
+      description: t('featuredServices.bespokeGpts.description'),
+      features: t('featuredServices.bespokeGpts.features') as string[],
+      cta: t('featuredServices.bespokeGpts.cta'),
+      action: () => (window.location.href = '/ai-services')
     }
   ];
 
