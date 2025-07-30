@@ -125,6 +125,15 @@ export const sv = {
       feature2: "Kreativ AI för berättare",
       feature3: "Anpassade AI-lösningar rådgivning",
       cta: "Utforska AI med Mig"
+    },
+    card: {
+      activePlan: "Aktiv: {tier}-plan",
+      monthlyPrice: "Månadsvis - 100 SEK",
+      yearlyPrice: "Årsvis - 1 000 SEK",
+      loading: "Laddar...",
+      buyNow: "Köp nu - {price}",
+      contact: "Kontakta för detaljer",
+      inquirySubject: "Förfrågan om {title}"
     }
   },
   callout: {

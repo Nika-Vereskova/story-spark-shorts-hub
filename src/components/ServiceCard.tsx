@@ -2,6 +2,7 @@
 import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { t } from '@/lib/i18n';
 import { 
   ChevronRight,
   CreditCard,
@@ -78,47 +79,47 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             {subscribed && subscriptionTier ? (
               <div className="text-center p-4 bg-brass/20 rounded-lg">
                 <div className="text-brass font-semibold">
-                  Active: {subscriptionTier} plan
+                  {t('services.card.activePlan').replace('{tier}', subscriptionTier)}
                 </div>
               </div>
             ) : (
               <>
-                <Button 
+                <Button
                   className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
                   onClick={() => onSubscription('monthly')}
                   disabled={loading === 'subscription-monthly'}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
-                  {loading === 'subscription-monthly' ? 'Loading...' : 'Monthly - 100 SEK'}
+                  {loading === 'subscription-monthly' ? t('services.card.loading') : t('services.card.monthlyPrice')}
                 </Button>
-                <Button 
+                <Button
                   className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
                   onClick={() => onSubscription('yearly')}
                   disabled={loading === 'subscription-yearly'}
                 >
                   <Calendar className="mr-2 h-4 w-4" />
-                  {loading === 'subscription-yearly' ? 'Loading...' : 'Yearly - 1,000 SEK'}
+                  {loading === 'subscription-yearly' ? t('services.card.loading') : t('services.card.yearlyPrice')}
                 </Button>
               </>
             )}
           </div>
         ) : (
           <div className="space-y-2">
-            <Button 
+            <Button
               className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
               onClick={() => serviceName && onOneTimePayment(serviceName)}
               disabled={loading === serviceName}
             >
               <CreditCard className="mr-2 h-4 w-4" />
-              {loading === serviceName ? 'Loading...' : `Buy Now - ${price}`}
+              {loading === serviceName ? t('services.card.loading') : t('services.card.buyNow').replace('{price}', String(price))}
             </Button>
-            <Button 
+            <Button
               variant="outline"
               className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-inter font-medium"
-              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent(`Inquiry about ${title}`)}
+              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent(t('services.card.inquirySubject').replace('{title}', title))}
             >
               <Mail className="mr-2 h-4 w-4" />
-              Contact for Details
+              {t('services.card.contact')}
             </Button>
           </div>
         )}
