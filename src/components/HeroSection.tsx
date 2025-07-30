@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Cog, Key, Play, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -29,7 +28,9 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
   };
 
   return (
-    <section className="pt-40 pb-40 px-6 relative overflow-hidden min-h-screen">
+    // Adjusted padding-top from 'pt-40' to 'pt-24' or 'pt-16' based on header height.
+    // Also ensuring min-h-screen to make sure content doesn't get cut off vertically.
+    <section className="pt-24 pb-40 px-6 relative overflow-hidden min-h-screen">
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
@@ -49,9 +50,9 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
       <div className="container mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-<h1 className="hidden">
-  {t('home.title')}
-</h1>
+            <h1 className="hidden">
+              {t('home.title')}
+            </h1>
             <p className="text-xl text-oxidized-teal/80 mb-8 max-w-2xl font-inter">
               {t('home.subtitle')}
               <br /><br />
