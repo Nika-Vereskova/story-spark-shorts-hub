@@ -41,6 +41,22 @@ export const en = {
     subscribeDesc: "Don't miss out on new steampunk stories and workshop videos. Subscribe to my YouTube channel for regular clockwork chronicles!",
     subscribeButton: "Subscribe on YouTube"
   },
+  splitHero: {
+    altText: "Plumberella - Steampunk Children's Book",
+    featuredBook: "Featured Book",
+    plumberellaTitle: "Plumberella",
+    plumberellaDesc: "A witty steampunk fairytale about truth, tools, and transformation",
+    readSample: "Read a Sample Chapter",
+    aiTitle: "AI Magic for Your Projects",
+    aiSubtitle: "Strategy · Custom GPTs · Workshops",
+    aiStrategyTitle: "AI Strategy & Policy",
+    aiStrategyDesc: "Build ethical AI guidelines for your organization",
+    aiCustomTitle: "Custom GPTs",
+    aiCustomDesc: "Child-safe storybots & specialized assistants",
+    aiWorkshopsTitle: "AI Workshops",
+    aiWorkshopsDesc: "Interactive learning for teams & schools",
+    exploreServices: "Explore AI Services"
+  },
   aiNews: {
     loading: "Loading AI news...",
     latestInsights: "Latest AI Insights",

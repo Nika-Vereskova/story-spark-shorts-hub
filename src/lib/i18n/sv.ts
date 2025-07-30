@@ -41,6 +41,22 @@ export const sv = {
     subscribeDesc: "Missa inte nya steampunk-berättelser och verkstadsvideor. Prenumerera på min YouTube-kanal för regelbundna kugghjuls-krönikor!",
     subscribeButton: "Prenumerera på YouTube"
   },
+  splitHero: {
+    altText: "Plumberella - steampunkbarnbok",
+    featuredBook: "Utvald Bok",
+    plumberellaTitle: "Plumberella",
+    plumberellaDesc: "En kvick steampunk-saga om sanning, verktyg och förvandling",
+    readSample: "Läs ett provkapitel",
+    aiTitle: "AI-magi för dina projekt",
+    aiSubtitle: "Strategi · Anpassade GPT:er · Workshops",
+    aiStrategyTitle: "AI-strategi och riktlinjer",
+    aiStrategyDesc: "Bygg etiska AI-riktlinjer för din organisation",
+    aiCustomTitle: "Anpassade GPT:er",
+    aiCustomDesc: "Barnsäkra storybots och specialiserade assistenter",
+    aiWorkshopsTitle: "AI-workshops",
+    aiWorkshopsDesc: "Interaktivt lärande för team och skolor",
+    exploreServices: "Utforska AI-tjänster"
+  },
   aiNews: {
     loading: "Laddar AI-nyheter...",
     latestInsights: "Senaste AI-insikter",
