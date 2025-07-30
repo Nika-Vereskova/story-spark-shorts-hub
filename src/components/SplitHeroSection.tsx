@@ -79,19 +79,19 @@ const SplitHeroSection = () => {
               <div className="relative overflow-hidden">
                 <img 
                   src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
-                  alt="Plumberella - Steampunk Children's Book"
+                  alt={t('splitHero.altText')}
                   className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
                 />
                 <div className="absolute top-4 right-4">
                   <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
                     <Book className="w-3 h-3 mr-1" />
-                    Featured Book
+                    {t('splitHero.featuredBook')}
                   </span>
                 </div>
               </div>
               <CardHeader>
-                <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">Plumberella</CardTitle>
-                <CardDescription className="text-brass font-medium font-inter text-lg">A witty steampunk fairytale about truth, tools, and transformation</CardDescription>
+                <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">{t('splitHero.plumberellaTitle')}</CardTitle>
+                <CardDescription className="text-brass font-medium font-inter text-lg">{t('splitHero.plumberellaDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button 
@@ -100,7 +100,7 @@ const SplitHeroSection = () => {
                   onClick={handleBookSample}
                 >
                   <Book className="mr-2 h-5 w-5" />
-                  Read a Sample Chapter
+                  {t('splitHero.readSample')}
                 </Button>
                 
                 {/* Hidden steam effect SVG */}
@@ -124,8 +124,8 @@ const SplitHeroSection = () => {
                     <Sparkles className="w-6 h-6 text-brass animate-pulse" />
                   </div>
                   <div>
-                    <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">AI Magic for Your Projects</CardTitle>
-                    <CardDescription className="text-brass font-medium font-inter text-lg">Strategy · Custom GPTs · Workshops</CardDescription>
+                    <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">{t('splitHero.aiTitle')}</CardTitle>
+                    <CardDescription className="text-brass font-medium font-inter text-lg">{t('splitHero.aiSubtitle')}</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -134,22 +134,22 @@ const SplitHeroSection = () => {
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '4s' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">AI Strategy & Policy</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">Build ethical AI guidelines for your organization</p>
+                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiStrategyTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiStrategyDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '3s', animationDirection: 'reverse' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">Custom GPTs</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">Child-safe storybots & specialized assistants</p>
+                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiCustomTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiCustomDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '5s' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">AI Workshops</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">Interactive learning for teams & schools</p>
+                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiWorkshopsTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiWorkshopsDesc')}</p>
                     </div>
                   </div>
                 </div>
@@ -159,7 +159,7 @@ const SplitHeroSection = () => {
                   onClick={handleAIServices}
                 >
                   <Sparkles className="mr-2 h-5 w-5" />
-                  Explore AI Services
+                  {t('splitHero.exploreServices')}
                 </Button>
                 
                 {/* Hidden steam effect SVG */}
