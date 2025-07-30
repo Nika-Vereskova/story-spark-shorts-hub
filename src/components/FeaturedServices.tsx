@@ -1,47 +1,48 @@
 import React from 'react';
-import { Users, Brain, Bot, Calendar, Wrench, Shield } from 'lucide-react';
+import { Users, Brain, Bot, Wrench } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { t } from '@/lib/i18n';
 
 const FeaturedServices = () => {
   const services = [
     {
       icon: Users,
-      title: "Author & Speaker",
-      description: "Bringing steampunk stories and AI insights to audiences worldwide",
+      title: t('featuredServices.authorSpeaker.title'),
+      description: t('featuredServices.authorSpeaker.description'),
       features: [
-        "School visits & storytelling workshops",
-        "Conference keynotes on AI & creativity", 
-        "Book readings & character performances",
-        "Educational content for children"
+        t('featuredServices.authorSpeaker.feature1'),
+        t('featuredServices.authorSpeaker.feature2'),
+        t('featuredServices.authorSpeaker.feature3'),
+        t('featuredServices.authorSpeaker.feature4')
       ],
-      cta: "Book an Event",
+      cta: t('featuredServices.authorSpeaker.cta'),
       action: () => window.open('#', '_blank')
     },
     {
       icon: Brain,
-      title: "AI Consulting",
-      description: "Strategic AI implementation with ethical foundations",
+      title: t('featuredServices.aiConsulting.title'),
+      description: t('featuredServices.aiConsulting.description'),
       features: [
-        "Prompt engineering & optimization",
-        "AI policy development",
-        "Full-stack LLM prototypes",
-        "Team training & workshops"
+        t('featuredServices.aiConsulting.feature1'),
+        t('featuredServices.aiConsulting.feature2'),
+        t('featuredServices.aiConsulting.feature3'),
+        t('featuredServices.aiConsulting.feature4')
       ],
-      cta: "Explore Consulting",
+      cta: t('featuredServices.aiConsulting.cta'),
       action: () => window.location.href = '/ai-services'
     },
     {
       icon: Bot,
-      title: "Bespoke GPTs",
-      description: "Custom AI assistants tailored to your specific needs",
+      title: t('featuredServices.bespokeGpts.title'),
+      description: t('featuredServices.bespokeGpts.description'),
       features: [
-        "Child-safe storytelling bots",
-        "Translation assistants",
-        "Educational content creators",
-        "Business workflow automation"
+        t('featuredServices.bespokeGpts.feature1'),
+        t('featuredServices.bespokeGpts.feature2'),
+        t('featuredServices.bespokeGpts.feature3'),
+        t('featuredServices.bespokeGpts.feature4')
       ],
-      cta: "Build a GPT",
+      cta: t('featuredServices.bespokeGpts.cta'),
       action: () => window.location.href = '/ai-services'
     }
   ];

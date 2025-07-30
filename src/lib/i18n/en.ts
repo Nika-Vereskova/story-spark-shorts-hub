@@ -107,6 +107,35 @@ export const en = {
       cta: "Explore AI with Me"
     }
   },
+  featuredServices: {
+    authorSpeaker: {
+      title: "Author & Speaker",
+      description: "Bringing steampunk stories and AI insights to audiences worldwide",
+      feature1: "School visits & storytelling workshops",
+      feature2: "Conference keynotes on AI & creativity",
+      feature3: "Book readings & character performances",
+      feature4: "Educational content for children",
+      cta: "Book an Event"
+    },
+    aiConsulting: {
+      title: "AI Consulting",
+      description: "Strategic AI implementation with ethical foundations",
+      feature1: "Prompt engineering & optimization",
+      feature2: "AI policy development",
+      feature3: "Full-stack LLM prototypes",
+      feature4: "Team training & workshops",
+      cta: "Explore Consulting"
+    },
+    bespokeGpts: {
+      title: "Bespoke GPTs",
+      description: "Custom AI assistants tailored to your specific needs",
+      feature1: "Child-safe storytelling bots",
+      feature2: "Translation assistants",
+      feature3: "Educational content creators",
+      feature4: "Business workflow automation",
+      cta: "Build a GPT"
+    }
+  },
   callout: {
     heading1: "Let's build worlds—",
     heading2: "on the page and in code.",

@@ -107,6 +107,35 @@ export const sv = {
       cta: "Utforska AI med Mig"
     }
   },
+  featuredServices: {
+    authorSpeaker: {
+      title: "Författare & Talare",
+      description: "Jag sprider steampunk-berättelser och AI-insikter till publik världen över",
+      feature1: "Skolbesök och berättarworkshops",
+      feature2: "Konferenskeynotes om AI och kreativitet",
+      feature3: "Bokläsningar och rollframträdanden",
+      feature4: "Pedagogiskt innehåll för barn",
+      cta: "Boka ett Evenemang"
+    },
+    aiConsulting: {
+      title: "AI-rådgivning",
+      description: "Strategisk AI-implementering med etisk grund",
+      feature1: "Prompt-engineering och optimering",
+      feature2: "AI-policyutveckling",
+      feature3: "Fullstack LLM-prototyper",
+      feature4: "Teamträning och workshops",
+      cta: "Utforska Rådgivning"
+    },
+    bespokeGpts: {
+      title: "Skräddarsydda GPT:er",
+      description: "Anpassade AI-assistenter efter dina specifika behov",
+      feature1: "Barnsäkra berättarbotar",
+      feature2: "Översättarassistenter",
+      feature3: "Utbildningsinnehållsskapare",
+      feature4: "Automatisering av affärsflöden",
+      cta: "Bygg en GPT"
+    }
+  },
   callout: {
     heading1: "Låt oss bygga världar—",
     heading2: "på sidan och i kod.",

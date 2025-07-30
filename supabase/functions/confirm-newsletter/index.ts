@@ -94,13 +94,14 @@ const handler = async (req: Request): Promise<Response> => {
       }
     });
 
-  } catch (error: any) {
-    console.error("Error in newsletter confirmation function:", error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error("Error in newsletter confirmation function:", err);
     const origin = new URL(req.url).origin.replace(/functions\/v1\/confirm-newsletter.*/, '').replace(/\/$/, '');
     return new Response(null, {
       status: 302,
       headers: { 
-        "Location": `${origin}/newsletter-confirmed?status=error&message=Unexpected error occurred`,
+        "Location": `${origin}/newsletter-confirmed?status=error&message=${encodeURIComponent(err.message)}`,
         ...corsHeaders 
       }
     });

@@ -119,10 +119,11 @@ const handler = async (req: Request): Promise<Response> => {
         ...corsHeaders,
       },
     });
-  } catch (error: any) {
-    console.error("Error in newsletter confirmation function:", error);
+  } catch (error: unknown) {
+    const err = error as Error;
+    console.error("Error in newsletter confirmation function:", err);
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: err.message }),
       {
         status: 500,
         headers: { "Content-Type": "application/json", ...corsHeaders },

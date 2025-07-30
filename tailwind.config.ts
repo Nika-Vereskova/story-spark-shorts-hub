@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -152,9 +153,9 @@ export default {
 			}
 		}
 	},
-	plugins: [
-		require("tailwindcss-animate"),
-		function({ addUtilities }) {
+        plugins: [
+                tailwindcssAnimate,
+                function({ addUtilities }) {
 			addUtilities({
 				'.sepia': {
 					filter: 'sepia(80%) saturate(120%) hue-rotate(15deg)',

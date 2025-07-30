@@ -8,7 +8,7 @@ export const sanitizeInput = (input: string): string => {
   
   return input
     .trim()
-    .replace(/[<>\"'&]/g, '') // Remove potential XSS characters
+    .replace(/[<>"'&]/g, '') // Remove potential XSS characters
     .replace(/javascript:/gi, '') // Remove javascript: protocol
     .replace(/on\w+=/gi, '') // Remove event handlers
     .slice(0, 1000); // Limit length to prevent DoS
