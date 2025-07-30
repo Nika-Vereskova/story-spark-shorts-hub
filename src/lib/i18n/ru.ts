@@ -42,9 +42,9 @@ export const ru = {
     subscribeButton: "Подписаться на YouTube"
   },
   splitHero: {
-    altText: "Пламберелла - стимпанк-книга для детей",
+    altText: "Приключения Душечки - стимпанк-книга для детей",
     featuredBook: "Рекомендуемая книга",
-    plumberellaTitle: "Пламберелла",
+    plumberellaTitle: "Приключения Душечки",
     plumberellaDesc: "Остроумная стимпанк-сказка о правде, инструментах и преображении",
     readSample: "Прочитать образец главы",
     aiTitle: "AI-магия для ваших проектов",
