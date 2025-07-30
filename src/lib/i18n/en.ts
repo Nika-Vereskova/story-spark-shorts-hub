@@ -105,6 +105,15 @@ export const en = {
       feature2: "Creative AI for storytellers",
       feature3: "Custom AI solutions consulting",
       cta: "Explore AI with Me"
+    },
+    card: {
+      activePlan: "Active: {tier} plan",
+      monthlyPrice: "Monthly - 100 SEK",
+      yearlyPrice: "Yearly - 1,000 SEK",
+      loading: "Loading...",
+      buyNow: "Buy Now - {price}",
+      contact: "Contact for Details",
+      inquirySubject: "Inquiry about {title}"
     }
   },
   callout: {

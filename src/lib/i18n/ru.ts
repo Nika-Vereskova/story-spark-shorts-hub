@@ -105,6 +105,15 @@ export const ru = {
       feature2: "Творческий ИИ для рассказчиков",
       feature3: "Консультации по индивидуальным ИИ-решениям",
       cta: "Исследовать ИИ со мной"
+    },
+    card: {
+      activePlan: "Активен: план {tier}",
+      monthlyPrice: "Месячный - 100 SEK",
+      yearlyPrice: "Годовой - 1 000 SEK",
+      loading: "Загрузка...",
+      buyNow: "Купить сейчас - {price}",
+      contact: "Связаться для подробностей",
+      inquirySubject: "Запрос о {title}"
     }
   },
   callout: {
