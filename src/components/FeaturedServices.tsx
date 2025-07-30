@@ -59,20 +59,22 @@ const FeaturedServices = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <Card 
-              key={index}
-              className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group relative overflow-hidden"
-            >
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <Card
+                key={index}
+                className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group relative overflow-hidden"
+              >
               {/* Animated gear background */}
               <div className="absolute top-4 right-4 w-16 h-16 opacity-5 group-hover:opacity-10 transition-opacity">
-                <service.icon className="w-full h-full text-brass animate-spin" style={{ animationDuration: '8s' }} />
+                <Icon className="w-full h-full text-brass animate-spin" style={{ animationDuration: '8s' }} />
               </div>
-              
+
               <CardHeader className="relative">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-12 h-12 bg-brass/20 rounded-full flex items-center justify-center group-hover:bg-brass/30 transition-colors">
-                    <service.icon className="w-6 h-6 text-brass" />
+                    <Icon className="w-6 h-6 text-brass" />
                   </div>
                   <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title}</CardTitle>
                 </div>
@@ -99,7 +101,8 @@ const FeaturedServices = () => {
                 </Button>
               </CardContent>
             </Card>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>
