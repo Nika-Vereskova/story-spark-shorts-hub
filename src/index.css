@@ -101,7 +101,7 @@
   body {
     background: var(--parchment);
     color: var(--iron);
-    font-family: Inter, sans-serif;
+    font-family: "Playfair Display", serif;
     line-height: 1.6;
   }
   
