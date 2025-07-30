@@ -7,7 +7,9 @@ export const en = {
     about: "About",
     blog: "Blog/ AI News",
     contact: "Contact",
-    services: "Services"
+    services: "Services",
+    signIn: "Sign In",
+    signOut: "Sign Out"
   },
   home: {
     title: "Nika Vereskova Stories",
@@ -34,6 +36,16 @@ export const en = {
     subscribeTitle: "Subscribe for More Adventures!",
     subscribeDesc: "Don't miss out on new steampunk stories and workshop videos. Subscribe to my YouTube channel for regular clockwork chronicles!",
     subscribeButton: "Subscribe on YouTube"
+  },
+  aiNews: {
+    loading: "Loading AI news...",
+    latestInsights: "Latest AI Insights",
+    tagline: "Fresh perspectives on AI, storytelling, and the future of human-machine collaboration",
+    readMore: "Read More",
+    viewAll: "View All AI News",
+    pageTitle: "AI News & Insights",
+    pageSubtitle: "Latest developments in AI consulting, custom GPTs, and the intersection of storytelling with artificial intelligence.",
+    noPosts: "No AI news posts available at the moment. Check back soon for updates!"
   },
   about: {
     title: "Meet Nika",
@@ -95,6 +107,16 @@ export const en = {
       cta: "Explore AI with Me"
     }
   },
+  callout: {
+    heading1: "Let's build worlds—",
+    heading2: "on the page and in code.",
+    description: "Whether you need a storytelling workshop that sparks imagination or AI solutions that transform your business, let's create something extraordinary together.",
+    hireWorkshop: "Hire Me for a Workshop",
+    downloadStory: "Download a Free Story",
+    trustSchool: "School-approved content",
+    trustGdpr: "GDPR-compliant AI solutions",
+    trustAward: "Award-winning storyteller"
+  },
   contact: {
     title: "Get in Touch",
     subtitle: "I'd love to hear from you! Whether you have questions about my books, want to invite me for a reading, or just want to chat about steampunk adventures.",
@@ -111,7 +133,28 @@ export const en = {
     newsletterTitle: "Join the Inventor's Guild",
     newsletterDesc: "Sign in to get notified about new steampunk tales, workshop videos, and special clockwork events. Plus, receive a free downloadable gear-building activity sheet!",
     emailPlaceholder: "Your email address",
-    subscribe: "Subscribe"
+    subscribe: "Subscribe",
+    sendEmail: "Send email"
+  },
+  newsletter: {
+    title: "Get Free Stories & AI Tips",
+    description: "Get free steampunk tales & AI insights every Tuesday and Friday - where imagination meets innovation.",
+    subscribing: "Subscribing...",
+    alreadySubscribedTitle: "Already Subscribed",
+    alreadySubscribedDesc: "This email is already in our system. Please check your inbox for the confirmation email.",
+    checkEmailTitle: "Check Your Email!",
+    checkEmailDesc: "We've sent you a confirmation email. Please click the link in the email to complete your subscription.",
+    errorTitle: "Error",
+    errorDesc: "Failed to subscribe. Please try again."
+  },
+  auth: {
+    signIn: "Sign In",
+    signUp: "Sign Up",
+    email: "Email",
+    password: "Password",
+    loading: "Loading...",
+    needAccount: "Need an account? Sign up",
+    haveAccount: "Already have an account? Sign in"
   },
   blog: {
     title: "Blog/ AI News",
@@ -231,5 +274,12 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
     title: "404",
     subtitle: "Oops! Page not found",
     returnHome: "Return to Home"
+  },
+  footer: {
+    copyright: "© 2025 STEaM LOGIC Studio AB. All rights reserved.",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    admin: "Admin",
+    visits: "visits"
   }
 };

@@ -53,8 +53,8 @@ const NewsletterSignup = () => {
         console.error('Database insert error:', subscribeError);
         if (subscribeError.code === '23505') { // Unique constraint violation
           toast({
-            title: 'Already Subscribed',
-            description: 'This email is already in our system. Please check your inbox for the confirmation email.',
+            title: t('newsletter.alreadySubscribedTitle'),
+            description: t('newsletter.alreadySubscribedDesc'),
             variant: "destructive"
           });
           return;
@@ -81,16 +81,16 @@ const NewsletterSignup = () => {
       console.log('Email function response:', emailData);
       
       toast({
-        title: 'Check Your Email!',
-        description: 'We\'ve sent you a confirmation email. Please click the link in the email to complete your subscription.',
+        title: t('newsletter.checkEmailTitle'),
+        description: t('newsletter.checkEmailDesc'),
         duration: 8000,
       });
       setEmail('');
     } catch (error) {
       console.error('Newsletter signup error:', error);
       toast({
-        title: 'Error',
-        description: 'Failed to subscribe. Please try again.',
+        title: t('newsletter.errorTitle'),
+        description: t('newsletter.errorDesc'),
         variant: "destructive"
       });
     } finally {
@@ -126,7 +126,7 @@ const NewsletterSignup = () => {
           disabled={isSubmitting}
           className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
         >
-          {isSubmitting ? 'Subscribing...' : t('contact.subscribe')}
+          {isSubmitting ? t('newsletter.subscribing') : t('contact.subscribe')}
         </Button>
       </form>
     </div>

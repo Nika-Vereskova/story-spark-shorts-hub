@@ -3,6 +3,7 @@ import { Clock, ExternalLink, Cog } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
+import { t } from '@/lib/i18n';
 
 interface NewsPost {
   id: string;
@@ -53,7 +54,7 @@ const AINewsCarousel = () => {
         <div className="container mx-auto">
           <div className="text-center">
             <Cog className="w-8 h-8 text-brass animate-spin mx-auto mb-4" />
-            <p className="text-oxidized-teal font-inter">Loading latest AI insights...</p>
+            <p className="text-oxidized-teal font-inter">{t('aiNews.loading')}</p>
           </div>
         </div>
       </section>
@@ -69,10 +70,10 @@ const AINewsCarousel = () => {
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-            Latest AI Insights
+            {t('aiNews.latestInsights')}
           </h2>
           <p className="text-oxidized-teal/80 text-lg font-inter">
-            Fresh perspectives on AI, storytelling, and the future of human-machine collaboration
+            {t('aiNews.tagline')}
           </p>
         </div>
 
@@ -122,7 +123,7 @@ const AINewsCarousel = () => {
                     className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter text-xs"
                     onClick={() => window.open(post.article_url!, '_blank')}
                   >
-                    Read More
+                    {t('aiNews.readMore')}
                     <ExternalLink className="ml-1 h-3 w-3" />
                   </Button>
                 )}
@@ -137,7 +138,7 @@ const AINewsCarousel = () => {
             className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-inter font-medium"
             onClick={() => window.location.href = '/ai-news'}
           >
-            View All AI News
+            {t('aiNews.viewAll')}
           </Button>
         </div>
       </div>
