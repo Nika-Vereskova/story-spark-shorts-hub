@@ -34,7 +34,9 @@ const Books = () => {
   ];
 
   const handleBuyBook = (amazonUrl: string, title: string) => {
-    console.log(`User clicked to buy: ${title}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`User clicked to buy: ${title}`);
+    }
     window.open(amazonUrl, '_blank', 'noopener,noreferrer');
   };
 

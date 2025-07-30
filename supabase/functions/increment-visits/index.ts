@@ -18,7 +18,9 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
     )
 
-    console.log('Attempting to increment visit counter...')
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log('Attempting to increment visit counter...')
+    }
 
     // First, try to get the current count and increment it
     const { data: currentData, error: selectError } = await supabase
@@ -79,7 +81,9 @@ Deno.serve(async (req) => {
       )
     }
 
-    console.log('Successfully incremented visits to:', updateData.total_visits)
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log('Successfully incremented visits to:', updateData.total_visits)
+    }
 
     return new Response(
       JSON.stringify({ total_visits: updateData.total_visits }),

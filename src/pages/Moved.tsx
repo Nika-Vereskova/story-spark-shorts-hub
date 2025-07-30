@@ -7,7 +7,9 @@ const Moved = () => {
   const locale = getCurrentLocale();
 
   useEffect(() => {
-    console.log("User accessed old URL - showing moved notice");
+    if (process.env.NODE_ENV === 'development') {
+      console.log("User accessed old URL - showing moved notice");
+    }
   }, []);
 
   return (

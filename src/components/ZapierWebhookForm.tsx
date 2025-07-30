@@ -45,7 +45,9 @@ const ZapierWebhookForm: React.FC = () => {
     }
 
     setIsLoading(true);
-    console.log("Triggering Zapier webhook:", sanitizedUrl);
+    if (process.env.NODE_ENV === 'development') {
+      console.log("Triggering Zapier webhook:", sanitizedUrl);
+    }
 
     try {
       const response = await fetch(sanitizedUrl, {

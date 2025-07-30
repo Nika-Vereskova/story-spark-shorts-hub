@@ -8,7 +8,9 @@ const corsHeaders = {
 };
 
 const handler = async (req: Request): Promise<Response> => {
-  console.log("Newsletter confirmation function called");
+  if (Deno.env.get('NODE_ENV') === 'development') {
+    console.log("Newsletter confirmation function called");
+  }
 
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -18,11 +20,15 @@ const handler = async (req: Request): Promise<Response> => {
     const url = new URL(req.url);
     const token = url.searchParams.get('token');
 
-    console.log("Confirmation token received:", token);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Confirmation token received:", token);
+    }
 
     // Get the origin from the request to build the redirect URL
     const origin = new URL(req.url).origin.replace(/functions\/v1\/confirm-newsletter.*/, '').replace(/\/$/, '');
-    console.log("Origin for redirect:", origin);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Origin for redirect:", origin);
+    }
 
     if (!token) {
       console.error("Missing confirmation token");
@@ -47,7 +53,9 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
 
-    console.log("Attempting to confirm subscription with token:", token);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Attempting to confirm subscription with token:", token);
+    }
 
     // Update subscriber status to confirmed
     const { data, error } = await supabaseClient
@@ -71,10 +79,14 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    console.log("Database update result:", data);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Database update result:", data);
+    }
 
     if (!data || data.length === 0) {
-      console.log("No rows updated - subscription may already be confirmed or token invalid");
+      if (Deno.env.get('NODE_ENV') === 'development') {
+        console.log("No rows updated - subscription may already be confirmed or token invalid");
+      }
       return new Response(null, {
         status: 302,
         headers: { 
@@ -84,7 +96,9 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    console.log(`Successfully confirmed subscription: ${data[0].email}`);
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log(`Successfully confirmed subscription: ${data[0].email}`);
+    }
 
     return new Response(null, {
       status: 302,

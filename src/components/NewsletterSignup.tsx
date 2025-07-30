@@ -40,7 +40,9 @@ const NewsletterSignup = () => {
     setIsSubmitting(true);
 
     try {
-      console.log('Attempting to subscribe email:', sanitizedEmail);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Attempting to subscribe email:', sanitizedEmail);
+      }
       
       // Save subscriber to database (not confirmed yet)
       const { data: insertData, error: subscribeError } = await supabase
@@ -62,10 +64,14 @@ const NewsletterSignup = () => {
         throw subscribeError;
       }
 
-      console.log('Successfully inserted subscriber, token:', insertData.confirmation_token);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Successfully inserted subscriber, token:', insertData.confirmation_token);
+      }
 
       // Send confirmation email using correct Supabase function call
-      console.log('Calling send-newsletter-confirmation function...');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Calling send-newsletter-confirmation function...');
+      }
       const { data: emailData, error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
         body: { 
           email: sanitizedEmail,
@@ -78,7 +84,9 @@ const NewsletterSignup = () => {
         throw emailError;
       }
       
-      console.log('Email function response:', emailData);
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Email function response:', emailData);
+      }
       
       toast({
         title: t('newsletter.checkEmailTitle'),

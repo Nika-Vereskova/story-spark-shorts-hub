@@ -11,7 +11,9 @@ import CalloutFooter from '@/components/CalloutFooter';
 import Footer from '@/components/Footer';
 
 const Index = () => {
-  console.log('Rendering revamped Index page');
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Rendering revamped Index page');
+  }
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
