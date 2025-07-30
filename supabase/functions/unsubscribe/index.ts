@@ -94,13 +94,14 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
 
-  } catch (error: any) {
-    console.error("Error in unsubscribe function:", error);
+  } catch (error: unknown) {
+    const err = error instanceof Error ? error : new Error('Unknown error');
+    console.error("Error in unsubscribe function:", err);
     return new Response(
       `<html><body><h1>Error</h1><p>An unexpected error occurred. Please try again.</p></body></html>`,
-      { 
-        status: 500, 
-        headers: { "Content-Type": "text/html", ...corsHeaders } 
+      {
+        status: 500,
+        headers: { "Content-Type": "text/html", ...corsHeaders }
       }
     );
   }

@@ -2,7 +2,7 @@
 export const en = {
   nav: {
     home: "Home",
-    books: "Books", 
+    books: "Books",
     videos: "Videos",
     about: "About",
     blog: "Blog/ AI News",
@@ -10,6 +10,10 @@ export const en = {
     services: "Services",
     signIn: "Sign In",
     signOut: "Sign Out"
+  },
+  hero: {
+    title: "Stories & AI Magic",
+    subtitle: "From whimsical tales to cutting-edge technology"
   },
   home: {
     title: "Nika Vereskova Stories",

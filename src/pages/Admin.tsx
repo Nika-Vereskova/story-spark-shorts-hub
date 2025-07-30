@@ -141,11 +141,12 @@ const Admin = () => {
       setSubject('');
       setContent('');
 
-    } catch (error: any) {
-      console.error('Error sending newsletter:', error);
+    } catch (error: unknown) {
+      const err = error instanceof Error ? error : new Error('Unknown error');
+      console.error('Error sending newsletter:', err);
       toast({
         title: 'Failed to Send',
-        description: error.message || 'An error occurred while sending the newsletter.',
+        description: err.message || 'An error occurred while sending the newsletter.',
         variant: 'destructive'
       });
     } finally {
@@ -167,10 +168,11 @@ const Admin = () => {
           variant: 'destructive'
         });
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
+      const err = error instanceof Error ? error : new Error('Unknown error');
       toast({
         title: 'Sign In Error',
-        description: 'An error occurred during sign in.',
+        description: err.message || 'An error occurred during sign in.',
         variant: 'destructive'
       });
     }

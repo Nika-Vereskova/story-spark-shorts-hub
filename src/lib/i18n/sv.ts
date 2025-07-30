@@ -2,7 +2,7 @@
 export const sv = {
   nav: {
     home: "Hem",
-    books: "Böcker", 
+    books: "Böcker",
     videos: "Videor",
     about: "Om mig",
     blog: "Blogg/ AI Nyheter",
@@ -10,6 +10,10 @@ export const sv = {
     services: "Tjänster",
     signIn: "Logga in",
     signOut: "Logga ut"
+  },
+  hero: {
+    title: "Berättelser & AI-magi",
+    subtitle: "Från fantasifulla sagor till banbrytande teknik"
   },
   home: {
     title: "Nika Vereskova Berättelser",
