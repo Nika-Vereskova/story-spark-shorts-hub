@@ -25,7 +25,7 @@ const SplitHeroSection = () => {
 
   return (
     <section 
-      className="pt-24 pb-8 px-6 relative overflow-hidden hero h-[300px] md:h-[30vh] max-h-[400px]"
+      className="pt-16 pb-6 px-6 relative overflow-hidden hero h-[250px] md:h-[40vh] lg:h-[45vh] max-h-[350px]"
       style={{
         backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
         backgroundSize: 'cover',
