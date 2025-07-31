@@ -45,11 +45,9 @@ const NewsletterSignup = () => {
       }
       
       // Save subscriber to database (not confirmed yet)
-      const { data: insertData, error: subscribeError } = await supabase
+      const { error: subscribeError } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email: sanitizedEmail }])
-        .select('confirmation_token')
-        .single();
+        .insert([{ email: sanitizedEmail }]);
 
       if (subscribeError) {
         console.error('Database insert error:', subscribeError);
@@ -64,18 +62,15 @@ const NewsletterSignup = () => {
         throw subscribeError;
       }
 
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Successfully inserted subscriber, token:', insertData.confirmation_token);
-      }
+
 
       // Send confirmation email using correct Supabase function call
       if (process.env.NODE_ENV === 'development') {
         console.log('Calling send-newsletter-confirmation function...');
       }
       const { data: emailData, error: emailError } = await supabase.functions.invoke('send-newsletter-confirmation', {
-        body: { 
-          email: sanitizedEmail,
-          confirmationToken: insertData.confirmation_token
+        body: {
+          email: sanitizedEmail
         }
       });
       
