@@ -14,6 +14,13 @@ interface NewsletterData {
   zapierWebhookUrl?: string;
 }
 
+interface NewsItem {
+  title: string;
+  summary?: string | null;
+  article_url?: string | null;
+  published_at?: string;
+}
+
 const handler = async (req: Request): Promise<Response> => {
   console.log("Generate newsletter function called");
 
@@ -45,7 +52,7 @@ const handler = async (req: Request): Promise<Response> => {
       console.error('Error fetching news posts:', newsError);
     }
 
-    const news = newsData || [];
+    const news: NewsItem[] = newsData || [];
 
     // Get latest newsletters for inspiration
     const { data: recentNewsletters } = await supabaseClient
@@ -163,7 +170,7 @@ function generateBookUpdatesSection(): string {
 • Planning the next adventure: "The Brass Butterfly Chronicles"`;
 }
 
-function generateHTMLContent(subject: string, content: string, news: any[]): string {
+function generateHTMLContent(subject: string, content: string, news: NewsItem[]): string {
   const newsSection = news.length > 0 ? `
     <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; border: 2px solid #8b7355; margin-bottom: 20px;">
       <h3 style="color: #2c5530; margin-bottom: 15px; font-size: 18px;">🗞️ Latest AI Insights</h3>

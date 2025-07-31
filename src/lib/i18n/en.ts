@@ -205,7 +205,7 @@ export const en = {
     facebookDesc: "Join the community discussions and events",
     visit: "Visit",
     newsletterTitle: "Join the Inventor's Guild",
-    newsletterDesc: "Sign in to get notified about new steampunk tales, workshop videos, and special clockwork events. Plus, receive a free downloadable gear-building activity sheet!",
+    newsletterDesc: "Get notified about new steampunk tales, workshop videos, and special clockwork events. Plus, receive a free downloadable gear-building activity sheet!",
     emailPlaceholder: "Your email address",
     subscribe: "Subscribe",
     sendEmail: "Send email"
