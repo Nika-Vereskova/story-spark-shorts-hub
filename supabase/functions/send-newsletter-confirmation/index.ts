@@ -1,8 +1,16 @@
 
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "npm:resend@2.0.0";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
+const supabaseClient = createClient(
+  Deno.env.get("SUPABASE_URL") ?? "",
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
+  {
+    auth: { autoRefreshToken: false, persistSession: false }
+  }
+);
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -12,7 +20,6 @@ const corsHeaders = {
 
 interface NewsletterConfirmationRequest {
   email: string;
-  confirmationToken: string;
   locale?: string;
 }
 
@@ -27,22 +34,40 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { email, confirmationToken, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
-    if (Deno.env.get('NODE_ENV') === 'development') {
-      console.log("Sending newsletter confirmation to:", email);
-      console.log("Confirmation token:", confirmationToken);
-    }
+  const { email, locale = 'en' }: NewsletterConfirmationRequest = await req.json();
+  if (Deno.env.get('NODE_ENV') === 'development') {
+    console.log("Sending newsletter confirmation to:", email);
+  }
 
-    if (!email || !confirmationToken) {
-      console.error("Missing email or confirmation token");
-      return new Response(JSON.stringify({ error: "Email and confirmation token are required" }), {
-        status: 400,
-        headers: {
-          "Content-Type": "application/json",
-          ...corsHeaders,
-        },
-      });
-    }
+  if (!email) {
+    console.error("Missing email");
+    return new Response(JSON.stringify({ error: "Email is required" }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+        ...corsHeaders,
+      },
+    });
+  }
+
+  const { data: tokenData, error: tokenError } = await supabaseClient
+    .from('newsletter_subscribers')
+    .select('confirmation_token')
+    .eq('email', email)
+    .single();
+
+  if (tokenError || !tokenData) {
+    console.error('Error fetching confirmation token:', tokenError);
+    return new Response(JSON.stringify({ error: 'Unable to find confirmation token' }), {
+      status: 400,
+      headers: {
+        "Content-Type": "application/json",
+        ...corsHeaders,
+      },
+    });
+  }
+
+  const confirmationToken = tokenData.confirmation_token;
 
     // Check if RESEND_API_KEY is available
     const resendApiKey = Deno.env.get("RESEND_API_KEY");
