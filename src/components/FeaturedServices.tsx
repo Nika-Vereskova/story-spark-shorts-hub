@@ -62,10 +62,10 @@ const FeaturedServices = () => {
                   <div className="w-12 h-12 bg-brass/20 rounded-full flex items-center justify-center group-hover:bg-brass/30 transition-colors">
                     <Icon className="w-6 h-6 text-brass" />
                   </div>
-                  <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title}</CardTitle>
-                </div>
-                <CardDescription className="text-oxidized-teal/70 font-inter">
-                  {service.description}
+                   <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title as string}</CardTitle>
+                 </div>
+                 <CardDescription className="text-oxidized-teal/70 font-inter">
+                   {service.description as string}
                 </CardDescription>
               </CardHeader>
               
@@ -83,7 +83,7 @@ const FeaturedServices = () => {
                   onClick={service.action}
                   className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                 >
-                  {service.cta}
+                  {service.cta as string}
                 </Button>
               </CardContent>
             </Card>

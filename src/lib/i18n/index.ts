@@ -67,7 +67,7 @@ export const t = <T = unknown>(key: string): T => {
           value = (value as Record<string, unknown>)[fallbackKey];
         } else {
           console.warn(`Translation key "${key}" not found for locale "${locale}"`);
-          return key;
+          return key as T;
         }
       }
       break;

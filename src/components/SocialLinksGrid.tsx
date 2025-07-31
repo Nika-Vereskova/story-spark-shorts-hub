@@ -46,19 +46,19 @@ const SocialLinksGrid = () => {
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
                   <IconComponent className="mr-2 h-6 w-6" />
-                  {social.name}
+                  {social.name as string}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-oxidized-teal/80 mb-4 font-inter text-sm">
-                  {social.description}
+                  {social.description as string}
                 </p>
                 <Button 
                   variant="outline" 
                   className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
                   onClick={() => window.open(social.url, '_blank', 'noopener,noreferrer')}
                 >
-                  {t('contact.visit')} {social.name}
+                  {t<string>('contact.visit')} {social.name as string}
                   <ExternalLink className="ml-2 h-4 w-4" />
                 </Button>
               </CardContent>

@@ -73,7 +73,7 @@ const Videos = () => {
                   </div>
                   <div className="absolute top-4 right-4 z-20">
                     <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
-                      {video.type}
+                      {video.type as string}
                     </span>
                   </div>
                 </div>

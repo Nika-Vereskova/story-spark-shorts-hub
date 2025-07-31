@@ -79,7 +79,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             {subscribed && subscriptionTier ? (
               <div className="text-center p-4 bg-brass/20 rounded-lg">
                 <div className="text-brass font-semibold">
-                  {t('services.card.activePlan').replace('{tier}', subscriptionTier)}
+                  {(t<string>('services.card.activePlan')).replace('{tier}', subscriptionTier)}
                 </div>
               </div>
             ) : (
@@ -111,12 +111,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               disabled={loading === serviceName}
             >
               <CreditCard className="mr-2 h-4 w-4" />
-              {loading === serviceName ? t('services.card.loading') : t('services.card.buyNow').replace('{price}', String(price))}
+              {loading === serviceName ? t<string>('services.card.loading') : (t<string>('services.card.buyNow')).replace('{price}', String(price))}
             </Button>
             <Button
               variant="outline"
               className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-inter font-medium"
-              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent(t('services.card.inquirySubject').replace('{title}', title))}
+              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
             >
               <Mail className="mr-2 h-4 w-4" />
               {t('services.card.contact')}

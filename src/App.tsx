@@ -16,6 +16,7 @@ import Videos from "./pages/Videos";
 import Blog from "./pages/Blog";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
+import Newsletter from "./pages/Newsletter";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="/:locale/blog" element={<Blog />} />
               <Route path="/:locale/contact" element={<Contact />} />
               <Route path="/:locale/admin" element={<Admin />} />
+              <Route path="/:locale/newsletter" element={<Newsletter />} />
               <Route path="/:locale/privacy" element={<Privacy />} />
               <Route path="/:locale/terms" element={<Terms />} />
               <Route path="/:locale/moved" element={<Moved />} />
@@ -64,6 +66,7 @@ const App = () => (
               <Route path="/blog" element={<Blog />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<Admin />} />
+              <Route path="/newsletter" element={<Newsletter />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/moved" element={<Moved />} />

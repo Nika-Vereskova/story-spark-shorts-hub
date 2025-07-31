@@ -90,7 +90,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                       : 'text-oxidized-teal'
                   }`}
                 >
-                  {item.name}
+                  {item.name as string}
                 </Link>
               ))}
               
@@ -150,7 +150,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
-                    {item.name}
+                    {item.name as string}
                   </Link>
                 ))}
                 
