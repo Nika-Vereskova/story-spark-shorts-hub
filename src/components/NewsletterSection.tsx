@@ -49,7 +49,7 @@ const NewsletterSection = () => {
       // Save subscriber to database (not confirmed yet)
       const { error: subscribeError } = await supabase
         .from('newsletter_subscribers')
-        .insert([{ email: sanitizedEmail }]);
+        .insert([{ email: sanitizedEmail }], { returning: 'minimal' });
 
       if (subscribeError) {
         console.error('Database insert error:', subscribeError);
