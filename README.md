@@ -64,6 +64,16 @@ This project is built with:
 
 Simply open [Lovable](https://lovable.dev/projects/1e5e50ba-ac89-4a15-ac75-a39eeb603a51) and click on Share -> Publish.
 
+## Environment Variables
+
+The Supabase edge functions require a few environment variables to operate:
+
+- `SUPABASE_URL` – your Supabase project URL.
+- `SUPABASE_SERVICE_ROLE_KEY` – the service role key for your project.
+- `RESEND_API_KEY` – API key used to send emails through [Resend](https://resend.com).
+
+Ensure these are available wherever you deploy the functions. If any are missing, calls to functions like `send-newsletter-confirmation` will return a `500` error.
+
 ## Can I connect a custom domain to my Lovable project?
 
 Yes, you can!
