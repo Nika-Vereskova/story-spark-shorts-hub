@@ -33,10 +33,10 @@ const Videos = () => {
         <div className="container mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
               {t('videos.title')}
             </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
+            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto">
               {t('videos.subtitle')}
             </p>
           </div>
@@ -75,23 +75,23 @@ const Videos = () => {
                     </div>
                   </div>
                   <div className="absolute top-4 right-4 z-20">
-                    <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
+                    <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium">
                       {video.type as string}
                     </span>
                   </div>
                 </div>
                 
                 <CardHeader>
-                  <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop">{video.title}</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">YouTube Video</CardDescription>
+                  <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop">{video.title}</CardTitle>
+                  <CardDescription className="text-brass font-medium">YouTube Video</CardDescription>
                 </CardHeader>
                 
                 <CardContent>
-                  <p className="text-oxidized-teal/80 mb-6 text-sm leading-relaxed font-inter">
+                  <p className="text-oxidized-teal/80 mb-6 text-sm leading-relaxed">
                     {video.description}
                   </p>
                   <Button 
-                    className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                    className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                     onClick={() => handleWatchVideo(video.youtubeUrl, video.title)}
                   >
                     {t('videos.watchOnYoutube')}
@@ -110,15 +110,15 @@ const Videos = () => {
             <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
               {t('videos.subscribeTitle')}
             </h2>
-            <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
+            <p className="text-oxidized-teal/80 text-lg mb-6">
               {t('videos.subscribeDesc')}
             </p>
             <Button 
               size="lg" 
-              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
               onClick={() => window.open('https://www.youtube.com/@NikaVereskova/videos', '_blank', 'noopener,noreferrer')}
             >
               {t('videos.subscribeButton')}

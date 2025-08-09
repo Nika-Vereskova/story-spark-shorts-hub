@@ -10,7 +10,7 @@ const QuickLinksSection = () => {
   return (
     <section className="py-16 px-6 bg-gear-etch/20">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
+        <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative">
             {/* Ornate brass corners */}
@@ -20,19 +20,19 @@ const QuickLinksSection = () => {
             <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass"></div>
             
             <CardHeader>
-              <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
+              <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop flex items-center">
                 <Key className="mr-2 h-6 w-6" />
                 {t('nav.books')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('books.subtitle')}
               </p>
               <Link to="/books">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 >
                   {t('home.exploreBooks')}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -49,19 +49,19 @@ const QuickLinksSection = () => {
             <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass"></div>
             
             <CardHeader>
-              <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
+              <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop flex items-center">
                 <Cog className="mr-2 h-6 w-6" />
                 {t('nav.videos')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('videos.subtitle')}
               </p>
               <Link to="/videos">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium hover:sepia"
                 >
                   {t('home.watchVideos')}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -78,19 +78,19 @@ const QuickLinksSection = () => {
             <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass"></div>
             
             <CardHeader>
-              <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
+              <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop flex items-center">
                 <Glasses className="mr-2 h-6 w-6" />
                 {t('nav.about')}
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('about.subtitle')}
               </p>
               <Link to="/about">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 >
                   {t('home.learnMore')}
                   <ArrowRight className="ml-2 h-4 w-4" />

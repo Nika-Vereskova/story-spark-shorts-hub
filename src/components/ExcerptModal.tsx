@@ -38,11 +38,11 @@ const ExcerptModal = ({ isOpen, onClose }: ExcerptModalProps) => {
             <X className="h-6 w-6" />
           </button>
           
-          <h2 className="text-3xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop text-center">
+          <h2 className="text-3xl font-bold text-oxidized-teal mb-6 drop-shadow-text-drop text-center">
             Chapter 2. Plumberella
           </h2>
           
-          <div className="prose prose-lg max-w-none text-oxidized-teal/90 font-inter leading-relaxed">
+          <div className="prose prose-lg max-w-none text-oxidized-teal/90 leading-relaxed">
             <p className="mb-4">
               As you already know, Plumberella's birth was overshadowed by tragedy. When the time came to name the newborn, Henry, lost and heartbroken, sought some kind of anchor in the familiar. He looked at the shower in the bathroom, where he had just been soothing the baby, and thought: "Plumberella. Sweet, pure, like my life's true calling to make the world cleaner. I am the Plumber!" And so she was named Plumberella—not just officially, but also by love.
             </p>
@@ -90,7 +90,7 @@ const ExcerptModal = ({ isOpen, onClose }: ExcerptModalProps) => {
           
           <div className="mt-8 text-center">
             <Button 
-              className="bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              className="bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
               onClick={handleBuyPlumberella}
             >
               Buy the Full Book on Amazon

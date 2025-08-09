@@ -15,10 +15,10 @@ const About = () => {
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
               {t('about.title')}
             </h1>
-            <p className="text-xl text-brass font-inter">
+            <p className="text-xl text-brass">
               {t('about.subtitle')}
             </p>
           </div>
@@ -55,11 +55,11 @@ const About = () => {
                 <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
                 
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop flex items-center">
+                  <h2 className="text-2xl font-bold text-oxidized-teal mb-6 drop-shadow-text-drop flex items-center">
                     <Wrench className="mr-2 h-6 w-6" />
                     {t('about.myStory')}
                   </h2>
-                  <div className="space-y-4 text-oxidized-teal/80 leading-relaxed font-inter">
+                  <div className="space-y-4 text-oxidized-teal/80 leading-relaxed">
                     <p>{t('about.bio1')}</p>
                     <p>{t('about.bio2')}</p>
                     <p>{t('about.bio3')}</p>
@@ -73,13 +73,13 @@ const About = () => {
 
           {/* Contact Links */}
           <div className="mt-16 text-center">
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">
+            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 drop-shadow-text-drop">
               {t('about.connect')}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com'}
               >
                 <Mail className="mr-2 h-5 w-5" />
@@ -88,7 +88,7 @@ const About = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
                 {t('about.followSocial')}

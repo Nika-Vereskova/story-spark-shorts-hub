@@ -24,15 +24,15 @@ const NotFound = () => {
         <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
         <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
         
-        <h1 className="text-6xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+        <h1 className="text-6xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
           {t('notFound.title')}
         </h1>
-        <p className="text-xl text-brass mb-6 font-inter">
+        <p className="text-xl text-brass mb-6">
           {t('notFound.subtitle')}
         </p>
         <Link 
           to={`/${locale}`} 
-          className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium rounded"
+          className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium rounded"
         >
           {t('notFound.returnHome')}
         </Link>

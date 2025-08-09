@@ -187,7 +187,7 @@ const Admin = () => {
           <div className="container mx-auto max-w-4xl">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
-              <p className="text-oxidized-teal mt-4 font-inter">Loading...</p>
+              <p className="text-oxidized-teal mt-4">Loading...</p>
             </div>
           </div>
         </div>
@@ -204,18 +204,18 @@ const Admin = () => {
           <div className="container mx-auto max-w-4xl">
             <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
               <CardHeader className="text-center">
-                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
+                <CardTitle className="font-bold text-oxidized-teal text-2xl drop-shadow-text-drop flex items-center justify-center">
                   <Lock className="mr-2 h-6 w-6" />
                   Authentication Required
                 </CardTitle>
-                <CardDescription className="text-oxidized-teal/80 font-inter">
+                <CardDescription className="text-oxidized-teal/80">
                   Please sign in to access the admin panel
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
                 <Button
                   onClick={handleSignIn}
-                  className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                  className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-medium"
                 >
                   Sign In
                 </Button>
@@ -236,16 +236,16 @@ const Admin = () => {
           <div className="container mx-auto max-w-4xl">
             <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
               <CardHeader className="text-center">
-                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
+                <CardTitle className="font-bold text-oxidized-teal text-2xl drop-shadow-text-drop flex items-center justify-center">
                   <Lock className="mr-2 h-6 w-6" />
                   Access Denied
                 </CardTitle>
-                <CardDescription className="text-oxidized-teal/80 font-inter">
+                <CardDescription className="text-oxidized-teal/80">
                   You don't have permission to access the admin panel
                 </CardDescription>
               </CardHeader>
               <CardContent className="text-center">
-                <p className="text-oxidized-teal/70 font-inter">
+                <p className="text-oxidized-teal/70">
                   Only administrators can access this page. If you believe this is an error, please contact the site administrator.
                 </p>
               </CardContent>
@@ -265,10 +265,10 @@ const Admin = () => {
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
               Newsletter Admin
             </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
+            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto">
               Send updates to your Inventor's Guild subscribers
             </p>
           </div>
@@ -277,7 +277,7 @@ const Admin = () => {
           <div className="mb-8">
             <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
               <CardHeader>
-                <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
+                <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop flex items-center">
                   <Users className="mr-2 h-5 w-5" />
                   Subscriber Statistics
                 </CardTitle>
@@ -285,7 +285,7 @@ const Admin = () => {
               <CardContent>
                 <div className="flex items-center gap-2">
                   <Mail className="h-4 w-4 text-brass" />
-                  <span className="font-inter text-oxidized-teal">
+                  <span className="text-oxidized-teal">
                     Active Subscribers: <strong>{subscriberCount !== null ? subscriberCount : 'Loading...'}</strong>
                   </span>
                 </div>
@@ -302,18 +302,18 @@ const Admin = () => {
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
             <CardHeader>
-              <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center">
+              <CardTitle className="font-bold text-oxidized-teal text-2xl drop-shadow-text-drop flex items-center">
                 <Send className="mr-2 h-6 w-6" />
                 Compose Newsletter
               </CardTitle>
-              <CardDescription className="text-oxidized-teal/80 font-inter">
+              <CardDescription className="text-oxidized-teal/80">
                 Create and send a newsletter to all active subscribers
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSendNewsletter} className="space-y-6">
                 <div>
-                  <label htmlFor="subject" className="block text-oxidized-teal font-inter font-medium mb-2">
+                  <label htmlFor="subject" className="block text-oxidized-teal font-medium mb-2">
                     Subject Line
                   </label>
                   <Input
@@ -323,13 +323,13 @@ const Admin = () => {
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="Enter newsletter subject..."
                     disabled={isSending}
-                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
+                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow"
                     maxLength={100}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="content" className="block text-oxidized-teal font-inter font-medium mb-2">
+                  <label htmlFor="content" className="block text-oxidized-teal font-medium mb-2">
                     Newsletter Content
                   </label>
                   <Textarea
@@ -338,10 +338,10 @@ const Admin = () => {
                     onChange={(e) => setContent(e.target.value)}
                     placeholder="Write your newsletter content here..."
                     disabled={isSending}
-                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter min-h-[200px]"
+                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow min-h-[200px]"
                     maxLength={5000}
                   />
-                  <p className="text-sm text-oxidized-teal/60 mt-1 font-inter">
+                  <p className="text-sm text-oxidized-teal/60 mt-1">
                     {content.length}/5000 characters
                   </p>
                 </div>
@@ -349,7 +349,7 @@ const Admin = () => {
                 <Button
                   type="submit"
                   disabled={isSending || !subject.trim() || !content.trim()}
-                  className="w-full bg-brass hover:bg-brass-dark text-parchment px-8 py-4 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50 text-lg"
+                  className="w-full bg-brass hover:bg-brass-dark text-parchment px-8 py-4 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium disabled:opacity-50 text-lg"
                 >
                   {isSending ? (
                     <>

@@ -29,7 +29,7 @@ const SocialLinksGrid = () => {
 
   return (
     <div className="mb-12">
-      <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop">
+      <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center drop-shadow-text-drop">
         {t('contact.socialTitle')}
       </h2>
       <div className="grid md:grid-cols-3 gap-6">
@@ -44,18 +44,18 @@ const SocialLinksGrid = () => {
               <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass"></div>
               
               <CardHeader>
-                <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
+                <CardTitle className="font-bold text-oxidized-teal text-xl drop-shadow-text-drop flex items-center">
                   <IconComponent className="mr-2 h-6 w-6" />
                   {social.name as string}
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-oxidized-teal/80 mb-4 font-inter text-sm">
+                <p className="text-oxidized-teal/80 mb-4 text-sm">
                   {social.description as string}
                 </p>
                 <Button 
                   variant="outline" 
-                  className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
+                  className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-medium"
                   onClick={() => window.open(social.url, '_blank', 'noopener,noreferrer')}
                 >
                   {t<string>('contact.visit')} {social.name as string}

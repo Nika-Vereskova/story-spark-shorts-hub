@@ -42,14 +42,14 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-parchment border-2 border-brass">
         <DialogHeader>
-          <DialogTitle className="text-oxidized-teal font-playfair text-2xl">
+          <DialogTitle className="font-bold text-oxidized-teal text-2xl">
             {mode === 'signin' ? t('auth.signIn') : t('auth.signUp')}
           </DialogTitle>
         </DialogHeader>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email" className="text-oxidized-teal font-inter">{t('auth.email')}</Label>
+            <Label htmlFor="email" className="text-oxidized-teal">{t('auth.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -61,7 +61,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
           </div>
           
           <div>
-            <Label htmlFor="password" className="text-oxidized-teal font-inter">{t('auth.password')}</Label>
+            <Label htmlFor="password" className="text-oxidized-teal">{t('auth.password')}</Label>
             <Input
               id="password"
               type="password"
@@ -85,7 +85,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
           <button
             type="button"
             onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
-            className="text-brass hover:text-brass-dark underline font-inter"
+            className="text-brass hover:text-brass-dark underline"
           >
             {mode === 'signin' ? t('auth.needAccount') : t('auth.haveAccount')}
           </button>

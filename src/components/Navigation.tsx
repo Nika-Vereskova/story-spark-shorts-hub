@@ -88,7 +88,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=64 64w, /lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=104 104w"
                 sizes="(max-width: 768px) 64px, 104px"
               />
-              <div className="font-playfair font-bold text-teal">
+              <div className="font-bold text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
                 <div className="text-sm opacity-90">Studio AB</div>
               </div>
@@ -99,7 +99,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 <Link
                   key={item.key}
                   to={item.path}
-                  className={`font-inter font-medium transition-colors hover:text-brass ${
+                  className={`font-medium transition-colors hover:text-brass ${
                     isCurrentPage(item.key) 
                       ? 'text-brass border-b-2 border-brass' 
                       : 'text-oxidized-teal'
@@ -160,7 +160,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                   <Link
                     key={item.key}
                     to={item.path}
-                    className={`font-inter font-medium transition-colors hover:text-brass ${
+                    className={`font-medium transition-colors hover:text-brass ${
                       isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
                     }`}
                     onClick={() => setIsOpen(false)}

@@ -30,7 +30,7 @@ const Footer = () => {
   return (
     <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-brass/50">
       <div className="container mx-auto text-center">
-        <p className="text-oxidized-teal/80 font-medium font-inter">{t('footer.copyright')}</p>
+        <p className="text-oxidized-teal/80 font-medium">{t('footer.copyright')}</p>
         <div className="flex justify-between items-center mt-4">
           <div className="flex-1" />
           <div className="flex justify-center space-x-6">
@@ -38,7 +38,7 @@ const Footer = () => {
               href="https://www.youtube.com/@NikaVereskova" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-brass hover:text-brass-dark transition-colors font-inter hover:sepia"
+              className="text-brass hover:text-brass-dark transition-colors hover:sepia"
             >
               {t('contact.youtube')}
             </a>
@@ -46,7 +46,7 @@ const Footer = () => {
               href="https://www.instagram.com/vereskovanika" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-brass hover:text-brass-dark transition-colors font-inter"
+              className="text-brass hover:text-brass-dark transition-colors"
             >
               {t('contact.instagram')}
             </a>
@@ -54,14 +54,14 @@ const Footer = () => {
               href="https://www.facebook.com/profile.php?id=61577838015246" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-brass hover:text-brass-dark transition-colors font-inter"
+              className="text-brass hover:text-brass-dark transition-colors"
             >
               {t('contact.facebook')}
             </a>
           </div>
           <div className="flex-1 flex justify-end">
             {visitCount && (
-              <span className="text-oxidized-teal/60 font-inter text-xs">
+              <span className="text-oxidized-teal/60 text-xs">
                 {visitCount.toLocaleString()} {t('footer.visits')}
               </span>
             )}
@@ -70,19 +70,19 @@ const Footer = () => {
         <div className="flex justify-center space-x-6 mt-4">
           <Link 
             to="/privacy" 
-            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors text-sm"
           >
             {t('footer.privacy')}
           </Link>
           <Link 
             to="/terms" 
-            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors text-sm"
           >
             {t('footer.terms')}
           </Link>
           <Link 
             to="/admin" 
-            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors text-sm"
           >
             {t('footer.admin')}
           </Link>

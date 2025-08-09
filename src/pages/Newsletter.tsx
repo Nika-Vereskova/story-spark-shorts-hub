@@ -14,10 +14,10 @@ const Newsletter = () => {
         <Navigation />
         <div className="pt-24 pb-16 px-6">
           <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h1 className="text-4xl font-bold text-oxidized-teal mb-4">
               Access Restricted
             </h1>
-            <p className="text-oxidized-teal/80 font-inter">
+            <p className="text-oxidized-teal/80">
               Admin access required to view newsletter automation settings.
             </p>
           </div>
@@ -33,10 +33,10 @@ const Newsletter = () => {
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
               Newsletter Automation
             </h1>
-            <p className="text-xl text-oxidized-teal/80 font-inter">
+            <p className="text-xl text-oxidized-teal/80">
               Set up your weekly AI-powered newsletter with Zapier integration
             </p>
           </div>
