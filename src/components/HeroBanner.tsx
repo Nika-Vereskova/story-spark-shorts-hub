@@ -19,8 +19,8 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   return (
     <section className="hero-banner relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-0 pointer-events-none" />
-      <div className="relative z-10">
-        <h1 className="hero-title">{title}</h1>
+      <div className="hero-text-group relative z-10 w-fit">
+        <h1 className="hero-title md:max-w-[20ch]">{title}</h1>
         {subtitle && <p className="hero-subtitle">{subtitle}</p>}
         {ctaText && ctaUrl && (
           <Button asChild className="w-full sm:w-auto mt-4">
