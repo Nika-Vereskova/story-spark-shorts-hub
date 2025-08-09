@@ -91,9 +91,20 @@ const NewsletterSignup = () => {
       setEmail('');
     } catch (error) {
       console.error('Newsletter signup error:', error);
+
+      let errorMessage = t('newsletter.errorDesc');
+      if (error && typeof error === 'object') {
+        const err = error as { message?: string; status?: number | string };
+        if (err.message) {
+          errorMessage = err.message;
+        } else if (err.status) {
+          errorMessage = `Status: ${err.status}`;
+        }
+      }
+
       toast({
         title: t('newsletter.errorTitle'),
-        description: t('newsletter.errorDesc'),
+        description: errorMessage,
         variant: "destructive"
       });
     } finally {
