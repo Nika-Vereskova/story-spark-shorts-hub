@@ -183,8 +183,9 @@
   }
 }
 /* Hero Banner */
+/* Hero banner spacing adheres to the 8pt scale */
 .hero-banner {
-  @apply flex flex-col items-center justify-center text-center py-20 px-6 bg-cover bg-center bg-no-repeat;
+  @apply flex flex-col items-center justify-center text-center py-14 px-4 bg-cover bg-center bg-no-repeat;
   background-image: url('/your-gears-background.svg');
 }
 
@@ -193,7 +194,7 @@
 }
 
 .hero-subtitle {
-  @apply text-lg md:text-xl text-oxidized-teal/80 max-w-2xl;
+  @apply text-lg md:text-xl text-oxidized-teal/80 mx-auto md:mx-0;
 }
 
 .hero-image {
@@ -202,7 +203,7 @@
 
 @media (min-width: 768px) {
   .hero-banner {
-    @apply flex-row text-left py-32 px-8;
+    @apply flex-row text-left py-16 px-6;
   }
 
   .hero-image {

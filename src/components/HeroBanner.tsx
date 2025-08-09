@@ -11,7 +11,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ title, subtitle, imageUrl }) =>
     <section className="hero-banner">
       <div>
         <h1 className="hero-title">{title}</h1>
-        {subtitle && <p className="hero-subtitle">{subtitle}</p>}
+        {subtitle && <p className="hero-subtitle max-w-[45ch]">{subtitle}</p>}
       </div>
       {imageUrl && (
         <img
