@@ -36,20 +36,23 @@ const CalloutFooter = () => {
 
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop leading-tight">
+          <h2
+            className="font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop leading-tight"
+            style={{ fontSize: "var(--step-2)" }}
+          >
             {t('callout.heading1')}
             <br />
             <span className="text-brass">{t('callout.heading2')}</span>
           </h2>
           
-          <p className="text-xl text-oxidized-teal/80 mb-12 max-w-2xl mx-auto font-inter leading-relaxed">
+          <p className="text-oxidized-teal/80 mb-12 max-w-2xl mx-auto font-inter leading-relaxed text-step-1">
             {t('callout.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Button 
               size="lg"
-              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-4 text-lg border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-4 text-step-0 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               onClick={handleWorkshopClick}
             >
               <Calendar className="mr-3 h-6 w-6" />
@@ -59,7 +62,7 @@ const CalloutFooter = () => {
             <Button 
               size="lg"
               variant="outline"
-              className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-4 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-4 text-step-0 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               onClick={handleDownloadClick}
             >
               <Download className="mr-3 h-6 w-6" />
@@ -68,7 +71,7 @@ const CalloutFooter = () => {
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-oxidized-teal/60 font-inter">
+          <div className="mt-12 flex flex-wrap justify-center gap-8 text-step--1 text-oxidized-teal/60 font-inter">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-brass rounded-full"></div>
               {t('callout.trustSchool')}

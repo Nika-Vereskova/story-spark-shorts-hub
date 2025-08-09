@@ -189,11 +189,13 @@
 }
 
 .hero-title {
-  @apply text-4xl md:text-5xl font-playfair text-oxidized-teal mb-4;
+  @apply font-playfair text-oxidized-teal mb-4;
+  font-size: var(--step-2);
 }
 
 .hero-subtitle {
-  @apply text-lg md:text-xl text-oxidized-teal/80 max-w-2xl;
+  @apply text-oxidized-teal/80 max-w-2xl;
+  font-size: var(--step-1);
 }
 
 .hero-image {
@@ -208,5 +210,12 @@
   .hero-image {
     @apply mt-0 ml-8;
   }
+}
+
+@layer utilities {
+  .text-step--1 { font-size: var(--step--1); }
+  .text-step-0 { font-size: var(--step-0); }
+  .text-step-1 { font-size: var(--step-1); }
+  .text-step-2 { font-size: var(--step-2); }
 }
 

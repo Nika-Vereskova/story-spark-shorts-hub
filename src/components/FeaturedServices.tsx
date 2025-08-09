@@ -36,10 +36,13 @@ const FeaturedServices = () => {
     <section className="py-16 px-6 bg-gradient-to-r from-oxidized-teal/5 to-brass/5">
       <div className="container mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+          <h2
+            className="font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop"
+            style={{ fontSize: "var(--step-2)" }}
+          >
             Stories & Solutions
           </h2>
-          <p className="text-oxidized-teal/80 text-lg max-w-2xl mx-auto font-inter">
+          <p className="text-oxidized-teal/80 max-w-2xl mx-auto font-inter text-step-1">
             Where imagination meets innovation - from children's books to cutting-edge AI
           </p>
         </div>
@@ -62,7 +65,7 @@ const FeaturedServices = () => {
                   <div className="w-12 h-12 bg-brass/20 rounded-full flex items-center justify-center group-hover:bg-brass/30 transition-colors">
                     <Icon className="w-6 h-6 text-brass" />
                   </div>
-                   <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title as string}</CardTitle>
+                   <CardTitle className="text-oxidized-teal font-playfair text-step-1">{service.title as string}</CardTitle>
                  </div>
                  <CardDescription className="text-oxidized-teal/70 font-inter">
                    {service.description as string}
@@ -72,7 +75,7 @@ const FeaturedServices = () => {
               <CardContent>
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal/80 font-inter">
+                    <li key={idx} className="flex items-start gap-2 text-step--1 text-oxidized-teal/80 font-inter">
                       <Wrench className="w-4 h-4 text-brass mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>

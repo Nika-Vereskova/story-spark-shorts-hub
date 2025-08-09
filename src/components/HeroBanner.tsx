@@ -10,8 +10,8 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ title, subtitle, imageUrl }) =>
   return (
     <section className="hero-banner">
       <div>
-        <h1 className="hero-title">{title}</h1>
-        {subtitle && <p className="hero-subtitle">{subtitle}</p>}
+        <h1 className="hero-title" style={{ fontSize: "var(--step-2)" }}>{title}</h1>
+        {subtitle && <p className="hero-subtitle text-step-1">{subtitle}</p>}
       </div>
       {imageUrl && (
         <img
