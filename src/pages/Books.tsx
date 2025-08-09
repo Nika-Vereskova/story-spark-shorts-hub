@@ -73,9 +73,10 @@ const Books = () => {
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
                 
                 <div className="relative overflow-hidden">
-                  <img 
-                    src={book.coverUrl} 
+                  <img
+                    src={book.coverUrl}
                     alt={book.title}
+                    loading="lazy"
                     className="w-full h-64 object-cover transition-transform duration-300 hover:scale-110"
                   />
                   {book.featured && (
