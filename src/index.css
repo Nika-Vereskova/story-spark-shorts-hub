@@ -199,6 +199,16 @@
   background-image: url('/your-gears-background.svg');
 }
 
+.hero-text-group::before{
+  content:"";
+  position:absolute;
+  inset:-1rem;
+  z-index:-1;
+  background: linear-gradient(90deg, rgba(251,233,196,.9), rgba(251,233,196,.6) 60%, transparent);
+  filter: blur(2px);
+  border-radius: 16px;
+}
+
 .hero-title {
   @apply text-4xl md:text-5xl font-playfair text-oxidized-teal mb-4;
 }
