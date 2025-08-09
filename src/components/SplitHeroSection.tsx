@@ -25,43 +25,36 @@ const SplitHeroSection = () => {
   };
 
   return (
-    <>
-      {/* Banner/Hero Section */}
-      <section 
-        className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[28vh] sm:h-[32vh] md:h-[38vh] lg:h-[44vh] xl:h-[50vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px] max-h-[520px]"
-        style={{
-          backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
-        {/* Backdrop filter overlay */}
-        <div className="absolute inset-0" style={{ backdropFilter: 'sepia(0.2)' }}></div>
-        
-        {/* Animated Clockwork Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-16 h-16 opacity-10">
-            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
-          </div>
-          <div className="absolute top-20 right-20 w-12 h-12 opacity-15">
-            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-          </div>
-          <div className="absolute bottom-10 left-1/4 w-10 h-10 opacity-10">
-            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
-          </div>
-          <div className="absolute bottom-20 right-1/3 w-8 h-8 opacity-15">
-            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-          </div>
+    <section
+      className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[28vh] sm:h-[32vh] md:h-[38vh] lg:h-[44vh] xl:h-[50vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px] max-h-[520px]"
+      style={{
+        backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
+      {/* Backdrop filter overlay */}
+      <div className="absolute inset-0" style={{ backdropFilter: 'sepia(0.2)' }}></div>
+
+      {/* Animated Clockwork Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-16 h-16 opacity-10">
+          <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
         </div>
+        <div className="absolute top-20 right-20 w-12 h-12 opacity-15">
+          <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
+        </div>
+        <div className="absolute bottom-10 left-1/4 w-10 h-10 opacity-10">
+          <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
+        </div>
+        <div className="absolute bottom-20 right-1/3 w-8 h-8 opacity-15">
+          <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
+        </div>
+      </div>
 
-        {/* Banner Title/Content removed as per request */}
-      </section>
-
-      {/* Content Section - Featured Book & AI Services */}
-      <section className="py-12 px-6 bg-parchment">
-        <div className="container mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* Left Panel - Plumberella */}
+      <div className="container mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {/* Left Panel - Plumberella */}
             <Card className="card bg-parchment hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
               {/* Ornate brass corners */}
               <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
@@ -165,8 +158,7 @@ const SplitHeroSection = () => {
             </Card>
           </div>
         </div>
-      </section>
-    </>
+    </section>
   );
 };
 
