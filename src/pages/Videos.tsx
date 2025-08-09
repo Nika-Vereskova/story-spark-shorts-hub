@@ -58,8 +58,8 @@ const Videos = () => {
  
  <div className="relative overflow-hidden">
  {/* YouTube Thumbnail */}
- <AspectRatio
- ratio={4 / 3}
+        <AspectRatio
+          ratio={16 / 9}
  className="w-full bg-gradient-to-br from-brass/20 to-oxidized-teal/20 flex items-center justify-center relative overflow-hidden"
  >
  <img

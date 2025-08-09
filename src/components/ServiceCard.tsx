@@ -39,8 +39,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
  onOneTimePayment,
  onSubscription,
 }) => {
- return (
- <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop hover:shadow-brass-glow transition-all duration-300 hover:scale-105 relative group">
+  return (
+    <Card className="bg-parchment/90 border-2 border-brass transition-all duration-300 hover:scale-105 relative group">
  {/* Ornate brass corners */}
  <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass opacity-60 group-hover:opacity-100 transition-opacity"></div>
  <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass opacity-60 group-hover:opacity-100 transition-opacity"></div>

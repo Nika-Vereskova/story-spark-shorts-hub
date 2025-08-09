@@ -90,8 +90,8 @@ const AINews = () => {
  key={post.id}
  className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden"
  >
- {post.cover_url && (
- <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
+        {post.cover_url && (
+          <AspectRatio ratio={16 / 9} className="relative overflow-hidden">
  <img
  src={post.cover_url}
  alt={post.title}
