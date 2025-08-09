@@ -71,10 +71,13 @@ const SplitHeroSection = () => {
               
               <div className="relative overflow-hidden">
                 <AspectRatio ratio={4/3}>
-                  <img 
+                  <img
                     src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
                     alt={t('splitHero.altText')}
                     className="w-full h-full object-cover transition-all duration-300 hover:scale-110 hover:sepia"
+                    loading="lazy"
+                    srcSet="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png?width=480 480w, /lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png?width=768 768w, /lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png 1024w"
+                    sizes="(max-width: 768px) 100vw, 768px"
                   />
                 </AspectRatio>
                 <div className="absolute top-4 right-4">

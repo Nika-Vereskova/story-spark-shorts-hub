@@ -90,10 +90,13 @@ const AINewsCarousel = () => {
               
               {post.cover_url && (
                 <div className="relative overflow-hidden h-32">
-                  <img 
+                  <img
                     src={post.cover_url}
                     alt={post.title}
                     className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
+                    loading="lazy"
+                    srcSet={`${post.cover_url}?width=320 320w, ${post.cover_url}?width=640 640w`}
+                    sizes="(max-width: 640px) 100vw, 640px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
