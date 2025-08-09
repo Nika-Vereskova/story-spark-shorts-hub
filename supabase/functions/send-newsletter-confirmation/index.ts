@@ -6,6 +6,8 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
 const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
 const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+const RESEND_FROM_EMAIL =
+  Deno.env.get("RESEND_FROM_EMAIL") || "Nika Vereskova <noreply@resend.dev>";
 
 let resend: Resend | null = null;
 let supabaseClient: ReturnType<typeof createClient> | null = null;
@@ -112,8 +114,8 @@ const handler = async (req: Request): Promise<Response> => {
       console.log("Confirmation URL:", confirmationUrl);
     }
 
-    const emailResponse = await resend.emails.send({
-      from: "Nika Vereskova <noreply@resend.dev>",
+    const { data, error } = await resend.emails.send({
+      from: RESEND_FROM_EMAIL,
       to: [email],
       subject: "Please confirm your subscription to the Inventor's Guild! ⚙️",
       html: `
@@ -166,11 +168,19 @@ const handler = async (req: Request): Promise<Response> => {
       `,
     });
 
-    if (Deno.env.get('NODE_ENV') === 'development') {
-      console.log("Email sent successfully:", emailResponse);
+    if (error) {
+      console.error("Resend error:", error);
+      return new Response(JSON.stringify({ error: "Failed to send email" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json", ...corsHeaders },
+      });
     }
 
-    return new Response(JSON.stringify({ success: true, data: emailResponse }), {
+    if (Deno.env.get('NODE_ENV') === 'development') {
+      console.log("Email sent successfully:", data);
+    }
+
+    return new Response(JSON.stringify({ success: true, data }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
