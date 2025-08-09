@@ -7,251 +7,202 @@ import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getCurrentLocale } from '@/lib/i18n';
-import { motion } from 'framer-motion';
 
 interface NavigationProps {
   currentPage?: string;
-  ctaText?: string;
-  ctaUrl?: string;
 }
 
-const Navigation = ({ currentPage, ctaText, ctaUrl }: NavigationProps) => {
- const [isOpen, setIsOpen] = useState(false);
- const [authModalOpen, setAuthModalOpen] = useState(false);
- const { user, signOut, subscribed, subscriptionTier } = useAuth();
- const location = useLocation();
- const locale = getCurrentLocale();
+const Navigation = ({ currentPage }: NavigationProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+  const { user, signOut, subscribed, subscriptionTier } = useAuth();
+  const location = useLocation();
+  const locale = getCurrentLocale();
 
- const navItems = [
- { name: t('nav.home'), path: `/${locale}`, key: 'home' },
- { name: t('nav.about'), path: `/${locale}/about`, key: 'about' },
- { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
- { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
- { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
- ];
+  const navItems = [
+    { name: t('nav.home'), path: `/${locale}`, key: 'home' },
+    { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
+    { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
+    { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
+    { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' },
+    { name: t('nav.blog'), path: `/${locale}/blog`, key: 'blog' },
+    { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
+  ];
 
- // Add scroll listener for border effect
- useEffect(() => {
- const handleScroll = () => {
- const nav = document.querySelector('.scroll-border');
- if (nav) {
- if (window.scrollY > 0) {
- nav.classList.add('border-b-2');
- nav.classList.remove('border-b');
- } else {
- nav.classList.add('border-b');
- nav.classList.remove('border-b-2');
- }
- }
- };
+  // Add scroll listener for border effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const nav = document.querySelector('.scroll-border');
+      if (nav) {
+        if (window.scrollY > 0) {
+          nav.classList.add('border-b-2');
+          nav.classList.remove('border-b');
+        } else {
+          nav.classList.add('border-b');
+          nav.classList.remove('border-b-2');
+        }
+      }
+    };
 
- window.addEventListener('scroll', handleScroll);
- return () => window.removeEventListener('scroll', handleScroll);
- }, []);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
- // Prevent body scrolling when mobile menu is open
- useEffect(() => {
- if (isOpen) {
- document.body.style.overflow = 'hidden';
- } else {
- document.body.style.overflow = '';
- }
- return () => {
- document.body.style.overflow = '';
- };
- }, [isOpen]);
+  const isCurrentPage = (itemKey: string) => {
+    if (currentPage) {
+      return currentPage === itemKey || location.pathname === `/${locale}/${itemKey}` || (itemKey === 'home' && location.pathname === `/${locale}`);
+    }
+    
+    // Handle home page - both root and locale-prefixed
+    if (itemKey === 'home') {
+      return location.pathname === '/' || location.pathname === `/${locale}` || location.pathname === `/${locale}/`;
+    }
+    
+    // Handle other pages
+    return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
+  };
 
- const isCurrentPage = (itemKey: string) => {
- if (currentPage) {
- return currentPage === itemKey || location.pathname === `/${locale}/${itemKey}` || (itemKey === 'home' && location.pathname === `/${locale}`);
- }
- 
- // Handle home page - both root and locale-prefixed
- if (itemKey === 'home') {
- return location.pathname === '/' || location.pathname === `/${locale}` || location.pathname === `/${locale}/`;
- }
- 
- // Handle other pages
- return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
- };
+  return (
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
+        <div className="container mx-auto px-6 py-3">
+          <div className="flex items-center justify-between">
+            <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
+              <img 
+                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png" 
+                alt="STEaM LOGIC Studio AB"
+                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+              />
+              <div className="font-playfair font-bold text-teal">
+                <div className="text-xl leading-tight">STEaM LOGIC</div>
+                <div className="text-sm opacity-90">Studio AB</div>
+              </div>
+            </Link>
+            
+            <div className="hidden md:flex items-center space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.path}
+                  className={`font-inter font-medium transition-colors hover:text-brass ${
+                    isCurrentPage(item.key) 
+                      ? 'text-brass border-b-2 border-brass' 
+                      : 'text-oxidized-teal'
+                  }`}
+                >
+                  {item.name as string}
+                </Link>
+              ))}
+              
+              <LanguageSwitcher />
+              
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2">
+                    <User className="w-4 h-4 text-brass" />
+                    <span className="text-oxidized-teal text-sm">
+                      {user.email}
+                      {subscribed && (
+                        <span className="ml-2 text-brass text-xs">
+                          ({subscriptionTier})
+                        </span>
+                      )}
+                    </span>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={signOut}
+                    className="border-brass text-brass hover:bg-brass hover:text-parchment"
+                  >
+                    <LogOut className="w-4 h-4 mr-1" />
+                    {t('nav.signOut')}
+                  </Button>
+                </div>
+              ) : (
+                <Button
+                  onClick={() => setAuthModalOpen(true)}
+                  className="bg-brass hover:bg-brass-dark text-parchment"
+                >
+                  <User className="w-4 h-4 mr-2" />
+                  {t('nav.signIn')}
+                </Button>
+              )}
+            </div>
 
- return (
- <>
- <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
- <div className="container mx-auto px-6 py-3 md:py-4 lg:py-5">
- <div className="flex items-center justify-between">
- <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
- <img
- src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
- alt="STEaM LOGIC Studio AB"
- className="h-7 sm:h-8 block gear"
- loading="lazy"
- srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=64 64w, /lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=104 104w"
- sizes="(max-width: 768px) 64px, 104px"
- />
- <div className="font-playfair font-bold text-teal">
- <div className="text-xl leading-tight">STEaM LOGIC</div>
- <div className="text-sm opacity-90">Studio AB</div>
- </div>
- </Link>
- 
- <div className="hidden md:flex items-center space-x-8">
- {navItems.map((item) => (
- <Link
- key={item.key}
- to={item.path}
- className={` font-medium transition-colors hover:text-brass ${
- isCurrentPage(item.key)
- ? 'text-brass border-b-2 border-brass'
- : 'text-oxidized-teal'
- }`}
- >
- {item.name as string}
- </Link>
- ))}
-
- {ctaText && ctaUrl && (
- <Button
- asChild
- variant="outline"
- className="border-brass text-brass hover:bg-brass hover:text-parchment"
- >
- <Link to={ctaUrl}>{ctaText}</Link>
- </Button>
- )}
-
- <LanguageSwitcher />
-
- {user ? (
- <div className="flex items-center space-x-4">
- <div className="flex items-center space-x-2">
- <User className="w-4 h-4 text-brass" />
- <span className="text-oxidized-teal text-sm">
- {user.email}
- {subscribed && (
- <span className="ml-2 text-brass text-xs">
- ({subscriptionTier})
- </span>
- )}
- </span>
- </div>
- <button
- type="button"
- onClick={signOut}
- className="text-oxidized-teal hover:text-brass flex items-center text-sm"
- >
- <LogOut className="w-4 h-4 mr-1" />
- {t('nav.signOut')}
- </button>
- </div>
- ) : (
- <button
- type="button"
- onClick={() => setAuthModalOpen(true)}
- className="text-oxidized-teal hover:text-brass flex items-center text-sm"
- >
- <User className="w-4 h-4 mr-2" />
- {t('nav.signIn')}
- </button>
- )}
- </div>
-
- <button
- className="md:hidden text-oxidized-teal hover:text-brass transition-colors"
- onClick={() => setIsOpen(!isOpen)}
- >
- {isOpen ? <X size={28} /> : <Menu size={28} />}
- </button>
- </div>
- 
- {isOpen && (
- <motion.div
- initial={{ x: '100%' }}
- animate={{ x: 0 }}
- transition={{ type: 'tween', duration: 0.3 }}
- className="md:hidden mt-4 pb-4 border-t border-brass/30"
- >
- <div className="flex flex-col space-y-4 pt-4">
- {navItems.map((item) => (
- <Link
- key={item.key}
- to={item.path}
- className={` font-medium transition-colors hover:text-brass ${
- isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
- }`}
- onClick={() => setIsOpen(false)}
- >
- {item.name as string}
- </Link>
- ))}
-
- {ctaText && ctaUrl && (
- <Button
- asChild
- variant="outline"
- className="border-brass text-brass hover:bg-brass hover:text-parchment"
- >
- <Link to={ctaUrl} onClick={() => setIsOpen(false)}>
- {ctaText}
- </Link>
- </Button>
- )}
-
- <div className="pt-2 border-t border-brass/30">
- <LanguageSwitcher />
- </div>
-
- {user ? (
- <div className="space-y-2 pt-2 border-t border-brass/30">
- <div className="text-oxidized-teal text-sm flex items-center">
- <User className="w-4 h-4 text-brass mr-2" />
- {user.email}
- {subscribed && (
- <span className="ml-2 text-brass text-xs">
- ({subscriptionTier})
- </span>
- )}
- </div>
- <button
- type="button"
- onClick={signOut}
- className="text-oxidized-teal hover:text-brass flex items-center text-sm"
- >
- <LogOut className="w-4 h-4 mr-1" />
- {t('nav.signOut')}
- </button>
- </div>
- ) : (
- <button
- type="button"
- onClick={() => {
- setAuthModalOpen(true);
- setIsOpen(false);
- }}
- className="text-oxidized-teal hover:text-brass flex items-center text-sm"
- >
- <User className="w-4 h-4 mr-2" />
- {t('nav.signIn')}
- </button>
- )}
- </div>
- </motion.div>
- )}
- </div>
- </nav>
- {isOpen && (
- <div
- className="fixed inset-0 bg-black/50 z-40 md:hidden"
- onClick={() => setIsOpen(false)}
- />
- )}
-
- <AuthModal
- isOpen={authModalOpen}
- onClose={() => setAuthModalOpen(false)}
- />
- </>
- );
+            <button
+              className="md:hidden text-oxidized-teal hover:text-brass transition-colors"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+          
+          {isOpen && (
+            <div className="md:hidden mt-4 pb-4 border-t border-brass/30">
+              <div className="flex flex-col space-y-4 pt-4">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.key}
+                    to={item.path}
+                    className={`font-inter font-medium transition-colors hover:text-brass ${
+                      isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name as string}
+                  </Link>
+                ))}
+                
+                <div className="pt-2 border-t border-brass/30">
+                  <LanguageSwitcher />
+                </div>
+                
+                {user ? (
+                  <div className="space-y-2 pt-2 border-t border-brass/30">
+                    <div className="text-oxidized-teal text-sm flex items-center">
+                      <User className="w-4 h-4 text-brass mr-2" />
+                      {user.email}
+                      {subscribed && (
+                        <span className="ml-2 text-brass text-xs">
+                          ({subscriptionTier})
+                        </span>
+                      )}
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={signOut}
+                      className="border-brass text-brass hover:bg-brass hover:text-parchment"
+                    >
+                      <LogOut className="w-4 h-4 mr-1" />
+                      {t('nav.signOut')}
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      setAuthModalOpen(true);
+                      setIsOpen(false);
+                    }}
+                    className="bg-brass hover:bg-brass-dark text-parchment"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    {t('nav.signIn')}
+                  </Button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </nav>
+      
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+      />
+    </>
+  );
 };
 
 export default Navigation;

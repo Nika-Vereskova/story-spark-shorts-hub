@@ -5,47 +5,47 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useUserRole } from '@/hooks/useUserRole';
 
 const Newsletter = () => {
- const { user } = useAuth();
- const { isAdmin } = useUserRole();
+  const { user } = useAuth();
+  const { isAdmin } = useUserRole();
 
- if (!user || !isAdmin) {
- return (
- <div className="min-h-screen bg-parchment bg-gear-pattern">
- <Navigation />
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto text-center">
- <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
- Access Restricted
- </h1>
- <p className="text-oxidized-teal/80 ">
- Admin access required to view newsletter automation settings.
- </p>
- </div>
- </div>
- </div>
- );
- }
+  if (!user || !isAdmin) {
+    return (
+      <div className="min-h-screen bg-parchment bg-gear-pattern">
+        <Navigation />
+        <div className="pt-24 pb-16 px-6">
+          <div className="container mx-auto text-center">
+            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
+              Access Restricted
+            </h1>
+            <p className="text-oxidized-teal/80 font-inter">
+              Admin access required to view newsletter automation settings.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
- return (
- <div className="min-h-screen bg-parchment bg-gear-pattern">
- <Navigation />
- 
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
- <div className="text-center mb-8">
- <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
- Newsletter Automation
- </h1>
- <p className="text-xl text-oxidized-teal/80 ">
- Set up your weekly AI-powered newsletter with Zapier integration
- </p>
- </div>
- 
- <NewsletterAutomation />
- </div>
- </div>
- </div>
- );
+  return (
+    <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <Navigation />
+      
+      <div className="pt-24 pb-16 px-6">
+        <div className="container mx-auto max-w-4xl">
+          <div className="text-center mb-8">
+            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+              Newsletter Automation
+            </h1>
+            <p className="text-xl text-oxidized-teal/80 font-inter">
+              Set up your weekly AI-powered newsletter with Zapier integration
+            </p>
+          </div>
+          
+          <NewsletterAutomation />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Newsletter;

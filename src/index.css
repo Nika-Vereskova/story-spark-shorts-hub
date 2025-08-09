@@ -38,7 +38,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 36 26% 91%;
 
-    --border: 200 8% 45%;      /* Neutral border */
+    --border: 42 43% 49%;      /* Brass for borders */
     --input: 36 20% 85%;
     --ring: 195 40% 29%;
 
@@ -50,7 +50,7 @@
     --sidebar-primary-foreground: 36 26% 91%;
     --sidebar-accent: 36 20% 85%;
     --sidebar-accent-foreground: 200 8% 22%;
-    --sidebar-border: 200 8% 45%;
+    --sidebar-border: 42 43% 49%;
     --sidebar-ring: 195 40% 29%;
 
     /* Fluid type scale */
@@ -104,19 +104,20 @@
     @apply border-border;
   }
 
+  /* Base font family: Inter as default (clean sans for mobile) */
   body, html {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
   }
 
-  /* Utility class for explicit Playfair usage */
+  /* Utility class remains for explicit Playfair usage */
   .font-playfair {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
   }
 
   body {
     background: var(--parchment);
-    color: var(--iron); /* 9.23:1 contrast on parchment */
+    color: var(--iron);
     line-height: 1.6;
   }
   
@@ -136,32 +137,8 @@
     line-height: 1.6;
   }
 
-  a {
-    color: var(--brass);
-  }
-
-  svg {
-    color: var(--foreground);
-  }
-
-  hr {
-    border-color: hsl(var(--border));
-  }
-
-}
-
-@layer utilities {
-  .text-step--1 {
-    font-size: var(--step--1);
-  }
-  .text-step-0 {
-    font-size: var(--step-0);
-  }
-  .text-step-1 {
-    font-size: var(--step-1);
-  }
-  .text-step-2 {
-    font-size: var(--step-2);
+  .font-playfair {
+    font-weight: 700;
   }
 }
 
@@ -205,43 +182,3 @@
     box-shadow: 0 0 8px var(--cyan);
   }
 }
-/* Hero Banner */
-.hero-banner {
-  @apply flex flex-col items-center justify-center text-center py-20 px-6 bg-cover bg-center bg-no-repeat;
-  background-image: url('/your-gears-background.svg');
-}
-
-.hero-text-group::before{
-  content:"";
-  position:absolute;
-  inset:-1rem;
-  z-index:-1;
-  background: linear-gradient(90deg, rgba(251,233,196,.9), rgba(251,233,196,.6) 60%, transparent);
-  filter: blur(2px);
-  border-radius: 16px;
-}
-
-.hero-title {
-  @apply text-4xl md:text-5xl font-playfair text-oxidized-teal mb-4;
-}
-
-
-.hero-subtitle {
-  @apply text-oxidized-teal max-w-2xl;
-  font-size: var(--step-1);
-}
-
-.hero-image {
-  @apply mt-8 w-full max-w-md h-auto;
-}
-
-@media (min-width: 768px) {
-  .hero-banner {
-    @apply flex-row text-left py-32 px-8;
-  }
-
-  .hero-image {
-    @apply mt-0 ml-8;
-  }
-}
-

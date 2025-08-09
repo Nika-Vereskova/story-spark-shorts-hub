@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { posthog } from '@/lib/posthog';
 import Navigation from '@/components/Navigation';
 import SplitHeroSection from '@/components/SplitHeroSection';
@@ -9,7 +9,6 @@ import NewsletterSection from '@/components/NewsletterSection';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import CalloutFooter from '@/components/CalloutFooter';
 import Footer from '@/components/Footer';
-import HeroBanner from '@/components/HeroBanner';
 
 const Index = () => {
   if (process.env.NODE_ENV === 'development') {
@@ -19,15 +18,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
-      <Navigation currentPage="home" ctaText="Learn more about us" ctaUrl="/about" />
-
-      {/* Hero Banner */}
-      <HeroBanner
-        title="Story Spark Shorts"
-        subtitle="Short tales to ignite imagination"
-        ctaText="Get Started"
-        ctaUrl="/newsletter"
-      />
+      <Navigation currentPage="home" />
 
       {/* Split-Hero Banner */}
       <SplitHeroSection />
