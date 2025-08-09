@@ -28,7 +28,7 @@ const SplitHeroSection = () => {
     <>
       {/* Banner/Hero Section */}
       <section 
-        className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[28vh] sm:h-[32vh] md:h-[38vh] lg:h-[44vh] xl:h-[50vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px] max-h-[520px]"
+        className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[20vh] sm:h-[30vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] 2xl:h-[70vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px]"
         style={{
           backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
           backgroundSize: 'cover',
