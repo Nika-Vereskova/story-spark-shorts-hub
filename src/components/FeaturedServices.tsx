@@ -39,7 +39,7 @@ const FeaturedServices = () => {
           <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
             Stories & Solutions
           </h2>
-          <p className="text-oxidized-teal/80 text-lg max-w-2xl mx-auto font-inter">
+          <p className="text-oxidized-teal text-lg max-w-2xl mx-auto font-inter">
             Where imagination meets innovation - from children's books to cutting-edge AI
           </p>
         </div>
@@ -64,7 +64,7 @@ const FeaturedServices = () => {
                   </div>
                    <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title as string}</CardTitle>
                  </div>
-                 <CardDescription className="text-oxidized-teal/70 font-inter">
+                 <CardDescription className="text-oxidized-teal font-inter">
                    {service.description as string}
                 </CardDescription>
               </CardHeader>
@@ -72,7 +72,7 @@ const FeaturedServices = () => {
               <CardContent>
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal/80 font-inter">
+                    <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal font-inter">
                       <Wrench className="w-4 h-4 text-brass mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>

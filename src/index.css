@@ -193,7 +193,7 @@
 }
 
 .hero-subtitle {
-  @apply text-lg md:text-xl text-oxidized-teal/80 max-w-2xl;
+  @apply text-lg md:text-xl text-oxidized-teal max-w-2xl;
 }
 
 .hero-image {
