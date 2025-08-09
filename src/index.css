@@ -194,7 +194,7 @@
 }
 
 .hero-subtitle {
-  @apply text-oxidized-teal/80 max-w-2xl;
+  @apply text-oxidized-teal max-w-2xl;
   font-size: var(--step-1);
 }
 
