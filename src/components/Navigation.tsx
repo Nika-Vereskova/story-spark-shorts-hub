@@ -10,10 +10,12 @@ import { t, getCurrentLocale } from '@/lib/i18n';
 import { motion } from 'framer-motion';
 
 interface NavigationProps {
- currentPage?: string;
+  currentPage?: string;
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
-const Navigation = ({ currentPage }: NavigationProps) => {
+const Navigation = ({ currentPage, ctaText, ctaUrl }: NavigationProps) => {
  const [isOpen, setIsOpen] = useState(false);
  const [authModalOpen, setAuthModalOpen] = useState(false);
  const { user, signOut, subscribed, subscriptionTier } = useAuth();
@@ -99,17 +101,27 @@ const Navigation = ({ currentPage }: NavigationProps) => {
  key={item.key}
  to={item.path}
  className={` font-medium transition-colors hover:text-brass ${
- isCurrentPage(item.key) 
- ? 'text-brass border-b-2 border-brass' 
+ isCurrentPage(item.key)
+ ? 'text-brass border-b-2 border-brass'
  : 'text-oxidized-teal'
  }`}
  >
  {item.name as string}
  </Link>
  ))}
- 
+
+ {ctaText && ctaUrl && (
+ <Button
+ asChild
+ variant="outline"
+ className="border-brass text-brass hover:bg-brass hover:text-parchment"
+ >
+ <Link to={ctaUrl}>{ctaText}</Link>
+ </Button>
+ )}
+
  <LanguageSwitcher />
- 
+
  {user ? (
  <div className="flex items-center space-x-4">
  <div className="flex items-center space-x-2">
@@ -172,6 +184,18 @@ const Navigation = ({ currentPage }: NavigationProps) => {
  {item.name as string}
  </Link>
  ))}
+
+ {ctaText && ctaUrl && (
+ <Button
+ asChild
+ variant="outline"
+ className="border-brass text-brass hover:bg-brass hover:text-parchment"
+ >
+ <Link to={ctaUrl} onClick={() => setIsOpen(false)}>
+ {ctaText}
+ </Link>
+ </Button>
+ )}
 
  <div className="pt-2 border-t border-brass/30">
  <LanguageSwitcher />

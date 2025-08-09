@@ -19,7 +19,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
       {/* Navigation */}
-      <Navigation currentPage="home" />
+      <Navigation currentPage="home" ctaText="Learn more about us" ctaUrl="/about" />
 
       {/* Hero Banner */}
       <HeroBanner
@@ -27,8 +27,6 @@ const Index = () => {
         subtitle="Short tales to ignite imagination"
         ctaText="Get Started"
         ctaUrl="/newsletter"
-        linkText="Learn more about us"
-        linkUrl="/about"
       />
 
       {/* Split-Hero Banner */}

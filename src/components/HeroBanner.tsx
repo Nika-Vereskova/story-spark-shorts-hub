@@ -7,8 +7,6 @@ interface HeroBannerProps {
   imageUrl?: string;
   ctaText?: string;
   ctaUrl?: string;
-  linkText?: string;
-  linkUrl?: string;
 }
 
 const HeroBanner: React.FC<HeroBannerProps> = ({
@@ -17,8 +15,6 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
   imageUrl,
   ctaText,
   ctaUrl,
-  linkText,
-  linkUrl,
 }) => {
   return (
     <section className="hero-banner relative overflow-hidden">
@@ -30,11 +26,6 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           <Button asChild className="w-full sm:w-auto mt-4">
             <a href={ctaUrl}>{ctaText}</a>
           </Button>
-        )}
-        {linkText && linkUrl && (
-          <a href={linkUrl} className="mt-2 text-step--1 underline">
-            {linkText}
-          </a>
         )}
       </div>
       {imageUrl && (
