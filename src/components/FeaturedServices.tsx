@@ -39,7 +39,7 @@ const FeaturedServices = () => {
  <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
  Stories & Solutions
  </h2>
- <p className="text-oxidized-teal text-lg max-w-2xl mx-auto ">
+ <p className="text-oxidized-teal max-w-2xl mx-auto font-inter text-step-1">
  Where imagination meets innovation - from children's books to cutting-edge AI
  </p>
  </div>
@@ -72,16 +72,16 @@ const FeaturedServices = () => {
  <CardContent>
  <ul className="space-y-2 mb-6">
  {service.features.map((feature, idx) => (
- <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal ">
+ <li key={idx} className="flex items-start gap-2 text-oxidized-teal text-step--1">
  <Wrench className="w-4 h-4 text-brass mt-0.5 flex-shrink-0" />
  {feature}
  </li>
  ))}
  </ul>
  
- <Button 
+ <Button
  onClick={service.action}
- className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
+ className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
  >
  {service.cta as string}
  </Button>
