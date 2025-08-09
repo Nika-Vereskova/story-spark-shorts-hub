@@ -1,12 +1,13 @@
 
-import React, { Suspense } from 'react';
+import React, { useState } from 'react';
+import { posthog } from '@/lib/posthog';
 import Navigation from '@/components/Navigation';
-const SplitHeroSection = React.lazy(() => import('@/components/SplitHeroSection'));
-const FeaturedServices = React.lazy(() => import('@/components/FeaturedServices'));
-const AINewsCarousel = React.lazy(() => import('@/components/AINewsCarousel'));
-const NewsletterSection = React.lazy(() => import('@/components/NewsletterSection'));
-const TestimonialSlider = React.lazy(() => import('@/components/TestimonialSlider'));
-const CalloutFooter = React.lazy(() => import('@/components/CalloutFooter'));
+import SplitHeroSection from '@/components/SplitHeroSection';
+import FeaturedServices from '@/components/FeaturedServices';
+import AINewsCarousel from '@/components/AINewsCarousel';
+import NewsletterSection from '@/components/NewsletterSection';
+import TestimonialSlider from '@/components/TestimonialSlider';
+import CalloutFooter from '@/components/CalloutFooter';
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -20,34 +21,22 @@ const Index = () => {
       <Navigation currentPage="home" />
 
       {/* Split-Hero Banner */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <SplitHeroSection />
-      </Suspense>
+      <SplitHeroSection />
 
       {/* Featured Services (3 side-by-side cards) */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <FeaturedServices />
-      </Suspense>
+      <FeaturedServices />
 
       {/* Latest AI News Carousel */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <AINewsCarousel />
-      </Suspense>
+      <AINewsCarousel />
 
       {/* Newsletter Strip */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <NewsletterSection />
-      </Suspense>
+      <NewsletterSection />
 
       {/* Testimonial Slider */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <TestimonialSlider />
-      </Suspense>
+      <TestimonialSlider />
 
       {/* Call-out Footer Block */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <CalloutFooter />
-      </Suspense>
+      <CalloutFooter />
 
       {/* Footer */}
       <Footer />

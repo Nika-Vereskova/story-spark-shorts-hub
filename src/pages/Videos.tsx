@@ -58,10 +58,9 @@ const Videos = () => {
                 <div className="relative overflow-hidden">
                   {/* YouTube Thumbnail */}
                   <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 flex items-center justify-center relative">
-                    <img
+                    <img 
                       src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
                       alt={video.title}
-                      loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                       onError={(e) => {
                         // Fallback to default thumbnail if maxresdefault doesn't exist
