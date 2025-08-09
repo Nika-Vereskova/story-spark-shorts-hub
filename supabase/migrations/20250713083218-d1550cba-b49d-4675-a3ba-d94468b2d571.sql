@@ -18,23 +18,32 @@ CREATE POLICY "Anyone can subscribe to newsletter"
   WITH CHECK (true);
 
 -- Allow service role to read for confirmation lookup
-CREATE POLICY "Service role can read subscribers" 
-  ON public.newsletter_subscribers 
-  FOR SELECT 
-  USING (true);
+CREATE POLICY "Service role can read subscribers"
+  ON public.newsletter_subscribers
+  FOR SELECT
+  USING (auth.role() = 'service_role');
 
 -- Allow service role to update for confirmation
-CREATE POLICY "Service role can confirm subscriptions" 
-  ON public.newsletter_subscribers 
-  FOR UPDATE 
-  USING (true)
-  WITH CHECK (true);
+CREATE POLICY "Service role can confirm subscriptions"
+  ON public.newsletter_subscribers
+  FOR UPDATE
+  USING (auth.role() = 'service_role')
+  WITH CHECK (auth.role() = 'service_role');
 
 -- Allow anyone to update with unsubscribe token (for unsubscribe functionality)
-CREATE POLICY "Anyone can unsubscribe with token" 
-  ON public.newsletter_subscribers 
-  FOR UPDATE 
-  USING (true);
+CREATE POLICY "Anyone can unsubscribe with token"
+  ON public.newsletter_subscribers
+  FOR UPDATE
+  USING (
+    unsubscribe_token = (
+      current_setting('request.jwt.claims', true)::json->>'unsubscribe_token'
+    )::uuid
+  )
+  WITH CHECK (
+    unsubscribe_token = (
+      current_setting('request.jwt.claims', true)::json->>'unsubscribe_token'
+    )::uuid
+  );
 
 -- Allow admins to manage all subscribers
 CREATE POLICY "Admins can manage all subscribers" 
