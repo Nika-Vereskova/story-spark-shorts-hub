@@ -186,7 +186,7 @@ const Admin = () => {
  <div className="pt-24 pb-16 px-6">
  <div className="container mx-auto max-w-4xl">
  <div className="text-center">
- <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
+<div className="animate-spin rounded-full h-8 w-8 border-b-2 border-border mx-auto"></div>
  <p className="text-oxidized-teal mt-4 ">Loading...</p>
  </div>
  </div>
@@ -202,7 +202,7 @@ const Admin = () => {
  <Navigation currentPage="admin" />
  <div className="pt-24 pb-16 px-6">
  <div className="container mx-auto max-w-4xl">
- <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
+ <Card className="bg-parchment/90 border-2 border-border shadow-brass-drop">
  <CardHeader className="text-center">
  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
  <Lock className="mr-2 h-6 w-6" />
@@ -234,7 +234,7 @@ const Admin = () => {
  <Navigation currentPage="admin" />
  <div className="pt-24 pb-16 px-6">
  <div className="container mx-auto max-w-4xl">
- <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
+ <Card className="bg-parchment/90 border-2 border-border shadow-brass-drop">
  <CardHeader className="text-center">
  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
  <Lock className="mr-2 h-6 w-6" />
@@ -275,7 +275,7 @@ const Admin = () => {
 
  {/* Stats Card */}
  <div className="mb-8">
- <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
+ <Card className="bg-parchment/90 border-2 border-border shadow-brass-drop">
  <CardHeader>
  <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
  <Users className="mr-2 h-5 w-5" />
@@ -284,7 +284,7 @@ const Admin = () => {
  </CardHeader>
  <CardContent>
  <div className="flex items-center gap-2">
- <Mail className="h-4 w-4 text-brass" />
+ <Mail className="h-4 w-4 text-foreground" />
  <span className=" text-oxidized-teal">
  Active Subscribers: <strong>{subscriberCount !== null ? subscriberCount : 'Loading...'}</strong>
  </span>
@@ -294,12 +294,12 @@ const Admin = () => {
  </div>
 
  {/* Newsletter Form */}
- <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop relative">
- {/* Ornate brass corners */}
- <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
- <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
- <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
- <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
+ <Card className="bg-parchment/90 border-2 border-border shadow-brass-drop relative">
+  {/* Ornate corners */}
+<div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-border"></div>
+<div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-border"></div>
+<div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-border"></div>
+<div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-border"></div>
  
  <CardHeader>
  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center">
@@ -323,7 +323,7 @@ const Admin = () => {
  onChange={(e) => setSubject(e.target.value)}
  placeholder="Enter newsletter subject..."
  disabled={isSending}
- className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow "
+ className="w-full px-4 py-3 bg-parchment border-2 border-border focus:border-foreground focus:outline-none shadow-inner-glow "
  maxLength={100}
  />
  </div>
@@ -338,7 +338,7 @@ const Admin = () => {
  onChange={(e) => setContent(e.target.value)}
  placeholder="Write your newsletter content here..."
  disabled={isSending}
- className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow min-h-[200px]"
+ className="w-full px-4 py-3 bg-parchment border-2 border-border focus:border-foreground focus:outline-none shadow-inner-glow min-h-[200px]"
  maxLength={5000}
  />
  <p className="text-sm text-oxidized-teal/60 mt-1 ">

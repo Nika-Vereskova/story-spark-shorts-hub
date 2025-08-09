@@ -27,9 +27,9 @@ const Footer = () => {
  incrementVisits();
  }, []);
 
- return (
- <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-brass/50">
- <div className="container mx-auto text-center">
+  return (
+    <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-border/50">
+      <div className="container mx-auto text-center">
  <p className="text-oxidized-teal/80 font-medium ">{t('footer.copyright')}</p>
  <div className="flex justify-between items-center mt-4">
  <div className="flex-1" />
