@@ -59,3 +59,7 @@ verify_jwt = false
 # Make the confirm-newsletter function public (no auth required)
 [functions.confirm-newsletter]
 verify_jwt = false
+
+# Make the unsubscribe function public (no auth required)
+[functions.unsubscribe]
+verify_jwt = false
