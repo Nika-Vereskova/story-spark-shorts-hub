@@ -26,13 +26,13 @@ const QuickLinksSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('books.subtitle')}
               </p>
               <Link to="/books">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 >
                   {t('home.exploreBooks')}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -55,13 +55,13 @@ const QuickLinksSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('videos.subtitle')}
               </p>
               <Link to="/videos">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium hover:sepia"
                 >
                   {t('home.watchVideos')}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -84,13 +84,13 @@ const QuickLinksSection = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-oxidized-teal/80 mb-4 font-inter">
+              <p className="text-oxidized-teal/80 mb-4">
                 {t('about.subtitle')}
               </p>
               <Link to="/about">
                 <Button 
                   variant="outline" 
-                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 >
                   {t('home.learnMore')}
                   <ArrowRight className="ml-2 h-4 w-4" />

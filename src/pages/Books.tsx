@@ -51,7 +51,7 @@ const Books = () => {
             <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('books.title')}
             </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
+            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto">
               {t('books.subtitle')}
             </p>
           </div>
@@ -83,7 +83,7 @@ const Books = () => {
                   />
                   {book.featured && (
                     <div className="absolute top-4 right-4 z-20">
-                      <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
+                      <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium flex items-center">
                         <Cog className="w-3 h-3 mr-1" />
                         {t('common.featured')}
                       </span>
@@ -93,16 +93,16 @@ const Books = () => {
                 
                 <CardHeader>
                   <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop">{book.title}</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">{book.ageRange}</CardDescription>
+                  <CardDescription className="text-brass font-medium">{book.ageRange}</CardDescription>
                 </CardHeader>
                 
                 <CardContent>
-                  <p className="text-oxidized-teal/80 mb-6 text-sm leading-relaxed font-inter">
+                  <p className="text-oxidized-teal/80 mb-6 text-sm leading-relaxed">
                     {book.blurb}
                   </p>
                   <div className="space-y-2">
                     <Button 
-                      className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                      className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                       onClick={() => handleBuyBook(book.amazonUrl, book.title)}
                     >
                       {t('books.swedishVersion')}
@@ -111,7 +111,7 @@ const Books = () => {
                     {book.englishUrl && (
                       <Button 
                         variant="outline"
-                        className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
+                        className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-medium"
                         onClick={() => handleBuyBook(book.englishUrl!, `${book.title} (English)`)}
                       >
                         {t('books.englishVersion')}
@@ -135,12 +135,12 @@ const Books = () => {
             <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('books.cantFind')}
             </h2>
-            <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
+            <p className="text-oxidized-teal/80 text-lg mb-6">
               {t('books.cantFindDesc')}
             </p>
             <Button 
               size="lg" 
-              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+              className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
             >
               {t('books.joinGuild')}
             </Button>

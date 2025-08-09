@@ -81,7 +81,7 @@ const SplitHeroSection = () => {
                   />
                 </AspectRatio>
                 <div className="absolute top-4 right-4">
-                  <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
+                  <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium flex items-center">
                     <Book className="w-3 h-3 mr-1" />
                     {t('splitHero.featuredBook')}
                   </span>
@@ -89,12 +89,12 @@ const SplitHeroSection = () => {
               </div>
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">{t('splitHero.plumberellaTitle')}</CardTitle>
-                <CardDescription className="text-brass font-medium font-inter text-lg">{t('splitHero.plumberellaDesc')}</CardDescription>
+                <CardDescription className="text-brass font-medium text-lg">{t('splitHero.plumberellaDesc')}</CardDescription>
               </CardHeader>
               <CardContent>
                 <Button 
                   variant="steam"
-                  className="w-full min-h-[44px] font-inter font-medium text-lg py-3"
+                  className="w-full min-h-[44px] font-medium text-lg py-3"
                   onClick={handleBookSample}
                 >
                   <Book className="mr-2 h-5 w-5" />
@@ -123,7 +123,7 @@ const SplitHeroSection = () => {
                   </div>
                   <div>
                     <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">{t('splitHero.aiTitle')}</CardTitle>
-                    <CardDescription className="text-brass font-medium font-inter text-lg">{t('splitHero.aiSubtitle')}</CardDescription>
+                    <CardDescription className="text-brass font-medium text-lg">{t('splitHero.aiSubtitle')}</CardDescription>
                   </div>
                 </div>
               </CardHeader>
@@ -132,28 +132,28 @@ const SplitHeroSection = () => {
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '4s' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiStrategyTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiStrategyDesc')}</p>
+                      <h4 className="text-oxidized-teal font-semibold">{t('splitHero.aiStrategyTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm">{t('splitHero.aiStrategyDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '3s', animationDirection: 'reverse' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiCustomTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiCustomDesc')}</p>
+                      <h4 className="text-oxidized-teal font-semibold">{t('splitHero.aiCustomTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm">{t('splitHero.aiCustomDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '5s' }} />
                     <div>
-                      <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiWorkshopsTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter">{t('splitHero.aiWorkshopsDesc')}</p>
+                      <h4 className="text-oxidized-teal font-semibold">{t('splitHero.aiWorkshopsTitle')}</h4>
+                      <p className="text-oxidized-teal/70 text-sm">{t('splitHero.aiWorkshopsDesc')}</p>
                     </div>
                   </div>
                 </div>
                 <Button 
                   variant="steam"
-                  className="w-full min-h-[44px] font-inter font-medium text-lg py-3"
+                  className="w-full min-h-[44px] font-medium text-lg py-3"
                   onClick={handleAIServices}
                 >
                   <Sparkles className="mr-2 h-5 w-5" />

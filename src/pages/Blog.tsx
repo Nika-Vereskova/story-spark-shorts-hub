@@ -137,7 +137,7 @@ const Blog = () => {
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">{t('blog.title')}</h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
+            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto">
               {t('blog.subtitle')}
             </p>
             
@@ -146,7 +146,7 @@ const Blog = () => {
               <div className="mt-8">
                 <Button
                   onClick={() => setShowCreateForm(!showCreateForm)}
-                  className="bg-brass hover:bg-brass-dark text-parchment px-6 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="bg-brass hover:bg-brass-dark text-parchment px-6 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 >
                   <Plus className="mr-2 h-4 w-4" />
                   {t('common.createPost')}
@@ -160,7 +160,7 @@ const Blog = () => {
             <div className="mt-8 p-4 bg-brass/10 border border-brass/30 rounded-lg">
               <div className="flex items-center text-brass">
                 <Shield className="mr-2 h-4 w-4" />
-                <span className="font-inter text-sm">Blog post creation is restricted to administrators.</span>
+                <span className="text-sm">Blog post creation is restricted to administrators.</span>
               </div>
             </div>
           )}
@@ -173,7 +173,7 @@ const Blog = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <Label htmlFor="post-title" className="text-oxidized-teal font-inter font-medium">
+                  <Label htmlFor="post-title" className="text-oxidized-teal font-medium">
                     {t('common.postTitle')}
                   </Label>
                   <Input
@@ -186,7 +186,7 @@ const Blog = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="post-content" className="text-oxidized-teal font-inter font-medium">
+                  <Label htmlFor="post-content" className="text-oxidized-teal font-medium">
                     {t('common.postContent')}
                   </Label>
                   <Textarea
@@ -199,7 +199,7 @@ const Blog = () => {
                 </div>
                 
                 <div>
-                  <Label htmlFor="webhook-url" className="text-oxidized-teal font-inter font-medium">
+                  <Label htmlFor="webhook-url" className="text-oxidized-teal font-medium">
                     {t('common.zapierWebhook')} (Optional)
                   </Label>
                   <Input
@@ -216,7 +216,7 @@ const Blog = () => {
                   <Button
                     onClick={handleCreatePost}
                     disabled={isLoading}
-                    className="bg-brass hover:bg-brass-dark text-parchment px-4 py-2 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                    className="bg-brass hover:bg-brass-dark text-parchment px-4 py-2 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-medium"
                   >
                     <Send className="mr-2 h-4 w-4" />
                     {isLoading ? 'Publishing...' : t('common.publishPost')}
@@ -250,14 +250,14 @@ const Blog = () => {
                 <CardHeader>
                   <div className="flex items-center gap-2 text-brass mb-2">
                     <Calendar className="w-4 h-4" />
-                    <span className="text-sm font-medium font-inter">{post.date}</span>
+                    <span className="text-sm font-medium">{post.date}</span>
                   </div>
                   <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">{post.title}</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">{t('blog.latestUpdates')}</CardDescription>
+                  <CardDescription className="text-brass font-medium">{t('blog.latestUpdates')}</CardDescription>
                 </CardHeader>
                 
                 <CardContent className="space-y-6">
-                  <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed">
+                  <div className="text-oxidized-teal/80 whitespace-pre-line leading-relaxed">
                     {post.content}
                   </div>
                   
@@ -273,7 +273,7 @@ const Blog = () => {
                           <Button
                             key={linkIndex}
                             variant="outline"
-                            className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                            className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                             onClick={() => handleLinkClick(link.url, link.title)}
                           >
                             {link.title}
@@ -289,7 +289,7 @@ const Blog = () => {
                     <div className="pt-4 border-t border-brass/30">
                       <Button
                         variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium mb-4"
+                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-medium mb-4"
                         onClick={() => setExpandedExcerpt(!expandedExcerpt)}
                       >
                         <BookOpen className="mr-2 h-4 w-4" />
@@ -299,7 +299,7 @@ const Blog = () => {
                       {expandedExcerpt && (
                         <div className="bg-brass/5 p-6 rounded-lg border border-brass/20 animate-fade-in">
                           <div className="prose prose-oxidized-teal max-w-none">
-                            <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed text-sm">
+                            <div className="text-oxidized-teal/80 whitespace-pre-line leading-relaxed text-sm">
                               {post.bookExcerpt}
                             </div>
                           </div>
@@ -310,13 +310,13 @@ const Blog = () => {
                   
                   {/* Social Media Follow */}
                   <div className="pt-4 border-t border-brass/30">
-                    <p className="text-oxidized-teal/80 mb-4 font-inter">
+                    <p className="text-oxidized-teal/80 mb-4">
                       {t('blog.followMe')}
                     </p>
                     <div className="flex flex-wrap gap-3">
                       <Button
                         variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-medium"
                         onClick={() => handleLinkClick('https://www.facebook.com/profile.php?id=61577838015246', 'Facebook')}
                       >
                         Facebook
@@ -324,7 +324,7 @@ const Blog = () => {
                       </Button>
                       <Button
                         variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-medium"
                         onClick={() => handleLinkClick('https://www.instagram.com/vereskovanika', 'Instagram')}
                       >
                         Instagram
@@ -333,7 +333,7 @@ const Blog = () => {
                     </div>
                   </div>
                   
-                  <div className="pt-4 italic text-oxidized-teal/70 font-inter">
+                  <div className="pt-4 italic text-oxidized-teal/70">
                     {t('blog.inspirationalQuote')}
                   </div>
                 </CardContent>

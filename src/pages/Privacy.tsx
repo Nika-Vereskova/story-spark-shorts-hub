@@ -13,7 +13,7 @@ const Privacy = () => {
           {t('privacyPage.title')}
         </h1>
         
-        <div className="prose prose-lg max-w-none text-oxidized-teal/90 font-inter space-y-6">
+        <div className="prose prose-lg max-w-none text-oxidized-teal/90 space-y-6">
           <p>
             <strong>{t('privacyPage.lastUpdated')}</strong>{' '}
             {new Date().toLocaleDateString()}

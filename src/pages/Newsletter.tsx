@@ -17,7 +17,7 @@ const Newsletter = () => {
             <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
               Access Restricted
             </h1>
-            <p className="text-oxidized-teal/80 font-inter">
+            <p className="text-oxidized-teal/80">
               Admin access required to view newsletter automation settings.
             </p>
           </div>
@@ -36,7 +36,7 @@ const Newsletter = () => {
             <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               Newsletter Automation
             </h1>
-            <p className="text-xl text-oxidized-teal/80 font-inter">
+            <p className="text-xl text-oxidized-teal/80">
               Set up your weekly AI-powered newsletter with Zapier integration
             </p>
           </div>

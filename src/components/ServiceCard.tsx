@@ -54,11 +54,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">
           {title}
         </CardTitle>
-        <CardDescription className="text-oxidized-teal/80 font-inter">
+        <CardDescription className="text-oxidized-teal/80">
           {description}
         </CardDescription>
         {price && (
-          <div className="text-brass font-bold text-xl font-inter">
+          <div className="text-brass font-bold text-xl">
             {price}
           </div>
         )}
@@ -67,7 +67,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       <CardContent className="space-y-4">
         <ul className="space-y-2">
           {features.map((feature, featureIndex) => (
-            <li key={featureIndex} className="flex items-start text-oxidized-teal/90 font-inter text-sm">
+            <li key={featureIndex} className="flex items-start text-oxidized-teal/90 text-sm">
               <ChevronRight className="w-4 h-4 text-brass mt-0.5 mr-2 flex-shrink-0" />
               {feature}
             </li>
@@ -85,7 +85,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             ) : (
               <>
                 <Button
-                  className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                  className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-medium"
                   onClick={() => onSubscription('monthly')}
                   disabled={loading === 'subscription-monthly'}
                 >
@@ -93,7 +93,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
                   {loading === 'subscription-monthly' ? t('services.card.loading') : t('services.card.monthlyPrice')}
                 </Button>
                 <Button
-                  className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+                  className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-medium"
                   onClick={() => onSubscription('yearly')}
                   disabled={loading === 'subscription-yearly'}
                 >
@@ -106,7 +106,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         ) : (
           <div className="space-y-2">
             <Button
-              className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
+              className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-medium"
               onClick={() => serviceName && onOneTimePayment(serviceName)}
               disabled={loading === serviceName}
             >
@@ -115,7 +115,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             </Button>
             <Button
               variant="outline"
-              className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-inter font-medium"
+              className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-medium"
               onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
             >
               <Mail className="mr-2 h-4 w-4" />

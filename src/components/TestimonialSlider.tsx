@@ -123,7 +123,7 @@ const TestimonialSlider = () => {
           <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
             What People Say
           </h2>
-          <p className="text-oxidized-teal/80 text-lg font-inter">
+          <p className="text-oxidized-teal/80 text-lg">
             Testimonials from parents, publishers, and AI pilot clients
           </p>
         </div>
@@ -140,19 +140,19 @@ const TestimonialSlider = () => {
                     <Star key={i} className="w-5 h-5 text-brass fill-current" />
                   ))}
                 </div>
-                <span className={`text-sm font-medium font-inter px-3 py-1 rounded-full bg-white/50 ${getCategoryColor(currentTestimonial.category)}`}>
+                <span className={`text-sm font-medium px-3 py-1 rounded-full bg-white/50 ${getCategoryColor(currentTestimonial.category)}`}>
                   {getCategoryLabel(currentTestimonial.category)}
                 </span>
               </div>
               
-              <blockquote className="text-oxidized-teal text-lg text-center mb-6 font-inter leading-relaxed italic">
+              <blockquote className="text-oxidized-teal text-lg text-center mb-6 leading-relaxed italic">
                 "{currentTestimonial.content}"
               </blockquote>
               
               <div className="text-center">
-                <div className="font-semibold text-oxidized-teal font-inter">{currentTestimonial.name}</div>
-                <div className="text-brass font-medium font-inter">{currentTestimonial.role}</div>
-                <div className="text-oxidized-teal/70 text-sm font-inter">{currentTestimonial.organization}</div>
+                <div className="font-semibold text-oxidized-teal">{currentTestimonial.name}</div>
+                <div className="text-brass font-medium">{currentTestimonial.role}</div>
+                <div className="text-oxidized-teal/70 text-sm">{currentTestimonial.organization}</div>
               </div>
             </CardContent>
           </Card>

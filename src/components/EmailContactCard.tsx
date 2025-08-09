@@ -19,14 +19,14 @@ const EmailContactCard = () => {
           <Mail className="mr-2 h-6 w-6" />
           {t('contact.emailDirect')}
         </CardTitle>
-        <CardDescription className="text-oxidized-teal/80 font-inter">
+        <CardDescription className="text-oxidized-teal/80">
           {t('contact.emailDesc')}
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Button 
           size="lg" 
-          className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+          className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
           onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com'}
         >
           <Mail className="mr-2 h-5 w-5" />

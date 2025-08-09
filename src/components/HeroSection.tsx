@@ -53,7 +53,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
             <h1 className="sr-only">
               {t('home.title')}
             </h1>
-            <p className="text-xl text-oxidized-teal/80 mb-8 max-w-2xl font-inter">
+            <p className="text-xl text-oxidized-teal/80 mb-8 max-w-2xl">
               {t('home.subtitle')}
               <br /><br />
               {t('home.description')}
@@ -61,7 +61,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 text-lg border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 text-lg border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                 onClick={onReadExcerpt}
               >
                 <Key className="mr-2 h-5 w-5" />
@@ -70,7 +70,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium hover:sepia"
+                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 text-lg shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium hover:sepia"
                 onClick={handleWatchStoryTime}
               >
                 <Play className="mr-2 h-5 w-5" />
@@ -98,7 +98,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
                   sizes="(max-width: 768px) 100vw, 768px"
                 />
                 <div className="absolute top-4 right-4">
-                  <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
+                  <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium flex items-center">
                     <Cog className="w-3 h-3 mr-1" />
                     {t('common.featured')}
                   </span>
@@ -106,16 +106,16 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
               </div>
               <CardHeader>
                 <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">Plumberella</CardTitle>
-                <CardDescription className="text-brass font-medium font-inter">{t('common.ageRange')} • Steampunk Fairy Tale</CardDescription>
+                <CardDescription className="text-brass font-medium">{t('common.ageRange')} • Steampunk Fairy Tale</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="text-oxidized-teal/80 mb-6 font-inter">
+                <p className="text-oxidized-teal/80 mb-6">
                   Plumberella is a witty, heartwarming steampunk fairytale about a girl, a vanishing bathroom, and the invention of truth.
                   <br /><br />
                   When a charming but deceitful stepmother moves in, young Plumberella finds herself banished to the basement while frilly dresses replace her tools. But she isn't the type to mope — she's a certified pipe-wrangler with a talent for fixing more than just faucets.
                 </p>
                 <Button 
-                  className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                  className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-medium"
                   onClick={handleBuyPlumberella}
                 >
                   Buy on Amazon KDP
