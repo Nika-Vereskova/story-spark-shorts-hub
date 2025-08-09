@@ -13,7 +13,7 @@ const Terms = () => {
           {t('termsPage.title')}
         </h1>
         
-        <div className="prose prose-lg max-w-none text-oxidized-teal/90 font-playfair space-y-6">
+        <div className="prose prose-lg max-w-none text-oxidized-teal/90 font-inter space-y-6">
           <p>
             <strong>{t('termsPage.lastUpdated')}</strong>{' '}
             {new Date().toLocaleDateString()}

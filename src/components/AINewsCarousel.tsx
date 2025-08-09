@@ -54,7 +54,7 @@ const AINewsCarousel = () => {
         <div className="container mx-auto">
           <div className="text-center">
             <Cog className="w-8 h-8 text-brass animate-spin mx-auto mb-4" />
-            <p className="text-oxidized-teal font-playfair">{t('aiNews.loading')}</p>
+            <p className="text-oxidized-teal font-inter">{t('aiNews.loading')}</p>
           </div>
         </div>
       </section>
@@ -72,7 +72,7 @@ const AINewsCarousel = () => {
           <h2 className="text-4xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
             {t('aiNews.latestInsights')}
           </h2>
-          <p className="text-oxidized-teal/80 text-lg font-playfair">
+          <p className="text-oxidized-teal/80 text-lg font-inter">
             {t('aiNews.tagline')}
           </p>
         </div>
@@ -101,7 +101,7 @@ const AINewsCarousel = () => {
               )}
               
               <CardHeader className="pb-2">
-                <div className="flex items-center gap-1 text-xs text-brass mb-1 font-playfair">
+                <div className="flex items-center gap-1 text-xs text-brass mb-1 font-inter">
                   <Clock className="w-3 h-3" />
                   {formatDate(post.published_at)}
                 </div>
@@ -112,7 +112,7 @@ const AINewsCarousel = () => {
               
               <CardContent className="pt-0">
                 {post.summary && (
-                  <CardDescription className="text-oxidized-teal/70 text-xs mb-3 font-playfair line-clamp-2">
+                  <CardDescription className="text-oxidized-teal/70 text-xs mb-3 font-inter line-clamp-2">
                     {post.summary}
                   </CardDescription>
                 )}
@@ -121,7 +121,7 @@ const AINewsCarousel = () => {
                   <Button 
                     size="sm"
                     variant="outline"
-                    className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-playfair text-xs"
+                    className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter text-xs"
                     onClick={() => window.open(post.article_url!, '_blank')}
                   >
                     {t('aiNews.readMore')}
@@ -136,7 +136,7 @@ const AINewsCarousel = () => {
         <div className="text-center mt-8">
           <Button 
             variant="outline"
-            className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-playfair font-medium"
+            className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-inter font-medium"
             onClick={() => window.location.href = '/ai-news'}
           >
             {t('aiNews.viewAll')}

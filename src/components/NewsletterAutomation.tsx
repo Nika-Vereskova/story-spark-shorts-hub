@@ -115,7 +115,7 @@ const NewsletterAutomation: React.FC = () => {
             <Clock className="mr-3 h-6 w-6" />
             Weekly Newsletter Automation
           </CardTitle>
-          <CardDescription className="text-oxidized-teal/80 font-playfair">
+          <CardDescription className="text-oxidized-teal/80 font-inter">
             Automate your weekly AI-powered newsletter with Zapier integration
           </CardDescription>
         </CardHeader>
@@ -127,7 +127,7 @@ const NewsletterAutomation: React.FC = () => {
           <CardContent className="p-6 text-center">
             <Mail className="w-12 h-12 text-brass mx-auto mb-3" />
             <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">AI-Generated Content</h3>
-            <p className="text-sm text-oxidized-teal/80 font-playfair">
+            <p className="text-sm text-oxidized-teal/80 font-inter">
               Automatically includes latest AI news, YouTube highlights, and weekly tips
             </p>
           </CardContent>
@@ -137,7 +137,7 @@ const NewsletterAutomation: React.FC = () => {
           <CardContent className="p-6 text-center">
             <Calendar className="w-12 h-12 text-brass mx-auto mb-3" />
             <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Weekly Schedule</h3>
-            <p className="text-sm text-oxidized-teal/80 font-playfair">
+            <p className="text-sm text-oxidized-teal/80 font-inter">
               Sends every Tuesday at 09:00 AM to your subscriber list
             </p>
           </CardContent>
@@ -147,7 +147,7 @@ const NewsletterAutomation: React.FC = () => {
           <CardContent className="p-6 text-center">
             <Zap className="w-12 h-12 text-brass mx-auto mb-3" />
             <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Zapier Integration</h3>
-            <p className="text-sm text-oxidized-teal/80 font-playfair">
+            <p className="text-sm text-oxidized-teal/80 font-inter">
               Connects to MailerLite, Mailchimp, Gmail, or any email platform
             </p>
           </CardContent>
@@ -158,7 +158,7 @@ const NewsletterAutomation: React.FC = () => {
       <Card className="bg-parchment/90 border-2 border-brass">
         <CardHeader>
           <CardTitle className="text-oxidized-teal font-playfair">Newsletter Preview & Testing</CardTitle>
-          <CardDescription className="font-playfair">
+          <CardDescription className="font-inter">
             Generate a test newsletter to see what your subscribers will receive
           </CardDescription>
         </CardHeader>
@@ -166,7 +166,7 @@ const NewsletterAutomation: React.FC = () => {
           <div className="space-y-4">
             <div className="bg-brass/10 p-4 rounded border border-brass/30">
               <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Newsletter Includes:</h4>
-              <ul className="text-sm text-oxidized-teal/80 space-y-1 font-playfair">
+              <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
                 <li>• Latest AI news and insights from your website</li>
                 <li>• YouTube video highlights and behind-the-scenes content</li>
                 <li>• Book updates and new story announcements</li>
@@ -178,7 +178,7 @@ const NewsletterAutomation: React.FC = () => {
             <Button 
               onClick={handleTestGeneration}
               disabled={isGenerating}
-              className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-playfair"
+              className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-inter"
             >
               {isGenerating ? "Generating..." : "Generate Test Newsletter"}
             </Button>
@@ -193,14 +193,14 @@ const NewsletterAutomation: React.FC = () => {
             <Settings className="mr-3 h-5 w-5" />
             Zapier Automation Setup
           </CardTitle>
-          <CardDescription className="font-playfair">
+          <CardDescription className="font-inter">
             Connect your Zapier webhook to automate newsletter delivery
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="bg-brass/10 p-4 rounded border border-brass/30">
             <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Setup Instructions:</h4>
-            <ol className="text-sm text-oxidized-teal/80 space-y-1 font-playfair list-decimal list-inside">
+            <ol className="text-sm text-oxidized-teal/80 space-y-1 font-inter list-decimal list-inside">
               <li>Create a new Zap in Zapier</li>
               <li>Set trigger: "Webhooks by Zapier" → "Catch Hook"</li>
               <li>Copy the webhook URL and paste it below</li>
@@ -212,21 +212,21 @@ const NewsletterAutomation: React.FC = () => {
 
           <div className="space-y-4">
             <div>
-              <Label htmlFor="zapier-webhook" className="font-playfair">Zapier Webhook URL</Label>
+              <Label htmlFor="zapier-webhook" className="font-inter">Zapier Webhook URL</Label>
               <Input
                 id="zapier-webhook"
                 type="url"
                 placeholder="https://hooks.zapier.com/hooks/catch/..."
                 value={zapierWebhookUrl}
                 onChange={(e) => setZapierWebhookUrl(e.target.value)}
-                className="mt-1 font-playfair"
+                className="mt-1 font-inter"
               />
             </div>
             
             <Button 
               onClick={handleSetupAutomation}
               disabled={isSettingUp || !zapierWebhookUrl}
-              className="w-full bg-brass hover:bg-brass-dark text-parchment font-playfair"
+              className="w-full bg-brass hover:bg-brass-dark text-parchment font-inter"
             >
               {isSettingUp ? "Testing Webhook..." : "Test & Setup Automation"}
             </Button>
@@ -243,7 +243,7 @@ const NewsletterAutomation: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Colors</h4>
-              <div className="space-y-2 text-sm font-playfair">
+              <div className="space-y-2 text-sm font-inter">
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-[#8b7355] border"></div>
                   <span>Brass: #8b7355</span>
@@ -256,9 +256,9 @@ const NewsletterAutomation: React.FC = () => {
             </div>
             <div>
               <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Typography</h4>
-              <div className="space-y-1 text-sm font-playfair">
+              <div className="space-y-1 text-sm font-inter">
                 <p>Headers: Playfair Display</p>
-                <p>Body: Playfair Display</p>
+                <p>Body: Inter</p>
                 <p>Style: Steampunk elegance</p>
               </div>
             </div>

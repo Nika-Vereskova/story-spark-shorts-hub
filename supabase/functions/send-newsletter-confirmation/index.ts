@@ -119,7 +119,7 @@ const handler = async (req: Request): Promise<Response> => {
       to: [email],
       subject: "Please confirm your subscription to the Inventor's Guild! ⚙️",
       html: `
-        <div style="font-family: 'Playfair Display', serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); padding: 20px; border-radius: 10px;">
+        <div style="font-family: 'Georgia', serif; max-width: 600px; margin: 0 auto; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); padding: 20px; border-radius: 10px;">
           <div style="text-align: center; margin-bottom: 30px;">
             <h1 style="color: #2c5530; font-size: 32px; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">
               Welcome to the Inventor's Guild! ⚙️

@@ -49,7 +49,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <Label htmlFor="email" className="text-oxidized-teal font-playfair">{t('auth.email')}</Label>
+            <Label htmlFor="email" className="text-oxidized-teal font-inter">{t('auth.email')}</Label>
             <Input
               id="email"
               type="email"
@@ -61,7 +61,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
           </div>
           
           <div>
-            <Label htmlFor="password" className="text-oxidized-teal font-playfair">{t('auth.password')}</Label>
+            <Label htmlFor="password" className="text-oxidized-teal font-inter">{t('auth.password')}</Label>
             <Input
               id="password"
               type="password"
@@ -85,7 +85,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, defaultMode = 's
           <button
             type="button"
             onClick={() => setMode(mode === 'signin' ? 'signup' : 'signin')}
-            className="text-brass hover:text-brass-dark underline font-playfair"
+            className="text-brass hover:text-brass-dark underline font-inter"
           >
             {mode === 'signin' ? t('auth.needAccount') : t('auth.haveAccount')}
           </button>

@@ -74,7 +74,7 @@ const handler = async (req: Request): Promise<Response> => {
         <head>
           <title>Unsubscribed Successfully</title>
           <style>
-            body { font-family: 'Playfair Display', serif; max-width: 600px; margin: 50px auto; padding: 20px; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); }
+            body { font-family: Georgia, serif; max-width: 600px; margin: 50px auto; padding: 20px; background: linear-gradient(135deg, #f4f1e8 0%, #e8dcc0 100%); }
             .container { background: rgba(255,255,255,0.7); padding: 30px; border-radius: 8px; border: 2px solid #8b7355; text-align: center; }
             h1 { color: #2c5530; margin-bottom: 20px; }
             p { color: #2c5530; line-height: 1.6; }

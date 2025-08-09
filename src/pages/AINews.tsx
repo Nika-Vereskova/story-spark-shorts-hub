@@ -57,7 +57,7 @@ const AINews = () => {
           <div className="container mx-auto px-6">
             <div className="text-center">
               <div className="animate-spin w-8 h-8 border-4 border-brass border-t-transparent rounded-full mx-auto"></div>
-              <p className="mt-4 text-oxidized-teal font-playfair">{t('aiNews.loading')}</p>
+              <p className="mt-4 text-oxidized-teal font-inter">{t('aiNews.loading')}</p>
             </div>
           </div>
         </main>
@@ -77,7 +77,7 @@ const AINews = () => {
             <h1 className="text-5xl text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">
               {t('aiNews.pageTitle')}
             </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-3xl mx-auto font-playfair">
+            <p className="text-xl text-oxidized-teal/80 max-w-3xl mx-auto font-inter">
               {t('aiNews.pageSubtitle')}
             </p>
           </div>
@@ -102,7 +102,7 @@ const AINews = () => {
                 )}
                 
                 <CardHeader>
-                  <div className="flex items-center gap-2 text-sm text-brass mb-2 font-playfair">
+                  <div className="flex items-center gap-2 text-sm text-brass mb-2 font-inter">
                     <Clock className="w-4 h-4" />
                     {formatDate(post.published_at)}
                   </div>
@@ -113,7 +113,7 @@ const AINews = () => {
                 
                 <CardContent>
                   {post.summary && (
-                    <CardDescription className="text-oxidized-teal/80 mb-4 font-playfair">
+                    <CardDescription className="text-oxidized-teal/80 mb-4 font-inter">
                       {post.summary}
                     </CardDescription>
                   )}
@@ -121,7 +121,7 @@ const AINews = () => {
                   {post.article_url && (
                     <Button 
                       variant="outline"
-                      className="w-full border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-playfair"
+                      className="w-full border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter"
                       onClick={() => window.open(post.article_url!, '_blank')}
                     >
                       {t('aiNews.readMore')}
@@ -135,7 +135,7 @@ const AINews = () => {
 
           {newsPosts.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-oxidized-teal/60 text-lg font-playfair">
+              <p className="text-oxidized-teal/60 text-lg font-inter">
                 {t('aiNews.noPosts')}
               </p>
             </div>

@@ -14,10 +14,10 @@ export default {
 		container: {
 			center: true,
 			padding: '2rem',
-                        screens: {
-                                '2xl': '1200px'
-                        }
-                },
+			screens: {
+				'2xl': '1400px'
+			}
+		},
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
@@ -71,10 +71,11 @@ export default {
 				'oxidized-teal-light': '#4A7B83',
 				'gear-etch': '#E8D4A6'
 			},
-                        fontFamily: {
-                                'playfair': ['Playfair Display', 'serif'],
-                                'sans': ['Playfair Display', 'serif'],
-                        },
+			fontFamily: {
+				'playfair': ['Playfair Display', 'serif'],
+				'inter': ['Inter', 'sans-serif'],
+				'jetbrains': ['JetBrains Mono', 'monospace'],
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

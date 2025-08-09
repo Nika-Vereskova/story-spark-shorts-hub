@@ -24,24 +24,24 @@ const Moved = () => {
         <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
           📖 {t('moved.title')}
         </h1>
-        <p className="text-xl text-brass mb-4 font-playfair">
+        <p className="text-xl text-brass mb-4 font-inter">
           {t('moved.subtitle')}
         </p>
-        <p className="text-lg text-oxidized-teal mb-6 font-playfair">
+        <p className="text-lg text-oxidized-teal mb-6 font-inter">
           {t('moved.description')}
         </p>
         
         <div className="space-y-4">
           <a 
             href="https://nika-vereskova.lovable.app/en/" 
-            className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-playfair font-medium rounded text-lg"
+            className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium rounded text-lg"
           >
             {t('moved.enterWorkshop')}
           </a>
           
           <p className="text-sm text-oxidized-teal/80 mt-4">
             {t('moved.updateBookmarks')} <br />
-            <span className="font-playfair text-brass">https://nika-vereskova.lovable.app/en/</span>
+            <span className="font-mono text-brass">https://nika-vereskova.lovable.app/en/</span>
           </p>
         </div>
       </div>

@@ -18,7 +18,7 @@ const About = () => {
             <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('about.title')}
             </h1>
-            <p className="text-xl text-brass font-playfair">
+            <p className="text-xl text-brass font-inter">
               {t('about.subtitle')}
             </p>
           </div>
@@ -57,7 +57,7 @@ const About = () => {
                     <Wrench className="mr-2 h-6 w-6" />
                     {t('about.myStory')}
                   </h2>
-                  <div className="space-y-4 text-oxidized-teal/80 leading-relaxed font-playfair">
+                  <div className="space-y-4 text-oxidized-teal/80 leading-relaxed font-inter">
                     <p>{t('about.bio1')}</p>
                     <p>{t('about.bio2')}</p>
                     <p>{t('about.bio3')}</p>
@@ -77,7 +77,7 @@ const About = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button 
                 size="lg" 
-                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-playfair font-medium"
+                className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
                 onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com'}
               >
                 <Mail className="mr-2 h-5 w-5" />
@@ -86,7 +86,7 @@ const About = () => {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-playfair font-medium"
+                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
                 {t('about.followSocial')}

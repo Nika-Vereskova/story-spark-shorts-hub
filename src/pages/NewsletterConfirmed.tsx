@@ -76,22 +76,22 @@ const NewsletterConfirmed = () => {
         </CardHeader>
         
         <CardContent className="text-center space-y-6">
-          <p className="text-lg text-oxidized-teal leading-relaxed font-playfair">
+          <p className="text-lg text-oxidized-teal leading-relaxed font-inter">
             {config.description}
           </p>
           
           {config.additionalText && (
-            <p className="text-base text-oxidized-teal/80 italic font-playfair">
+            <p className="text-base text-oxidized-teal/80 italic font-inter">
               {config.additionalText}
             </p>
           )}
           
           {status === 'success' && (
             <div className="bg-brass/10 rounded-lg p-4 border border-brass/20">
-              <p className="text-sm text-oxidized-teal font-playfair">
+              <p className="text-sm text-oxidized-teal font-inter">
                 <strong>What's next?</strong> You'll receive updates about:
               </p>
-              <ul className="text-sm text-oxidized-teal mt-2 space-y-1 font-playfair">
+              <ul className="text-sm text-oxidized-teal mt-2 space-y-1 font-inter">
                 <li>📚 New steampunk fairy tales</li>
                 <li>🎬 Workshop videos and behind-the-scenes content</li>
                 <li>⚙️ Exclusive clockwork adventures and activities</li>
@@ -120,7 +120,7 @@ const NewsletterConfirmed = () => {
           </div>
           
           <div className="pt-4 border-t border-brass/20">
-            <p className="text-sm text-oxidized-teal/70 italic font-playfair">
+            <p className="text-sm text-oxidized-teal/70 italic font-inter">
               With clockwork wishes,<br />
               <strong>Nika Vereskova</strong><br />
               <em>Chief Inventor & Storyteller</em>
