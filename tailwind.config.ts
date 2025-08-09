@@ -71,11 +71,10 @@ export default {
 				'oxidized-teal-light': '#4A7B83',
 				'gear-etch': '#E8D4A6'
 			},
-			fontFamily: {
-				'playfair': ['Playfair Display', 'serif'],
-				'inter': ['Inter', 'sans-serif'],
-				'jetbrains': ['JetBrains Mono', 'monospace'],
-			},
+                        fontFamily: {
+                                'playfair': ['Playfair Display', 'serif'],
+                                'sans': ['Playfair Display', 'serif'],
+                        },
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',

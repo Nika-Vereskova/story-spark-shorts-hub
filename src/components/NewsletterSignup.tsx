@@ -123,7 +123,7 @@ const NewsletterSignup = () => {
       <h2 className="text-3xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
         {t('contact.newsletterTitle')}
       </h2>
-      <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
+      <p className="text-oxidized-teal/80 text-lg mb-6 font-playfair">
         {t('contact.newsletterDesc')}
       </p>
       <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
@@ -133,12 +133,12 @@ const NewsletterSignup = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           disabled={isSubmitting}
-          className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
+          className="flex-1 px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-playfair"
         />
         <Button 
           type="submit"
           disabled={isSubmitting}
-          className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
+          className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-playfair font-medium disabled:opacity-50"
         >
           {isSubmitting ? t('newsletter.subscribing') : t('contact.subscribe')}
         </Button>

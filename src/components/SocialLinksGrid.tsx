@@ -50,12 +50,12 @@ const SocialLinksGrid = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-oxidized-teal/80 mb-4 font-inter text-sm">
+                <p className="text-oxidized-teal/80 mb-4 font-playfair text-sm">
                   {social.description as string}
                 </p>
                 <Button 
                   variant="outline" 
-                  className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-inter font-medium"
+                  className="w-full border-2 border-brass text-brass hover:bg-brass hover:text-parchment transition-all duration-300 font-playfair font-medium"
                   onClick={() => window.open(social.url, '_blank', 'noopener,noreferrer')}
                 >
                   {t<string>('contact.visit')} {social.name as string}

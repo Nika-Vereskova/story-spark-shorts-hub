@@ -85,7 +85,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 <Link
                   key={item.key}
                   to={item.path}
-                  className={`font-inter font-medium transition-colors hover:text-brass ${
+                  className={`font-playfair font-medium transition-colors hover:text-brass ${
                     isCurrentPage(item.key) 
                       ? 'text-brass border-b-2 border-brass' 
                       : 'text-oxidized-teal'
@@ -146,7 +146,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                   <Link
                     key={item.key}
                     to={item.path}
-                    className={`font-inter font-medium transition-colors hover:text-brass ${
+                    className={`font-playfair font-medium transition-colors hover:text-brass ${
                       isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
                     }`}
                     onClick={() => setIsOpen(false)}
