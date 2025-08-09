@@ -39,7 +39,7 @@ const FeaturedServices = () => {
           <h2 className="text-4xl font-bold text-oxidized-teal mb-4 drop-shadow-text-drop">
             Stories & Solutions
           </h2>
-          <p className="text-oxidized-teal/80 text-lg max-w-2xl mx-auto">
+          <p className="text-oxidized-teal text-lg max-w-2xl mx-auto">
             Where imagination meets innovation - from children's books to cutting-edge AI
           </p>
         </div>
@@ -50,7 +50,7 @@ const FeaturedServices = () => {
             return (
               <Card
                 key={index}
-                className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group relative overflow-hidden"
+                className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 group relative overflow-hidden"
               >
               {/* Animated gear background */}
               <div className="absolute top-4 right-4 w-16 h-16 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -64,7 +64,7 @@ const FeaturedServices = () => {
                   </div>
                    <CardTitle className="font-bold text-oxidized-teal text-xl">{service.title as string}</CardTitle>
                  </div>
-                 <CardDescription className="text-oxidized-teal/70">
+                 <CardDescription className="text-oxidized-teal">
                    {service.description as string}
                 </CardDescription>
               </CardHeader>
@@ -72,7 +72,7 @@ const FeaturedServices = () => {
               <CardContent>
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal/80">
+                    <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal">
                       <Wrench className="w-4 h-4 text-brass mt-0.5 flex-shrink-0" />
                       {feature}
                     </li>

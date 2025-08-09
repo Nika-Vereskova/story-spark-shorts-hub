@@ -62,7 +62,7 @@ const SplitHeroSection = () => {
         <div className="container mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* Left Panel - Plumberella */}
-            <Card className="card bg-parchment hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
+            <Card className="card bg-parchment hover:border-brass-dark transition-all duration-300 hover:scale-105 relative overflow-hidden">
               {/* Ornate brass corners */}
               <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
               <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
@@ -109,12 +109,12 @@ const SplitHeroSection = () => {
             </Card>
 
             {/* Right Panel - AI Services */}
-            <Card className="card bg-parchment hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative overflow-hidden">
+            <Card className="card bg-parchment hover:border-brass-dark transition-all duration-300 hover:scale-105 relative overflow-hidden">
               {/* Holographic effect overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full animate-[slide-in-right_3s_ease-in-out_infinite] pointer-events-none"></div>
               
               {/* Brass rim effect */}
-              <div className="absolute inset-0 rounded-lg border-4 border-brass/30 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-2xl border-4 border-brass/30 pointer-events-none"></div>
               
               <CardHeader className="relative">
                 <div className="flex items-center gap-3 mb-2">

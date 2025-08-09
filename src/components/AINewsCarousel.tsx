@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Clock, ExternalLink, Cog } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { t } from '@/lib/i18n';
 
@@ -79,9 +80,9 @@ const AINewsCarousel = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {newsPosts.map((post) => (
-            <Card 
+            <Card
               key={post.id}
-              className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden relative"
+              className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 group overflow-hidden relative"
             >
               {/* Brass gear hover effect */}
               <div className="absolute top-2 right-2 w-8 h-8 opacity-0 group-hover:opacity-30 transition-all duration-300">
@@ -89,17 +90,17 @@ const AINewsCarousel = () => {
               </div>
               
               {post.cover_url && (
-                <div className="relative overflow-hidden h-32">
+                <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
                   <img
                     src={post.cover_url}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
+                    className="w-full h-full object-cover sepia transition-all duration-300 group-hover:scale-110"
                     loading="lazy"
                     srcSet={`${post.cover_url}?width=320 320w, ${post.cover_url}?width=640 640w`}
                     sizes="(max-width: 640px) 100vw, 640px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
+                </AspectRatio>
               )}
               
               <CardHeader className="pb-2">
@@ -120,8 +121,7 @@ const AINewsCarousel = () => {
                 )}
                 
                 {post.article_url && (
-                  <Button 
-                    size="sm"
+                  <Button
                     variant="outline"
                     className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff text-xs"
                     onClick={() => window.open(post.article_url!, '_blank')}
@@ -136,7 +136,7 @@ const AINewsCarousel = () => {
         </div>
 
         <div className="text-center mt-8">
-          <Button 
+          <Button
             variant="outline"
             className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-medium"
             onClick={() => window.location.href = '/ai-news'}
