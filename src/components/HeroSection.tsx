@@ -28,9 +28,9 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
   };
 
   return (
-    // Adjusted padding-top from 'pt-40' to 'pt-24' or 'pt-16' based on header height.
+    // Adjusted padding-top using responsive classes to better fit varying header heights.
     // Also ensuring min-h-screen to make sure content doesn't get cut off vertically.
-    <section className="pt-24 pb-40 px-6 relative overflow-hidden min-h-screen">
+    <section className="pt-16 sm:pt-24 md:pt-32 pb-40 px-6 relative overflow-hidden min-h-screen">
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
@@ -48,7 +48,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
       </div>
 
       <div className="container mx-auto relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div className="animate-fade-in">
             <h1 className="sr-only">
               {t('home.title')}
