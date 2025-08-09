@@ -182,3 +182,31 @@
     box-shadow: 0 0 8px var(--cyan);
   }
 }
+/* Hero Banner */
+.hero-banner {
+  @apply flex flex-col items-center justify-center text-center py-20 px-6 bg-cover bg-center bg-no-repeat;
+  background-image: url('/your-gears-background.svg');
+}
+
+.hero-title {
+  @apply text-4xl md:text-5xl font-playfair text-oxidized-teal mb-4;
+}
+
+.hero-subtitle {
+  @apply text-lg md:text-xl text-oxidized-teal/80 max-w-2xl;
+}
+
+.hero-image {
+  @apply mt-8 w-full max-w-md h-auto;
+}
+
+@media (min-width: 768px) {
+  .hero-banner {
+    @apply flex-row text-left py-32 px-8;
+  }
+
+  .hero-image {
+    @apply mt-0 ml-8;
+  }
+}
+
