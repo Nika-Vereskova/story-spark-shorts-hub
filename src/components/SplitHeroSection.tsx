@@ -70,7 +70,7 @@ const SplitHeroSection = () => {
  <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
  
  <div className="relative overflow-hidden">
- <AspectRatio ratio={4/3}>
+        <AspectRatio ratio={16/9}>
  <img
  src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
  alt={t('splitHero.altText')}

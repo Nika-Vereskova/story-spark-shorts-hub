@@ -89,8 +89,8 @@ const AINewsCarousel = () => {
  <Cog className="w-full h-full text-brass animate-spin" />
  </div>
  
- {post.cover_url && (
- <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
+          {post.cover_url && (
+            <AspectRatio ratio={16 / 9} className="relative overflow-hidden">
  <img
  src={post.cover_url}
  alt={post.title}

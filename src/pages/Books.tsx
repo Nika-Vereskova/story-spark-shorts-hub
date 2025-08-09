@@ -73,7 +73,7 @@ const Books = () => {
  <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
  <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
  
- <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
+      <AspectRatio ratio={16 / 9} className="relative overflow-hidden">
  <img
  src={book.coverUrl}
  alt={book.title}
