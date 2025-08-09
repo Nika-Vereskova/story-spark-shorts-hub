@@ -32,7 +32,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({
           </Button>
         )}
         {linkText && linkUrl && (
-          <a href={linkUrl} className="mt-2 text-sm underline">
+          <a href={linkUrl} className="mt-2 text-step--1 underline">
             {linkText}
           </a>
         )}
