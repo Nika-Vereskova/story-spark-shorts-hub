@@ -3,27 +3,34 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import LocaleRouter from "@/components/LocaleRouter";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import AIServices from "./pages/AIServices";
-import AINews from "./pages/AINews";
-import Books from "./pages/Books";
-import Videos from "./pages/Videos";
-import Blog from "./pages/Blog";
-import Contact from "./pages/Contact";
-import Admin from "./pages/Admin";
-import Newsletter from "./pages/Newsletter";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
-import NotFound from "./pages/NotFound";
-import Moved from "./pages/Moved";
-import NewsletterConfirmed from "./pages/NewsletterConfirmed";
+const Index = React.lazy(() => import("./pages/Index"));
+const About = React.lazy(() => import("./pages/About"));
+const Services = React.lazy(() => import("./pages/Services"));
+const AIServices = React.lazy(() => import("./pages/AIServices"));
+const AINews = React.lazy(() => import("./pages/AINews"));
+const Books = React.lazy(() => import("./pages/Books"));
+const Videos = React.lazy(() => import("./pages/Videos"));
+const Blog = React.lazy(() => import("./pages/Blog"));
+const Contact = React.lazy(() => import("./pages/Contact"));
+const Admin = React.lazy(() => import("./pages/Admin"));
+const Newsletter = React.lazy(() => import("./pages/Newsletter"));
+const Privacy = React.lazy(() => import("./pages/Privacy"));
+const Terms = React.lazy(() => import("./pages/Terms"));
+const NotFound = React.lazy(() => import("./pages/NotFound"));
+const Moved = React.lazy(() => import("./pages/Moved"));
+const NewsletterConfirmed = React.lazy(() => import("./pages/NewsletterConfirmed"));
 
 const queryClient = new QueryClient();
+
+const withSuspense = (Component: React.LazyExoticComponent<React.ComponentType>) => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Component />
+  </Suspense>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -35,44 +42,44 @@ const App = () => (
           <LocaleRouter>
             <Routes>
               {/* Root route - will be handled by LocaleRouter */}
-              <Route path="/" element={<Index />} />
-              
+              <Route path="/" element={withSuspense(Index)} />
+
               {/* Newsletter confirmation route - standalone, no locale handling */}
-              <Route path="/newsletter-confirmed" element={<NewsletterConfirmed />} />
-              
+              <Route path="/newsletter-confirmed" element={withSuspense(NewsletterConfirmed)} />
+
               {/* Locale-prefixed routes */}
-              <Route path="/:locale" element={<Index />} />
-              <Route path="/:locale/about" element={<About />} />
-              <Route path="/:locale/services" element={<Services />} />
-              <Route path="/:locale/ai-services" element={<AIServices />} />
-              <Route path="/:locale/ai-news" element={<AINews />} />
-              <Route path="/:locale/books" element={<Books />} />
-              <Route path="/:locale/videos" element={<Videos />} />
-              <Route path="/:locale/blog" element={<Blog />} />
-              <Route path="/:locale/contact" element={<Contact />} />
-              <Route path="/:locale/admin" element={<Admin />} />
-              <Route path="/:locale/newsletter" element={<Newsletter />} />
-              <Route path="/:locale/privacy" element={<Privacy />} />
-              <Route path="/:locale/terms" element={<Terms />} />
-              <Route path="/:locale/moved" element={<Moved />} />
-              
+              <Route path="/:locale" element={withSuspense(Index)} />
+              <Route path="/:locale/about" element={withSuspense(About)} />
+              <Route path="/:locale/services" element={withSuspense(Services)} />
+              <Route path="/:locale/ai-services" element={withSuspense(AIServices)} />
+              <Route path="/:locale/ai-news" element={withSuspense(AINews)} />
+              <Route path="/:locale/books" element={withSuspense(Books)} />
+              <Route path="/:locale/videos" element={withSuspense(Videos)} />
+              <Route path="/:locale/blog" element={withSuspense(Blog)} />
+              <Route path="/:locale/contact" element={withSuspense(Contact)} />
+              <Route path="/:locale/admin" element={withSuspense(Admin)} />
+              <Route path="/:locale/newsletter" element={withSuspense(Newsletter)} />
+              <Route path="/:locale/privacy" element={withSuspense(Privacy)} />
+              <Route path="/:locale/terms" element={withSuspense(Terms)} />
+              <Route path="/:locale/moved" element={withSuspense(Moved)} />
+
               {/* Non-localized routes for backward compatibility */}
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/ai-services" element={<AIServices />} />
-              <Route path="/ai-news" element={<AINews />} />
-              <Route path="/books" element={<Books />} />
-              <Route path="/videos" element={<Videos />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/admin" element={<Admin />} />
-              <Route path="/newsletter" element={<Newsletter />} />
-              <Route path="/privacy" element={<Privacy />} />
-              <Route path="/terms" element={<Terms />} />
-              <Route path="/moved" element={<Moved />} />
-              
+              <Route path="/about" element={withSuspense(About)} />
+              <Route path="/services" element={withSuspense(Services)} />
+              <Route path="/ai-services" element={withSuspense(AIServices)} />
+              <Route path="/ai-news" element={withSuspense(AINews)} />
+              <Route path="/books" element={withSuspense(Books)} />
+              <Route path="/videos" element={withSuspense(Videos)} />
+              <Route path="/blog" element={withSuspense(Blog)} />
+              <Route path="/contact" element={withSuspense(Contact)} />
+              <Route path="/admin" element={withSuspense(Admin)} />
+              <Route path="/newsletter" element={withSuspense(Newsletter)} />
+              <Route path="/privacy" element={withSuspense(Privacy)} />
+              <Route path="/terms" element={withSuspense(Terms)} />
+              <Route path="/moved" element={withSuspense(Moved)} />
+
               {/* Catch all for 404 */}
-              <Route path="*" element={<NotFound />} />
+              <Route path="*" element={withSuspense(NotFound)} />
             </Routes>
           </LocaleRouter>
         </BrowserRouter>
