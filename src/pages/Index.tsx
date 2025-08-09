@@ -25,6 +25,10 @@ const Index = () => {
       <HeroBanner
         title="Story Spark Shorts"
         subtitle="Short tales to ignite imagination"
+        ctaText="Get Started"
+        ctaUrl="/newsletter"
+        linkText="Learn more about us"
+        linkUrl="/about"
       />
 
       {/* Split-Hero Banner */}

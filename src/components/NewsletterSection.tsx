@@ -114,7 +114,7 @@ const NewsletterSection = () => {
     <section className="py-16 px-6 bg-gradient-to-r from-brass/20 to-oxidized-teal/20">
       <div className="container mx-auto max-w-2xl text-center">
         <h2 className="text-4xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">{t('newsletter.title')}</h2>
-        <p className="text-oxidized-teal/80 text-lg mb-8 font-inter">
+        <p className="text-oxidized-teal text-lg mb-8 font-inter">
           {t('newsletter.description')}
         </p>
         <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
@@ -131,7 +131,7 @@ const NewsletterSection = () => {
           <Button 
             type="submit"
             disabled={isSubmitting}
-            className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
+            className="bg-brass hover:bg-brass-dark text-parchment px-8 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
           >
             {isSubmitting ? t('newsletter.subscribing') : t('contact.subscribe')}
           </Button>

@@ -3,6 +3,7 @@ import React from 'react';
 import { Play, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 
@@ -57,11 +58,14 @@ const Videos = () => {
                 
                 <div className="relative overflow-hidden">
                   {/* YouTube Thumbnail */}
-                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 flex items-center justify-center relative">
+                  <AspectRatio
+                    ratio={4 / 3}
+                    className="w-full bg-gradient-to-br from-brass/20 to-oxidized-teal/20 flex items-center justify-center relative overflow-hidden"
+                  >
                     <img
                       src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
                       alt={video.title}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      className="w-full h-full object-cover sepia transition-transform duration-300 hover:scale-110"
                       loading="lazy"
                       srcSet={`https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg 480w, https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg 1280w`}
                       sizes="(max-width: 768px) 100vw, 768px"
@@ -73,7 +77,7 @@ const Videos = () => {
                     <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                       <Play className="w-16 h-16 text-parchment opacity-80" />
                     </div>
-                  </div>
+                  </AspectRatio>
                   <div className="absolute top-4 right-4 z-20">
                     <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
                       {video.type as string}
