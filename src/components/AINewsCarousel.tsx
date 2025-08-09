@@ -79,9 +79,9 @@ const AINewsCarousel = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {newsPosts.map((post) => (
-            <Card 
+            <Card
               key={post.id}
-              className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden relative"
+              className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 group overflow-hidden relative"
             >
               {/* Brass gear hover effect */}
               <div className="absolute top-2 right-2 w-8 h-8 opacity-0 group-hover:opacity-30 transition-all duration-300">
