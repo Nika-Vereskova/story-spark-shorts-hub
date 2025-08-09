@@ -7,7 +7,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from '@/components/ui/button';
 import { ChevronDown } from 'lucide-react';
 
 const LanguageSwitcher = () => {
@@ -28,15 +27,14 @@ const LanguageSwitcher = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="px-3 py-2 text-sm text-oxidized-teal hover:bg-brass/10 hover:text-brass border border-brass/30"
+        <button
+          type="button"
+          className="flex items-center text-sm text-oxidized-teal hover:text-brass"
         >
-          <span className="text-base mr-2">{currentLanguage.flag}</span>
+          <span className="text-base mr-1">{currentLanguage.flag}</span>
           <span className="font-medium">{currentLanguage.code.toUpperCase()}</span>
-          <ChevronDown className="ml-2 h-4 w-4" />
-        </Button>
+          <ChevronDown className="ml-1 h-4 w-4" />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent 
         align="end" 

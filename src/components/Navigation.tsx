@@ -78,13 +78,13 @@ const Navigation = ({ currentPage, ctaText, ctaUrl }: NavigationProps) => {
  return (
  <>
  <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
- <div className="container mx-auto px-6 py-3">
+ <div className="container mx-auto px-6 py-3 md:py-4 lg:py-5">
  <div className="flex items-center justify-between">
  <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
  <img
  src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
  alt="STEaM LOGIC Studio AB"
- className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+ className="h-7 sm:h-8 block gear"
  loading="lazy"
  srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=64 64w, /lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=104 104w"
  sizes="(max-width: 768px) 64px, 104px"
@@ -135,24 +135,24 @@ const Navigation = ({ currentPage, ctaText, ctaUrl }: NavigationProps) => {
  )}
  </span>
  </div>
- <Button
- variant="outline"
- size="sm"
+ <button
+ type="button"
  onClick={signOut}
- className="border-brass text-brass hover:bg-brass hover:text-parchment"
+ className="text-oxidized-teal hover:text-brass flex items-center text-sm"
  >
  <LogOut className="w-4 h-4 mr-1" />
  {t('nav.signOut')}
- </Button>
+ </button>
  </div>
  ) : (
- <Button
+ <button
+ type="button"
  onClick={() => setAuthModalOpen(true)}
- className="bg-brass hover:bg-brass-dark text-parchment"
+ className="text-oxidized-teal hover:text-brass flex items-center text-sm"
  >
  <User className="w-4 h-4 mr-2" />
  {t('nav.signIn')}
- </Button>
+ </button>
  )}
  </div>
 
@@ -212,27 +212,27 @@ const Navigation = ({ currentPage, ctaText, ctaUrl }: NavigationProps) => {
  </span>
  )}
  </div>
- <Button
- variant="outline"
- size="sm"
+ <button
+ type="button"
  onClick={signOut}
- className="border-brass text-brass hover:bg-brass hover:text-parchment"
+ className="text-oxidized-teal hover:text-brass flex items-center text-sm"
  >
  <LogOut className="w-4 h-4 mr-1" />
  {t('nav.signOut')}
- </Button>
+ </button>
  </div>
  ) : (
- <Button
+ <button
+ type="button"
  onClick={() => {
  setAuthModalOpen(true);
  setIsOpen(false);
  }}
- className="bg-brass hover:bg-brass-dark text-parchment"
+ className="text-oxidized-teal hover:text-brass flex items-center text-sm"
  >
  <User className="w-4 h-4 mr-2" />
  {t('nav.signIn')}
- </Button>
+ </button>
  )}
  </div>
  </motion.div>
