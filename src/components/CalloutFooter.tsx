@@ -22,7 +22,7 @@ const CalloutFooter = () => {
   };
 
   return (
-    <section className="py-20 px-6 bg-gradient-to-r from-brass/20 via-oxidized-teal/20 to-brass/20 relative overflow-hidden">
+    <section className="py-6 sm:py-8 px-4 sm:px-6 bg-gradient-to-r from-brass/20 via-oxidized-teal/20 to-brass/20 relative overflow-hidden">
       {/* Parchment texture overlay */}
       <div className="absolute inset-0 bg-parchment opacity-90"></div>
       
@@ -42,7 +42,7 @@ const CalloutFooter = () => {
             <span className="text-brass">{t('callout.heading2')}</span>
           </h2>
           
-          <p className="text-xl text-oxidized-teal/80 mb-12 max-w-2xl mx-auto font-inter leading-relaxed">
+          <p className="text-xl text-oxidized-teal/80 mb-12 max-w-[45ch] mx-auto font-inter leading-relaxed">
             {t('callout.description')}
           </p>
 
