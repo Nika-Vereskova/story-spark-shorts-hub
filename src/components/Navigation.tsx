@@ -7,6 +7,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getCurrentLocale } from '@/lib/i18n';
+import { motion } from 'framer-motion';
 
 interface NavigationProps {
   currentPage?: string;
@@ -21,11 +22,9 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
-    { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
+    { name: t('nav.about'), path: `/${locale}/about`, key: 'about' },
     { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
     { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
-    { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' },
-    { name: t('nav.blog'), path: `/${locale}/blog`, key: 'blog' },
     { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
   ];
 
@@ -154,7 +153,12 @@ const Navigation = ({ currentPage }: NavigationProps) => {
           </div>
           
           {isOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-brass/30">
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              transition={{ type: 'tween', duration: 0.3 }}
+              className="md:hidden mt-4 pb-4 border-t border-brass/30"
+            >
               <div className="flex flex-col space-y-4 pt-4">
                 {navItems.map((item) => (
                   <Link
@@ -168,11 +172,11 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                     {item.name as string}
                   </Link>
                 ))}
-                
+
                 <div className="pt-2 border-t border-brass/30">
                   <LanguageSwitcher />
                 </div>
-                
+
                 {user ? (
                   <div className="space-y-2 pt-2 border-t border-brass/30">
                     <div className="text-oxidized-teal text-sm flex items-center">
@@ -207,7 +211,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                   </Button>
                 )}
               </div>
-            </div>
+            </motion.div>
           )}
         </div>
       </nav>
