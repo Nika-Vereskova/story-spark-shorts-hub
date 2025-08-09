@@ -36,13 +36,13 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
           <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
         </div>
-        <div className="absolute top-40 right-20 w-24 h-24 opacity-15">
+        <div className="absolute top-40 right-20 w-24 h-24 opacity-[0.15]">
           <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
         </div>
         <div className="absolute bottom-32 left-1/4 w-20 h-20 opacity-10">
           <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
         </div>
-        <div className="absolute bottom-20 right-1/3 w-16 h-16 opacity-15">
+        <div className="absolute bottom-20 right-1/3 w-16 h-16 opacity-[0.15]">
           <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
         </div>
       </div>
