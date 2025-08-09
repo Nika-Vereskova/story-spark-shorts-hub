@@ -92,13 +92,13 @@ const NewsletterSignup = () => {
     } catch (error) {
       console.error('Newsletter signup error:', error);
 
-      let errorMessage = t('newsletter.errorDesc');
+      let errorMessage: string = String(t('newsletter.errorDesc'));
       if (error && typeof error === 'object') {
-        const err = error as { message?: string; status?: number | string };
-        if (err.message) {
+        const err = error as { message?: unknown; status?: number | string };
+        if (typeof err.message === 'string' && err.message.trim().length > 0) {
           errorMessage = err.message;
-        } else if (err.status) {
-          errorMessage = `Status: ${err.status}`;
+        } else if (err.status !== undefined) {
+          errorMessage = `Status: ${String(err.status)}`;
         }
       }
 

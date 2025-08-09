@@ -1,7 +1,8 @@
 import React from 'react';
-import { Cog, Book, Sparkles, ExternalLink } from 'lucide-react';
+import { Cog, Book, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { t } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
 
@@ -69,11 +70,13 @@ const SplitHeroSection = () => {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
               
               <div className="relative overflow-hidden">
-                <img 
-                  src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
-                  alt={t('splitHero.altText')}
-                  className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
-                />
+                <AspectRatio ratio={4/3}>
+                  <img 
+                    src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
+                    alt={t('splitHero.altText')}
+                    className="w-full h-full object-cover transition-all duration-300 hover:scale-110 hover:sepia"
+                  />
+                </AspectRatio>
                 <div className="absolute top-4 right-4">
                   <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
                     <Book className="w-3 h-3 mr-1" />
@@ -88,7 +91,7 @@ const SplitHeroSection = () => {
               <CardContent>
                 <Button 
                   variant="steam"
-                  className="w-full font-inter font-medium text-lg py-3"
+                  className="w-full min-h-[44px] font-inter font-medium text-lg py-3"
                   onClick={handleBookSample}
                 >
                   <Book className="mr-2 h-5 w-5" />
@@ -147,7 +150,7 @@ const SplitHeroSection = () => {
                 </div>
                 <Button 
                   variant="steam"
-                  className="w-full font-inter font-medium text-lg py-3"
+                  className="w-full min-h-[44px] font-inter font-medium text-lg py-3"
                   onClick={handleAIServices}
                 >
                   <Sparkles className="mr-2 h-5 w-5" />

@@ -71,7 +71,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               <img 
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png" 
                 alt="STEaM LOGIC Studio AB"
-                className="h-[52px] md:h-[52px] sm:h-[36px] gear"
+                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
               />
               <div className="font-playfair font-bold text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
