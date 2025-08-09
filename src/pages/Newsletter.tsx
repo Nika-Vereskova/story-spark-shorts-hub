@@ -14,7 +14,7 @@ const Newsletter = () => {
         <Navigation />
         <div className="pt-24 pb-16 px-6">
           <div className="container mx-auto text-center">
-            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h1 className="text-4xl text-oxidized-teal mb-4 font-playfair">
               Access Restricted
             </h1>
             <p className="text-oxidized-teal/80 font-inter">
@@ -33,7 +33,7 @@ const Newsletter = () => {
       <div className="pt-24 pb-16 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-8">
-            <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-4xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               Newsletter Automation
             </h1>
             <p className="text-xl text-oxidized-teal/80 font-inter">

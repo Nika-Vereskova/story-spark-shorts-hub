@@ -10,7 +10,7 @@ const QuickLinksSection = () => {
   return (
     <section className="py-16 px-6 bg-gear-etch/20">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
+        <h2 className="text-4xl text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
         <div className="grid md:grid-cols-3 gap-8">
           <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop relative">
             {/* Ornate brass corners */}

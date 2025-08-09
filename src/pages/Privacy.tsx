@@ -9,7 +9,7 @@ const Privacy = () => {
       <Navigation currentPage="privacy" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">
-        <h1 className="text-4xl font-bold text-oxidized-teal mb-8 text-center font-playfair">
+        <h1 className="text-4xl text-oxidized-teal mb-8 text-center font-playfair">
           {t('privacyPage.title')}
         </h1>
         
@@ -20,14 +20,14 @@ const Privacy = () => {
           </p>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.infoCollect.title')}
             </h2>
             <p>{t('privacyPage.infoCollect.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.cookies.title')}
             </h2>
             <p>{t('privacyPage.cookies.text')}</p>
@@ -39,14 +39,14 @@ const Privacy = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.advertising.title')}
             </h2>
             <p>{t('privacyPage.advertising.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.dataProtection.title')}
             </h2>
             <p>{t('privacyPage.dataProtection.text')}</p>
@@ -59,14 +59,14 @@ const Privacy = () => {
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.rights.title')}
             </h2>
             <p>{t('privacyPage.rights.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('privacyPage.contact.title')}
             </h2>
             <p>{t('privacyPage.contact.text')}</p>

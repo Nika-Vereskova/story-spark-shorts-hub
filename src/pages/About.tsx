@@ -15,7 +15,7 @@ const About = () => {
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('about.title')}
             </h1>
             <p className="text-xl text-brass font-inter">
@@ -53,7 +53,7 @@ const About = () => {
                 <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
                 
                 <CardContent className="p-8">
-                  <h2 className="text-2xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop flex items-center">
+                  <h2 className="text-2xl text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop flex items-center">
                     <Wrench className="mr-2 h-6 w-6" />
                     {t('about.myStory')}
                   </h2>
@@ -71,7 +71,7 @@ const About = () => {
 
           {/* Contact Links */}
           <div className="mt-16 text-center">
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">
+            <h2 className="text-3xl text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">
               {t('about.connect')}
             </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

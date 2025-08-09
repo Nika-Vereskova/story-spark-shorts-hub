@@ -120,7 +120,7 @@ const TestimonialSlider = () => {
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+          <h2 className="text-4xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
             What People Say
           </h2>
           <p className="text-oxidized-teal/80 text-lg font-inter">
