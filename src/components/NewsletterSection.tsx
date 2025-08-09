@@ -131,7 +131,7 @@ const NewsletterSection = () => {
           <Button 
             type="submit"
             disabled={isSubmitting}
-            className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
+            className="bg-brass hover:bg-brass-dark text-parchment px-8 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50"
           >
             {isSubmitting ? t('newsletter.subscribing') : t('contact.subscribe')}
           </Button>

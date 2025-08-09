@@ -120,8 +120,7 @@ const AINewsCarousel = () => {
                 )}
                 
                 {post.article_url && (
-                  <Button 
-                    size="sm"
+                  <Button
                     variant="outline"
                     className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter text-xs"
                     onClick={() => window.open(post.article_url!, '_blank')}
@@ -136,9 +135,9 @@ const AINewsCarousel = () => {
         </div>
 
         <div className="text-center mt-8">
-          <Button 
+          <Button
             variant="outline"
-            className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-inter font-medium"
+            className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 font-inter font-medium"
             onClick={() => window.location.href = '/ai-news'}
           >
             {t('aiNews.viewAll')}
