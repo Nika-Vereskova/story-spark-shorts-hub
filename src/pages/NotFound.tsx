@@ -27,12 +27,12 @@ const NotFound = () => {
         <h1 className="text-6xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
           {t('notFound.title')}
         </h1>
-        <p className="text-xl text-brass mb-6 font-inter">
+        <p className="text-xl text-brass mb-6 font-playfair">
           {t('notFound.subtitle')}
         </p>
         <Link 
           to={`/${locale}`} 
-          className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium rounded"
+          className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-playfair font-medium rounded"
         >
           {t('notFound.returnHome')}
         </Link>
