@@ -100,10 +100,21 @@ const NewsletterConfirmed = () => {
             </div>
           )}
           
-          <div className="pt-6">
-            <Button asChild className="bg-brass hover:bg-brass-dark text-white font-semibold px-8 py-3 rounded-lg shadow-brass-drop transition-all duration-200 hover:shadow-lg">
+          <div className="pt-6 flex flex-wrap justify-center gap-4">
+            <Button
+              asChild
+              className="bg-brass hover:bg-brass-dark text-white font-semibold px-8 py-3 rounded-lg shadow-brass-drop transition-all duration-200 hover:shadow-lg"
+            >
               <Link to="/">
                 Return to Inventor's Guild
+              </Link>
+            </Button>
+            <Button
+              asChild
+              className="bg-brass hover:bg-brass-dark text-white font-semibold px-8 py-3 rounded-lg shadow-brass-drop transition-all duration-200 hover:shadow-lg"
+            >
+              <Link to="/stories">
+                Explore Stories
               </Link>
             </Button>
           </div>
