@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { t } from '@/lib/i18n';
 
@@ -90,17 +91,17 @@ const AINews = () => {
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden"
               >
                 {post.cover_url && (
-                  <div className="relative overflow-hidden h-48">
+                  <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
                     <img
                       src={post.cover_url}
                       alt={post.title}
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
+                      className="w-full h-full object-cover sepia transition-all duration-300 group-hover:scale-110"
                       loading="lazy"
                       srcSet={`${post.cover_url}?width=480 480w, ${post.cover_url}?width=768 768w`}
                       sizes="(max-width: 768px) 100vw, 768px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
+                  </AspectRatio>
                 )}
                 
                 <CardHeader>

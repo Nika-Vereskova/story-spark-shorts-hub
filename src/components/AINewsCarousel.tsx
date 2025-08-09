@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Clock, ExternalLink, Cog } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { supabase } from '@/integrations/supabase/client';
 import { t } from '@/lib/i18n';
 
@@ -89,17 +90,17 @@ const AINewsCarousel = () => {
               </div>
               
               {post.cover_url && (
-                <div className="relative overflow-hidden h-32">
+                <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
                   <img
                     src={post.cover_url}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
+                    className="w-full h-full object-cover sepia transition-all duration-300 group-hover:scale-110"
                     loading="lazy"
                     srcSet={`${post.cover_url}?width=320 320w, ${post.cover_url}?width=640 640w`}
                     sizes="(max-width: 640px) 100vw, 640px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
+                </AspectRatio>
               )}
               
               <CardHeader className="pb-2">

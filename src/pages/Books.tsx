@@ -3,6 +3,7 @@ import React from 'react';
 import { ExternalLink, Cog } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 
@@ -72,11 +73,11 @@ const Books = () => {
                 <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
                 
-                <div className="relative overflow-hidden">
+                <AspectRatio ratio={4 / 3} className="relative overflow-hidden">
                   <img
                     src={book.coverUrl}
                     alt={book.title}
-                    className="w-full h-64 object-cover transition-transform duration-300 hover:scale-110"
+                    className="w-full h-full object-cover sepia transition-transform duration-300 hover:scale-110"
                     loading="lazy"
                     srcSet={`${book.coverUrl}?width=480 480w, ${book.coverUrl}?width=768 768w`}
                     sizes="(max-width: 768px) 100vw, 768px"
@@ -89,7 +90,7 @@ const Books = () => {
                       </span>
                     </div>
                   )}
-                </div>
+                </AspectRatio>
                 
                 <CardHeader>
                   <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop">{book.title}</CardTitle>
