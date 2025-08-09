@@ -34,10 +34,13 @@ const About = () => {
                 <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-4 border-b-4 border-brass"></div>
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-brass"></div>
                 
-                <img 
-                  src="/lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png" 
+                <img
+                  src="/lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png"
                   alt="Nika Vereskova"
                   className="w-full h-80 object-cover border-4 border-brass shadow-brass-drop"
+                  loading="lazy"
+                  srcSet="/lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png?width=480 480w, /lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png?width=768 768w"
+                  sizes="(max-width: 768px) 100vw, 480px"
                 />
               </div>
             </div>

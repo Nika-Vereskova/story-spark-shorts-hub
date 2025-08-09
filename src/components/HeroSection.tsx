@@ -89,10 +89,13 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
               
               <div className="relative overflow-hidden">
-                <img 
+                <img
                   src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
                   alt="Plumberella - Latest Children's Book"
                   className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
+                  loading="lazy"
+                  srcSet="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png?width=480 480w, /lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png?width=768 768w, /lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png 1024w"
+                  sizes="(max-width: 768px) 100vw, 768px"
                 />
                 <div className="absolute top-4 right-4">
                   <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">

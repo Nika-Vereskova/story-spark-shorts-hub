@@ -58,10 +58,13 @@ const Videos = () => {
                 <div className="relative overflow-hidden">
                   {/* YouTube Thumbnail */}
                   <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 flex items-center justify-center relative">
-                    <img 
+                    <img
                       src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
                       alt={video.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      loading="lazy"
+                      srcSet={`https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg 480w, https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg 1280w`}
+                      sizes="(max-width: 768px) 100vw, 768px"
                       onError={(e) => {
                         // Fallback to default thumbnail if maxresdefault doesn't exist
                         e.currentTarget.src = `https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg`;

@@ -80,10 +80,13 @@ const Navigation = ({ currentPage }: NavigationProps) => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
-              <img 
-                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png" 
+              <img
+                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
                 alt="STEaM LOGIC Studio AB"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                loading="lazy"
+                srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=64 64w, /lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png?width=104 104w"
+                sizes="(max-width: 768px) 64px, 104px"
               />
               <div className="font-playfair font-bold text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
