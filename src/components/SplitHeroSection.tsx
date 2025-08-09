@@ -133,21 +133,21 @@ const SplitHeroSection = () => {
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '4s' }} />
                     <div>
                       <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiStrategyTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter max-w-[45ch]">{t('splitHero.aiStrategyDesc')}</p>
+                      <p className="text-oxidized-teal text-sm font-inter max-w-[45ch]">{t('splitHero.aiStrategyDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '3s', animationDirection: 'reverse' }} />
                     <div>
                       <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiCustomTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter max-w-[45ch]">{t('splitHero.aiCustomDesc')}</p>
+                      <p className="text-oxidized-teal text-sm font-inter max-w-[45ch]">{t('splitHero.aiCustomDesc')}</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
                     <Cog className="w-5 h-5 text-brass mt-1 animate-spin" style={{ animationDuration: '5s' }} />
                     <div>
                       <h4 className="text-oxidized-teal font-semibold font-inter">{t('splitHero.aiWorkshopsTitle')}</h4>
-                      <p className="text-oxidized-teal/70 text-sm font-inter max-w-[45ch]">{t('splitHero.aiWorkshopsDesc')}</p>
+                      <p className="text-oxidized-teal text-sm font-inter max-w-[45ch]">{t('splitHero.aiWorkshopsDesc')}</p>
                     </div>
                   </div>
                 </div>
