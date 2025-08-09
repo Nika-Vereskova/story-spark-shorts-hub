@@ -48,7 +48,7 @@ const Books = () => {
         <div className="container mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('books.title')}
             </h1>
             <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
@@ -130,7 +130,7 @@ const Books = () => {
             <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
             
-            <h2 className="text-3xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
+            <h2 className="text-3xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
               {t('books.cantFind')}
             </h2>
             <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">

@@ -29,7 +29,7 @@ const SocialLinksGrid = () => {
 
   return (
     <div className="mb-12">
-      <h2 className="text-3xl font-bold text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop">
+      <h2 className="text-3xl text-oxidized-teal mb-8 text-center font-playfair drop-shadow-text-drop">
         {t('contact.socialTitle')}
       </h2>
       <div className="grid md:grid-cols-3 gap-6">

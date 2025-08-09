@@ -113,7 +113,7 @@ const NewsletterSection = () => {
   return (
     <section className="py-16 px-6 bg-gradient-to-r from-brass/20 to-oxidized-teal/20">
       <div className="container mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">{t('newsletter.title')}</h2>
+        <h2 className="text-4xl text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">{t('newsletter.title')}</h2>
         <p className="text-oxidized-teal/80 text-lg mb-8 font-inter">
           {t('newsletter.description')}
         </p>

@@ -36,7 +36,7 @@ const CalloutFooter = () => {
 
       <div className="container mx-auto text-center relative z-10">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop leading-tight">
+          <h2 className="text-5xl md:text-6xl text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop leading-tight">
             {t('callout.heading1')}
             <br />
             <span className="text-brass">{t('callout.heading2')}</span>

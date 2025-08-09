@@ -9,7 +9,7 @@ const Terms = () => {
       <Navigation currentPage="terms" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">
-        <h1 className="text-4xl font-bold text-oxidized-teal mb-8 text-center font-playfair">
+        <h1 className="text-4xl text-oxidized-teal mb-8 text-center font-playfair">
           {t('termsPage.title')}
         </h1>
         
@@ -20,35 +20,35 @@ const Terms = () => {
           </p>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('termsPage.acceptance.title')}
             </h2>
             <p>{t('termsPage.acceptance.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('termsPage.license.title')}
             </h2>
             <p>{t('termsPage.license.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('termsPage.disclaimer.title')}
             </h2>
             <p>{t('termsPage.disclaimer.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('termsPage.limitations.title')}
             </h2>
             <p>{t('termsPage.limitations.text')}</p>
           </section>
           
           <section>
-            <h2 className="text-2xl font-bold text-oxidized-teal mb-4 font-playfair">
+            <h2 className="text-2xl text-oxidized-teal mb-4 font-playfair">
               {t('termsPage.contact.title')}
             </h2>
             <p>{t('termsPage.contact.text')}</p>

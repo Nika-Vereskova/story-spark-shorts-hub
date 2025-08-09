@@ -38,7 +38,7 @@ const ExcerptModal = ({ isOpen, onClose }: ExcerptModalProps) => {
             <X className="h-6 w-6" />
           </button>
           
-          <h2 className="text-3xl font-bold text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop text-center">
+          <h2 className="text-3xl text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop text-center">
             Chapter 2. Plumberella
           </h2>
           

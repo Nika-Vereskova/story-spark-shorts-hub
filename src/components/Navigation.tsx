@@ -74,7 +74,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 loading="lazy"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
               />
-              <div className="font-playfair font-bold text-teal">
+              <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
                 <div className="text-sm opacity-90">Studio AB</div>
               </div>
