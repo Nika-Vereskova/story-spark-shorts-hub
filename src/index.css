@@ -195,7 +195,7 @@
 }
 /* Hero Banner */
 .hero-banner {
-  @apply flex flex-col items-center justify-center text-center py-20 px-6 bg-cover bg-center bg-no-repeat;
+  @apply flex flex-col items-center justify-center text-center py-16 px-6 bg-cover bg-center bg-no-repeat;
   background-image: url('/your-gears-background.svg');
 }
 
@@ -215,7 +215,7 @@
 
 @media (min-width: 768px) {
   .hero-banner {
-    @apply flex-row text-left py-32 px-8;
+    @apply flex-row text-left py-24 px-8;
   }
 
   .hero-image {

@@ -27,8 +27,8 @@ const SplitHeroSection = () => {
  return (
  <>
  {/* Banner/Hero Section */}
- <section 
- className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[20vh] sm:h-[30vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] 2xl:h-[70vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px]"
+ <section
+ className="py-16 md:py-24 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[20vh] sm:h-[30vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh] 2xl:h-[70vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px]"
  style={{
  backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
  backgroundSize: 'cover',
@@ -58,7 +58,7 @@ const SplitHeroSection = () => {
  </section>
 
  {/* Content Section - Featured Book & AI Services */}
- <section className="py-12 px-6 bg-parchment">
+ <section className="py-6 md:py-10 px-6 bg-parchment">
  <div className="container mx-auto">
  <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
  {/* Left Panel - Plumberella */}

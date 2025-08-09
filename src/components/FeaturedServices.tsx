@@ -33,7 +33,7 @@ const FeaturedServices = () => {
  ];
 
  return (
- <section className="py-16 px-6 bg-gradient-to-r from-oxidized-teal/5 to-brass/5">
+ <section className="py-6 md:py-10 px-6 bg-gradient-to-r from-oxidized-teal/5 to-brass/5">
  <div className="container mx-auto">
  <div className="text-center mb-12">
  <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">

@@ -8,7 +8,7 @@ const Terms = () => {
  <div className="min-h-screen bg-parchment">
  <Navigation currentPage="terms" />
  
- <div className="container mx-auto px-6 py-24 max-w-4xl">
+ <div className="container mx-auto px-6 py-6 md:py-10 max-w-[1080px]">
  <h1 className="text-4xl font-bold text-oxidized-teal mb-8 text-center font-playfair">
  {t('termsPage.title')}
  </h1>

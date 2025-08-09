@@ -12,7 +12,7 @@ const Newsletter = () => {
  return (
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation />
- <div className="pt-24 pb-16 px-6">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
  <div className="container mx-auto text-center">
  <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair">
  Access Restricted
@@ -30,8 +30,8 @@ const Newsletter = () => {
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation />
  
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
+ <div className="container mx-auto max-w-[1080px]">
  <div className="text-center mb-8">
  <h1 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
  Newsletter Automation

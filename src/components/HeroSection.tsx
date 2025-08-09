@@ -30,7 +30,7 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
  return (
  // Adjusted padding-top using responsive classes to better fit varying header heights.
  // Also ensuring min-h-screen to make sure content doesn't get cut off vertically.
- <section className="pt-16 sm:pt-24 md:pt-32 pb-40 px-6 relative overflow-hidden min-h-screen">
+ <section className="py-16 md:py-24 px-6 relative overflow-hidden min-h-screen">
  {/* Animated Clockwork Background */}
  <div className="absolute inset-0 pointer-events-none">
  <div className="absolute top-20 left-10 w-32 h-32 opacity-10">

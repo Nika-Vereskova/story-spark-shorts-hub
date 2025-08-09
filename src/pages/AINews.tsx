@@ -54,7 +54,7 @@ const AINews = () => {
  return (
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="ai-news" />
- <main className="pt-24 pb-12">
+ <main className="pt-6 md:pt-10 pb-6 md:pb-10">
  <div className="container mx-auto px-6">
  <div className="text-center">
  <div className="animate-spin w-8 h-8 border-4 border-brass border-t-transparent rounded-full mx-auto"></div>
@@ -71,7 +71,7 @@ const AINews = () => {
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="ai-news" />
  
- <main className="pt-24 pb-12">
+ <main className="pt-6 md:pt-10 pb-6 md:pb-10">
  <div className="container mx-auto px-6">
  {/* Header */}
  <div className="text-center mb-12">
@@ -137,7 +137,7 @@ const AINews = () => {
  </div>
 
  {newsPosts.length === 0 && (
- <div className="text-center py-12">
+ <div className="text-center py-6 md:py-10">
  <p className="text-oxidized-teal/60 text-lg ">
  {t('aiNews.noPosts')}
  </p>

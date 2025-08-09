@@ -11,13 +11,15 @@ export default {
 	],
 	prefix: "",
 	theme: {
-		container: {
-			center: true,
-			padding: '2rem',
-			screens: {
-				'2xl': '1400px'
-			}
-		},
+                container: {
+                        center: true,
+                        padding: '2rem',
+                        screens: {
+                                lg: '1080px',
+                                xl: '1200px',
+                                '2xl': '1200px'
+                        }
+                },
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',

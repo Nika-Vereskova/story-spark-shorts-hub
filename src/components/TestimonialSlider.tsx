@@ -111,7 +111,7 @@ const TestimonialSlider = () => {
  const currentTestimonial = testimonials[currentIndex];
 
  return (
- <section className="py-16 px-6 bg-gradient-to-r from-oxidized-teal/10 to-brass/10 relative overflow-hidden">
+ <section className="py-6 md:py-10 px-6 bg-gradient-to-r from-oxidized-teal/10 to-brass/10 relative overflow-hidden">
  {/* Background gears */}
  <div className="absolute inset-0 pointer-events-none">
  <Cog className="absolute top-10 left-10 w-24 h-24 text-brass/5 animate-spin" style={{ animationDuration: '15s' }} />
@@ -128,7 +128,7 @@ const TestimonialSlider = () => {
  </p>
  </div>
 
- <div className="max-w-4xl mx-auto relative">
+ <div className="max-w-[1080px] mx-auto relative">
  <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop min-h-[300px] relative overflow-hidden">
  {/* Decorative quote */}
  <Quote className="absolute top-6 left-6 w-12 h-12 text-brass/20" />

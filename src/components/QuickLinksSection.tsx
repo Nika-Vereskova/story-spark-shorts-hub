@@ -8,7 +8,7 @@ import { t } from '@/lib/i18n';
 
 const QuickLinksSection = () => {
  return (
- <section className="py-16 px-6 bg-gear-etch/20">
+ <section className="py-6 md:py-10 px-6 bg-gear-etch/20">
  <div className="container mx-auto">
  <h2 className="text-4xl font-bold text-oxidized-teal mb-12 text-center font-playfair drop-shadow-text-drop">{t('home.exploreBooks')}</h2>
  <div className="grid md:grid-cols-3 gap-8">

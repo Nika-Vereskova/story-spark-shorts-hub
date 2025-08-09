@@ -183,8 +183,8 @@ const Admin = () => {
  return (
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="admin" />
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
+ <div className="container mx-auto max-w-[1080px]">
  <div className="text-center">
  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
  <p className="text-oxidized-teal mt-4 ">Loading...</p>
@@ -200,8 +200,8 @@ const Admin = () => {
  return (
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="admin" />
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
+ <div className="container mx-auto max-w-[1080px]">
  <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
  <CardHeader className="text-center">
  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
@@ -232,8 +232,8 @@ const Admin = () => {
  return (
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="admin" />
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
+ <div className="container mx-auto max-w-[1080px]">
  <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
  <CardHeader className="text-center">
  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
@@ -261,8 +261,8 @@ const Admin = () => {
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="admin" />
 
- <div className="pt-24 pb-16 px-6">
- <div className="container mx-auto max-w-4xl">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
+ <div className="container mx-auto max-w-[1080px]">
  {/* Header */}
  <div className="text-center mb-12">
  <h1 className="text-5xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">

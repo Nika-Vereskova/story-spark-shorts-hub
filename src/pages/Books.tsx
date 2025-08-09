@@ -45,7 +45,7 @@ const Books = () => {
  <div className="min-h-screen bg-parchment bg-gear-pattern">
  <Navigation currentPage="books" />
 
- <div className="pt-24 pb-16 px-6">
+ <div className="pt-6 md:pt-10 pb-6 md:pb-10 px-6">
  <div className="container mx-auto">
  {/* Header */}
  <div className="text-center mb-12">

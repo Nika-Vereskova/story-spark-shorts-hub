@@ -51,7 +51,7 @@ const AINewsCarousel = () => {
 
  if (loading) {
  return (
- <section className="py-16 px-6 bg-brass/10">
+ <section className="py-6 md:py-10 px-6 bg-brass/10">
  <div className="container mx-auto">
  <div className="text-center">
  <Cog className="w-8 h-8 text-brass animate-spin mx-auto mb-4" />
@@ -67,7 +67,7 @@ const AINewsCarousel = () => {
  }
 
  return (
- <section className="py-16 px-6 bg-brass/10">
+ <section className="py-6 md:py-10 px-6 bg-brass/10">
  <div className="container mx-auto">
  <div className="text-center mb-12">
  <h2 className="text-4xl font-bold text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
