@@ -26,35 +26,33 @@ const SplitHeroSection = () => {
 
   return (
     <>
-      {/* Banner/Hero Section */}
+      {/* Short & Punchy Banner */}
       <section 
-        className="pt-12 sm:pt-14 pb-6 sm:pb-8 px-4 sm:px-6 relative overflow-hidden hero flex items-center justify-center h-[28vh] sm:h-[32vh] md:h-[38vh] lg:h-[44vh] xl:h-[50vh] min-h-[140px] sm:min-h-[180px] md:min-h-[220px] max-h-[520px]"
-        style={{
-          backgroundImage: 'url(/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
+        className="relative overflow-hidden px-6 sm:px-8 py-10 sm:py-14 bg-gradient-to-br from-parchment to-brass border-b border-brass/30"
       >
-        {/* Backdrop filter overlay */}
-        <div className="absolute inset-0" style={{ backdropFilter: 'sepia(0.2)' }}></div>
-        
-        {/* Animated Clockwork Background */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-16 h-16 opacity-10">
-            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
-          </div>
-          <div className="absolute top-20 right-20 w-12 h-12 opacity-15">
-            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-          </div>
-          <div className="absolute bottom-10 left-1/4 w-10 h-10 opacity-10">
-            <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
-          </div>
-          <div className="absolute bottom-20 right-1/3 w-8 h-8 opacity-15">
-            <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-          </div>
+        {/* Minimal cog line-drawing in corner */}
+        <div className="absolute -bottom-6 -right-6 opacity-20 pointer-events-none">
+          <Cog className="w-32 h-32 text-brass" strokeWidth={1} />
         </div>
 
-        {/* Banner Title/Content removed as per request */}
+        <div className="container mx-auto relative z-10 h-[26vh] sm:h-[30vh] md:h-[34vh] flex items-center">
+          <div className="max-w-3xl">
+            <h1 className="text-4xl sm:text-5xl font-playfair text-oxidized-teal leading-tight">
+              Building Futures with AI & Storytelling
+            </h1>
+            <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-lg font-inter">
+              AI animation, custom GPTs, and enchanting books for curious minds.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-4">
+              <Button variant="steam" size="lg" onClick={handleAIServices}>
+                Explore Our Services
+              </Button>
+              <Button variant="outline" size="lg" onClick={handleBookSample}>
+                Read a Sample Chapter
+              </Button>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Content Section - Featured Book & AI Services */}
