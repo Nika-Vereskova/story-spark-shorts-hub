@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { t } from '@/lib/i18n';
+import SEO from '@/components/SEO';
+import { useNavigate } from 'react-router-dom';
+import { getCurrentLocale } from '@/lib/i18n';
 
 interface NewsPost {
   id: string;
@@ -20,6 +23,8 @@ interface NewsPost {
 const AINews = () => {
   const [newsPosts, setNewsPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const locale = getCurrentLocale();
 
   useEffect(() => {
     fetchNewsPosts();
@@ -68,6 +73,7 @@ const AINews = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="AI News & Blog – STEaM LOGIC" description="Latest AI insights, curated articles, and studio updates." />
       <Navigation currentPage="ai-news" />
       
       <main className="pt-24 pb-12">

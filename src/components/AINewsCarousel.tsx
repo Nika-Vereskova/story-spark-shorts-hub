@@ -3,7 +3,8 @@ import { Clock, ExternalLink, Cog } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
+import { useNavigate } from 'react-router-dom';
 
 interface NewsPost {
   id: string;
@@ -18,6 +19,8 @@ interface NewsPost {
 const AINewsCarousel = () => {
   const [newsPosts, setNewsPosts] = useState<NewsPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+  const locale = getCurrentLocale();
 
   useEffect(() => {
     fetchNewsPosts();
@@ -137,7 +140,7 @@ const AINewsCarousel = () => {
           <Button 
             variant="outline"
             className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 font-inter font-medium"
-            onClick={() => window.location.href = '/ai-news'}
+            onClick={() => navigate(`/${locale}/ai-news`)}
           >
             {t('aiNews.viewAll')}
           </Button>

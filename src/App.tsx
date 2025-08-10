@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "@/contexts/AuthContext";
 import LocaleRouter from "@/components/LocaleRouter";
 const Index = React.lazy(() => import("./pages/Index"));
@@ -38,7 +39,8 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <HelmetProvider>
+          <BrowserRouter>
           <LocaleRouter>
             <Routes>
               {/* Root route - will be handled by LocaleRouter */}
@@ -83,6 +85,7 @@ const App = () => (
             </Routes>
           </LocaleRouter>
         </BrowserRouter>
+        </HelmetProvider>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>

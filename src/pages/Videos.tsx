@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
+import SEO from '@/components/SEO';
 
 const Videos = () => {
   const videos = [
@@ -27,6 +28,7 @@ const Videos = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="Videos – Story Time & AI Demos" description="Watch steampunk story time and practical AI demonstrations." />
       <Navigation currentPage="videos" />
 
       <div className="pt-24 pb-16 px-6">

@@ -2,10 +2,12 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import { t } from '@/lib/i18n';
+import SEO from '@/components/SEO';
 
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-parchment">
+      <SEO title="Privacy Policy – STEaM LOGIC" description="Read our privacy practices and data protection policy." noindex />
       <Navigation currentPage="privacy" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">

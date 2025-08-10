@@ -2,10 +2,12 @@
 import React from 'react';
 import Navigation from '@/components/Navigation';
 import { t } from '@/lib/i18n';
+import SEO from '@/components/SEO';
 
 const Terms = () => {
   return (
     <div className="min-h-screen bg-parchment">
+      <SEO title="Terms of Service – STEaM LOGIC" description="Read our terms of service and usage guidelines." noindex />
       <Navigation currentPage="terms" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">

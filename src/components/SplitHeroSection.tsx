@@ -3,27 +3,28 @@ import { Cog, Book, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
+import { useNavigate } from 'react-router-dom';
 
 const SplitHeroSection = () => {
+  const navigate = useNavigate();
+  const locale = getCurrentLocale();
+
   const handleBookSample = () => {
     posthog.capture('book_sample_clicked', {
       book_title: 'Plumberella',
       source: 'split_hero'
     });
-    // Navigate to books page
-    window.location.href = '/books';
+    navigate(`/${locale}/books`);
   };
 
   const handleAIServices = () => {
     posthog.capture('ai_services_clicked', {
       source: 'split_hero'
     });
-    // Navigate to AI services page
-    window.location.href = '/ai-services';
+    navigate(`/${locale}/ai-services`);
   };
-
   return (
     <>
       {/* Short & Punchy Banner */}

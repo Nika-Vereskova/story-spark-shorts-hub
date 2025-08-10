@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation';
 import { useUserRole } from '@/hooks/useUserRole';
 import { useAuth } from '@/contexts/AuthContext';
 import { t } from '@/lib/i18n';
+import SEO from '@/components/SEO';
 
 const Blog = () => {
   const { toast } = useToast();
@@ -130,6 +131,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="Blog – Stories, Notes & Updates" description="Thoughts on storytelling, education, and applied AI." />
       <Navigation currentPage="blog" />
 
       <div className="pt-24 pb-16 px-6">

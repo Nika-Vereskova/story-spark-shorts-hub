@@ -2,9 +2,12 @@ import React from 'react';
 import { Users, Brain, Bot, Wrench } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
+import { useNavigate } from 'react-router-dom';
 
 const FeaturedServices = () => {
+  const navigate = useNavigate();
+  const locale = getCurrentLocale();
   const services = [
     {
       icon: Users,
@@ -20,7 +23,7 @@ const FeaturedServices = () => {
       description: t('featuredServices.aiConsulting.description'),
       features: t('featuredServices.aiConsulting.features') as string[],
       cta: t('featuredServices.aiConsulting.cta'),
-      action: () => (window.location.href = '/ai-services')
+      action: () => navigate(`/${locale}/ai-services`)
     },
     {
       icon: Bot,
@@ -28,7 +31,7 @@ const FeaturedServices = () => {
       description: t('featuredServices.bespokeGpts.description'),
       features: t('featuredServices.bespokeGpts.features') as string[],
       cta: t('featuredServices.bespokeGpts.cta'),
-      action: () => (window.location.href = '/ai-services')
+      action: () => navigate(`/${locale}/ai-services`)
     }
   ];
 

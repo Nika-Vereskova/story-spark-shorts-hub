@@ -5,10 +5,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
+import SEO from '@/components/SEO';
 
 const About = () => {
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="About Nika Vereskova – STEaM LOGIC" description="Author and AI consultant behind STEaM LOGIC Studio AB." />
       <Navigation currentPage="about" />
 
       <div className="pt-24 pb-16 px-6">

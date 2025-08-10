@@ -8,6 +8,7 @@ const NewsletterSection = React.lazy(() => import('@/components/NewsletterSectio
 const TestimonialSlider = React.lazy(() => import('@/components/TestimonialSlider'));
 const CalloutFooter = React.lazy(() => import('@/components/CalloutFooter'));
 import Footer from '@/components/Footer';
+import SEO from '@/components/SEO';
 
 const Index = () => {
   if (process.env.NODE_ENV === 'development') {
@@ -16,6 +17,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="AI & Storytelling Services – STEaM LOGIC" description="Building futures with AI animation, custom GPTs, and enchanting books. Explore services and stories." />
       {/* Navigation */}
       <Navigation currentPage="home" />
 

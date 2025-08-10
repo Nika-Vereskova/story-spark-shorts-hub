@@ -42,6 +42,7 @@ const Books = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
+      <SEO title="Books – Plumberella & More | STEaM LOGIC" description="Enchanting steampunk books and stories for curious minds." />
       <Navigation currentPage="books" />
 
       <div className="pt-24 pb-16 px-6">
