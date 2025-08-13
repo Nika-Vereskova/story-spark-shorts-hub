@@ -29,26 +29,26 @@ const SplitHeroSection = () => {
     <>
       {/* Short & Punchy Banner */}
       <section 
-        className="relative overflow-hidden px-6 sm:px-8 py-10 sm:py-14 bg-gradient-to-br from-parchment to-brass border-b border-brass/30"
+        className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-parchment to-brass border-b border-brass/30"
       >
         {/* Minimal cog line-drawing in corner */}
         <div className="absolute -bottom-6 -right-6 opacity-20 pointer-events-none">
-          <Cog className="w-32 h-32 text-brass" strokeWidth={1} />
+          <Cog className="w-24 sm:w-32 h-24 sm:h-32 text-brass" strokeWidth={1} />
         </div>
 
-        <div className="container mx-auto relative z-10 h-[26vh] sm:h-[30vh] md:h-[34vh] flex items-center">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl font-playfair text-oxidized-teal leading-tight">
+        <div className="container mx-auto relative z-10 min-h-[320px] sm:min-h-[280px] lg:min-h-[320px] flex items-center">
+          <div className="max-w-3xl w-full">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
               Building Futures with AI & Storytelling
             </h1>
-            <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-lg font-inter">
+            <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-base sm:text-lg font-inter">
               AI animation, custom GPTs, and enchanting books for curious minds.
             </p>
-            <div className="mt-6 flex flex-col sm:flex-row gap-4">
-              <Button variant="steam" size="lg" onClick={handleAIServices}>
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button variant="steam" size="lg" onClick={handleAIServices} className="w-full sm:w-auto">
                 Explore Our Services
               </Button>
-              <Button variant="outline" size="lg" onClick={handleBookSample}>
+              <Button variant="outline" size="lg" onClick={handleBookSample} className="w-full sm:w-auto">
                 Read a Sample Chapter
               </Button>
             </div>
