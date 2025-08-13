@@ -4,9 +4,7 @@ import Navigation from '@/components/Navigation';
 const SplitHeroSection = React.lazy(() => import('@/components/SplitHeroSection'));
 const FeaturedServices = React.lazy(() => import('@/components/FeaturedServices'));
 const AINewsCarousel = React.lazy(() => import('@/components/AINewsCarousel'));
-const NewsletterSection = React.lazy(() => import('@/components/NewsletterSection'));
 const TestimonialSlider = React.lazy(() => import('@/components/TestimonialSlider'));
-const CalloutFooter = React.lazy(() => import('@/components/CalloutFooter'));
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
@@ -36,19 +34,9 @@ const Index = () => {
         <AINewsCarousel />
       </Suspense>
 
-      {/* Newsletter Strip */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <NewsletterSection />
-      </Suspense>
-
       {/* Testimonial Slider */}
       <Suspense fallback={<div>Loading...</div>}>
         <TestimonialSlider />
-      </Suspense>
-
-      {/* Call-out Footer Block */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <CalloutFooter />
       </Suspense>
 
       {/* Footer */}
