@@ -38,6 +38,14 @@ const SplitHeroSection = () => {
 
         <div className="container mx-auto relative z-10 min-h-[320px] sm:min-h-[280px] lg:min-h-[320px] flex items-center">
           <div className="max-w-3xl w-full">
+            <div className="mb-6 sm:mb-8">
+              <img
+                src="/lovable-uploads/e38cee9a-24e3-45ce-8398-efd551b4c072.png"
+                alt="STEaM LOGIC Studio AB"
+                loading="lazy"
+                className="h-[60px] sm:h-[80px] md:h-[100px] lg:h-[120px] drop-shadow-2xl hover:scale-105 transition-transform duration-300"
+              />
+            </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
               Building Futures with AI & Storytelling
             </h1>
