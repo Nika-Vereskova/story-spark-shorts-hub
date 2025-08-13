@@ -70,16 +70,14 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
               <img
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
-                alt="STEaM LOGIC Studio AB gear icon"
+                alt="STEaM LOGIC Studio AB"
                 loading="lazy"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
               />
-              <img
-                src="/lovable-uploads/e38cee9a-24e3-45ce-8398-efd551b4c072.png"
-                alt="STEaM LOGIC Studio AB"
-                loading="lazy"
-                className="h-[24px] sm:h-[28px] md:h-[40px] drop-shadow-md"
-              />
+              <div className="font-playfair text-teal">
+                <div className="text-xl leading-tight">STEaM LOGIC</div>
+                <div className="text-sm opacity-90">Studio AB</div>
+              </div>
             </Link>
             
             <div className="hidden md:flex items-center space-x-8">
