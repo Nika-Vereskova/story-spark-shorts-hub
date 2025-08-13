@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cog, Book, Sparkles } from 'lucide-react';
+import HeroLogo from './HeroLogo';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -37,20 +38,28 @@ const SplitHeroSection = () => {
         </div>
 
         <div className="container mx-auto relative z-10 min-h-[320px] sm:min-h-[280px] lg:min-h-[320px] flex items-center">
-          <div className="max-w-3xl w-full">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
-              Building Futures with AI & Storytelling
-            </h1>
-            <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-base sm:text-lg font-inter">
-              AI animation, custom GPTs, and enchanting books for curious minds.
-            </p>
-            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <Button variant="steam" size="lg" onClick={handleAIServices} className="w-full sm:w-auto">
-                Explore Our Services
-              </Button>
-              <Button variant="outline" size="lg" onClick={handleBookSample} className="w-full sm:w-auto">
-                Read a Sample Chapter
-              </Button>
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 w-full">
+            {/* Logo Showcase */}
+            <div className="flex-shrink-0">
+              <HeroLogo size="xl" className="mx-auto lg:mx-0" />
+            </div>
+            
+            {/* Content */}
+            <div className="flex-1 text-center lg:text-left">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
+                Building Futures with AI & Storytelling
+              </h1>
+              <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-base sm:text-lg font-inter">
+                AI animation, custom GPTs, and enchanting books for curious minds.
+              </p>
+              <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                <Button variant="steam" size="lg" onClick={handleAIServices} className="w-full sm:w-auto">
+                  Explore Our Services
+                </Button>
+                <Button variant="outline" size="lg" onClick={handleBookSample} className="w-full sm:w-auto">
+                  Read a Sample Chapter
+                </Button>
+              </div>
             </div>
           </div>
         </div>
