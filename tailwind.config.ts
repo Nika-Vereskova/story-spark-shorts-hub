@@ -146,7 +146,9 @@ export default {
 				'text-drop': '2px 2px 4px rgba(139, 106, 53, 0.3)',
 			},
 			backgroundImage: {
-				'gear-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23E8D4A6\" fill-opacity=\"0.1\"%%3E%3Cpath d=\"M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z\"/%3E%3Cpath d=\"M20 14.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zm0 1a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z\"/%3E%3C/g%%3E%3C/svg%3E')",
+				'gear-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23B18A46\" fill-opacity=\"0.08\"%%3E%3Cpath d=\"M30 25a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 2a3 3 0 1 1 0 6 3 3 0 0 1 0-6z\"/%3E%3Cpath d=\"M30 20l1.5 1.5L30 23l-1.5-1.5L30 20zm5 10l1.5 1.5L35 33l-1.5-1.5L35 30zm-10 0l1.5 1.5L25 33l-1.5-1.5L25 30zm5-10l1.5-1.5L32 17l-1.5 1.5L32 20z\"/%3E%3C/g%%3E%3C/svg%3E')",
+				'feather-pattern': "url('data:image/svg+xml,%3Csvg width=\"80\" height=\"80\" viewBox=\"0 0 80 80\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%232E646B\" fill-opacity=\"0.05\"%%3E%3Cpath d=\"M40 20c8 0 15 7 15 15 0 4-1.5 7.5-4 10l-11 11-11-11c-2.5-2.5-4-6-4-10 0-8 7-15 15-15zm0 5c-5.5 0-10 4.5-10 10 0 2.5 1 5 2.5 7l7.5 7.5 7.5-7.5c1.5-2 2.5-4.5 2.5-7 0-5.5-4.5-10-10-10z\"/%3E%3C/g%%3E%3C/svg%3E')",
+				'steam-pattern': "url('data:image/svg+xml,%3Csvg width=\"120\" height=\"120\" viewBox=\"0 0 120 120\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23E8D4A6\" fill-opacity=\"0.03\"%%3E%3Ccircle cx=\"20\" cy=\"100\" r=\"3\" opacity=\"0.6\"/%3E%3Ccircle cx=\"30\" cy=\"90\" r=\"2\" opacity=\"0.4\"/%3E%3Ccircle cx=\"40\" cy=\"80\" r=\"1.5\" opacity=\"0.3\"/%3E%3Ccircle cx=\"80\" cy=\"100\" r=\"2.5\" opacity=\"0.5\"/%3E%3Ccircle cx=\"90\" cy=\"90\" r=\"1.8\" opacity=\"0.4\"/%3E%3Ccircle cx=\"100\" cy=\"80\" r=\"1.2\" opacity=\"0.3\"/%3E%3C/g%%3E%3C/svg%3E')",
 			},
 			filter: {
 				'sepia': 'sepia(80%) saturate(120%) hue-rotate(15deg)',
