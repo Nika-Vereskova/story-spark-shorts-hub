@@ -67,16 +67,16 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <Link to={`/${locale}`} className="flex items-center space-x-3 logo group">
+            <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
               <img
-                src="/src/assets/logo-3d.png"
-                alt="STEaM LOGIC Studio AB - 3D Brass Gear and Teal Feather Logo"
+                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
+                alt="STEaM LOGIC Studio AB"
                 loading="lazy"
-                className="h-[36px] sm:h-[42px] md:h-[56px] gear transition-all duration-300 group-hover:scale-105 drop-shadow-md"
+                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
               />
-              <div className="font-playfair text-primary">
-                <div className="text-xl leading-tight font-bold tracking-tight">STEaM LOGIC</div>
-                <div className="text-sm opacity-90 tracking-wide">Studio AB</div>
+              <div className="font-playfair text-teal">
+                <div className="text-xl leading-tight">STEaM LOGIC</div>
+                <div className="text-sm opacity-90">Studio AB</div>
               </div>
             </Link>
             

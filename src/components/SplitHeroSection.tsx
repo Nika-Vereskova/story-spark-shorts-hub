@@ -6,7 +6,6 @@ import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
 import { useNavigate } from 'react-router-dom';
-import HeroLogo from '@/components/HeroLogo';
 
 const SplitHeroSection = () => {
   const navigate = useNavigate();
@@ -28,71 +27,30 @@ const SplitHeroSection = () => {
   };
   return (
     <>
-      {/* Hero Banner with 3D Logo Showcase */}
+      {/* Short & Punchy Banner */}
       <section 
-        className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-parchment via-gear-etch to-parchment bg-feather-pattern border-b border-secondary/30"
+        className="relative overflow-hidden px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-parchment to-brass border-b border-brass/30"
       >
-        {/* Background enhancement with subtle patterns */}
-        <div className="absolute inset-0 bg-gear-pattern-subtle opacity-30"></div>
-        
-        {/* Floating logo elements */}
-        <div className="absolute top-8 right-8 opacity-10 pointer-events-none animate-pulse">
-          <Cog className="w-16 sm:w-24 h-16 sm:h-24 text-secondary" strokeWidth={1} />
-        </div>
-        <div className="absolute bottom-8 left-8 opacity-10 pointer-events-none animate-pulse delay-1000">
-          <Sparkles className="w-12 sm:w-16 h-12 sm:h-16 text-accent" strokeWidth={1} />
+        {/* Minimal cog line-drawing in corner */}
+        <div className="absolute -bottom-6 -right-6 opacity-20 pointer-events-none">
+          <Cog className="w-24 sm:w-32 h-24 sm:h-32 text-brass" strokeWidth={1} />
         </div>
 
-        <div className="container mx-auto relative z-10 min-h-[480px] sm:min-h-[400px] lg:min-h-[500px]">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: Content */}
-            <div className="max-w-2xl order-2 lg:order-1">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-playfair text-primary leading-tight mb-4">
-                Building Futures with{' '}
-                <span className="text-secondary">AI</span> &{' '}
-                <span className="text-accent">Storytelling</span>
-              </h1>
-              <p className="mt-4 text-primary/80 text-lg sm:text-xl font-inter leading-relaxed">
-                Where cutting-edge AI meets enchanting narratives. Custom GPTs, animation, and books that inspire curious minds.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
-                  onClick={handleAIServices} 
-                  className="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-secondary-foreground text-lg px-8 py-4 h-auto font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <Sparkles className="mr-2 h-5 w-5" />
-                  Explore Our Services
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  onClick={handleBookSample} 
-                  className="w-full sm:w-auto border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground text-lg px-8 py-4 h-auto font-semibold transition-all duration-300"
-                >
-                  <Book className="mr-2 h-5 w-5" />
-                  Read a Sample Chapter
-                </Button>
-              </div>
-            </div>
-            
-            {/* Right: 3D Logo Showcase */}
-            <div className="flex justify-center lg:justify-end order-1 lg:order-2">
-              <div className="relative">
-                <HeroLogo size="large" className="animate-fade-in" />
-                
-                {/* Decorative elements around logo */}
-                <div className="absolute -top-4 -left-4 w-3 h-3 bg-secondary rounded-full opacity-60 animate-pulse"></div>
-                <div className="absolute -bottom-6 -right-6 w-2 h-2 bg-accent rounded-full opacity-80 animate-pulse delay-500"></div>
-                <div className="absolute top-1/2 -left-8 w-1 h-1 bg-primary rounded-full opacity-50 animate-pulse delay-1000"></div>
-                
-                {/* Logo description text */}
-                <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center">
-                  <p className="text-primary/60 text-sm font-inter italic">
-                    Precision meets Creativity
-                  </p>
-                </div>
-              </div>
+        <div className="container mx-auto relative z-10 min-h-[320px] sm:min-h-[280px] lg:min-h-[320px] flex items-center">
+          <div className="max-w-3xl w-full">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
+              Building Futures with AI & Storytelling
+            </h1>
+            <p className="mt-3 sm:mt-4 text-oxidized-teal/80 text-base sm:text-lg font-inter">
+              AI animation, custom GPTs, and enchanting books for curious minds.
+            </p>
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button variant="steam" size="lg" onClick={handleAIServices} className="w-full sm:w-auto">
+                Explore Our Services
+              </Button>
+              <Button variant="outline" size="lg" onClick={handleBookSample} className="w-full sm:w-auto">
+                Read a Sample Chapter
+              </Button>
             </div>
           </div>
         </div>

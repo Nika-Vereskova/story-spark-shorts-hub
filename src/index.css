@@ -155,12 +155,8 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .logo .gear {
+  .logo svg.gear {
     animation: gearSpin 25s linear infinite;
-  }
-  
-  .logo:hover .gear {
-    animation-duration: 5s;
   }
 }
 
