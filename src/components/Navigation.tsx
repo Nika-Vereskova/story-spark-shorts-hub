@@ -74,10 +74,12 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 loading="lazy"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
               />
-              <div className="font-playfair text-teal">
-                <div className="text-xl leading-tight">STEaM LOGIC</div>
-                <div className="text-sm opacity-90">Studio AB</div>
-              </div>
+              <img
+                src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
+                alt="STEaM LOGIC Studio AB"
+                loading="lazy"
+                className="h-[28px] sm:h-[32px] md:h-[48px] object-contain"
+              />
             </Link>
             
             <div className="hidden md:flex items-center space-x-8">

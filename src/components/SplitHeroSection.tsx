@@ -36,8 +36,18 @@ const SplitHeroSection = () => {
           <Cog className="w-24 sm:w-32 h-24 sm:h-32 text-brass" strokeWidth={1} />
         </div>
 
-        <div className="container mx-auto relative z-10 min-h-[320px] sm:min-h-[280px] lg:min-h-[320px] flex items-center">
-          <div className="max-w-3xl w-full">
+        <div className="container mx-auto relative z-10 min-h-[380px] sm:min-h-[340px] lg:min-h-[380px] flex items-center">
+          <div className="max-w-4xl w-full text-center">
+            {/* 3D Company Logo Showcase */}
+            <div className="mb-6 sm:mb-8">
+              <img
+                src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
+                alt="STEaM LOGIC Studio AB"
+                loading="lazy"
+                className="h-[80px] sm:h-[100px] md:h-[120px] lg:h-[140px] mx-auto object-contain drop-shadow-[0_8px_16px_rgba(139,69,19,0.3)] hover:drop-shadow-[0_12px_24px_rgba(139,69,19,0.4)] transition-all duration-300"
+              />
+            </div>
+            
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-playfair text-oxidized-teal leading-tight">
               Building Futures with AI & Storytelling
             </h1>
