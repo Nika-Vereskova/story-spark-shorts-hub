@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
+import SEO from '@/components/SEO';
 
 interface Book {
   id: number;
