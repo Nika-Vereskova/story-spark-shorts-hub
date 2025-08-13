@@ -1,10 +1,11 @@
 
 import React, { Suspense } from 'react';
 import Navigation from '@/components/Navigation';
-const SplitHeroSection = React.lazy(() => import('@/components/SplitHeroSection'));
-const FeaturedServices = React.lazy(() => import('@/components/FeaturedServices'));
+const NewHeroSection = React.lazy(() => import('@/components/NewHeroSection'));
+const AboutPreview = React.lazy(() => import('@/components/AboutPreview'));
+const ServicesTeaser = React.lazy(() => import('@/components/ServicesTeaser'));
 const AINewsCarousel = React.lazy(() => import('@/components/AINewsCarousel'));
-const TestimonialSlider = React.lazy(() => import('@/components/TestimonialSlider'));
+const ContactCTA = React.lazy(() => import('@/components/ContactCTA'));
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 
@@ -15,28 +16,34 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <SEO title="AI & Storytelling Services – STEaM LOGIC" description="Building futures with AI animation, custom GPTs, and enchanting books. Explore services and stories." />
+      <SEO title="STEaM LOGIC Studio AB - Inventive Storytelling × Intelligent Technology" description="Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova." />
+      
       {/* Navigation */}
       <Navigation currentPage="home" />
 
-      {/* Split-Hero Banner */}
+      {/* Hero Section */}
       <Suspense fallback={<div>Loading...</div>}>
-        <SplitHeroSection />
+        <NewHeroSection />
       </Suspense>
 
-      {/* Featured Services (3 side-by-side cards) */}
+      {/* About Me Preview */}
       <Suspense fallback={<div>Loading...</div>}>
-        <FeaturedServices />
+        <AboutPreview />
       </Suspense>
 
-      {/* Latest AI News Carousel */}
+      {/* Services Teaser */}
+      <Suspense fallback={<div>Loading...</div>}>
+        <ServicesTeaser />
+      </Suspense>
+
+      {/* AI News Highlight */}
       <Suspense fallback={<div>Loading...</div>}>
         <AINewsCarousel />
       </Suspense>
 
-      {/* Testimonial Slider */}
+      {/* Contact CTA */}
       <Suspense fallback={<div>Loading...</div>}>
-        <TestimonialSlider />
+        <ContactCTA />
       </Suspense>
 
       {/* Footer */}
