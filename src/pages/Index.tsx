@@ -17,7 +17,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <SEO title="STEaM LOGIC Studio AB - Inventive Storytelling × Intelligent Technology" description="Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova." />
+      <SEO 
+        title="STEaM LOGIC Studio AB - AI Consulting & Custom GPT Development | Nika Vereskova" 
+        description="Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions. Transform your business with inventive storytelling and intelligent technology." 
+        keywords="AI consulting, custom GPT development, AI workshops, ChatGPT development, AI automation, AI strategy consultant, artificial intelligence consultant, Sweden, process automation, AI assistant development, GPT training workshops"
+      />
       
       {/* Navigation */}
       <Navigation currentPage="home" />

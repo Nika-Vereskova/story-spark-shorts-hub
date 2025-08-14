@@ -36,36 +36,50 @@ const ServicesTeaser = () => {
   ];
 
   return (
-    <section id="services-section" className="py-16 px-6 bg-gradient-to-br from-brass/5 to-oxidized-teal/5 relative">
+    <section 
+      id="services-section" 
+      className="py-16 px-6 bg-gradient-to-br from-brass/5 to-oxidized-teal/5 relative"
+      itemScope
+      itemType="https://schema.org/Service"
+    >
       {/* Clockwork Gear Decoration */}
       <Settings className="absolute top-8 right-8 w-12 h-12 text-brass/20 animate-gear-rotation" />
       <Settings className="absolute bottom-8 left-8 w-10 h-10 text-brass/15 animate-gear-rotation" style={{animationDelay: '2s'}} />
       
       <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-playfair text-oxidized-teal mb-4">My Services</h2>
-          <p className="text-oxidized-teal/70 text-lg font-inter max-w-2xl mx-auto">
-            Comprehensive solutions that blend creativity, technology, and storytelling to bring your vision to life.
+        <header className="text-center mb-12">
+          <h2 className="text-4xl font-playfair text-oxidized-teal mb-4" itemProp="serviceType">
+            Professional AI Services
+          </h2>
+          <p className="text-oxidized-teal/70 text-lg font-inter max-w-2xl mx-auto" itemProp="description">
+            Comprehensive AI consulting solutions that blend creativity, technology, and storytelling to transform your business operations.
           </p>
-        </div>
+        </header>
 
         <div className="grid-responsive max-w-6xl mx-auto mb-12">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
-              <Card key={index} className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop">
-                <CardHeader className="text-center">
+              <article 
+                key={index} 
+                className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop touch-target rounded-lg"
+                itemScope
+                itemType="https://schema.org/Service"
+              >
+                <header className="text-center p-6 pb-4">
                   <div className="w-16 h-16 bg-brass/20 rounded-full flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="w-8 h-8 text-brass animate-icon-spin" />
                   </div>
-                  <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-oxidized-teal/70 font-inter text-center">
+                  <h3 className="text-oxidized-teal text-xl font-playfair leading-tight" itemProp="name">
+                    {service.title}
+                  </h3>
+                </header>
+                <div className="px-6 pb-6">
+                  <p className="text-oxidized-teal/70 font-inter text-center leading-relaxed" itemProp="description">
                     {service.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
+                  </p>
+                </div>
+              </article>
             );
           })}
         </div>
@@ -76,8 +90,9 @@ const ServicesTeaser = () => {
             size="lg"
             className="text-lg px-8 py-3"
             onClick={handleViewAllServices}
+            itemProp="mainEntityOfPage"
           >
-            View All Services
+            View All AI Services
           </Button>
         </div>
       </div>

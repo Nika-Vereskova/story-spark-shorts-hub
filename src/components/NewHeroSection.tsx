@@ -28,9 +28,13 @@ const NewHeroSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-8 sm:pt-16 md:pt-0">
+    <section 
+      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-8 sm:pt-16 md:pt-0"
+      itemScope 
+      itemType="https://schema.org/Organization"
+    >
       {/* Animated Clockwork Background */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
           <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '12s' }} />
         </div>
@@ -47,25 +51,40 @@ const NewHeroSection = () => {
 
       <div className="container mx-auto px-6 relative z-10 text-center">
         {/* Company Logo and Title */}
-        <div className="animate-fade-in">
+        <header className="animate-fade-in">
           {/* 3D Company Logo */}
           <div className="flex justify-center mb-1 sm:mb-6">
             <img 
               src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
-              alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
+              alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics symbolizing the fusion of creativity and technology"
               className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
               style={{ animationDuration: '12s', animationDirection: 'reverse' }}
+              width="320"
+              height="320"
+              loading="eager"
+              itemProp="logo"
             />
           </div>
           
-          <h1 className="hero-title font-playfair text-oxidized-teal mb-6 leading-tight">
-            STEaM LOGIC Studio AB
+          <h1 
+            className="hero-title font-playfair text-oxidized-teal mb-6 leading-tight"
+            itemProp="name"
+          >
+            STEaM LOGIC Studio AB - AI Consulting & Custom GPT Development
           </h1>
           
-          {/* Subtitle */}
-          <p className="hero-subtitle text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light">
-            Inventive Storytelling × Intelligent Technology
+          {/* Subtitle with structured data */}
+          <p 
+            className="hero-subtitle text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light"
+            itemProp="description"
+          >
+            Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions
           </p>
+
+          {/* Key Services for SEO */}
+          <div className="mb-8 text-oxidized-teal/70 font-inter">
+            <span className="font-medium">Key Services:</span> AI Strategy & Implementation | Custom GPT Development | AI Workshops & Training | Process Automation Solutions
+          </div>
 
           {/* Call-to-Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
@@ -74,8 +93,9 @@ const NewHeroSection = () => {
               variant="steam"
               className="text-lg px-8 py-4 min-w-[200px]"
               onClick={handleExploreServices}
+              itemProp="mainEntityOfPage"
             >
-              Explore My Services
+              Explore AI Services
             </Button>
             <Button 
               size="lg" 
@@ -88,13 +108,13 @@ const NewHeroSection = () => {
           </div>
 
           {/* Scroll Hint */}
-          <div className="animate-bounce">
+          <div className="animate-bounce" aria-label="Scroll down to explore more content">
             <div className="flex flex-col items-center text-oxidized-teal/60">
               <span className="text-sm font-inter mb-2">Scroll to explore</span>
               <ChevronDown className="w-6 h-6" />
             </div>
           </div>
-        </div>
+        </header>
       </div>
     </section>
   );

@@ -23,7 +23,7 @@ const SEO: React.FC<SEOProps> = ({
   description, 
   image, 
   noindex, 
-  keywords = "AI consulting, storytelling, custom GPTs, AI workshops, creative technology, Nika Vereskova, steampunk, children's books",
+  keywords = "AI consulting, custom GPT development, AI workshops, ChatGPT development, AI automation, AI strategy consultant, artificial intelligence consultant, Sweden, process automation, AI assistant development, GPT training workshops, AI process automation solutions",
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -41,129 +41,192 @@ const SEO: React.FC<SEOProps> = ({
   }));
 
   const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'STEaM LOGIC Studio AB',
-    url: BASE_URL,
-    logo: `${BASE_URL}${LOGO_URL}`,
-    description: 'AI consulting and creative storytelling studio specializing in custom GPTs, workshops, and innovative technology solutions.',
-    founder: {
-      '@type': 'Person',
-      name: 'Nika Vereskova',
-      url: 'https://github.com/Nika-Vereskova'
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "STEaM LOGIC Studio AB",
+    "url": BASE_URL,
+    "logo": `${BASE_URL}${LOGO_URL}`,
+    "description": "Expert AI consulting services combining inventive storytelling with intelligent technology. Custom GPT development, AI workshops, and automation solutions.",
+    "founder": {
+      "@type": "Person",
+      "name": "Nika Vereskova",
+      "jobTitle": "AI Consultant & Creative Storyteller",
+      "expertise": ["AI Strategy", "Custom GPT Development", "AI Workshops", "Process Automation"],
+      "url": "https://github.com/Nika-Vereskova"
     },
-    sameAs: [
-      'https://www.youtube.com/@NikaVereskova',
-      'https://github.com/Nika-Vereskova',
-      'https://www.instagram.com/nika.vereskova'
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "SE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@steamlogic.studio",
+      "contactType": "customer service"
+    },
+    "serviceType": [
+      "AI Strategy & Implementation",
+      "Custom GPT Development",
+      "AI Training & Workshops", 
+      "Process Automation Solutions"
     ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      contactType: 'Customer Service',
-      email: 'hello@steamlogic.studio'
-    }
+    "areaServed": "Worldwide",
+    "sameAs": [
+      "https://www.youtube.com/@NikaVereskova",
+      "https://github.com/Nika-Vereskova",
+      "https://www.instagram.com/nika.vereskova"
+    ]
   };
 
   const websiteJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'STEaM LOGIC Studio AB',
-    url: BASE_URL,
-    description: description,
-    inLanguage: ['en', 'sv', 'ru'],
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: `${BASE_URL}/search?q={search_term_string}`,
-      'query-input': 'required name=search_term_string'
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "STEaM LOGIC Studio AB",
+    "alternateName": "STEaM LOGIC Studio",
+    "url": BASE_URL,
+    "description": description,
+    "inLanguage": ["en", "sv", "ru"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${BASE_URL}/search?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB",
+      "logo": `${BASE_URL}${LOGO_URL}`
     }
   };
 
   const personJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Person',
-    name: 'Nika Vereskova',
-    jobTitle: 'AI Consultant & Creative Storyteller',
-    description: 'Expert in AI strategy, custom GPT development, and creative storytelling with a passion for innovative technology solutions.',
-    url: BASE_URL,
-    sameAs: [
-      'https://www.youtube.com/@NikaVereskova',
-      'https://github.com/Nika-Vereskova',
-      'https://www.instagram.com/nika.vereskova'
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nika Vereskova",
+    "jobTitle": "AI Consultant & Creative Storyteller",
+    "description": "Expert in AI strategy, custom GPT development, and creative storytelling with extensive experience in artificial intelligence consulting and automation solutions.",
+    "url": BASE_URL,
+    "knowsAbout": [
+      "Artificial Intelligence",
+      "Custom GPT Development", 
+      "AI Strategy",
+      "Process Automation",
+      "Machine Learning",
+      "AI Workshops",
+      "Creative Storytelling"
     ],
-    worksFor: {
-      '@type': 'Organization',
-      name: 'STEaM LOGIC Studio AB'
-    }
+    "sameAs": [
+      "https://www.youtube.com/@NikaVereskova",
+      "https://github.com/Nika-Vereskova",
+      "https://www.instagram.com/nika.vereskova"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB"
+    },
+    "email": "hello@steamlogic.studio"
   };
 
-  // Enhanced Service structured data
+  // Enhanced Service structured data with more detail
   const serviceJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    serviceType: 'AI Consulting Services',
-    provider: {
-      '@type': 'Organization',
-      name: 'STEaM LOGIC Studio AB'
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AI Consulting Services",
+    "serviceType": "Technology Consulting",
+    "provider": {
+      "@type": "Organization", 
+      "name": "STEaM LOGIC Studio AB",
+      "url": BASE_URL
     },
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'AI Services',
-      itemListElement: [
+    "areaServed": {
+      "@type": "Place",
+      "name": "Worldwide"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Consulting Services",
+      "itemListElement": [
         {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'AI Strategy & Roadmaps',
-            description: 'Comprehensive AI planning and implementation strategies'
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Strategy & Implementation",
+            "description": "Comprehensive AI planning and implementation strategies tailored to business needs",
+            "serviceType": "Consulting"
           }
         },
         {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Custom GPT Development',
-            description: 'Bespoke AI assistants and chatbots for specific use cases'
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom GPT Development",
+            "description": "Bespoke AI assistants and chatbots designed for specific use cases and workflows",
+            "serviceType": "Development"
           }
         },
         {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'AI Workshops & Training',
-            description: 'Hands-on learning experiences for AI skills development'
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service", 
+            "name": "AI Workshops & Training",
+            "description": "Hands-on learning experiences for AI skills development and team empowerment",
+            "serviceType": "Training"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Process Automation Solutions", 
+            "description": "Intelligent automation solutions that streamline operations and reduce manual work",
+            "serviceType": "Automation"
           }
         }
       ]
     }
   };
 
-  // FAQ structured data
+  // Enhanced FAQ structured data with more questions
   const faqJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: [
+    "@context": "https://schema.org",
+    "@type": "FAQPage", 
+    "mainEntity": [
       {
-        '@type': 'Question',
-        name: 'What AI services does STEaM LOGIC Studio offer?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'We offer AI strategy consulting, custom GPT development, AI workshops and training, and process automation solutions.'
+        "@type": "Question",
+        "name": "What AI consulting services does STEaM LOGIC Studio offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer comprehensive AI consulting services including AI strategy & implementation, custom GPT development, AI workshops and training, and process automation solutions. Our expertise covers artificial intelligence consulting, ChatGPT development, and AI assistant development."
         }
       },
       {
-        '@type': 'Question',
-        name: 'Who is Nika Vereskova?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'Nika Vereskova is an expert AI consultant and creative storyteller specializing in custom GPT development, AI workshops, and innovative technology solutions.'
+        "@type": "Question",
+        "name": "Who is Nika Vereskova and what are her AI qualifications?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nika Vereskova is an expert AI consultant and creative storyteller with extensive experience in custom GPT development, AI workshops, and innovative technology solutions. She specializes in AI strategy consulting, process automation, and GPT training workshops."
         }
       },
       {
-        '@type': 'Question',
-        name: 'How can I contact STEaM LOGIC Studio?',
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: 'You can reach us at hello@steamlogic.studio for project discussions and consultations.'
+        "@type": "Question",
+        "name": "How can custom GPT development benefit my business?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Custom GPT development creates bespoke AI assistants tailored to your specific workflows and use cases. This can automate customer service, content creation, data analysis, and other business processes, improving efficiency and reducing manual work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What makes STEaM LOGIC Studio different from other AI consultants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We combine technical AI expertise with creative storytelling, offering a unique approach that merges inventive storytelling with intelligent technology. Our services blend art and science to create innovative AI solutions."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I contact STEaM LOGIC Studio for AI consulting?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can reach us at hello@steamlogic.studio for project discussions, AI strategy consultations, and custom GPT development inquiries. We serve clients worldwide with our AI consulting services."
         }
       }
     ]
@@ -173,15 +236,22 @@ const SEO: React.FC<SEOProps> = ({
 
   return (
     <Helmet prioritizeSeoTags>
-      {/* Basic Meta Tags */}
+      {/* Enhanced Meta Tags for AI Consulting */}
       {noindex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />}
       <title>{title}</title>
+      <meta name="title" content={title} />
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content={author} />
       <meta name="language" content={locale} />
       <meta name="geo.region" content="SE" />
       <meta name="geo.country" content="Sweden" />
+      <meta name="subject" content="AI Consulting Services" />
+      <meta name="classification" content="Technology Consulting" />
+      <meta name="category" content="Artificial Intelligence" />
+      <meta name="coverage" content="Worldwide" />
+      <meta name="distribution" content="Global" />
+      <meta name="rating" content="General" />
       
       {/* Canonical and Alternates */}
       <link rel="canonical" href={canonical} />
