@@ -21,6 +21,27 @@ const Navigation = ({ currentPage }: NavigationProps) => {
   const locale = getCurrentLocale();
   const isMobile = useIsMobile();
 
+  // Handle modal accessibility and body scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      
+      const handleEscape = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+          setIsOpen(false);
+        }
+      };
+      
+      document.addEventListener('keydown', handleEscape);
+      return () => {
+        document.removeEventListener('keydown', handleEscape);
+        document.body.style.overflow = '';
+      };
+    } else {
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
+
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
     { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
@@ -66,7 +87,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
+      <nav className="fixed top-0 left-0 right-0 z-[800] bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
@@ -137,6 +158,8 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               className="md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
             >
               {isOpen ? (
                 <X size={28} className="animate-in spin-in-90 duration-200" />
@@ -146,99 +169,106 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             </button>
           </div>
           
-          {/* Mobile Drawer Menu */}
+          {/* Mobile Modal Menu */}
           {isOpen && (
             <>
-              {/* Backdrop Overlay */}
+              {/* Scrim Overlay */}
               <div 
-                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
+                className="fixed inset-0 bg-black/40 z-[900] md:hidden animate-in fade-in duration-150"
                 onClick={() => setIsOpen(false)}
                 aria-hidden="true"
               />
               
-              {/* Drawer Panel */}
-              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-parchment/96 backdrop-blur-md z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300">
-                {/* Steam Animation Background */}
-                <div className="absolute inset-0 pointer-events-none opacity-5">
-                  <Settings className="absolute top-10 right-10 w-20 h-20 text-brass animate-spin" style={{ animationDuration: '15s' }} />
-                  <Settings className="absolute bottom-20 left-10 w-16 h-16 text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-                </div>
-                
-                {/* Close Button */}
-                <div className="flex justify-end p-4">
+              {/* Modal Panel */}
+              <div 
+                id="mobile-menu"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="mobileMenuTitle"
+                className="fixed top-[10vh] left-1/2 -translate-x-1/2 w-[min(90vw,320px)] max-h-[80vh] bg-white z-[1000] md:hidden rounded-2xl shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-200"
+                style={{ backgroundColor: '#ffffff' }}
+              >
+                {/* Header with Close Button */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                  <h2 id="mobileMenuTitle" className="text-lg font-playfair text-oxidized-teal">
+                    Menu
+                  </h2>
                   <button
                     onClick={() => setIsOpen(false)}
-                    className="touch-target flex items-center justify-center text-oxidized-teal hover:text-brass transition-colors rounded-full"
+                    className="flex items-center justify-center w-8 h-8 text-oxidized-teal hover:text-brass transition-colors rounded-full hover:bg-gray-100"
                     aria-label="Close navigation menu"
                   >
-                    <X size={24} />
+                    <X size={20} />
                   </button>
                 </div>
                 
-                {/* Navigation Links */}
-                <nav className="flex flex-col px-6 space-y-1">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.key}
-                      to={item.path}
-                      className={`touch-target flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
-                        isCurrentPage(item.key) 
-                          ? 'text-brass bg-brass/10 border-l-4 border-brass' 
-                          : 'text-oxidized-teal hover:text-brass hover:bg-brass/5'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name as string}
-                    </Link>
-                  ))}
-                  
-                  {/* Language Switcher */}
-                  <div className="pt-6 border-t border-brass/20">
-                    <LanguageSwitcher />
-                  </div>
-                  
-                  {/* User Authentication */}
-                  {user ? (
-                    <div className="space-y-4 pt-6 border-t border-brass/20">
-                      <div className="text-oxidized-teal text-sm flex items-center px-4">
-                        <User className="w-4 h-4 text-brass mr-3" />
-                        <div>
-                          <div>{user.email}</div>
-                          {subscribed && (
-                            <div className="text-brass text-xs">
-                              ({subscriptionTier})
-                            </div>
-                          )}
+                {/* Scrollable Content */}
+                <div className="overflow-y-auto max-h-[calc(80vh-80px)]">
+                  {/* Navigation Links */}
+                  <nav className="flex flex-col p-4 space-y-2">
+                    {navItems.map((item) => (
+                      <Link
+                        key={item.key}
+                        to={item.path}
+                        className={`flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
+                          isCurrentPage(item.key) 
+                            ? 'text-brass bg-brass/10 border-l-4 border-brass' 
+                            : 'text-oxidized-teal hover:text-brass hover:bg-gray-50'
+                        }`}
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {item.name as string}
+                      </Link>
+                    ))}
+                    
+                    {/* Language Switcher */}
+                    <div className="pt-4 border-t border-gray-200 mt-4">
+                      <LanguageSwitcher />
+                    </div>
+                    
+                    {/* User Authentication */}
+                    {user ? (
+                      <div className="space-y-4 pt-4 border-t border-gray-200 mt-4">
+                        <div className="text-oxidized-teal text-sm flex items-center px-4">
+                          <User className="w-4 h-4 text-brass mr-3" />
+                          <div>
+                            <div>{user.email}</div>
+                            {subscribed && (
+                              <div className="text-brass text-xs">
+                                ({subscriptionTier})
+                              </div>
+                            )}
+                          </div>
                         </div>
+                        <Button
+                          variant="outline"
+                          size="default"
+                          onClick={() => {
+                            signOut();
+                            setIsOpen(false);
+                          }}
+                          className="w-full border-brass text-brass hover:bg-brass hover:text-white"
+                        >
+                          <LogOut className="w-4 h-4 mr-2" />
+                          {t('nav.signOut')}
+                        </Button>
                       </div>
-                      <Button
-                        variant="outline"
-                        size="default"
-                        onClick={() => {
-                          signOut();
-                          setIsOpen(false);
-                        }}
-                        className="w-full border-brass text-brass hover:bg-brass hover:text-parchment touch-target"
-                      >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        {t('nav.signOut')}
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="pt-6 border-t border-brass/20">
-                      <Button
-                        onClick={() => {
-                          setAuthModalOpen(true);
-                          setIsOpen(false);
-                        }}
-                        className="w-full bg-brass hover:bg-brass-dark text-parchment touch-target"
-                      >
-                        <User className="w-4 h-4 mr-2" />
-                        {t('nav.signIn')}
-                      </Button>
-                    </div>
-                  )}
-                </nav>
+                    ) : (
+                      <div className="pt-4 border-t border-gray-200 mt-4">
+                        <Button
+                          onClick={() => {
+                            setAuthModalOpen(true);
+                            setIsOpen(false);
+                          }}
+                          className="w-full bg-brass hover:bg-brass-dark text-white"
+                        >
+                          <User className="w-4 h-4 mr-2" />
+                          {t('nav.signIn')}
+                        </Button>
+                      </div>
+                    )}
+                  </nav>
+                </div>
               </div>
             </>
           )}
