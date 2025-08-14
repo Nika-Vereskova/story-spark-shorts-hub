@@ -18,7 +18,18 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://app.posthog.com https://us.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://srzxvvbxmcrxsplwutxv.supabase.co https://app.posthog.com https://us.i.posthog.com; frame-src https://pagead2.googlesyndication.com;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://app.posthog.com https://us.i.posthog.com https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://srzxvvbxmcrxsplwutxv.supabase.co https://app.posthog.com https://us.i.posthog.com https://www.google-analytics.com https://analytics.google.com; frame-src https://pagead2.googlesyndication.com;" />
+    
+    <!-- Performance & Caching -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable" />
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+    
+    <!-- Core Web Vitals -->
+    <link rel="preload" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/src/index.css" as="style" />
+    <link rel="modulepreload" href="/src/main.tsx" />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="STEaM LOGIC Studio AB - Inventive Storytelling × Intelligent Technology" />
@@ -31,6 +42,24 @@
     <meta name="twitter:title" content="STEaM LOGIC Studio AB - Inventive Storytelling × Intelligent Technology" />
     <meta name="twitter:description" content="Where story magic meets machine logic. Innovative storytelling and intelligent technology solutions." />
     <meta name="twitter:image" content="/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png" />
+
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MEASUREMENT_ID', {
+        page_title: document.title,
+        page_location: window.location.href,
+        custom_map: {'dimension1': 'user_type'}
+      });
+      
+      // Core Web Vitals tracking
+      gtag('config', 'G-MEASUREMENT_ID', {
+        custom_map: {'metric1': 'LCP', 'metric2': 'FID', 'metric3': 'CLS'}
+      });
+    </script>
 
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483"
@@ -55,9 +84,13 @@
         </header>
 
         <section class="hero p-8 text-center">
-          <img src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png"
-               alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics"
-               width="200" height="200" style="margin: 0 auto;" loading="eager">
+          <picture>
+            <source srcset="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp" type="image/webp">
+            <img src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png"
+                 alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics with brass mechanical gears and elegant quill pen"
+                 width="200" height="200" style="margin: 0 auto;" loading="eager"
+                 fetchpriority="high">
+          </picture>
           <h1>Inventive Storytelling × Intelligent Technology</h1>
           <p>Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova.</p>
           <div style="margin-top: 20px;">
@@ -119,6 +152,10 @@
               <li>💬 Connect on social media for updates</li>
             </ul>
           </div>
+          <button onclick="gtag('event', 'contact_form_submit', {'event_category': 'engagement', 'event_label': 'hero_cta'})" 
+                  style="background: #B18A46; color: white; padding: 12px 24px; border: none; border-radius: 6px; margin-top: 16px; cursor: pointer;">
+            Contact Us Now
+          </button>
         </section>
       </main>
     </div>

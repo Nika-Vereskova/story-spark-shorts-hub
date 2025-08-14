@@ -258,6 +258,27 @@
     line-height: 1.4;
   }
   
+  /* WebP image optimization */
+  picture img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Critical rendering optimization */
+  .above-fold {
+    contain: layout style paint;
+  }
+  
+  /* Lazy loading enhancement */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+  
   /* Mobile drawer animation */
   .drawer-enter {
     transform: translateX(-100%);

@@ -53,17 +53,26 @@ export default defineConfig(({ mode }) => ({
           ui: ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
           supabase: ['@supabase/supabase-js'],
           routing: ['react-router-dom'],
+          analytics: ['web-vitals'],
         },
       },
     },
-    // Performance optimizations
+    // Enhanced performance optimizations
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: mode === 'production',
         drop_debugger: true,
+        pure_funcs: mode === 'production' ? ['console.log', 'console.debug'] : [],
+      },
+      mangle: {
+        safari10: true,
       },
     },
+    // Asset optimization
+    assetsInlineLimit: 4096,
+    cssCodeSplit: true,
+    sourcemap: mode === 'development',
   },
   resolve: {
     alias: {

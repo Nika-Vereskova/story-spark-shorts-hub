@@ -70,12 +70,17 @@ const Navigation = ({ currentPage }: NavigationProps) => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
-              <img
-                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
-                alt="STEaM LOGIC Studio AB"
-                loading="lazy"
-                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
-              />
+              <picture>
+                <source srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.webp" type="image/webp" />
+                <img
+                  src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
+                  alt="STEaM LOGIC Studio AB - Mechanical gear logo with steampunk design elements"
+                  loading="lazy"
+                  className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                  width="52"
+                  height="52"
+                />
+              </picture>
               <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
                 <div className="text-sm opacity-90">Studio AB</div>
