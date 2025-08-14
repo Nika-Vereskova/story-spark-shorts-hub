@@ -157,7 +157,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               />
               
               {/* Drawer Panel */}
-              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-parchment/96 backdrop-blur-md z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300">
+              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-parchment backdrop-blur-md z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300">
                 {/* Steam Animation Background */}
                 <div className="absolute inset-0 pointer-events-none opacity-5">
                   <Settings className="absolute top-10 right-10 w-20 h-20 text-brass animate-spin" style={{ animationDuration: '15s' }} />
