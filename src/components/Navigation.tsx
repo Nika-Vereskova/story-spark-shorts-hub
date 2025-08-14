@@ -157,7 +157,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               />
               
               {/* Drawer Panel */}
-              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-[#F5E6C5] z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300 border-r border-brass/20">
+              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300 border-r border-brass/20" style={{ backgroundColor: '#F5E6C5' }}>
                 
                 {/* Close Button */}
                 <div className="flex justify-end p-4">
