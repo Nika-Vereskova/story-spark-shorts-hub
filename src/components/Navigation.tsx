@@ -158,11 +158,6 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               
               {/* Drawer Panel */}
               <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-[#F5E6C5] z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300 border-r border-brass/20">
-                {/* Steam Animation Background */}
-                <div className="absolute inset-0 pointer-events-none opacity-5">
-                  <Settings className="absolute top-10 right-10 w-20 h-20 text-brass animate-spin" style={{ animationDuration: '15s' }} />
-                  <Settings className="absolute bottom-20 left-10 w-16 h-16 text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
-                </div>
                 
                 {/* Close Button */}
                 <div className="flex justify-end p-4">
