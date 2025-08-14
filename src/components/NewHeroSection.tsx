@@ -59,23 +59,17 @@ const NewHeroSection = () => {
         <header className="animate-fade-in">
           {/* 3D Company Logo with WebP optimization */}
           <div className="flex justify-center mb-1 sm:mb-6">
-            <picture>
-              <source 
-                srcSet="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp" 
-                type="image/webp"
-              />
-              <img 
-                src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
-                alt="STEaM LOGIC Studio AB Logo - Intricate steampunk gear and quill design symbolizing the perfect fusion of mechanical precision and creative storytelling, representing AI consulting and custom GPT development services"
-                className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
-                style={{ animationDuration: '12s', animationDirection: 'reverse' }}
-                width="320"
-                height="320"
-                loading="eager"
-                itemProp="logo"
-                fetchPriority="high"
-              />
-            </picture>
+            <img 
+              src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
+              alt="STEaM LOGIC Studio AB Logo - Intricate steampunk gear and quill design symbolizing the perfect fusion of mechanical precision and creative storytelling, representing AI consulting and custom GPT development services"
+              className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
+              style={{ animationDuration: '12s', animationDirection: 'reverse' }}
+              width="320"
+              height="320"
+              loading="eager"
+              itemProp="logo"
+              fetchPriority="high"
+            />
           </div>
           
           <h1 

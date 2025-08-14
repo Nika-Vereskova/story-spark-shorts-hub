@@ -74,20 +74,14 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               className="flex items-center space-x-2 logo focus:ring-4 focus:ring-brass/50 rounded-lg p-1 focus:outline-none"
               aria-label="STEaM LOGIC Studio AB - Return to homepage"
             >
-              <picture>
-                <source 
-                  srcSet="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.webp" 
-                  type="image/webp"
-                />
-                <img
-                  src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
-                  alt="STEaM LOGIC Studio AB navigation logo - Steampunk gear symbolizing innovation and precision in AI consulting"
-                  loading="lazy"
-                  className="h-[32px] sm:h-[36px] md:h-[52px] gear"
-                  width="52"
-                  height="52"
-                />
-              </picture>
+              <img
+                src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
+                alt="STEaM LOGIC Studio AB navigation logo - Steampunk gear symbolizing innovation and precision in AI consulting"
+                loading="lazy"
+                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                width="52"
+                height="52"
+              />
               <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
                 <div className="text-sm opacity-90">Studio AB</div>
