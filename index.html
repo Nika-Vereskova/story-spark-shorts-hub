@@ -128,11 +128,10 @@
         This site works best with JavaScript enabled.
       </div>
     </noscript>
-    <!-- Backdrop -->
-    <div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
+    <div class="nav-overlay" aria-hidden="true"></div>
 
     <!-- Centered Drawer -->
-    <nav id="nav-drawer" class="nav-drawer" role="dialog" aria-modal="true" aria-hidden="true">
+    <nav id="nav-drawer" class="mobile-nav" role="dialog" aria-modal="true" aria-hidden="true">
       <button id="nav-close" class="nav-close" aria-label="Close menu">×</button>
       <ul class="nav-list">
         <li><a href="/en">Home</a></li>
@@ -150,37 +149,34 @@
       </div>
     </nav>
 
+    <script type="module" src="/src/main.tsx"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const openBtn = document.getElementById('hamburger');
-        const drawer = document.getElementById('nav-drawer');
-        const backdrop = document.getElementById('nav-backdrop');
-        const closeBtn = document.getElementById('nav-close');
-
-        function openMenu() {
-          drawer.classList.add('is-open');
-          backdrop.classList.add('is-open');
-          document.body.classList.add('body-lock');
-          drawer.setAttribute('aria-hidden', 'false');
-          backdrop.setAttribute('aria-hidden', 'false');
-          closeBtn.focus();
-        }
-        function closeMenu() {
-          drawer.classList.remove('is-open');
-          backdrop.classList.remove('is-open');
-          document.body.classList.remove('body-lock');
-          drawer.setAttribute('aria-hidden', 'true');
-          backdrop.setAttribute('aria-hidden', 'true');
-          openBtn?.focus();
+      window.addEventListener('load', () => {
+        const openBtn = document.querySelector('[data-nav-open], .menu-toggle');
+        const closeBtn = document.querySelector('[data-nav-close], .nav-close, .close');
+        const panel = document.querySelector('.mobile-nav, .mobile-menu, .drawer');
+        let overlay = document.querySelector('.nav-overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.className = 'nav-overlay';
+          document.body.appendChild(overlay);
         }
 
-        openBtn?.addEventListener('click', openMenu);
-        closeBtn?.addEventListener('click', closeMenu);
-        backdrop?.addEventListener('click', closeMenu);
-        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+        function openNav() {
+          panel.style.display = 'block';
+          overlay.style.display = 'block';
+          document.body.style.overflow = 'hidden';
+        }
+        function closeNav() {
+          panel.style.display = 'none';
+          overlay.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+        openBtn?.addEventListener('click', openNav);
+        closeBtn?.addEventListener('click', closeNav);
+        overlay.addEventListener('click', closeNav);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
       });
     </script>
-
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

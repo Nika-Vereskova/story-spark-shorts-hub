@@ -132,7 +132,8 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
             <button
               id="hamburger"
-              className="md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
+              data-nav-open
+              className="menu-toggle md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
               aria-label="Toggle navigation menu"
             >
               <Menu size={28} />

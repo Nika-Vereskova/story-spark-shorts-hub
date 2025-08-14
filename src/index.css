@@ -654,41 +654,41 @@
   }
 }
 
-/* Backdrop behind the drawer */
-.nav-backdrop {
+/* overlay */
+.nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.35);
+  background: rgba(0,0,0,.45);
   backdrop-filter: blur(2px);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s ease;
-  z-index: 998;
+  z-index: 9998;
+  display: none;
 }
 
-/* Floating centered drawer */
-.nav-drawer {
+/* centered modal panel */
+.mobile-nav,
+.mobile-menu,
+.drawer {
   position: fixed;
-  top: 10vh;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-8px);
-  width: 86vw;
-  max-width: 360px;
+  transform: translate(-50%, -50%);
+  width: min(92vw, 420px);
   max-height: 80vh;
-  background: #fffef9;
-  border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0,0,0,.25);
-  padding: 20px 16px 12px;
-  overflow: auto;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .2s ease, transform .2s ease;
-  z-index: 999;
+  overflow-y: auto;
+  background: #fff !important;   /* remove transparency */
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  padding: 20px;
+  z-index: 9999;
+  display: none;
 }
 
-/* Open state toggled by JS */
-.nav-backdrop.is-open { opacity: 1; pointer-events: auto; }
-.nav-drawer.is-open { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+/* list items */
+.mobile-nav a {
+  display: block;
+  padding: 12px 6px;
+  font-size: 18px;
+}
 
 /* Close button */
 .nav-close {
@@ -702,27 +702,19 @@
   cursor: pointer;
 }
 
-/* Menu items */
+/* Menu list styling */
 .nav-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 .nav-list li + li { border-top: 1px dashed rgba(0,0,0,.08); }
-.nav-list a {
-  display: block;
-  padding: 14px 8px;
-  font-size: 18px;
-  text-decoration: none;
-}
+.nav-list a { text-decoration: none; }
 .nav-list a:active, .nav-list a:focus { outline: none; }
 
 .nav-footer { margin-top: 8px; display: flex; justify-content: flex-end; }
 
-/* Lock page scroll when menu is open */
-.body-lock { overflow: hidden; height: 100vh; }
-
 /* Ensure it only applies on small screens */
-@media (min-width: 768px) {
-  .nav-backdrop, .nav-drawer { display: none !important; }
+@media (min-width: 769px) {
+  .mobile-nav, .mobile-menu, .drawer, .nav-overlay { display: none !important; }
 }
