@@ -3,8 +3,8 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/i18n';
-import { 
-  ChevronRight,
+import {
+  Cog,
   CreditCard,
   Mail,
   Calendar
@@ -68,7 +68,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         <ul className="space-y-2">
           {features.map((feature, featureIndex) => (
             <li key={featureIndex} className="flex items-start text-oxidized-teal/90 font-inter text-sm">
-              <ChevronRight className="w-4 h-4 text-brass mt-0.5 mr-2 flex-shrink-0" />
+              <Cog className="w-4 h-4 text-brass mt-0.5 mr-2 flex-shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
               {feature}
             </li>
           ))}

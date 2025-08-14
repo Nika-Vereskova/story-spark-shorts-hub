@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, Download, Calendar } from 'lucide-react';
+import { Cog, Download, Calendar } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { posthog } from '@/lib/posthog';
 import { t } from '@/lib/i18n';
@@ -28,10 +28,10 @@ const CalloutFooter = () => {
       
       {/* Decorative gears */}
       <div className="absolute top-10 left-10 w-16 h-16 opacity-10">
-        <Sparkles className="w-full h-full text-brass animate-pulse" />
+        <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '8s' }} />
       </div>
       <div className="absolute bottom-10 right-10 w-20 h-20 opacity-10">
-        <Sparkles className="w-full h-full text-oxidized-teal animate-pulse" style={{ animationDelay: '1s' }} />
+        <Cog className="w-full h-full text-oxidized-teal animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
       </div>
 
       <div className="container mx-auto text-center relative z-10">

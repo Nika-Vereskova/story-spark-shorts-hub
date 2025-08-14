@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Quote, Star, ChevronLeft, ChevronRight, Cog } from 'lucide-react';
+import { Quote, ChevronLeft, ChevronRight, Cog } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -137,7 +137,11 @@ const TestimonialSlider = () => {
               <div className="text-center mb-6">
                 <div className="flex justify-center mb-2">
                   {[...Array(currentTestimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-brass fill-current" />
+                    <Cog
+                      key={i}
+                      className="w-5 h-5 text-brass animate-spin"
+                      style={{ animationDuration: '6s' }}
+                    />
                   ))}
                 </div>
                 <span className={`text-sm font-medium font-inter px-3 py-1 rounded-full bg-white/50 ${getCategoryColor(currentTestimonial.category)}`}>

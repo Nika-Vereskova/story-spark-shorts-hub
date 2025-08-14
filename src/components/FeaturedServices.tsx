@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Brain, Bot, Wrench } from 'lucide-react';
+import { Users, Brain, Bot, Cog } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
@@ -57,7 +57,7 @@ const FeaturedServices = () => {
               >
               {/* Animated gear background */}
               <div className="absolute top-4 right-4 w-16 h-16 opacity-5 group-hover:opacity-10 transition-opacity">
-                <Icon className="w-full h-full text-brass animate-spin" style={{ animationDuration: '8s' }} />
+                <Cog className="w-full h-full text-brass animate-spin" style={{ animationDuration: '8s' }} />
               </div>
 
               <CardHeader className="relative">
@@ -76,7 +76,7 @@ const FeaturedServices = () => {
                 <ul className="space-y-2 mb-6">
                   {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-sm text-oxidized-teal/80 font-inter">
-                      <Wrench className="w-4 h-4 text-brass mt-0.5 flex-shrink-0" />
+                      <Cog className="w-4 h-4 text-brass mt-0.5 flex-shrink-0 animate-spin" style={{ animationDuration: '6s' }} />
                       {feature}
                     </li>
                   ))}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cog, Book, Sparkles } from 'lucide-react';
+import { Cog, Book } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
@@ -116,7 +116,7 @@ const SplitHeroSection = () => {
               <CardHeader className="relative">
                 <div className="flex items-center gap-3 mb-2">
                   <div className="w-12 h-12 bg-brass/20 rounded-full flex items-center justify-center">
-                    <Sparkles className="w-6 h-6 text-brass animate-pulse" />
+                    <Cog className="w-6 h-6 text-brass animate-spin" style={{ animationDuration: '6s' }} />
                   </div>
                   <div>
                     <CardTitle className="text-oxidized-teal text-3xl font-playfair drop-shadow-text-drop">{t('splitHero.aiTitle')}</CardTitle>
@@ -148,12 +148,12 @@ const SplitHeroSection = () => {
                     </div>
                   </div>
                 </div>
-                <Button 
+                <Button
                   variant="steam"
                   className="w-full min-h-[44px] font-inter font-medium text-lg py-3"
                   onClick={handleAIServices}
                 >
-                  <Sparkles className="mr-2 h-5 w-5" />
+                  <Cog className="mr-2 h-5 w-5 animate-spin" style={{ animationDuration: '6s' }} />
                   {t('splitHero.exploreServices')}
                 </Button>
                 
