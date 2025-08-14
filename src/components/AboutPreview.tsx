@@ -33,10 +33,6 @@ const AboutPreview = () => {
                     src="/lovable-uploads/7eff3f10-f21e-4ffc-848e-a08813692928.png"
                     alt="Nika Vereskova - Storyteller and AI Enthusiast"
                     className="w-full h-full object-cover"
-                    onError={(e) => {
-                      console.log('About image failed to load:', e.currentTarget.src);
-                      e.currentTarget.style.display = 'none';
-                    }}
                   />
                 </div>
               </div>

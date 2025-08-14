@@ -69,22 +69,12 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <Link 
-              to={`/${locale}`} 
-              className="flex items-center space-x-2 logo focus:ring-4 focus:ring-brass/50 rounded-lg p-1 focus:outline-none"
-              aria-label="STEaM LOGIC Studio AB - Return to homepage"
-            >
+            <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
               <img
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
-                alt="STEaM LOGIC Studio AB navigation logo - Steampunk gear symbolizing innovation and precision in AI consulting"
+                alt="STEaM LOGIC Studio AB"
                 loading="lazy"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
-                width="52"
-                height="52"
-                onError={(e) => {
-                  console.log('Navigation logo failed to load:', e.currentTarget.src);
-                  e.currentTarget.style.display = 'none';
-                }}
               />
               <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
@@ -92,17 +82,16 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               </div>
             </Link>
             
-            <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Main navigation">
+            <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
                 <Link
                   key={item.key}
                   to={item.path}
-                  className={`font-inter font-medium transition-colors hover:text-brass focus:text-brass focus:ring-2 focus:ring-brass/50 rounded px-2 py-1 focus:outline-none ${
+                  className={`font-inter font-medium transition-colors hover:text-brass ${
                     isCurrentPage(item.key) 
                       ? 'text-brass border-b-2 border-brass' 
                       : 'text-oxidized-teal'
                   }`}
-                  aria-current={isCurrentPage(item.key) ? 'page' : undefined}
                 >
                   {item.name as string}
                 </Link>
@@ -127,24 +116,22 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                     variant="outline"
                     size="sm"
                     onClick={signOut}
-                    className="border-brass text-brass hover:bg-brass hover:text-parchment focus:ring-4 focus:ring-brass/50 focus:outline-none"
-                    aria-label="Sign out of your account"
+                    className="border-brass text-brass hover:bg-brass hover:text-parchment"
                   >
-                    <LogOut className="w-4 h-4 mr-1" aria-hidden="true" />
+                    <LogOut className="w-4 h-4 mr-1" />
                     {t('nav.signOut')}
                   </Button>
                 </div>
               ) : (
                 <Button
                   onClick={() => setAuthModalOpen(true)}
-                  className="bg-brass hover:bg-brass-dark text-parchment focus:ring-4 focus:ring-brass/50 focus:outline-none"
-                  aria-label="Sign in to your account"
+                  className="bg-brass hover:bg-brass-dark text-parchment"
                 >
-                  <User className="w-4 h-4 mr-2" aria-hidden="true" />
+                  <User className="w-4 h-4 mr-2" />
                   {t('nav.signIn')}
                 </Button>
               )}
-            </nav>
+            </div>
 
             <button
               className="md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
