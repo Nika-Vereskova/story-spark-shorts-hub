@@ -57,24 +57,9 @@ const NewHeroSection = () => {
             />
           </div>
           
-          {/* Company Name as 3D Images */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 mb-6">
-            <img 
-              src="/lovable-uploads/9ded3207-2463-4ec9-83a6-eb9e581d4e17.png" 
-              alt="STEaM"
-              className="h-12 sm:h-16 md:h-20 lg:h-24 object-contain"
-            />
-            <img 
-              src="/lovable-uploads/57116100-2669-414e-baf6-9749711625b1.png" 
-              alt="LOGIC"
-              className="h-12 sm:h-16 md:h-20 lg:h-24 object-contain"
-            />
-            <img 
-              src="/lovable-uploads/19982ed3-dda0-47ee-8090-f71bc2d24b66.png" 
-              alt="Studio AB"
-              className="h-12 sm:h-16 md:h-20 lg:h-24 object-contain"
-            />
-          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-oxidized-teal mb-6 leading-tight">
+            STEaM LOGIC Studio AB
+          </h1>
           
           {/* Subtitle */}
           <p className="text-xl sm:text-2xl md:text-3xl text-oxidized-teal/80 mb-12 font-inter font-light">
