@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Important files
-Sitemap: https://nika-vereskova-steamlogic-studio.lovable.app/sitemap.xml
+Sitemap: https://nika-vereskova.lovable.app/sitemap.xml
 
 # Block access to sensitive areas (if any)
 Disallow: /admin/

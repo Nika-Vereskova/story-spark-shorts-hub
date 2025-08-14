@@ -14,7 +14,7 @@ interface SEOProps {
   author?: string;
 }
 
-const BASE_URL = 'https://steamlogic.studio';
+const BASE_URL = 'https://nika-vereskova.lovable.app';
 const DEFAULT_IMAGE = '/lovable-uploads/e3cfb4ba-d1c1-45ec-9d05-cbdd7e1bcacc.png';
 const LOGO_URL = '/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png';
 
