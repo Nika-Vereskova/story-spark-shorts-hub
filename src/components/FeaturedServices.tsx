@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { useNavigate } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { SteampunkBackground, SteamEffect, MechanicalGear } from '@/components/SteampunkAnimations';
 
 const FeaturedServices = () => {
   const navigate = useNavigate();
@@ -38,14 +39,24 @@ const FeaturedServices = () => {
   ];
 
   return (
-    <section className="py-16 px-6 vintage-paper-light parchment-scroll relative overflow-hidden">
-      {/* Background decorative gears */}
-      <div className="absolute top-10 left-10 w-32 h-32 opacity-5">
-        <Cog className="w-full h-full text-brass gear-clockwise" />
-      </div>
-      <div className="absolute bottom-20 right-10 w-24 h-24 opacity-5">
-        <Settings className="w-full h-full text-teal gear-counter" />
-      </div>
+    <SteampunkBackground variant="moderate" className="py-16 px-6 vintage-paper-light parchment-scroll">
+      <section className="relative overflow-hidden">
+        {/* Enhanced background decorative elements */}
+        <MechanicalGear 
+          size="xl" 
+          speed="slow" 
+          direction="clockwise" 
+          variant="wobble"
+          className="absolute top-10 left-10 opacity-8" 
+        />
+        <MechanicalGear 
+          size="lg" 
+          speed="medium" 
+          direction="counter" 
+          className="absolute bottom-20 right-10 opacity-10" 
+        />
+        <SteamEffect intensity="medium" className="top-16 right-16" />
+        <SteamEffect intensity="low" className="bottom-32 left-20" />
       
       <div 
         ref={elementRef}
@@ -73,17 +84,29 @@ const FeaturedServices = () => {
               >
                 <Card className="steampunk-card vintage-paper-dark weathered-edges burnt-edges ink-stains group relative overflow-hidden min-h-[400px]">
                   {/* Enhanced animated gear background */}
-                  <div className="absolute top-6 right-6 w-16 h-16 opacity-10 group-hover:opacity-30 transition-all duration-500">
-                    <Cog className="w-full h-full text-brass gear-clockwise" />
-                  </div>
-                  <div className="absolute bottom-6 left-6 w-12 h-12 opacity-5 group-hover:opacity-20 transition-all duration-700">
-                    <Wrench className="w-full h-full text-teal gear-counter" />
-                  </div>
+                  <MechanicalGear 
+                    size="xl" 
+                    speed="slow" 
+                    direction="clockwise" 
+                    variant="tick"
+                    className="absolute top-6 right-6 opacity-10 group-hover:opacity-30 transition-all duration-500" 
+                  />
+                  <MechanicalGear 
+                    size="md" 
+                    speed="fast" 
+                    direction="counter" 
+                    className="absolute bottom-6 left-6 opacity-5 group-hover:opacity-20 transition-all duration-700" 
+                  />
                   
                   {/* Steam effects */}
-                  <div className="absolute top-3 left-3 w-4 h-4 opacity-0 group-hover:opacity-60 transition-all duration-500">
-                    <div className="w-2 h-2 bg-cyan rounded-full steam-effect"></div>
-                  </div>
+                  <SteamEffect 
+                    intensity="medium" 
+                    className="top-3 left-3 opacity-0 group-hover:opacity-60 transition-all duration-500" 
+                  />
+                  <SteamEffect 
+                    intensity="low" 
+                    className="bottom-8 right-8 opacity-0 group-hover:opacity-40 transition-all duration-700 delay-300" 
+                  />
 
                   <CardHeader className="relative text-center pb-6">
                     <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-brass/30 to-brass/10 rounded-full flex items-center justify-center group-hover:from-brass/50 group-hover:to-brass/20 transition-all duration-500 vintage-glow border-2 border-brass/40">
@@ -123,6 +146,7 @@ const FeaturedServices = () => {
         </div>
       </div>
     </section>
+    </SteampunkBackground>
   );
 };
 

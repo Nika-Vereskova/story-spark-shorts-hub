@@ -4,13 +4,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { t } from '@/lib/i18n';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { SteamEffect, MechanicalGear } from '@/components/SteampunkAnimations';
 import { 
   ChevronRight,
   CreditCard,
   Mail,
   Calendar,
   Cog,
-  Wrench
+  Wrench,
+  Settings
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -52,24 +54,38 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       }`}
     >
       <Card className="steampunk-card vintage-paper weathered-edges group relative overflow-hidden">
-        {/* Animated background gears */}
-        <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 transition-opacity">
-          <Cog className="w-full h-full text-brass gear-clockwise" />
-        </div>
-        <div className="absolute bottom-4 left-4 w-6 h-6 opacity-15 group-hover:opacity-30 transition-opacity">
-          <Wrench className="w-full h-full text-teal gear-counter" />
+        {/* Enhanced animated background elements */}
+        <MechanicalGear 
+          size="lg" 
+          speed="slow" 
+          direction="clockwise" 
+          variant="wobble"
+          className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity" 
+        />
+        <MechanicalGear 
+          size="md" 
+          speed="medium" 
+          direction="counter" 
+          className="absolute bottom-4 left-4 opacity-15 group-hover:opacity-30 transition-opacity" 
+        />
+        
+        {/* Additional mechanical details */}
+        <div className="absolute top-6 left-6 w-4 h-4 opacity-10 group-hover:opacity-25 transition-opacity">
+          <Settings className="w-full h-full text-teal piston-move" />
         </div>
         
-        {/* Steam effects */}
-        <div className="absolute top-2 left-2 w-4 h-4 opacity-0 group-hover:opacity-60 transition-all duration-500">
-          <div className="w-2 h-2 bg-cyan rounded-full steam-effect"></div>
-        </div>
-        <div className="absolute top-3 left-6 w-3 h-3 opacity-0 group-hover:opacity-40 transition-all duration-700 delay-100">
-          <div className="w-1.5 h-1.5 bg-cyan rounded-full steam-effect"></div>
-        </div>
+        {/* Enhanced steam effects */}
+        <SteamEffect 
+          intensity="low" 
+          className="top-2 left-2 opacity-0 group-hover:opacity-60 transition-all duration-500" 
+        />
+        <SteamEffect 
+          intensity="medium" 
+          className="top-8 right-8 opacity-0 group-hover:opacity-40 transition-all duration-700 delay-200" 
+        />
         
         {/* Ornate brass corners with enhanced effects */}
-        <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:border-cyan"></div>
+        <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:border-cyan group-hover:glow"></div>
         <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:border-cyan"></div>
         <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:border-cyan"></div>
         <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass opacity-60 group-hover:opacity-100 transition-all duration-300 group-hover:border-cyan"></div>
