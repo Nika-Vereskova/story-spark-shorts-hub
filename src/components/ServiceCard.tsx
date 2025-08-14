@@ -103,7 +103,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               </>
             )}
           </div>
-        ) : (
+        ) : price ? (
           <div className="space-y-2">
             <Button
               className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
@@ -113,6 +113,17 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               <CreditCard className="mr-2 h-4 w-4" />
               {loading === serviceName ? t<string>('services.card.loading') : (t<string>('services.card.buyNow')).replace('{price}', String(price))}
             </Button>
+            <Button
+              variant="outline"
+              className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-inter font-medium"
+              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
+            >
+              <Mail className="mr-2 h-4 w-4" />
+              {t('services.card.contact')}
+            </Button>
+          </div>
+        ) : (
+          <div className="space-y-2">
             <Button
               variant="outline"
               className="w-full border-2 border-brass text-brass hover:bg-brass/10 font-inter font-medium"

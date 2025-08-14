@@ -83,8 +83,8 @@ export const en = {
     title: "My Services",
     subtitle: "From enchanting stories to cutting-edge technology, I offer a range of services that blend creativity with innovation. Whether you're looking to learn, build, or tell your own story, I'm here to help.",
     disclaimer: {
-      title: "Services Under Construction",
-      description: "Please note that all services listed below are currently under construction and not yet available for purchase. This page is for demonstration purposes only. We're working hard to bring these services to you soon!"
+      title: "Services Available Now",
+      description: "Transform your ideas into reality with our range of creative and technical services. From storytelling workshops to AI animations, we're here to bring your vision to life."
     },
     webinars: {
       title: "Interactive Webinars",
@@ -114,7 +114,19 @@ export const en = {
         "Educational content with narrative",
         "Character development and world-building"
       ],
-      cta: "Commission a Story"
+      cta: "Order Your Story"
+    },
+    animation: {
+      title: "AI Animation Magic",
+      description: "Bring your favorite characters or child's drawings to life with AI animation",
+      features: [
+        "Transform drawings into animated characters",
+        "Create moving stories from static images",
+        "AI-powered character animation",
+        "Perfect for children's art and storytelling",
+        "Multiple animation styles available"
+      ],
+      cta: "Animate Your Art"
     },
     apps: {
       title: "App Development",

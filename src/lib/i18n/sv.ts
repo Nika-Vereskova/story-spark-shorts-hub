@@ -83,8 +83,8 @@ export const sv = {
     title: "Mina Tjänster",
     subtitle: "Från förtrollande berättelser till banbrytande teknik erbjuder jag en rad tjänster som blandar kreativitet med innovation. Oavsett om du vill lära dig, bygga eller berätta din egen historia, jag är här för att hjälpa.",
     disclaimer: {
-      title: "Tjänster Under Konstruktion",
-      description: "Observera att alla tjänster som listas nedan för närvarande är under konstruktion och ännu inte tillgängliga för köp. Denna sida är endast för demonstrationsändamål. Vi arbetar hårt för att ge dig dessa tjänster snart!"
+      title: "Tjänster Tillgängliga Nu",
+      description: "Förvandla dina idéer till verklighet med vårt utbud av kreativa och tekniska tjänster. Från berättande workshops till AI-animationer är vi här för att förverkliga din vision."
     },
     webinars: {
       title: "Interaktiva Webbinarier",
@@ -115,6 +115,18 @@ export const sv = {
         "Karaktärsutveckling och världsbyggande"
       ],
       cta: "Beställ en Berättelse"
+    },
+    animation: {
+      title: "AI Animations Magi",
+      description: "Få dina favoritkaraktärer eller ditt barns teckningar att komma till liv med AI-animation",
+      features: [
+        "Förvandla teckningar till animerade karaktärer",
+        "Skapa rörliga berättelser från statiska bilder",
+        "AI-driven karaktärsanimation",
+        "Perfekt för barns konst och berättande",
+        "Flera animationsstilar tillgängliga"
+      ],
+      cta: "Animera Din Konst"
     },
     apps: {
       title: "Apputveckling",
