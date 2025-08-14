@@ -146,7 +146,7 @@ export const sv = {
         "Kreativ AI för berättare",
         "Anpassade AI-lösningar rådgivning"
       ],
-      cta: "Utforska AI med Mig"
+      cta: "Kontakta för Detaljer"
     },
     card: {
       activePlan: "Aktiv: {tier}-plan",

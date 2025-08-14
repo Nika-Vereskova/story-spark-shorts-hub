@@ -146,7 +146,7 @@ export const en = {
         "Creative AI for storytellers",
         "Custom AI solutions consulting"
       ],
-      cta: "Explore AI with Me"
+      cta: "Contact for Details"
     },
     card: {
       activePlan: "Active: {tier} plan",

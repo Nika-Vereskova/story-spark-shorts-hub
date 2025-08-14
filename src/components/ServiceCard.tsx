@@ -49,7 +49,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       
       <CardHeader className="text-center pb-4">
         <div className="w-16 h-16 mx-auto mb-4 bg-brass/20 rounded-full flex items-center justify-center group-hover:bg-brass/30 transition-colors">
-          <Icon className="w-8 h-8 text-brass" />
+          <Icon className="w-8 h-8 text-brass animate-icon-spin" />
         </div>
         <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">
           {title}

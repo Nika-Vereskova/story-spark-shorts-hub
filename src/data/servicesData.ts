@@ -63,7 +63,6 @@ export const getServicesData = (): ServiceData[] => [
     title: t('services.ai.title'),
     description: t('services.ai.description'),
     features: t('services.ai.features'),
-    cta: t('services.ai.cta'),
-    isSubscription: true
+    cta: t('services.ai.cta')
   }
 ];
