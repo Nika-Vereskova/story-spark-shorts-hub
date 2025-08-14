@@ -28,7 +28,7 @@ const NewHeroSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20">
+    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-24 sm:pt-16 md:pt-0">
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
