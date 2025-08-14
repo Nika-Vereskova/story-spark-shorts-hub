@@ -58,12 +58,12 @@ const NewHeroSection = () => {
             />
           </div>
           
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-oxidized-teal mb-6 leading-tight">
+          <h1 className="hero-title font-playfair text-oxidized-teal mb-6 leading-tight">
             STEaM LOGIC Studio AB
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light">
+          <p className="hero-subtitle text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light">
             Inventive Storytelling × Intelligent Technology
           </p>
 

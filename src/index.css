@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* STEaM LOGIC Studio AB Brand Identity */
+/* STEaM LOGIC Studio AB Brand Identity - Mobile First */
 
 @layer base {
   :root {
@@ -12,6 +12,11 @@
     --parchment: #F5E6C5;
     --iron: #373A40;
     --cyan: #21F0FF;
+    
+    /* Mobile-first breakpoints */
+    --breakpoint-sm: 768px;
+    --breakpoint-md: 1024px;
+    --breakpoint-lg: 1440px;
     
     /* Design System Mapping */
     --background: 36 26% 91%;  /* Parchment */
@@ -53,11 +58,16 @@
     --sidebar-border: 42 43% 49%;
     --sidebar-ring: 195 40% 29%;
 
-    /* Fluid type scale */
-    --step--1: clamp(0.9rem, 0.86rem + 0.2vw, 1rem);
-    --step-0: clamp(1rem, 0.95rem + 0.6vw, 1.125rem);
-    --step-1: clamp(1.25rem, 1.1rem + 1vw, 1.5rem);
-    --step-2: clamp(1.6rem, 1.3rem + 1.6vw, 2rem);
+    /* Fluid type scale - Mobile first responsive typography */
+    --step--1: clamp(0.8rem, 0.76rem + 0.2vw, 0.9rem);
+    --step-0: clamp(0.9rem, 0.85rem + 0.5vw, 1rem);
+    --step-1: clamp(1.125rem, 1rem + 0.8vw, 1.25rem);
+    --step-2: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+    --step-3: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --step-4: clamp(2.5rem, 1.8rem + 3.5vw, 4rem);
+    
+    /* Mobile touch targets */
+    --touch-target: 44px;
   }
 
   .dark {
@@ -126,15 +136,34 @@
     letter-spacing: -0.01em;
   }
 
+  /* Mobile-first responsive typography */
   h1 {
+    font-size: var(--step-3);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  h2 {
     font-size: var(--step-2);
-    line-height: 1.15;
+    line-height: 1.3;
     letter-spacing: -0.01em;
+  }
+  
+  h3 {
+    font-size: var(--step-1);
+    line-height: 1.4;
   }
 
   p {
     font-size: var(--step-0);
-    line-height: 1.6;
+    line-height: 1.8; /* Increased for mobile readability */
+  }
+  
+  /* Mobile line height adjustments */
+  @media (min-width: 768px) {
+    p {
+      line-height: 1.6;
+    }
   }
 
   .font-playfair {
@@ -180,5 +209,88 @@
 @media (hover: hover) and (pointer: fine) {
   .btn-steam:hover {
     box-shadow: 0 0 8px var(--cyan);
+  }
+}
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  /* Touch-friendly interactive elements */
+  .touch-target {
+    min-height: var(--touch-target);
+    min-width: var(--touch-target);
+  }
+  
+  /* Mobile-first grid layouts */
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid-responsive {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .grid-responsive {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+  
+  @media (min-width: 1440px) {
+    .grid-responsive {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Performance optimization - critical CSS */
+  .hero-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+  }
+  
+  .hero-subtitle {
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
+    line-height: 1.4;
+  }
+  
+  /* Mobile drawer animation */
+  .drawer-enter {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  
+  .drawer-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 0.3s ease-out;
+  }
+  
+  .drawer-exit {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  .drawer-exit-active {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 0.3s ease-in;
+  }
+  
+  /* Backdrop blur optimization */
+  @supports (backdrop-filter: blur(10px)) {
+    .backdrop-blur-mobile {
+      backdrop-filter: blur(10px);
+    }
+  }
+  
+  @supports not (backdrop-filter: blur(10px)) {
+    .backdrop-blur-mobile {
+      background: rgba(245, 230, 197, 0.96);
+    }
   }
 }

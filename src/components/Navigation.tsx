@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getCurrentLocale } from '@/lib/i18n';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 interface NavigationProps {
   currentPage?: string;
@@ -18,6 +19,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
   const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
   const locale = getCurrentLocale();
+  const isMobile = useIsMobile();
 
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
@@ -132,68 +134,113 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             </div>
 
             <button
-              className="md:hidden text-oxidized-teal hover:text-brass transition-colors"
+              className="md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
               onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle navigation menu"
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? (
+                <X size={28} className="animate-in spin-in-90 duration-200" />
+              ) : (
+                <Settings size={28} className="animate-spin duration-[8s] hover:duration-[2s]" />
+              )}
             </button>
           </div>
           
+          {/* Mobile Drawer Menu */}
           {isOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-brass/30 mx-4 bg-parchment/95 backdrop-blur-sm rounded-lg border border-brass/20 shadow-lg">
-              <div className="flex flex-col space-y-4 pt-4 px-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.key}
-                    to={item.path}
-                    className={`font-inter font-medium transition-colors hover:text-brass ${
-                      isCurrentPage(item.key) ? 'text-brass' : 'text-oxidized-teal'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name as string}
-                  </Link>
-                ))}
-                
-                <div className="pt-2 border-t border-brass/30">
-                  <LanguageSwitcher />
+            <>
+              {/* Backdrop Overlay */}
+              <div 
+                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
+                onClick={() => setIsOpen(false)}
+                aria-hidden="true"
+              />
+              
+              {/* Drawer Panel */}
+              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm bg-parchment/96 backdrop-blur-md z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300">
+                {/* Steam Animation Background */}
+                <div className="absolute inset-0 pointer-events-none opacity-5">
+                  <Settings className="absolute top-10 right-10 w-20 h-20 text-brass animate-spin" style={{ animationDuration: '15s' }} />
+                  <Settings className="absolute bottom-20 left-10 w-16 h-16 text-oxidized-teal animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }} />
                 </div>
                 
-                {user ? (
-                  <div className="space-y-2 pt-2 border-t border-brass/30">
-                    <div className="text-oxidized-teal text-sm flex items-center">
-                      <User className="w-4 h-4 text-brass mr-2" />
-                      {user.email}
-                      {subscribed && (
-                        <span className="ml-2 text-brass text-xs">
-                          ({subscriptionTier})
-                        </span>
-                      )}
-                    </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={signOut}
-                      className="border-brass text-brass hover:bg-brass hover:text-parchment"
-                    >
-                      <LogOut className="w-4 h-4 mr-1" />
-                      {t('nav.signOut')}
-                    </Button>
-                  </div>
-                ) : (
-                  <Button
-                    onClick={() => {
-                      setAuthModalOpen(true);
-                      setIsOpen(false);
-                    }}
-                    className="bg-brass hover:bg-brass-dark text-parchment"
+                {/* Close Button */}
+                <div className="flex justify-end p-4">
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="touch-target flex items-center justify-center text-oxidized-teal hover:text-brass transition-colors rounded-full"
+                    aria-label="Close navigation menu"
                   >
-                    <User className="w-4 h-4 mr-2" />
-                    {t('nav.signIn')}
-                  </Button>
-                )}
+                    <X size={24} />
+                  </button>
+                </div>
+                
+                {/* Navigation Links */}
+                <nav className="flex flex-col px-6 space-y-1">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.key}
+                      to={item.path}
+                      className={`touch-target flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
+                        isCurrentPage(item.key) 
+                          ? 'text-brass bg-brass/10 border-l-4 border-brass' 
+                          : 'text-oxidized-teal hover:text-brass hover:bg-brass/5'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.name as string}
+                    </Link>
+                  ))}
+                  
+                  {/* Language Switcher */}
+                  <div className="pt-6 border-t border-brass/20">
+                    <LanguageSwitcher />
+                  </div>
+                  
+                  {/* User Authentication */}
+                  {user ? (
+                    <div className="space-y-4 pt-6 border-t border-brass/20">
+                      <div className="text-oxidized-teal text-sm flex items-center px-4">
+                        <User className="w-4 h-4 text-brass mr-3" />
+                        <div>
+                          <div>{user.email}</div>
+                          {subscribed && (
+                            <div className="text-brass text-xs">
+                              ({subscriptionTier})
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="default"
+                        onClick={() => {
+                          signOut();
+                          setIsOpen(false);
+                        }}
+                        className="w-full border-brass text-brass hover:bg-brass hover:text-parchment touch-target"
+                      >
+                        <LogOut className="w-4 h-4 mr-2" />
+                        {t('nav.signOut')}
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="pt-6 border-t border-brass/20">
+                      <Button
+                        onClick={() => {
+                          setAuthModalOpen(true);
+                          setIsOpen(false);
+                        }}
+                        className="w-full bg-brass hover:bg-brass-dark text-parchment touch-target"
+                      >
+                        <User className="w-4 h-4 mr-2" />
+                        {t('nav.signIn')}
+                      </Button>
+                    </div>
+                  )}
+                </nav>
               </div>
-            </div>
+            </>
           )}
         </div>
       </nav>

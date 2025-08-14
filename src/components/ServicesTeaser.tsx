@@ -49,7 +49,7 @@ const ServicesTeaser = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-12">
+        <div className="grid-responsive max-w-6xl mx-auto mb-12">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
