@@ -107,6 +107,24 @@
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+  
+  /* High contrast mode adjustments for accessibility */
+  @media (prefers-contrast: high) {
+    :root {
+      --brass: #A67C1A; /* Darker brass for better contrast */
+      --teal: #1E4B52; /* Darker teal for better contrast */
+      --oxidized-teal: #1A3338; /* Even darker for text */
+    }
+  }
+  
+  /* Reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer base {
@@ -292,5 +310,53 @@
     .backdrop-blur-mobile {
       background: rgba(245, 230, 197, 0.96);
     }
+  }
+  
+  /* Focus management and accessibility */
+  .focus-visible:focus {
+    outline: 2px solid var(--brass);
+    outline-offset: 2px;
+  }
+  
+  /* Skip link for screen readers */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--brass);
+    color: var(--parchment);
+    padding: 8px;
+    text-decoration: none;
+    z-index: 1000;
+    border-radius: 4px;
+    transition: top 0.3s;
+  }
+  
+  .skip-link:focus {
+    top: 6px;
+  }
+  
+  /* Performance optimizations for images */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Lazy loading optimization */
+  img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+  
+  /* Critical CSS for above-the-fold content */
+  .hero-critical {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
