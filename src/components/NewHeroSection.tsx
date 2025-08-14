@@ -53,7 +53,7 @@ const NewHeroSection = () => {
             <img 
               src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
               alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
-              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+              className="w-40 h-40 sm:w-48 sm:h-48 md:w-60 md:h-60 object-contain"
             />
           </div>
           
