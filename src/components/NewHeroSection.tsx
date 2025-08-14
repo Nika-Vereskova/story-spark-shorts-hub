@@ -51,7 +51,7 @@ const NewHeroSection = () => {
           {/* 3D Company Logo */}
           <div className="flex justify-center mb-8">
             <img 
-              src="/lovable-uploads/390a2f79-a530-4960-9200-82d511daf84d.png" 
+              src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
               alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
               className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
             />
