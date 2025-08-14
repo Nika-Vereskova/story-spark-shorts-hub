@@ -28,7 +28,7 @@ const NewHeroSection = () => {
   };
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-24 sm:pt-16 md:pt-0">
+    <section className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-16 sm:pt-16 md:pt-0">
       {/* Animated Clockwork Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 opacity-10">
@@ -49,7 +49,7 @@ const NewHeroSection = () => {
         {/* Company Logo and Title */}
         <div className="animate-fade-in">
           {/* 3D Company Logo */}
-          <div className="flex justify-center mb-6">
+          <div className="flex justify-center mb-3 sm:mb-6">
             <img 
               src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
               alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
