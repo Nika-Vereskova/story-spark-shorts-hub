@@ -285,11 +285,55 @@
 /* Vintage Paper Texture Background */
 .vintage-paper {
   background-image: 
-    radial-gradient(circle at 20% 80%, rgba(177, 138, 70, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(46, 100, 107, 0.2) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(245, 230, 197, 0.8) 0%, transparent 50%);
-  background-size: 150px 150px, 200px 200px, 300px 300px;
-  background-position: 0 0, 50px 50px, 100px 100px;
+    /* Paper grain texture */
+    radial-gradient(circle at 1px 1px, rgba(177, 138, 70, 0.15) 1px, transparent 0),
+    radial-gradient(circle at 3px 2px, rgba(46, 100, 107, 0.08) 1px, transparent 0),
+    /* Age stains */
+    radial-gradient(ellipse at 20% 80%, rgba(177, 138, 70, 0.2) 0%, transparent 35%),
+    radial-gradient(ellipse at 80% 20%, rgba(139, 111, 51, 0.15) 0%, transparent 40%),
+    radial-gradient(ellipse at 60% 60%, rgba(55, 58, 64, 0.05) 0%, transparent 30%),
+    /* Base paper color with subtle variations */
+    linear-gradient(45deg, rgba(245, 230, 197, 0.95) 0%, rgba(240, 225, 190, 0.98) 25%, rgba(245, 230, 197, 0.95) 50%, rgba(250, 235, 200, 0.97) 75%, rgba(245, 230, 197, 0.95) 100%);
+  background-size: 
+    2px 2px, 4px 3px,
+    200px 150px, 180px 120px, 250px 200px,
+    100% 100%;
+  background-position: 
+    0 0, 1px 1px,
+    0 0, 100px 50px, 150px 100px,
+    0 0;
+}
+
+.vintage-paper-light {
+  background-image: 
+    /* Subtle grain */
+    radial-gradient(circle at 1px 1px, rgba(177, 138, 70, 0.08) 1px, transparent 0),
+    /* Light age spots */
+    radial-gradient(ellipse at 30% 70%, rgba(177, 138, 70, 0.1) 0%, transparent 25%),
+    radial-gradient(ellipse at 70% 30%, rgba(139, 111, 51, 0.08) 0%, transparent 30%),
+    /* Base */
+    linear-gradient(135deg, rgba(245, 230, 197, 0.6) 0%, rgba(250, 235, 200, 0.8) 100%);
+  background-size: 
+    3px 3px,
+    120px 100px, 100px 80px,
+    100% 100%;
+}
+
+.vintage-paper-dark {
+  background-image: 
+    /* Heavy grain */
+    radial-gradient(circle at 1px 1px, rgba(55, 58, 64, 0.2) 1px, transparent 0),
+    radial-gradient(circle at 2px 2px, rgba(177, 138, 70, 0.1) 1px, transparent 0),
+    /* Dark stains */
+    radial-gradient(ellipse at 15% 85%, rgba(139, 111, 51, 0.3) 0%, transparent 40%),
+    radial-gradient(ellipse at 85% 15%, rgba(55, 58, 64, 0.2) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 50%, rgba(177, 138, 70, 0.15) 0%, transparent 50%),
+    /* Aged base */
+    linear-gradient(45deg, rgba(235, 220, 187, 0.9) 0%, rgba(230, 215, 180, 0.95) 100%);
+  background-size: 
+    2px 2px, 3px 3px,
+    150px 120px, 160px 140px, 200px 180px,
+    100% 100%;
 }
 
 /* STEaM LOGIC Button Styling */
@@ -312,7 +356,104 @@
   transition: all 0.3s ease;
   transform: translate(-50%, -50%);
 }
-
+  
+  /* Weathered Paper Edges */
+  .weathered-edges {
+    position: relative;
+  }
+  
+  .weathered-edges::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+      rgba(139, 111, 51, 0.3) 0%, 
+      transparent 10%, 
+      transparent 90%, 
+      rgba(139, 111, 51, 0.3) 100%);
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  .weathered-edges::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(90deg, rgba(177, 138, 70, 0.1) 0px, transparent 1px),
+      linear-gradient(180deg, rgba(177, 138, 70, 0.1) 0px, transparent 1px);
+    background-size: 8px 8px;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  
+  /* Parchment Scroll Effect */
+  .parchment-scroll {
+    background: 
+      /* Top shadow */
+      linear-gradient(to bottom, rgba(139, 111, 51, 0.2) 0%, transparent 10%),
+      /* Bottom shadow */
+      linear-gradient(to top, rgba(139, 111, 51, 0.2) 0%, transparent 10%),
+      /* Paper texture */
+      radial-gradient(ellipse at 25% 25%, rgba(177, 138, 70, 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 75% 75%, rgba(139, 111, 51, 0.08) 0%, transparent 40%),
+      /* Base parchment */
+      linear-gradient(135deg, #F5E6C5 0%, #F0E1C0 50%, #F5E6C5 100%);
+    border-top: 3px solid rgba(177, 138, 70, 0.3);
+    border-bottom: 3px solid rgba(177, 138, 70, 0.3);
+    box-shadow: 
+      inset 0 2px 4px rgba(177, 138, 70, 0.2),
+      inset 0 -2px 4px rgba(177, 138, 70, 0.2);
+  }
+  
+  /* Burnt Paper Edges */
+  .burnt-edges {
+    position: relative;
+    border-radius: 8px;
+  }
+  
+  .burnt-edges::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(139, 111, 51, 0.4) 70%, rgba(55, 58, 64, 0.6) 85%, transparent 100%);
+    border-radius: 12px;
+    z-index: -1;
+  }
+  
+  /* Ink Stains */
+  .ink-stains::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 15%;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(46, 100, 107, 0.3) 0%, rgba(46, 100, 107, 0.1) 40%, transparent 70%);
+    border-radius: 50% 40% 60% 30%;
+    transform: rotate(45deg);
+  }
+  
+  .ink-stains::after {
+    content: '';
+    position: absolute;
+    bottom: 20%;
+    left: 10%;
+    width: 15px;
+    height: 25px;
+    background: radial-gradient(ellipse, rgba(55, 58, 64, 0.2) 0%, rgba(55, 58, 64, 0.05) 50%, transparent 70%);
+    border-radius: 60% 40% 30% 70%;
+    transform: rotate(-30deg);
+  }
 @media (hover: hover) and (pointer: fine) {
   .btn-steam:hover {
     box-shadow: 0 0 15px var(--cyan), 0 0 30px rgba(33, 240, 255, 0.3);

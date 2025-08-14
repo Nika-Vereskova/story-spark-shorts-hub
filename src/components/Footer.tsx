@@ -28,7 +28,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer className="py-8 px-6 bg-parchment/50 border-t-2 border-brass/50">
+    <footer className="vintage-paper-dark weathered-edges py-8 px-6 border-t-4 border-brass/70">
       <div className="container mx-auto text-center">
         <p className="text-oxidized-teal/80 font-medium font-inter">{t('footer.copyright')}</p>
         <div className="flex justify-between items-center mt-4">

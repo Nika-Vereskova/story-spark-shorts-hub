@@ -51,7 +51,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         isVisible ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-8'
       }`}
     >
-      <Card className="steampunk-card vintage-paper group relative overflow-hidden">
+      <Card className="steampunk-card vintage-paper weathered-edges group relative overflow-hidden">
         {/* Animated background gears */}
         <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 transition-opacity">
           <Cog className="w-full h-full text-brass gear-clockwise" />

@@ -16,7 +16,7 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
+    <div className="min-h-screen vintage-paper-light parchment-scroll relative">
       <SEO 
         title="STEaM LOGIC Studio AB - AI Consulting & Custom GPT Development | Nika Vereskova" 
         description="Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions. Transform your business with inventive storytelling and intelligent technology." 

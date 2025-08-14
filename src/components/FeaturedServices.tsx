@@ -38,7 +38,7 @@ const FeaturedServices = () => {
   ];
 
   return (
-    <section className="py-16 px-6 vintage-paper relative overflow-hidden">
+    <section className="py-16 px-6 vintage-paper-light parchment-scroll relative overflow-hidden">
       {/* Background decorative gears */}
       <div className="absolute top-10 left-10 w-32 h-32 opacity-5">
         <Cog className="w-full h-full text-brass gear-clockwise" />
@@ -71,7 +71,7 @@ const FeaturedServices = () => {
                 className={`transition-all duration-700 delay-${index * 100}`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <Card className="steampunk-card group relative overflow-hidden min-h-[400px]">
+                <Card className="steampunk-card vintage-paper-dark weathered-edges burnt-edges ink-stains group relative overflow-hidden min-h-[400px]">
                   {/* Enhanced animated gear background */}
                   <div className="absolute top-6 right-6 w-16 h-16 opacity-10 group-hover:opacity-30 transition-all duration-500">
                     <Cog className="w-full h-full text-brass gear-clockwise" />

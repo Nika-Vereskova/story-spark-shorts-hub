@@ -38,7 +38,7 @@ const ServicesTeaser = () => {
   return (
     <section 
       id="services-section" 
-      className="py-16 px-6 bg-gradient-to-br from-brass/5 to-oxidized-teal/5 relative"
+      className="py-16 px-6 vintage-paper-light parchment-scroll relative"
       itemScope
       itemType="https://schema.org/Service"
     >
@@ -62,7 +62,7 @@ const ServicesTeaser = () => {
             return (
               <article 
                 key={index} 
-                className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop touch-target rounded-lg"
+                className="vintage-paper-dark weathered-edges border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop touch-target rounded-lg"
                 itemScope
                 itemType="https://schema.org/Service"
               >

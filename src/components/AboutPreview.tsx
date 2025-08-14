@@ -18,12 +18,12 @@ const AboutPreview = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-parchment relative">
+    <section className="py-16 px-6 vintage-paper weathered-edges relative">
       {/* Clockwork Gear Decoration */}
       <Settings className="absolute top-12 left-8 w-8 h-8 text-brass/20 animate-gear-rotation" style={{animationDelay: '1s'}} />
       <Settings className="absolute bottom-12 right-8 w-10 h-10 text-brass/15 animate-gear-rotation" style={{animationDelay: '3s'}} />
       <div className="container mx-auto max-w-4xl">
-        <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 shadow-brass-drop">
+        <Card className="vintage-paper-dark burnt-edges ink-stains border-2 border-brass hover:border-brass-dark transition-all duration-300 shadow-brass-drop">
           <CardContent className="p-8">
             <div className="grid md:grid-cols-3 gap-8 items-center">
               {/* Portrait */}

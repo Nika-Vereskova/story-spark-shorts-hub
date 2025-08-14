@@ -29,7 +29,7 @@ const NewHeroSection = () => {
 
   return (
     <section 
-      className="relative overflow-hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-parchment via-parchment to-brass/20 pt-8 sm:pt-16 md:pt-0"
+      className="vintage-paper-light weathered-edges relative overflow-hidden min-h-screen flex items-center justify-center pt-8 sm:pt-16 md:pt-0"
       itemScope 
       itemType="https://schema.org/Organization"
     >
