@@ -2,68 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
-/* STEaM LOGIC Studio AB - Steampunk Brand Identity */
+/* STEaM LOGIC Studio AB Brand Identity */
 
 @layer base {
   :root {
-    /* Steampunk Color Palette */
-    --deep-copper: #B87333;
-    --bronze: #CD7F32;
-    --brass: #B5651D;
-    --victorian-navy: #1B365D;
-    --charcoal: #36454F;
-    --cream-white: #F5F5DC;
-    --antique-gold: #FFD700;
-    --warm-amber: #FFBF00;
-    --steampunk-bronze: #8B4513;
-    --copper-patina: #7D6608;
-    
-    /* Legacy colors for backward compatibility */
+    /* STEaM LOGIC Brand Colors */
+    --brass: #B18A46;
     --teal: #2E646B;
-    --parchment: #F6F2E9;
+    --parchment: #F5E6C5;
     --iron: #373A40;
     --cyan: #21F0FF;
     
-    /* Steampunk Design System Mapping */
-    --background: 37 47% 94%;  /* Cream White */
-    --foreground: 195 23% 27%; /* Charcoal */
+    /* Design System Mapping */
+    --background: 36 26% 91%;  /* Parchment */
+    --foreground: 200 8% 22%;  /* Iron */
 
-    --card: 37 47% 94%;        /* Cream White */
-    --card-foreground: 195 23% 27%;
+    --card: 36 26% 91%;        /* Parchment */
+    --card-foreground: 200 8% 22%;
 
-    --popover: 37 47% 94%;
-    --popover-foreground: 195 23% 27%;
+    --popover: 36 26% 91%;
+    --popover-foreground: 200 8% 22%;
 
-    --primary: 213 55% 23%;    /* Victorian Navy */
-    --primary-foreground: 37 47% 94%;
+    --primary: 195 40% 29%;    /* Teal */
+    --primary-foreground: 36 26% 91%;
 
-    --secondary: 33 64% 40%;   /* Deep Copper */
-    --secondary-foreground: 37 47% 94%;
+    --secondary: 42 43% 49%;   /* Brass */
+    --secondary-foreground: 36 26% 91%;
 
-    --muted: 37 30% 85%;
-    --muted-foreground: 195 23% 45%;
+    --muted: 36 20% 85%;
+    --muted-foreground: 200 8% 45%;
 
-    --accent: 51 100% 50%;     /* Antique Gold */
-    --accent-foreground: 195 23% 27%;
+    --accent: 187 100% 56%;    /* Cyan */
+    --accent-foreground: 200 8% 22%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 37 47% 94%;
+    --destructive-foreground: 36 26% 91%;
 
-    --border: 33 64% 40%;      /* Deep Copper for borders */
-    --input: 37 30% 85%;
-    --ring: 213 55% 23%;
-    
-    /* Steampunk Gradients */
-    --gradient-copper: linear-gradient(135deg, hsl(33 64% 40%), hsl(30 62% 32%));
-    --gradient-bronze: linear-gradient(135deg, hsl(30 62% 50%), hsl(33 64% 40%));
-    --gradient-brass: linear-gradient(135deg, hsl(30 62% 42%), hsl(25 60% 35%));
-    --gradient-navy: linear-gradient(135deg, hsl(213 55% 23%), hsl(218 50% 15%));
-    
-    /* Steampunk Shadows */
-    --shadow-copper: 0 4px 12px hsla(33, 64%, 40%, 0.3);
-    --shadow-bronze: 0 6px 20px hsla(30, 62%, 50%, 0.4);
-    --shadow-glow: 0 0 20px hsla(51, 100%, 50%, 0.4);
-    --shadow-vintage: 0 8px 32px hsla(195, 23%, 27%, 0.15);
+    --border: 42 43% 49%;      /* Brass for borders */
+    --input: 36 20% 85%;
+    --ring: 195 40% 29%;
 
     --radius: 0.5rem;
 
@@ -127,257 +104,81 @@
     @apply border-border;
   }
 
-  /* Steampunk Typography System */
+  /* Base font family: Inter as default (clean sans for mobile) */
   body, html {
-    font-family: 'Source Sans Pro', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
   }
 
-  /* Typography Hierarchy with Steampunk Styling */
+  /* Utility class remains for explicit Playfair usage */
   .font-playfair {
     font-family: 'Playfair Display', Georgia, serif;
     font-weight: 700;
   }
-  
-  .font-montserrat {
-    font-family: 'Montserrat', 'Inter', sans-serif;
-    font-weight: 500;
-  }
 
   body {
-    background: var(--cream-white);
-    color: var(--charcoal);
-    line-height: 1.65;
+    background: var(--parchment);
+    color: var(--iron);
+    line-height: 1.6;
   }
   
-  /* Dramatic Header Styling */
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    letter-spacing: 0.025em;
-    text-shadow: 2px 2px 4px rgba(139, 106, 53, 0.2);
+    letter-spacing: -0.01em;
   }
 
   h1 {
     font-size: var(--step-2);
-    line-height: 1.1;
-    letter-spacing: 0.02em;
-    color: var(--deep-copper);
-    font-family: 'Playfair Display', Georgia, serif;
-  }
-  
-  h2 {
-    font-size: var(--step-1);
-    line-height: 1.2;
-    color: var(--victorian-navy);
-    font-family: 'Montserrat', sans-serif;
-  }
-  
-  h3 {
-    color: var(--charcoal);
-    font-family: 'Montserrat', sans-serif;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
   }
 
   p {
     font-size: var(--step-0);
-    line-height: 1.65;
-    color: var(--charcoal);
+    line-height: 1.6;
   }
-  
-  /* Steampunk Text Effects */
-  .text-copper {
-    color: var(--deep-copper);
-  }
-  
-  .text-bronze {
-    color: var(--bronze);
-  }
-  
-  .text-gold {
-    color: var(--antique-gold);
-  }
-  
-  .text-navy {
-    color: var(--victorian-navy);
-  }
-  
-  /* Hover Effects */
-  .hover-gold:hover {
-    color: var(--antique-gold);
-    transition: color 0.3s ease;
+
+  .font-playfair {
+    font-weight: 700;
   }
 }
 
-/* Steampunk Animations & Effects */
+/* STEaM LOGIC Brand Animations */
 @keyframes gearSpin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes steamPuff {
-  0% { 
-    opacity: 0; 
-    transform: translateY(0) scale(0.3); 
-  }
-  40% { 
-    opacity: 0.8; 
-    transform: scale(1) translateY(-5px); 
-  }
-  100% { 
-    opacity: 0; 
-    transform: translateY(-20px) scale(1.2); 
-  }
-}
-
-@keyframes copperGlow {
-  0%, 100% { 
-    box-shadow: 0 0 5px var(--shadow-copper); 
-  }
-  50% { 
-    box-shadow: 0 0 20px var(--shadow-glow), 0 0 30px var(--shadow-copper); 
-  }
-}
-
-@keyframes vintageFloat {
-  0%, 100% { 
-    transform: translateY(0px); 
-  }
-  50% { 
-    transform: translateY(-10px); 
-  }
+@keyframes puff {
+  0% { opacity: 0; transform: translateY(0) scale(0.3); }
+  40% { opacity: 0.8; }
+  100% { opacity: 0; transform: translateY(-40px) scale(1); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .logo svg.gear {
     animation: gearSpin 25s linear infinite;
   }
-  
-  .steampunk-float {
-    animation: vintageFloat 6s ease-in-out infinite;
-  }
-  
-  .gear-spin {
-    animation: gearSpin 20s linear infinite;
-  }
-  
-  .gear-spin-reverse {
-    animation: gearSpin 25s linear infinite reverse;
-  }
 }
 
 .hero:hover .steam {
-  animation: steamPuff 1.8s ease-out forwards;
+  animation: puff 1.8s ease-out forwards;
 }
 
-/* Steampunk Card Styling */
-.card-steampunk {
-  background: var(--gradient-copper);
-  border: 2px solid var(--deep-copper);
-  border-radius: 12px;
-  box-shadow: var(--shadow-bronze);
-  position: relative;
+/* STEaM LOGIC Card Styling */
+.card {
+  border: 1px solid var(--brass);
+  border-radius: 8px;
 }
 
-.card-steampunk::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: var(--gradient-bronze);
-  border-radius: 14px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.card-steampunk:hover::before {
-  opacity: 1;
-}
-
-/* Steampunk Button Styling */
+/* STEaM LOGIC Button Styling */
 .btn-steam {
-  background: var(--gradient-copper);
-  border: 2px solid var(--deep-copper);
-  color: var(--cream-white);
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow-copper);
+  background: linear-gradient(180deg, #B18A46 0%, #8B6F33 100%);
+  border: 2px solid var(--teal);
+  transition: box-shadow 0.3s ease;
 }
 
-.btn-steam:hover {
-  background: var(--gradient-bronze);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-2px);
-}
-
-.btn-amber {
-  background: var(--gradient-brass);
-  border: 2px solid var(--warm-amber);
-  color: var(--charcoal);
-  font-weight: 600;
-}
-
-.btn-amber:hover {
-  background: var(--antique-gold);
-  box-shadow: var(--shadow-glow);
-  animation: copperGlow 2s infinite;
-}
-
-/* Steampunk Decorative Elements */
-.brass-corner {
-  position: relative;
-}
-
-.brass-corner::before,
-.brass-corner::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 3px solid var(--antique-gold);
-}
-
-.brass-corner::before {
-  top: -3px;
-  left: -3px;
-  border-right: none;
-  border-bottom: none;
-}
-
-.brass-corner::after {
-  bottom: -3px;
-  right: -3px;
-  border-left: none;
-  border-top: none;
-}
-
-/* Vintage Paper Texture */
-.vintage-paper {
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(204, 127, 50, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(183, 115, 51, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-}
-
-/* Steampunk Dividers */
-.copper-divider {
-  height: 4px;
-  background: var(--gradient-copper);
-  border-radius: 2px;
-  position: relative;
-  margin: 2rem 0;
-}
-
-.copper-divider::before {
-  content: '⚙';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--cream-white);
-  color: var(--deep-copper);
-  font-size: 1.5rem;
-  padding: 0.5rem;
-  border-radius: 50%;
+@media (hover: hover) and (pointer: fine) {
+  .btn-steam:hover {
+    box-shadow: 0 0 8px var(--cyan);
+  }
 }
