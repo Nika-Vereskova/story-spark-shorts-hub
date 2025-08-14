@@ -49,7 +49,7 @@ const NewHeroSection = () => {
         {/* Company Logo and Title */}
         <div className="animate-fade-in">
           {/* 3D Company Logo */}
-          <div className="flex justify-center mb-8">
+          <div className="flex justify-center mb-6">
             <img 
               src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
               alt="STEaM LOGIC Studio AB Logo - Gear and Quill"

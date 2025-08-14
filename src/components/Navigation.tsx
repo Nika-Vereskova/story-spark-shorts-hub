@@ -67,7 +67,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
-            <Link to={`/${locale}`} className="flex items-center space-x-3 logo">
+            <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
               <img
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
                 alt="STEaM LOGIC Studio AB"
@@ -140,8 +140,8 @@ const Navigation = ({ currentPage }: NavigationProps) => {
           </div>
           
           {isOpen && (
-            <div className="md:hidden mt-4 pb-4 border-t border-brass/30">
-              <div className="flex flex-col space-y-4 pt-4">
+            <div className="md:hidden mt-4 pb-4 border-t border-brass/30 mx-4 bg-parchment/95 backdrop-blur-sm rounded-lg border border-brass/20 shadow-lg">
+              <div className="flex flex-col space-y-4 pt-4 px-4">
                 {navItems.map((item) => (
                   <Link
                     key={item.key}
