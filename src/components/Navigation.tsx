@@ -1,25 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings } from 'lucide-react';
+import { Menu, User, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getCurrentLocale } from '@/lib/i18n';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 interface NavigationProps {
   currentPage?: string;
 }
 
 const Navigation = ({ currentPage }: NavigationProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
   const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
   const locale = getCurrentLocale();
-  const isMobile = useIsMobile();
 
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
@@ -134,112 +131,17 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             </div>
 
             <button
-              className="md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
-              onClick={() => setIsOpen(!isOpen)}
+              id="hamburger"
+              data-nav-open
+              className="menu-toggle md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
               aria-label="Toggle navigation menu"
             >
-              {isOpen ? (
-                <X size={28} className="animate-in spin-in-90 duration-200" />
-              ) : (
-                <Settings size={28} className="animate-spin duration-[8s] hover:duration-[2s]" />
-              )}
+              <Menu size={28} />
             </button>
           </div>
-          
-          {/* Mobile Drawer Menu */}
-          {isOpen && (
-            <>
-              {/* Backdrop Overlay */}
-              <div 
-                className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 md:hidden"
-                onClick={() => setIsOpen(false)}
-                aria-hidden="true"
-              />
-              
-              {/* Drawer Panel */}
-              <div className="fixed inset-y-0 left-0 w-[88vw] max-w-sm z-50 md:hidden shadow-2xl animate-in slide-in-from-left duration-300 border-r border-brass/20" style={{ backgroundColor: '#F5E6C5' }}>
-                
-                {/* Close Button */}
-                <div className="flex justify-end p-4">
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="touch-target flex items-center justify-center text-oxidized-teal hover:text-brass transition-colors rounded-full"
-                    aria-label="Close navigation menu"
-                  >
-                    <X size={24} />
-                  </button>
-                </div>
-                
-                {/* Navigation Links */}
-                <nav className="flex flex-col px-6 space-y-1">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.key}
-                      to={item.path}
-                      className={`touch-target flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
-                        isCurrentPage(item.key) 
-                          ? 'text-brass bg-brass/10 border-l-4 border-brass' 
-                          : 'text-oxidized-teal hover:text-brass hover:bg-brass/5'
-                      }`}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name as string}
-                    </Link>
-                  ))}
-                  
-                  {/* Language Switcher */}
-                  <div className="pt-6 border-t border-brass/20">
-                    <LanguageSwitcher />
-                  </div>
-                  
-                  {/* User Authentication */}
-                  {user ? (
-                    <div className="space-y-4 pt-6 border-t border-brass/20">
-                      <div className="text-oxidized-teal text-sm flex items-center px-4">
-                        <User className="w-4 h-4 text-brass mr-3" />
-                        <div>
-                          <div>{user.email}</div>
-                          {subscribed && (
-                            <div className="text-brass text-xs">
-                              ({subscriptionTier})
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <Button
-                        variant="outline"
-                        size="default"
-                        onClick={() => {
-                          signOut();
-                          setIsOpen(false);
-                        }}
-                        className="w-full border-brass text-brass hover:bg-brass hover:text-parchment touch-target"
-                      >
-                        <LogOut className="w-4 h-4 mr-2" />
-                        {t('nav.signOut')}
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="pt-6 border-t border-brass/20">
-                      <Button
-                        onClick={() => {
-                          setAuthModalOpen(true);
-                          setIsOpen(false);
-                        }}
-                        className="w-full bg-brass hover:bg-brass-dark text-parchment touch-target"
-                      >
-                        <User className="w-4 h-4 mr-2" />
-                        {t('nav.signIn')}
-                      </Button>
-                    </div>
-                  )}
-                </nav>
-              </div>
-            </>
-          )}
         </div>
       </nav>
-      
+
       <AuthModal
         isOpen={authModalOpen}
         onClose={() => setAuthModalOpen(false)}
