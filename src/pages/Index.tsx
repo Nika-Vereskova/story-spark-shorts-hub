@@ -16,30 +16,50 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
+    <div className="min-h-screen">
       <SEO title="STEaM LOGIC Studio AB - Inventive Storytelling × Intelligent Technology" description="Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova." />
       
       {/* Navigation */}
       <Navigation currentPage="home" />
 
-      {/* Hero Section - Critical for SEO */}
-      <NewHeroSection />
+      {/* Hero Section - White background */}
+      <section className="bg-white border-t border-black/[0.06] py-18 md:py-24">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <NewHeroSection />
+        </div>
+      </section>
 
-      {/* About Me Preview - Critical for SEO */}
-      <AboutPreview />
+      {/* About Me Preview - Parchment background */}
+      <section className="bg-parchment border-t border-black/[0.06] py-12 md:py-18">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <AboutPreview />
+        </div>
+      </section>
 
-      {/* Services Teaser - Critical for SEO */}
-      <ServicesTeaser />
+      {/* Services Teaser - White background */}
+      <section className="bg-white border-t border-black/[0.06] py-12 md:py-18">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <ServicesTeaser />
+        </div>
+      </section>
 
-      {/* AI News Highlight */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <AINewsCarousel />
-      </Suspense>
+      {/* AI News Highlight - Parchment background */}
+      <section className="bg-parchment border-t border-black/[0.06] py-12 md:py-18">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <Suspense fallback={<div>Loading...</div>}>
+            <AINewsCarousel />
+          </Suspense>
+        </div>
+      </section>
 
-      {/* Contact CTA */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <ContactCTA />
-      </Suspense>
+      {/* Contact CTA - White background */}
+      <section className="bg-white border-t border-black/[0.06] py-12 md:py-18">
+        <div className="max-w-[1100px] mx-auto px-6">
+          <Suspense fallback={<div>Loading...</div>}>
+            <ContactCTA />
+          </Suspense>
+        </div>
+      </section>
 
       {/* Footer */}
       <Footer />
