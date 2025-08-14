@@ -63,9 +63,20 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Steampunk color palette
-				parchment: '#F5E6C5',
-				brass: '#B18A46',
+				// Enhanced Steampunk color palette
+				'deep-copper': '#B87333',
+				'bronze': '#CD7F32',
+				'brass': '#B5651D',
+				'victorian-navy': '#1B365D',
+				'charcoal': '#36454F',
+				'cream-white': '#F5F5DC',
+				'antique-gold': '#FFD700',
+				'warm-amber': '#FFBF00',
+				'steampunk-bronze': '#8B4513',
+				'copper-patina': '#7D6608',
+				// Legacy colors
+				'parchment': '#F6F2E9',
+				'brass-legacy': '#B18A46',
 				'brass-dark': '#8B6A35',
 				'oxidized-teal': '#2E646B',
 				'oxidized-teal-light': '#4A7B83',
@@ -73,6 +84,8 @@ export default {
 			},
 			fontFamily: {
 				'playfair': ['Playfair Display', 'serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'source-sans': ['Source Sans Pro', 'sans-serif'],
 				'inter': ['Inter', 'sans-serif'],
 				'jetbrains': ['JetBrains Mono', 'monospace'],
 			},
@@ -165,6 +178,11 @@ export default {
 			},
 			backgroundImage: {
 				'gear-pattern': "url('data:image/svg+xml,%3Csvg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cg fill=\"%23E8D4A6\" fill-opacity=\"0.1\"%%3E%3Cpath d=\"M20 20.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z\"/%3E%3Cpath d=\"M20 14.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zm0 1a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z\"/%3E%3C/g%%3E%3C/svg%3E')",
+				'blueprint-grid': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cdefs%%3E%3Cpattern id=\"grid\" width=\"60\" height=\"60\" patternUnits=\"userSpaceOnUse\"%%3E%3Cpath d=\"M 60 0 L 0 0 0 60\" fill=\"none\" stroke=\"%234A7B83\" stroke-width=\"1\" opacity=\"0.1\"/%3E%3C/pattern%%3E%3C/defs%%3E%3Crect width=\"100%25\" height=\"100%25\" fill=\"url(%23grid)\"/%3E%3C/svg%3E')",
+				'vintage-paper': "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%%3E%3Cfilter id=\"noiseFilter\"%%3E%3CfeTurbulence type=\"fractalNoise\" baseFrequency=\"0.9\" numOctaves=\"1\" stitchTiles=\"stitch\"/%3E%3C/filter%%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23noiseFilter)\" opacity=\"0.03\"/%3E%3C/svg%3E')",
+				'copper-gradient': 'linear-gradient(135deg, #B87333 0%, #8B4513 100%)',
+				'bronze-gradient': 'linear-gradient(135deg, #CD7F32 0%, #B87333 100%)',
+				'navy-gradient': 'linear-gradient(135deg, #1B365D 0%, #0F1B2F 100%)',
 			},
 			filter: {
 				'sepia': 'sepia(80%) saturate(120%) hue-rotate(15deg)',

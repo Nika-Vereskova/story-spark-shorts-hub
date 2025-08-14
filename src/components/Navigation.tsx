@@ -64,19 +64,19 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-parchment/95 backdrop-blur-sm border-b border-teal/50 shadow-sm transition-all duration-300 scroll-border">
-        <div className="container mx-auto px-6 py-3">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-cream-white/95 backdrop-blur-md border-b border-deep-copper/30 shadow-vintage transition-all duration-300 scroll-border">
+        <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
+            <Link to={`/${locale}`} className="flex items-center space-x-3 logo brass-corner">
               <img
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
                 alt="STEaM LOGIC Studio AB"
                 loading="lazy"
-                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                className="h-[36px] sm:h-[40px] md:h-[56px] gear-spin drop-shadow-lg"
               />
-              <div className="font-playfair text-teal">
-                <div className="text-xl leading-tight">STEaM LOGIC</div>
-                <div className="text-sm opacity-90">Studio AB</div>
+              <div className="font-playfair text-deep-copper">
+                <div className="text-xl md:text-2xl leading-tight font-bold tracking-wide">STEaM LOGIC</div>
+                <div className="text-sm md:text-base opacity-80 font-montserrat">Studio AB</div>
               </div>
             </Link>
             
@@ -85,10 +85,10 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 <Link
                   key={item.key}
                   to={item.path}
-                  className={`font-inter font-medium transition-colors hover:text-brass ${
+                  className={`font-montserrat font-medium transition-all duration-300 hover-gold relative ${
                     isCurrentPage(item.key) 
-                      ? 'text-brass border-b-2 border-brass' 
-                      : 'text-oxidized-teal'
+                      ? 'text-antique-gold border-b-3 border-antique-gold font-semibold' 
+                      : 'text-victorian-navy hover:text-antique-gold'
                   }`}
                 >
                   {item.name as string}
@@ -100,21 +100,20 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               {user ? (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    <User className="w-4 h-4 text-brass" />
-                    <span className="text-oxidized-teal text-sm">
+                    <User className="w-4 h-4 text-deep-copper" />
+                    <span className="text-victorian-navy text-sm font-montserrat">
                       {user.email}
                       {subscribed && (
-                        <span className="ml-2 text-brass text-xs">
+                        <span className="ml-2 text-antique-gold text-xs font-semibold">
                           ({subscriptionTier})
                         </span>
                       )}
                     </span>
                   </div>
                   <Button
-                    variant="outline"
+                    variant="copper"
                     size="sm"
                     onClick={signOut}
-                    className="border-brass text-brass hover:bg-brass hover:text-parchment"
                   >
                     <LogOut className="w-4 h-4 mr-1" />
                     {t('nav.signOut')}
@@ -122,20 +121,22 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 </div>
               ) : (
                 <Button
+                  variant="amber"
+                  size="lg"
                   onClick={() => setAuthModalOpen(true)}
-                  className="bg-brass hover:bg-brass-dark text-parchment"
+                  className="uppercase tracking-wider"
                 >
                   <User className="w-4 h-4 mr-2" />
-                  {t('nav.signIn')}
+                  Contact
                 </Button>
               )}
             </div>
 
             <button
-              className="md:hidden text-oxidized-teal hover:text-brass transition-colors"
+              className="md:hidden text-victorian-navy hover:text-antique-gold transition-all duration-300 p-2 rounded-md hover:bg-antique-gold/10"
               onClick={() => setIsOpen(!isOpen)}
             >
-              {isOpen ? <X size={28} /> : <Menu size={28} />}
+              {isOpen ? <X size={28} className="drop-shadow-lg" /> : <Menu size={28} className="drop-shadow-lg" />}
             </button>
           </div>
           
