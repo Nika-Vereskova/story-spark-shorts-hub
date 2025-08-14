@@ -1,9 +1,10 @@
 
 import React, { Suspense } from 'react';
 import Navigation from '@/components/Navigation';
-const NewHeroSection = React.lazy(() => import('@/components/NewHeroSection'));
-const AboutPreview = React.lazy(() => import('@/components/AboutPreview'));
-const ServicesTeaser = React.lazy(() => import('@/components/ServicesTeaser'));
+import NewHeroSection from '@/components/NewHeroSection';
+import AboutPreview from '@/components/AboutPreview';
+import ServicesTeaser from '@/components/ServicesTeaser';
+// Keep lazy loading only for non-critical content
 const AINewsCarousel = React.lazy(() => import('@/components/AINewsCarousel'));
 const ContactCTA = React.lazy(() => import('@/components/ContactCTA'));
 import Footer from '@/components/Footer';
@@ -21,20 +22,14 @@ const Index = () => {
       {/* Navigation */}
       <Navigation currentPage="home" />
 
-      {/* Hero Section */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <NewHeroSection />
-      </Suspense>
+      {/* Hero Section - Critical for SEO */}
+      <NewHeroSection />
 
-      {/* About Me Preview */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <AboutPreview />
-      </Suspense>
+      {/* About Me Preview - Critical for SEO */}
+      <AboutPreview />
 
-      {/* Services Teaser */}
-      <Suspense fallback={<div>Loading...</div>}>
-        <ServicesTeaser />
-      </Suspense>
+      {/* Services Teaser - Critical for SEO */}
+      <ServicesTeaser />
 
       {/* AI News Highlight */}
       <Suspense fallback={<div>Loading...</div>}>

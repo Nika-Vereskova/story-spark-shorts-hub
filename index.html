@@ -43,7 +43,50 @@
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- SEO Fallback Content - Visible to crawlers when JS is disabled -->
+      <noscript>
+        <main class="min-h-screen bg-white">
+          <header class="bg-gray-900 text-white p-4">
+            <h1>STEaM LOGIC Studio AB</h1>
+            <nav>
+              <a href="/en/about">About</a> | 
+              <a href="/en/ai-services">AI Services</a> | 
+              <a href="/en/contact">Contact</a>
+            </nav>
+          </header>
+          
+          <section class="hero p-8 text-center">
+            <img src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
+                 alt="STEaM LOGIC Studio AB Logo - Gear and Quill" 
+                 width="200" height="200" style="margin: 0 auto;">
+            <h1>Inventive Storytelling × Intelligent Technology</h1>
+            <p>Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova.</p>
+          </section>
+          
+          <section class="about p-8">
+            <h2>About Nika Vereskova</h2>
+            <p>AI consultant and creative storyteller specializing in custom GPTs, workshops, and innovative technology solutions.</p>
+          </section>
+          
+          <section class="services p-8">
+            <h2>AI Services</h2>
+            <ul>
+              <li>AI Strategy & Roadmaps</li>
+              <li>Custom GPT Development</li>
+              <li>AI Workshops & Training</li>
+              <li>Process Automation</li>
+            </ul>
+          </section>
+          
+          <section class="contact p-8">
+            <h2>Get In Touch</h2>
+            <p>Email: hello@steamlogic.studio</p>
+            <p>Ready to transform your business with AI? Let's connect.</p>
+          </section>
+        </main>
+      </noscript>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
