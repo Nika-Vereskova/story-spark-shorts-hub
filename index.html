@@ -128,55 +128,6 @@
         This site works best with JavaScript enabled.
       </div>
     </noscript>
-    <div class="nav-overlay" aria-hidden="true"></div>
-
-    <!-- Centered Drawer -->
-    <nav id="nav-drawer" class="mobile-nav" role="dialog" aria-modal="true" aria-hidden="true">
-      <button id="nav-close" class="nav-close" aria-label="Close menu">×</button>
-      <ul class="nav-list">
-        <li><a href="/en">Home</a></li>
-        <li><a href="/en/about">About</a></li>
-        <li><a href="/en/services">Services</a></li>
-        <li><a href="/en/books">Books</a></li>
-        <li><a href="/en/videos">Videos</a></li>
-        <li><a href="/en/blog">Blog / AI News</a></li>
-        <li><a href="/en/contact">Contact</a></li>
-      </ul>
-      <!-- Put language switcher here, small and right-aligned -->
-      <div class="nav-footer">
-        <!-- move the 🇬🇧/🇸🇪 switcher here instead of overlapping hero -->
-        <div id="lang-switcher"></div>
-      </div>
-    </nav>
-
     <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.addEventListener('load', () => {
-        const openBtn = document.querySelector('[data-nav-open], .menu-toggle');
-        const closeBtn = document.querySelector('[data-nav-close], .nav-close, .close');
-        const panel = document.querySelector('.mobile-nav, .mobile-menu, .drawer');
-        let overlay = document.querySelector('.nav-overlay');
-        if (!overlay) {
-          overlay = document.createElement('div');
-          overlay.className = 'nav-overlay';
-          document.body.appendChild(overlay);
-        }
-
-        function openNav() {
-          panel.style.display = 'block';
-          overlay.style.display = 'block';
-          document.body.style.overflow = 'hidden';
-        }
-        function closeNav() {
-          panel.style.display = 'none';
-          overlay.style.display = 'none';
-          document.body.style.overflow = '';
-        }
-        openBtn?.addEventListener('click', openNav);
-        closeBtn?.addEventListener('click', closeNav);
-        overlay.addEventListener('click', closeNav);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
-      });
-    </script>
   </body>
 </html>
