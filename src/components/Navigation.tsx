@@ -14,6 +14,7 @@ interface NavigationProps {
 
 const Navigation = ({ currentPage }: NavigationProps) => {
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
   const locale = getCurrentLocale();
@@ -132,7 +133,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
 
             <button
               id="hamburger"
-              data-nav-open
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="menu-toggle md:hidden text-oxidized-teal hover:text-brass transition-all duration-300 touch-target flex items-center justify-center"
               aria-label="Toggle navigation menu"
             >
@@ -140,6 +141,73 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             </button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-parchment/95 backdrop-blur-sm border-t border-teal/50">
+            <div className="container mx-auto px-6 py-4 space-y-4">
+              {navItems.map((item) => (
+                <Link
+                  key={item.key}
+                  to={item.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`block font-inter font-medium transition-colors hover:text-brass ${
+                    isCurrentPage(item.key) 
+                      ? 'text-brass border-l-2 border-brass pl-3' 
+                      : 'text-oxidized-teal'
+                  }`}
+                >
+                  {item.name as string}
+                </Link>
+              ))}
+              
+              <div className="pt-4 border-t border-teal/20">
+                <LanguageSwitcher />
+              </div>
+              
+              <div className="pt-2">
+                {user ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-2">
+                      <User className="w-4 h-4 text-brass" />
+                      <span className="text-oxidized-teal text-sm">
+                        {user.email}
+                        {subscribed && (
+                          <span className="ml-2 text-brass text-xs">
+                            ({subscriptionTier})
+                          </span>
+                        )}
+                      </span>
+                    </div>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => {
+                        signOut();
+                        setMobileMenuOpen(false);
+                      }}
+                      className="border-brass text-brass hover:bg-brass hover:text-parchment w-full"
+                    >
+                      <LogOut className="w-4 h-4 mr-1" />
+                      {t('nav.signOut')}
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    onClick={() => {
+                      setAuthModalOpen(true);
+                      setMobileMenuOpen(false);
+                    }}
+                    className="bg-brass hover:bg-brass-dark text-parchment w-full"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    {t('nav.signIn')}
+                  </Button>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       <AuthModal
