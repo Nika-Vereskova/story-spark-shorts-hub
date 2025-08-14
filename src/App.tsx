@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -33,15 +33,36 @@ const withSuspense = (Component: React.LazyExoticComponent<React.ComponentType>)
   </Suspense>
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <HelmetProvider>
-          <BrowserRouter>
-          <LocaleRouter>
+declare global {
+  interface Window {
+    adsbygoogle: any[];
+  }
+}
+
+const App = () => {
+  useEffect(() => {
+    // Initialize Google AdSense Auto Ads
+    if (typeof window !== 'undefined') {
+      try {
+        (window.adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-4113128198241483",
+          enable_page_level_ads: true
+        });
+      } catch (e) {
+        console.error('AdSense initialization error:', e);
+      }
+    }
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <HelmetProvider>
+            <BrowserRouter>
+            <LocaleRouter>
             <Routes>
               {/* Root route - will be handled by LocaleRouter */}
               <Route path="/" element={withSuspense(Index)} />
@@ -89,6 +110,7 @@ const App = () => (
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>
-);
+  );
+};
 
 export default App;
