@@ -81,6 +81,10 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
                 width="52"
                 height="52"
+                onError={(e) => {
+                  console.log('Navigation logo failed to load:', e.currentTarget.src);
+                  e.currentTarget.style.display = 'none';
+                }}
               />
               <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>
