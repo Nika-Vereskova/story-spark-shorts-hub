@@ -1,11 +1,15 @@
 
 import { 
-  Video, 
-  Globe, 
+  MonitorPlay, 
+  Cog, 
   BookOpen, 
   Smartphone, 
-  Brain,
-  Wand2
+  Bot,
+  Zap,
+  Settings,
+  Wrench,
+  Cpu,
+  Gauge
 } from 'lucide-react';
 import { t } from '@/lib/i18n';
 
@@ -22,14 +26,14 @@ export interface ServiceData {
 
 export const getServicesData = (): ServiceData[] => [
   {
-    icon: Video,
+    icon: MonitorPlay,
     title: t('services.webinars.title'),
     description: t('services.webinars.description'),
     features: t('services.webinars.features'),
     cta: t('services.webinars.cta')
   },
   {
-    icon: Globe,
+    icon: Cog,
     title: t('services.websites.title'),
     description: t('services.websites.description'),
     features: t('services.websites.features'),
@@ -45,7 +49,7 @@ export const getServicesData = (): ServiceData[] => [
     serviceName: "Book Chapters"
   },
   {
-    icon: Wand2,
+    icon: Zap,
     title: t('services.animation.title'),
     description: t('services.animation.description'),
     features: t('services.animation.features'),
@@ -59,7 +63,7 @@ export const getServicesData = (): ServiceData[] => [
     cta: t('services.apps.cta')
   },
   {
-    icon: Brain,
+    icon: Bot,
     title: t('services.ai.title'),
     description: t('services.ai.description'),
     features: t('services.ai.features'),
