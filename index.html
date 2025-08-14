@@ -128,6 +128,59 @@
         This site works best with JavaScript enabled.
       </div>
     </noscript>
+    <!-- Backdrop -->
+    <div id="nav-backdrop" class="nav-backdrop" aria-hidden="true"></div>
+
+    <!-- Centered Drawer -->
+    <nav id="nav-drawer" class="nav-drawer" role="dialog" aria-modal="true" aria-hidden="true">
+      <button id="nav-close" class="nav-close" aria-label="Close menu">×</button>
+      <ul class="nav-list">
+        <li><a href="/en">Home</a></li>
+        <li><a href="/en/about">About</a></li>
+        <li><a href="/en/services">Services</a></li>
+        <li><a href="/en/books">Books</a></li>
+        <li><a href="/en/videos">Videos</a></li>
+        <li><a href="/en/blog">Blog / AI News</a></li>
+        <li><a href="/en/contact">Contact</a></li>
+      </ul>
+      <!-- Put language switcher here, small and right-aligned -->
+      <div class="nav-footer">
+        <!-- move the 🇬🇧/🇸🇪 switcher here instead of overlapping hero -->
+        <div id="lang-switcher"></div>
+      </div>
+    </nav>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const openBtn = document.getElementById('hamburger');
+        const drawer = document.getElementById('nav-drawer');
+        const backdrop = document.getElementById('nav-backdrop');
+        const closeBtn = document.getElementById('nav-close');
+
+        function openMenu() {
+          drawer.classList.add('is-open');
+          backdrop.classList.add('is-open');
+          document.body.classList.add('body-lock');
+          drawer.setAttribute('aria-hidden', 'false');
+          backdrop.setAttribute('aria-hidden', 'false');
+          closeBtn.focus();
+        }
+        function closeMenu() {
+          drawer.classList.remove('is-open');
+          backdrop.classList.remove('is-open');
+          document.body.classList.remove('body-lock');
+          drawer.setAttribute('aria-hidden', 'true');
+          backdrop.setAttribute('aria-hidden', 'true');
+          openBtn?.focus();
+        }
+
+        openBtn?.addEventListener('click', openMenu);
+        closeBtn?.addEventListener('click', closeMenu);
+        backdrop?.addEventListener('click', closeMenu);
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+      });
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
