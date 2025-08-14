@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Instagram, Youtube } from 'lucide-react';
+import { Github, Instagram, Youtube, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,10 @@ const ContactCTA = () => {
   ];
 
   return (
-    <section className="py-16 px-6 bg-gradient-to-br from-parchment to-brass/10">
+    <section className="py-16 px-6 bg-gradient-to-br from-parchment to-brass/10 relative">
+      {/* Clockwork Gear Decoration */}
+      <Settings className="absolute top-8 left-8 w-12 h-12 text-brass/20 animate-gear-rotation" style={{animationDelay: '1.5s'}} />
+      <Settings className="absolute bottom-8 right-8 w-8 h-8 text-brass/15 animate-gear-rotation" style={{animationDelay: '0.5s'}} />
       <div className="container mx-auto max-w-4xl">
         <Card className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 shadow-brass-drop">
           <CardContent className="p-12 text-center">

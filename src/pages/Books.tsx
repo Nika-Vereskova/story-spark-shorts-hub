@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ExternalLink, Cog } from 'lucide-react';
+import { ExternalLink, Cog, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
@@ -42,7 +42,11 @@ const Books = () => {
   };
 
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
+    <div className="min-h-screen bg-parchment bg-gear-pattern relative">
+      {/* Clockwork Gear Decorations */}
+      <Settings className="absolute top-32 left-8 w-14 h-14 text-brass/15 animate-gear-rotation" style={{animationDelay: '1s'}} />
+      <Settings className="absolute top-1/3 right-8 w-10 h-10 text-brass/20 animate-gear-rotation" style={{animationDelay: '3s'}} />
+      <Settings className="absolute bottom-40 left-1/4 w-12 h-12 text-brass/10 animate-gear-rotation" style={{animationDelay: '5s'}} />
       <SEO title="Books – Plumberella & More | STEaM LOGIC" description="Enchanting steampunk books and stories for curious minds." />
       <Navigation currentPage="books" />
 

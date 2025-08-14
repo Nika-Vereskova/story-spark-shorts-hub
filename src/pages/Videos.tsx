@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Play, ExternalLink } from 'lucide-react';
+import { Play, ExternalLink, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
@@ -27,7 +27,11 @@ const Videos = () => {
   };
 
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
+    <div className="min-h-screen bg-parchment bg-gear-pattern relative">
+      {/* Clockwork Gear Decorations */}
+      <Settings className="absolute top-28 right-12 w-12 h-12 text-brass/15 animate-gear-rotation" style={{animationDelay: '0.5s'}} />
+      <Settings className="absolute top-2/3 left-8 w-16 h-16 text-brass/10 animate-gear-rotation" style={{animationDelay: '2.5s'}} />
+      <Settings className="absolute bottom-32 right-1/3 w-8 h-8 text-brass/20 animate-gear-rotation" style={{animationDelay: '4.5s'}} />
       <SEO title="Videos – Story Time & AI Demos" description="Watch steampunk story time and practical AI demonstrations." />
       <Navigation currentPage="videos" />
 

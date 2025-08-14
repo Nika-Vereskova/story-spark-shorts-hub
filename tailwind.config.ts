@@ -131,6 +131,22 @@ export default {
 						opacity: '0',
 						transform: 'scale(1.2) translateY(-10px)'
 					}
+				},
+				'gear-rotation': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg)'
+					}
+				},
+				'icon-spin': {
+					'0%': {
+						transform: 'rotate(0deg)'
+					},
+					'100%': {
+						transform: 'rotate(360deg)'
+					}
 				}
 			},
 			animation: {
@@ -138,7 +154,9 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out forwards',
 				'scale-in': 'scale-in 0.3s ease-out',
-				'steam-puff': 'steam-puff 0.8s ease-out'
+				'steam-puff': 'steam-puff 0.8s ease-out',
+				'gear-rotation': 'gear-rotation 8s linear infinite',
+				'icon-spin': 'icon-spin 4s linear infinite'
 			},
 			boxShadow: {
 				'inner-glow': 'inset 0 2px 4px rgba(177, 138, 70, 0.3)',

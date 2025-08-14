@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Brain, Palette } from 'lucide-react';
+import { BookOpen, Brain, Palette, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,11 @@ const ServicesTeaser = () => {
   ];
 
   return (
-    <section id="services-section" className="py-16 px-6 bg-gradient-to-br from-brass/5 to-oxidized-teal/5">
+    <section id="services-section" className="py-16 px-6 bg-gradient-to-br from-brass/5 to-oxidized-teal/5 relative">
+      {/* Clockwork Gear Decoration */}
+      <Settings className="absolute top-8 right-8 w-12 h-12 text-brass/20 animate-gear-rotation" />
+      <Settings className="absolute bottom-8 left-8 w-10 h-10 text-brass/15 animate-gear-rotation" style={{animationDelay: '2s'}} />
+      
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-playfair text-oxidized-teal mb-4">My Services</h2>
@@ -52,7 +56,7 @@ const ServicesTeaser = () => {
               <Card key={index} className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop">
                 <CardHeader className="text-center">
                   <div className="w-16 h-16 bg-brass/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <IconComponent className="w-8 h-8 text-brass" />
+                    <IconComponent className="w-8 h-8 text-brass animate-icon-spin" />
                   </div>
                   <CardTitle className="text-oxidized-teal text-xl font-playfair">{service.title}</CardTitle>
                 </CardHeader>

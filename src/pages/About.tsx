@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Mail, ExternalLink, Wrench } from 'lucide-react';
+import { Mail, ExternalLink, Wrench, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
@@ -9,7 +9,11 @@ import SEO from '@/components/SEO';
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
+    <div className="min-h-screen bg-parchment bg-gear-pattern relative">
+      {/* Clockwork Gear Decorations */}
+      <Settings className="absolute top-24 right-8 w-16 h-16 text-brass/15 animate-gear-rotation" />
+      <Settings className="absolute top-1/2 left-8 w-12 h-12 text-brass/20 animate-gear-rotation" style={{animationDelay: '2s'}} />
+      <Settings className="absolute bottom-32 right-1/4 w-10 h-10 text-brass/10 animate-gear-rotation" style={{animationDelay: '4s'}} />
       <SEO title="About Nika Vereskova – STEaM LOGIC" description="Author and AI consultant behind STEaM LOGIC Studio AB." />
       <Navigation currentPage="about" />
 
