@@ -46,8 +46,17 @@ const NewHeroSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10 text-center">
-        {/* Main Title */}
+        {/* Company Logo and Title */}
         <div className="animate-fade-in">
+          {/* 3D Company Logo */}
+          <div className="flex justify-center mb-8">
+            <img 
+              src="/lovable-uploads/390a2f79-a530-4960-9200-82d511daf84d.png" 
+              alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
+              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 object-contain"
+            />
+          </div>
+          
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-playfair text-oxidized-teal mb-6 leading-tight">
             STEaM LOGIC Studio AB
           </h1>
