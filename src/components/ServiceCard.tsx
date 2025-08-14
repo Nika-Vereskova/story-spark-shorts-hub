@@ -10,9 +10,7 @@ import {
   Mail,
   Calendar,
   Cog,
-  Wrench,
-  Settings,
-  Gauge
+  Wrench
 } from 'lucide-react';
 
 interface ServiceCardProps {
@@ -54,29 +52,20 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       }`}
     >
       <Card className="steampunk-card vintage-paper weathered-edges group relative overflow-hidden">
-        {/* Multiple animated background gears for more mechanical feel */}
+        {/* Animated background gears */}
         <div className="absolute top-4 right-4 w-8 h-8 opacity-20 group-hover:opacity-40 transition-opacity">
           <Cog className="w-full h-full text-brass gear-clockwise" />
         </div>
         <div className="absolute bottom-4 left-4 w-6 h-6 opacity-15 group-hover:opacity-30 transition-opacity">
           <Wrench className="w-full h-full text-teal gear-counter" />
         </div>
-        <div className="absolute top-1/2 left-2 w-4 h-4 opacity-10 group-hover:opacity-25 transition-opacity">
-          <Settings className="w-full h-full text-brass gear-clockwise" style={{ animationDuration: '30s' }} />
-        </div>
-        <div className="absolute bottom-1/3 right-2 w-5 h-5 opacity-10 group-hover:opacity-25 transition-opacity">
-          <Gauge className="w-full h-full text-teal mechanical-tick" />
-        </div>
         
-        {/* Enhanced steam effects */}
+        {/* Steam effects */}
         <div className="absolute top-2 left-2 w-4 h-4 opacity-0 group-hover:opacity-60 transition-all duration-500">
           <div className="w-2 h-2 bg-cyan rounded-full steam-effect"></div>
         </div>
         <div className="absolute top-3 left-6 w-3 h-3 opacity-0 group-hover:opacity-40 transition-all duration-700 delay-100">
           <div className="w-1.5 h-1.5 bg-cyan rounded-full steam-effect"></div>
-        </div>
-        <div className="absolute top-4 left-4 w-2 h-2 opacity-0 group-hover:opacity-30 transition-all duration-900 delay-200">
-          <div className="w-1 h-1 bg-cyan rounded-full steam-effect"></div>
         </div>
         
         {/* Ornate brass corners with enhanced effects */}

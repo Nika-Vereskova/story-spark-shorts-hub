@@ -1,5 +1,5 @@
 import React from 'react';
-import { Users, Bot, Cpu, Wrench, Cog, Settings, Gauge, Zap } from 'lucide-react';
+import { Users, Brain, Bot, Wrench, Cog, Settings } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
@@ -17,17 +17,15 @@ const FeaturedServices = () => {
       description: t('featuredServices.authorSpeaker.description'),
       features: t('featuredServices.authorSpeaker.features') as string[],
       cta: t('featuredServices.authorSpeaker.cta'),
-      action: () => window.open('#', '_blank'),
-      mechanicalIcon: Gauge
+      action: () => window.open('#', '_blank')
     },
     {
-      icon: Cpu,
+      icon: Brain,
       title: t('featuredServices.aiConsulting.title'),
       description: t('featuredServices.aiConsulting.description'),
       features: t('featuredServices.aiConsulting.features') as string[],
       cta: t('featuredServices.aiConsulting.cta'),
-      action: () => navigate(`/${locale}/ai-services`),
-      mechanicalIcon: Cog
+      action: () => navigate(`/${locale}/ai-services`)
     },
     {
       icon: Bot,
@@ -35,8 +33,7 @@ const FeaturedServices = () => {
       description: t('featuredServices.bespokeGpts.description'),
       features: t('featuredServices.bespokeGpts.features') as string[],
       cta: t('featuredServices.bespokeGpts.cta'),
-      action: () => navigate(`/${locale}/ai-services`),
-      mechanicalIcon: Zap
+      action: () => navigate(`/${locale}/ai-services`)
     }
   ];
 
@@ -68,7 +65,6 @@ const FeaturedServices = () => {
         <div className="grid md:grid-cols-3 gap-10">
           {services.map((service, index) => {
             const Icon = service.icon;
-            const MechanicalIcon = service.mechanicalIcon;
             return (
               <div
                 key={index}
@@ -78,7 +74,7 @@ const FeaturedServices = () => {
                 <Card className="steampunk-card vintage-paper-dark weathered-edges burnt-edges ink-stains group relative overflow-hidden min-h-[400px]">
                   {/* Enhanced animated gear background */}
                   <div className="absolute top-6 right-6 w-16 h-16 opacity-10 group-hover:opacity-30 transition-all duration-500">
-                    <MechanicalIcon className="w-full h-full text-brass gear-clockwise" />
+                    <Cog className="w-full h-full text-brass gear-clockwise" />
                   </div>
                   <div className="absolute bottom-6 left-6 w-12 h-12 opacity-5 group-hover:opacity-20 transition-all duration-700">
                     <Wrench className="w-full h-full text-teal gear-counter" />
