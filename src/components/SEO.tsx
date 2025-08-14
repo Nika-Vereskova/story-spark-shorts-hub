@@ -96,6 +96,79 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
+  // Enhanced Service structured data
+  const serviceJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'AI Consulting Services',
+    provider: {
+      '@type': 'Organization',
+      name: 'STEaM LOGIC Studio AB'
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'AI Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AI Strategy & Roadmaps',
+            description: 'Comprehensive AI planning and implementation strategies'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Custom GPT Development',
+            description: 'Bespoke AI assistants and chatbots for specific use cases'
+          }
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'AI Workshops & Training',
+            description: 'Hands-on learning experiences for AI skills development'
+          }
+        }
+      ]
+    }
+  };
+
+  // FAQ structured data
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'What AI services does STEaM LOGIC Studio offer?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'We offer AI strategy consulting, custom GPT development, AI workshops and training, and process automation solutions.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'Who is Nika Vereskova?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Nika Vereskova is an expert AI consultant and creative storyteller specializing in custom GPT development, AI workshops, and innovative technology solutions.'
+        }
+      },
+      {
+        '@type': 'Question',
+        name: 'How can I contact STEaM LOGIC Studio?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'You can reach us at hello@steamlogic.studio for project discussions and consultations.'
+        }
+      }
+    ]
+  };
+
   const ogImage = image || DEFAULT_IMAGE;
 
   return (
@@ -152,6 +225,21 @@ const SEO: React.FC<SEOProps> = ({
       <script type="application/ld+json">{JSON.stringify(organizationJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(websiteJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(personJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(serviceJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+
+      {/* Performance optimizations */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://srzxvvbxmcrxsplwutxv.supabase.co" />
+      
+      {/* Resource hints for key assets */}
+      <link rel="preload" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" as="image" />
+      <link rel="preload" href="/src/index.css" as="style" />
+      
+      {/* DNS prefetch for external domains */}
+      <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+      <link rel="dns-prefetch" href="//app.posthog.com" />
     </Helmet>
   );
 };
