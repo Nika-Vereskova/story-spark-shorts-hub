@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin, Youtube } from 'lucide-react';
+import { Github, Instagram, Youtube } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -20,13 +20,13 @@ const ContactCTA = () => {
   const socialLinks = [
     {
       icon: Github,
-      href: "https://github.com/nikavereskova",
+      href: "https://github.com/Nika-Vereskova",
       label: "GitHub"
     },
     {
-      icon: Linkedin,
-      href: "https://linkedin.com/in/nikavereskova",
-      label: "LinkedIn"
+      icon: Instagram,
+      href: "https://instagram.com/nikavereskova",
+      label: "Instagram"
     },
     {
       icon: Youtube,
@@ -49,23 +49,14 @@ const ContactCTA = () => {
               I'm here to help transform your vision into reality.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <div className="flex justify-center mb-8">
               <Button 
                 size="lg"
                 variant="steam"
                 className="text-lg px-8 py-3"
                 onClick={handleContact}
               >
-                <Mail className="mr-2 h-5 w-5" />
                 Get In Touch
-              </Button>
-              <Button 
-                size="lg"
-                variant="outline"
-                className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 text-lg px-8 py-3"
-                onClick={() => window.open('mailto:nika@steamlogic.studio', '_blank')}
-              >
-                nika@steamlogic.studio
               </Button>
             </div>
 
