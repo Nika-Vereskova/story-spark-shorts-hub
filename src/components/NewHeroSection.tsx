@@ -54,7 +54,7 @@ const NewHeroSection = () => {
               src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
               alt="STEaM LOGIC Studio AB Logo - Gear and Quill"
               className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
-              style={{ animationDuration: '5s', animationDirection: 'reverse' }}
+              style={{ animationDuration: '12s', animationDirection: 'reverse' }}
             />
           </div>
           
