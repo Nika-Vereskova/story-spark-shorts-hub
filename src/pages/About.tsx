@@ -14,7 +14,7 @@ const About = () => {
       <Settings className="absolute top-24 right-8 w-16 h-16 text-brass/15 animate-gear-rotation" />
       <Settings className="absolute top-1/2 left-8 w-12 h-12 text-brass/20 animate-gear-rotation" style={{animationDelay: '2s'}} />
       <Settings className="absolute bottom-32 right-1/4 w-10 h-10 text-brass/10 animate-gear-rotation" style={{animationDelay: '4s'}} />
-      <SEO title="About Nika Vereskova – STEaM LOGIC" description="Author and AI consultant behind STEaM LOGIC Studio AB." />
+      <SEO title="About Nika Vereskova - AI Consultant & Founder | STEaM LOGIC Studio AB" description="Meet Nika Vereskova, AI consultant, creative storyteller, and founder of STEaM LOGIC Studio AB. Expert in custom GPT development, AI strategy, and intelligent automation solutions." />
       <Navigation currentPage="about" />
 
       <div className="pt-24 pb-16 px-6">

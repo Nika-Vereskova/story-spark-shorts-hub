@@ -32,7 +32,7 @@ const Videos = () => {
       <Settings className="absolute top-28 right-12 w-12 h-12 text-brass/15 animate-gear-rotation" style={{animationDelay: '0.5s'}} />
       <Settings className="absolute top-2/3 left-8 w-16 h-16 text-brass/10 animate-gear-rotation" style={{animationDelay: '2.5s'}} />
       <Settings className="absolute bottom-32 right-1/3 w-8 h-8 text-brass/20 animate-gear-rotation" style={{animationDelay: '4.5s'}} />
-      <SEO title="Videos – Story Time & AI Demos" description="Watch steampunk story time and practical AI demonstrations." />
+      <SEO title="AI Demonstrations & Story Time Videos | STEaM LOGIC Studio AB" description="Watch practical AI demonstrations and steampunk story time videos by Nika Vereskova from STEaM LOGIC Studio AB. Educational content on AI technology and creative storytelling." />
       <Navigation currentPage="videos" />
 
       <div className="pt-24 pb-16 px-6">

@@ -131,7 +131,7 @@ const Blog = () => {
 
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <SEO title="Blog – Stories, Notes & Updates" description="Thoughts on storytelling, education, and applied AI." />
+      <SEO title="Blog - Stories, AI Insights & Updates | STEaM LOGIC Studio AB" description="Thoughts on storytelling, education, applied AI and business intelligence from STEaM LOGIC Studio AB. Expert insights on AI consulting and creative technology solutions." />
       <Navigation currentPage="blog" />
 
       <div className="pt-24 pb-16 px-6">

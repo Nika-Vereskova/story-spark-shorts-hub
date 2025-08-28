@@ -77,7 +77,7 @@ const AINews = () => {
       <Settings className="absolute top-32 left-12 w-10 h-10 text-brass/15 animate-gear-rotation" style={{animationDelay: '1.5s'}} />
       <Settings className="absolute top-1/2 right-8 w-14 h-14 text-brass/10 animate-gear-rotation" style={{animationDelay: '3.5s'}} />
       <Settings className="absolute bottom-36 left-1/3 w-12 h-12 text-brass/20 animate-gear-rotation" style={{animationDelay: '0.5s'}} />
-      <SEO title="AI News & Blog – STEaM LOGIC" description="Latest AI insights, curated articles, and studio updates." />
+      <SEO title="AI News & Insights - STEaM LOGIC Studio AB | Latest AI Trends & Updates" description="Stay updated with the latest AI insights, industry trends, and expert analysis from STEaM LOGIC Studio AB. Curated AI news and thought leadership in artificial intelligence." />
       <Navigation currentPage="ai-news" />
       
       <main className="pt-24 pb-12">

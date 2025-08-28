@@ -9,7 +9,7 @@ import SEO from '@/components/SEO';
 const AIServices = () => {
   return (
     <div className="min-h-screen bg-parchment">
-      <SEO title="AI Services – Strategy, Custom GPTs, Workshops" description="Practical AI services: roadmaps, custom GPTs, automation, and training." />
+      <SEO title="AI Consulting Services - STEaM LOGIC Studio AB | Expert AI Strategy & Automation" description="STEaM LOGIC Studio AB provides practical AI services: strategic roadmaps, custom GPT development, intelligent automation, and professional AI training worldwide." />
       <Navigation currentPage="ai-services" />
       <main className="pt-20 pb-12">
         <div className="container mx-auto px-6">

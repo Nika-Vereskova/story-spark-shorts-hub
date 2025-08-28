@@ -15,7 +15,7 @@ const Contact = () => {
       <Settings className="absolute top-28 right-8 w-12 h-12 text-brass/15 animate-gear-rotation" style={{animationDelay: '2s'}} />
       <Settings className="absolute top-2/3 left-12 w-10 h-10 text-brass/20 animate-gear-rotation" style={{animationDelay: '4s'}} />
       <Settings className="absolute bottom-40 right-1/4 w-14 h-14 text-brass/10 animate-gear-rotation" style={{animationDelay: '1s'}} />
-      <SEO title="Contact – STEaM LOGIC Studio AB" description="Get in touch about AI services, books, or collaborations." />
+      <SEO title="Contact STEaM LOGIC Studio AB - AI Consulting & Custom GPT Development" description="Contact STEaM LOGIC Studio AB for AI consulting, custom GPT development, automation solutions, and AI strategy. Expert AI services by Nika Vereskova." />
       <Navigation currentPage="contact" />
 
       <div className="pt-24 pb-16 px-6">
