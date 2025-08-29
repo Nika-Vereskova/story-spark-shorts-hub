@@ -6,41 +6,10 @@ import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
+import { EU_COUNTRIES, REGIONS } from '@/data/euCountries';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// EU Countries Data
-const EU_COUNTRIES = [
-  {code:'AT', country_en:'Austria',   capital_en:'Vienna',       country_sv:'Österrike', capital_sv:'Wien',        country_ru:'Австрия',   capital_ru:'Вена',        region:'Central', hint_en:'Austria → Wiener sausage → Vienna', hint_sv:'Österrike → wienerkorv → Wien'},
-  {code:'BE', country_en:'Belgium',   capital_en:'Brussels',     country_sv:'Belgien',   capital_sv:'Bryssel',      country_ru:'Бельгия',   capital_ru:'Брюссель',      region:'Western', hint_en:'BELly full of Brussels sprouts', hint_sv:'BELgien → Brysselkål → Bryssel'},
-  {code:'BG', country_en:'Bulgaria',  capital_en:'Sofia',        country_sv:'Bulgarien', capital_sv:'Sofia',        country_ru:'Болгария',  capital_ru:'София',        region:'Eastern', hint_en:"Bulgarian 'sofa' → Sofia", hint_sv:"Bulgarisk 'soffa' → Sofia"},
-  {code:'HR', country_en:'Croatia',   capital_en:'Zagreb',       country_sv:'Kroatien',  capital_sv:'Zagreb',       country_ru:'Хорватия',   capital_ru:'Загреб',       region:'Southern', hint_en:'ZAG tag for Croatia → Zagreb', hint_sv:'KROatien → ZAG (flygkod) → Zagreb'},
-  {code:'CY', country_en:'Cyprus',    capital_en:'Nicosia',      country_sv:'Cypern',    capital_sv:'Nicosia',      country_ru:'Кипр',      capital_ru:'Никосия',      region:'Southern', hint_en:"Nice sea around Cyprus → Nicosia", hint_sv:"Nice sea runt Cypern → Nicosia"},
-  {code:'CZ', country_en:'Czechia',   capital_en:'Prague',       country_sv:'Tjeckien',  capital_sv:'Prag',         country_ru:'Чехия',     capital_ru:'Прага',         region:'Central', hint_en:'Check → Czech → Prague', hint_sv:'Tjeckien → Prag'},
-  {code:'DK', country_en:'Denmark',   capital_en:'Copenhagen',   country_sv:'Danmark',   capital_sv:'Köpenhamn',    country_ru:'Дания',     capital_ru:'Копенгаген',    region:'Nordic', hint_en:'Open‑face sandwiches in Copenhagen', hint_sv:"Tänk 'köpa hamn' → Köpenhamn"},
-  {code:'EE', country_en:'Estonia',   capital_en:'Tallinn',      country_sv:'Estland',   capital_sv:'Tallinn',      country_ru:'Эстония',   capital_ru:'Таллин',      region:'Baltic', hint_en:"A tall inn → Tallinn", hint_sv:"Ett 'tall' inn → Tallinn"},
-  {code:'FI', country_en:'Finland',   capital_en:'Helsinki',     country_sv:'Finland',   capital_sv:'Helsingfors',  country_ru:'Финляндия', capital_ru:'Хельсинки',     region:'Nordic', hint_en:"HEL → Helsinki (easy to spot)", hint_sv:'HEL → Helsingfors'},
-  {code:'FR', country_en:'France',    capital_en:'Paris',        country_sv:'Frankrike', capital_sv:'Paris',        country_ru:'Франция',   capital_ru:'Париж',        region:'Western', hint_en:'PAR → Paris (Eiffel)', hint_sv:'PAR → Paris (Eiffeltornet)'},
-  {code:'DE', country_en:'Germany',   capital_en:'Berlin',       country_sv:'Tyskland',  capital_sv:'Berlin',       country_ru:'Германия',  capital_ru:'Берлин',       region:'Central', hint_en:'BERlin in GERmany', hint_sv:'BERlin i Tyskland'},
-  {code:'GR', country_en:'Greece',    capital_en:'Athens',       country_sv:'Grekland',  capital_sv:'Aten',         country_ru:'Греция',    capital_ru:'Афины',         region:'Southern', hint_en:'Greek athlete → Athens', hint_sv:'Grekisk atlet → Aten'},
-  {code:'HU', country_en:'Hungary',   capital_en:'Budapest',     country_sv:'Ungern',    capital_sv:'Budapest',     country_ru:'Венгрия',   capital_ru:'Будапешт',     region:'Central', hint_en:'Hungry? Try a BUDa‑pastry → Budapest', hint_sv:'Hungrig? BUDa‑bakelse → Budapest'},
-  {code:'IE', country_en:'Ireland',   capital_en:'Dublin',       country_sv:'Irland',    capital_sv:'Dublin',       country_ru:'Ирландия',  capital_ru:'Дублин',       region:'Western', hint_en:'Dublin → double in (two leaves of clover)', hint_sv:'Dublin → dubbelt in (shamrock)'},
-  {code:'IT', country_en:'Italy',     capital_en:'Rome',         country_sv:'Italien',   capital_sv:'Rom',          country_ru:'Италия',    capital_ru:'Рим',          region:'Southern', hint_en:'Romans in Rome', hint_sv:'Romarna i Rom'},
-  {code:'LV', country_en:'Latvia',    capital_en:'Riga',         country_sv:'Lettland',  capital_sv:'Riga',         country_ru:'Латвия',    capital_ru:'Рига',         region:'Baltic', hint_en:'Latte in Riga', hint_sv:'Latte i Riga'},
-  {code:'LT', country_en:'Lithuania', capital_en:'Vilnius',      country_sv:'Litauen',   capital_sv:'Vilnius',      country_ru:'Литва',     capital_ru:'Вильнюс',      region:'Baltic', hint_en:'Vilnius → "will‑new‑house"', hint_sv:'Vilnius → "vill‑nytt‑hus"'},
-  {code:'LU', country_en:'Luxembourg',capital_en:'Luxembourg',   country_sv:'Luxemburg', capital_sv:'Luxemburg',    country_ru:'Люксембург',capital_ru:'Люксембург',    region:'Western', hint_en:'Lux = light; tiny but bright', hint_sv:'Lux = ljus; litet men ljust'},
-  {code:'MT', country_en:'Malta',     capital_en:'Valletta',     country_sv:'Malta',     capital_sv:'Valletta',     country_ru:'Мальта',    capital_ru:'Валлетта',     region:'Southern', hint_en:'Valley → Valletta', hint_sv:'Dal → Valletta'},
-  {code:'NL', country_en:'Netherlands',capital_en:'Amsterdam',   country_sv:'Nederländerna', capital_sv:'Amsterdam', country_ru:'Нидерланды',capital_ru:'Амстердам',   region:'Western', hint_en:'Dams on the Amstel → Amsterdam', hint_sv:'Damm på Amstel → Amsterdam'},
-  {code:'PL', country_en:'Poland',    capital_en:'Warsaw',       country_sv:'Polen',     capital_sv:'Warszawa',     country_ru:'Польша',    capital_ru:'Варшава',     region:'Eastern', hint_en:'POLAND: WAR‑SAW', hint_sv:'POLEN: WAR‑SAW → Warszawa'},
-  {code:'PT', country_en:'Portugal',  capital_en:'Lisbon',       country_sv:'Portugal',  capital_sv:'Lissabon',     country_ru:'Португалия',capital_ru:'Лиссабон',     region:'Western', hint_en:'"Listen" to Fado in Lisbon', hint_sv:'Lyssna (Lis-) på fado i Lissabon'},
-  {code:'RO', country_en:'Romania',   capital_en:'Bucharest',    country_sv:'Rumänien',  capital_sv:'Bukarest',     country_ru:'Румыния',   capital_ru:'Бухарест',     region:'Eastern', hint_en:'Book a rest → Bucharest', hint_sv:'Boka rast → Bukarest'},
-  {code:'SK', country_en:'Slovakia',  capital_en:'Bratislava',   country_sv:'Slovakien', capital_sv:'Bratislava',   country_ru:'Словакия',  capital_ru:'Братислава',   region:'Central', hint_en:'SLOvakia & BratisLAva share "SLA"', hint_sv:'SLOvakien & BratisLAva delar "SLA"'},
-  {code:'SI', country_en:'Slovenia',  capital_en:'Ljubljana',    country_sv:'Slovenien', capital_sv:'Ljubljana',    country_ru:'Словения',  capital_ru:'Любляна',    region:'Central', hint_en:'Ljub‑ means "love" → lovely Ljubljana', hint_sv:'Ljub‑ betyder "kärlek" → Ljubljana'},
-  {code:'ES', country_en:'Spain',     capital_en:'Madrid',       country_sv:'Spanien',   capital_sv:'Madrid',       country_ru:'Испания',   capital_ru:'Мадрид',       region:'Southern', hint_en:'Real Madrid helps remember Madrid', hint_sv:'Tänk "Real Madrid" → Madrid'},
-  {code:'SE', country_en:'Sweden',    capital_en:'Stockholm',    country_sv:'Sverige',   capital_sv:'Stockholm',    country_ru:'Швеция',    capital_ru:'Стокгольм',    region:'Nordic', hint_en:'Stock‑holm: keep stock on the islets', hint_sv:'Stock‑holm: stock på holmarna'}
-];
-
-const REGIONS = ['All','Nordic','Baltic','Western','Central','Eastern','Southern'];
 
 const EUCapitals = () => {
   const locale = getCurrentLocale();
