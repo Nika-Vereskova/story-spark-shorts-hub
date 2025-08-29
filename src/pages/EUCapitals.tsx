@@ -144,6 +144,9 @@ const EUCapitals = () => {
   };
 
   const handleQuizAnswer = (selectedAnswer: string, item: any, correctAnswer: string) => {
+    // Prevent double clicks
+    if (showResult) return;
+    
     const isCorrect = selectedAnswer.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
     setShowResult(true);
     
@@ -202,12 +205,16 @@ const EUCapitals = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {allOptions.map((option, idx) => (
             <Button
-              key={idx}
-              onClick={() => handleQuizAnswer(option, item, answer)}
+              key={`quiz-option-${idx}-${option}`}
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleQuizAnswer(option, item, answer);
+              }}
               disabled={showResult}
               size="lg"
               variant="outline"
-              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words"
+              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {option}
             </Button>
@@ -250,10 +257,14 @@ const EUCapitals = () => {
           
           <div className="flex justify-center">
             <Button
-              onClick={() => handleQuizAnswer(typedAnswer, item, answer)}
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                handleQuizAnswer(typedAnswer, item, answer);
+              }}
               disabled={!typedAnswer.trim() || showResult}
               size="lg"
-              className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold"
+              className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {t('projects.euCapitals.checkAnswer')} ✓
             </Button>
