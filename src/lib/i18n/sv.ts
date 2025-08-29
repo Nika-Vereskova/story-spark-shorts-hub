@@ -483,7 +483,10 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
         western: "Västeuropa",
         central: "Centraleuropa",
         eastern: "Östeuropa",
-        southern: "Sydeuropa"
+        southern: "Sydeuropa",
+        balkans: "Balkanländerna",
+        caucasus: "Kaukasus",
+        transcontinental: "Transkontinentala Länderna"
       }
     },
     services: {

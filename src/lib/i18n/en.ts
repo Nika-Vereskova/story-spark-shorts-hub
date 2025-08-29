@@ -483,7 +483,10 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
         western: "Western Europe",
         central: "Central Europe",
         eastern: "Eastern Europe",
-        southern: "Southern Europe"
+        southern: "Southern Europe",
+        balkans: "Balkans",
+        caucasus: "Caucasus",
+        transcontinental: "Transcontinental Countries"
       }
     },
     services: {
