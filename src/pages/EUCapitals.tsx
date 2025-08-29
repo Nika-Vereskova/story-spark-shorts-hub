@@ -63,6 +63,7 @@ const EUCapitals = () => {
   const [quizDirection, setQuizDirection] = useState('cc'); // 'cc' | 'cc_rev'
   const [typedAnswer, setTypedAnswer] = useState('')
   const [showResult, setShowResult] = useState(false)
+  const [isProcessing, setIsProcessing] = useState(false)
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -71,6 +72,25 @@ const EUCapitals = () => {
       setMissed(JSON.parse(savedMissed));
     }
   }, []);
+
+  // Handle quiz progression after showing result
+  useEffect(() => {
+    if (showResult && isProcessing && quizState) {
+      console.log('⏰ Starting result timer');
+      const timer = setTimeout(() => {
+        console.log('🔄 Moving to next question');
+        setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
+        setShowResult(false);
+        setIsProcessing(false);
+        setTypedAnswer('');
+      }, 1500);
+
+      return () => {
+        console.log('🧹 Cleaning up timer');
+        clearTimeout(timer);
+      };
+    }
+  }, [showResult, isProcessing, quizState]);
 
   // Helper functions
   const shuffle = (arr: any[]) => {
@@ -127,6 +147,7 @@ const EUCapitals = () => {
 
   // Quiz functions
   const startQuiz = () => {
+    console.log('🎯 Starting new quiz');
     const questions = shuffle([...EU_COUNTRIES]).slice(0, 10).map(item => ({
       item,
       answered: false
@@ -140,15 +161,26 @@ const EUCapitals = () => {
       correct: 0,
       total: 10
     });
+    setShowResult(false);
+    setIsProcessing(false);
+    setTypedAnswer('');
     setActiveTab('quiz');
   };
 
   const handleQuizAnswer = (selectedAnswer: string, item: any, correctAnswer: string) => {
-    // Prevent double clicks
-    if (showResult) return;
+    console.log('🔍 Quiz Answer Click:', { selectedAnswer, correctAnswer, isProcessing, showResult });
+    
+    // Prevent double clicks and processing conflicts
+    if (isProcessing || showResult) {
+      console.log('⚠️ Blocked: Already processing or showing result');
+      return;
+    }
+    
+    setIsProcessing(true);
+    setShowResult(true);
     
     const isCorrect = selectedAnswer.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
-    setShowResult(true);
+    console.log('✅ Answer Check:', { isCorrect, selectedAnswer, correctAnswer });
     
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
@@ -168,12 +200,6 @@ const EUCapitals = () => {
         variant: "destructive"
       });
     }
-    
-    setTimeout(() => {
-      setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
-      setShowResult(false);
-      setTypedAnswer('');
-    }, 1500);
   };
 
   const renderMultipleChoice = (question: string, answer: string, item: any) => {
@@ -209,12 +235,18 @@ const EUCapitals = () => {
               type="button"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('🖱️ Button clicked:', option);
                 handleQuizAnswer(option, item, answer);
               }}
-              disabled={showResult}
+              disabled={showResult || isProcessing}
               size="lg"
               variant="outline"
-              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words ${
+                showResult || isProcessing 
+                  ? 'opacity-50 cursor-not-allowed' 
+                  : 'hover:scale-[1.02] active:scale-[0.98]'
+              }`}
             >
               {option}
             </Button>
@@ -260,11 +292,17 @@ const EUCapitals = () => {
               type="button"
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
+                console.log('🖱️ Typed answer submitted:', typedAnswer);
                 handleQuizAnswer(typedAnswer, item, answer);
               }}
-              disabled={!typedAnswer.trim() || showResult}
+              disabled={!typedAnswer.trim() || showResult || isProcessing}
               size="lg"
-              className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed"
+              className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold ${
+                (!typedAnswer.trim() || showResult || isProcessing)
+                  ? 'opacity-50 cursor-not-allowed'
+                  : 'hover:scale-[1.02] active:scale-[0.98]'
+              }`}
             >
               {t('projects.euCapitals.checkAnswer')} ✓
             </Button>
