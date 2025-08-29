@@ -20,8 +20,8 @@ const Index = () => {
   return (
     <div className="min-h-screen vintage-paper-light parchment-scroll relative">
       <SEO 
-        title="STEaM LOGIC Studio AB - AI Consulting & Custom GPT Development | Nika Vereskova" 
-        description="Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions. Transform your business with inventive storytelling and intelligent technology." 
+        title="STEaM LOGIC Studio AB - AI Projects & Consulting | Nika Vereskova" 
+        description="STEaM LOGIC Studio AB offers custom GPT development, AI strategy, workshops, and automation solutions. Transform your business with inventive and intelligent technology." 
         keywords="AI consulting, custom GPT development, AI workshops, ChatGPT development, AI automation, AI strategy consultant, artificial intelligence consultant, Sweden, process automation, AI assistant development, GPT training workshops"
       />
       
