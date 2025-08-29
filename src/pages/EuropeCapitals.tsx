@@ -214,21 +214,10 @@ const EuropeCapitals = () => {
     
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
-      toast({
-        title: "🎉 " + t('projects.europeCapitals.correct'),
-        description: t('projects.europeCapitals.wellDone'),
-        duration: 1500,
-      });
     } else {
       const newMissed = [...missed, item.code];
       setMissed([...new Set(newMissed)]);
       localStorage.setItem('europe_missed', JSON.stringify([...new Set(newMissed)]));
-      toast({
-        title: "❌ " + t('projects.europeCapitals.incorrect'),
-        description: `${t('projects.europeCapitals.correctAnswer')}: ${correctAnswer}`,
-        duration: 2000,
-        variant: "destructive"
-      });
     }
   };
 
