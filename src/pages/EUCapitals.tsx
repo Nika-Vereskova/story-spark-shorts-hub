@@ -224,11 +224,11 @@ const EUCapitals = () => {
       <div className="w-full space-y-6">
         {/* Decorative gears */}
         <div className="flex justify-center items-center gap-4 mb-4">
-          <GearIcon size={8} direction="clockwise" color="text-brass" />
+          <GearIcon aria-hidden="true" size={8} direction="clockwise" color="text-brass" />
           <div className="text-3xl md:text-4xl font-playfair text-center text-foreground font-bold">
             {question}
           </div>
-          <GearIcon size={8} direction="counter" color="text-oxidized-teal" />
+          <GearIcon aria-hidden="true" size={8} direction="counter" color="text-oxidized-teal" />
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -236,6 +236,7 @@ const EUCapitals = () => {
             <Button
               key={`quiz-option-${idx}-${option}`}
               type="button"
+              aria-label={option}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -245,9 +246,9 @@ const EUCapitals = () => {
               disabled={showResult || isProcessing}
               size="lg"
               variant="outline"
-              className={`w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words ${
-                showResult || isProcessing 
-                  ? 'opacity-50 cursor-not-allowed' 
+              className={`w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                showResult || isProcessing
+                  ? 'opacity-50 cursor-not-allowed'
                   : 'hover:scale-[1.02] active:scale-[0.98]'
               }`}
             >
@@ -264,11 +265,11 @@ const EUCapitals = () => {
       <div className="w-full space-y-6">
         {/* Decorative gears */}
         <div className="flex justify-center items-center gap-4 mb-4">
-          <GearIcon size={8} direction="clockwise" color="text-brass" />
+          <GearIcon aria-hidden="true" size={8} direction="clockwise" color="text-brass" />
           <div className="text-3xl md:text-4xl font-playfair text-center text-foreground font-bold">
             {question}
           </div>
-          <GearIcon size={8} direction="counter" color="text-oxidized-teal" />
+          <GearIcon aria-hidden="true" size={8} direction="counter" color="text-oxidized-teal" />
         </div>
 
         <div className="space-y-4">
@@ -289,6 +290,7 @@ const EUCapitals = () => {
           <div className="flex justify-center">
             <Button
               type="button"
+              aria-label={t('projects.euCapitals.checkAnswer')}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -297,7 +299,7 @@ const EUCapitals = () => {
               }}
               disabled={!typedAnswer.trim() || showResult || isProcessing}
               size="lg"
-              className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold ${
+              className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 (!typedAnswer.trim() || showResult || isProcessing)
                   ? 'opacity-50 cursor-not-allowed'
                   : 'hover:scale-[1.02] active:scale-[0.98]'
@@ -333,8 +335,8 @@ const EUCapitals = () => {
       
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <GearIcon className="absolute top-20 left-10" size={12} direction="clockwise" color="text-primary/20" />
-        <GearIcon className="absolute top-32 right-16" size={16} direction="counter" color="text-secondary/15" />
+        <GearIcon aria-hidden="true" className="absolute top-20 left-10" size={12} direction="clockwise" color="text-primary/20" />
+        <GearIcon aria-hidden="true" className="absolute top-32 right-16" size={16} direction="counter" color="text-secondary/15" />
         <div className="absolute bottom-40 left-20 w-4 h-8 bg-accent/20 rounded-full steam-effect"></div>
         <div className="absolute bottom-60 right-32 w-3 h-6 bg-accent/25 rounded-full steam-effect" style={{animationDelay: '1s'}}></div>
       </div>
@@ -348,7 +350,7 @@ const EUCapitals = () => {
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-6">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
-                  <svg className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
+                  <svg aria-hidden="true" className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
                     <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
                     <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2"/>
                   </svg>
@@ -366,8 +368,9 @@ const EUCapitals = () => {
               <Button
                 type="button"
                 onClick={startQuiz}
+                aria-label={t('projects.euCapitals.startQuiz') as string}
                 size="lg"
-                className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
+                className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
                 🎯 {t('projects.euCapitals.startQuiz')}
               </Button>
@@ -384,9 +387,10 @@ const EUCapitals = () => {
               <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
+                aria-label={tab.label as string}
                 size="lg"
                 variant={activeTab === tab.id ? "default" : "outline"}
-                className={`w-full sm:w-auto h-12 sm:h-14 md:h-16 px-4 sm:px-6 md:px-8 text-base sm:text-lg rounded-2xl font-bold transition-all duration-300 ${
+                className={`w-full sm:w-auto h-12 sm:h-14 md:h-16 px-4 sm:px-6 md:px-8 text-base sm:text-lg rounded-2xl font-bold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                   activeTab === tab.id
                     ? `bg-gradient-to-r ${tab.color} text-white shadow-lg transform scale-105`
                     : 'border-2 hover:scale-105 hover:shadow-md'
@@ -406,8 +410,8 @@ const EUCapitals = () => {
                 <div className="relative">
                   <div className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer" onClick={flipCard}>
                     {/* Decorative gears */}
-                    <GearIcon className="absolute top-4 left-4" size={8} direction="clockwise" color="text-secondary/30" />
-                    <GearIcon className="absolute top-4 right-4" size={6} direction="counter" color="text-primary/30" />
+                    <GearIcon aria-hidden="true" className="absolute top-4 left-4" size={8} direction="clockwise" color="text-secondary/30" />
+                    <GearIcon aria-hidden="true" className="absolute top-4 right-4" size={6} direction="counter" color="text-primary/30" />
                     
                     <div>
                       <div className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-4">
@@ -436,7 +440,8 @@ const EUCapitals = () => {
                         onClick={() => { setDirection('country'); setShowFront(true); }}
                         variant={direction === 'country' ? 'default' : 'outline'}
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold justify-start"
+                        aria-label={t('projects.euCapitals.countryToCapital') as string}
+                        className="h-12 text-lg rounded-xl font-semibold justify-start focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🏛️ {t('projects.euCapitals.countryToCapital')}
                       </Button>
@@ -444,7 +449,8 @@ const EUCapitals = () => {
                         onClick={() => { setDirection('capital'); setShowFront(true); }}
                         variant={direction === 'capital' ? 'default' : 'outline'}
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold justify-start"
+                        aria-label={t('projects.euCapitals.capitalToCountry') as string}
+                        className="h-12 text-lg rounded-xl font-semibold justify-start focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🏰 {t('projects.euCapitals.capitalToCountry')}
                       </Button>
@@ -458,7 +464,8 @@ const EUCapitals = () => {
                         onClick={() => moveCard(studyIndex - 1)}
                         variant="outline"
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold"
+                        aria-label={t('projects.euCapitals.prev') as string}
+                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         ⬅️ {t('projects.euCapitals.prev')}
                       </Button>
@@ -466,7 +473,8 @@ const EUCapitals = () => {
                         onClick={() => moveCard(studyIndex + 1)}
                         variant="outline"
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold"
+                        aria-label={t('projects.euCapitals.next') as string}
+                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         {t('projects.euCapitals.next')} ➡️
                       </Button>
@@ -475,7 +483,8 @@ const EUCapitals = () => {
                       <Button
                         onClick={flipCard}
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary"
+                        aria-label={t('projects.euCapitals.flip') as string}
+                        className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🔄 {t('projects.euCapitals.flip')}
                       </Button>
@@ -483,7 +492,8 @@ const EUCapitals = () => {
                         onClick={shuffleOrder}
                         variant="outline"
                         size="lg"
-                        className="h-12 text-lg rounded-xl font-semibold"
+                        aria-label={t('projects.euCapitals.shuffle') as string}
+                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🔀 {t('projects.euCapitals.shuffle')}
                       </Button>
@@ -579,7 +589,8 @@ const EUCapitals = () => {
                     <Button
                       onClick={startQuiz}
                       size="lg"
-                      className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200"
+                      aria-label={t('projects.euCapitals.startQuiz') as string}
+                      className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🚀 {t('projects.euCapitals.startQuiz')}
                       </Button>
@@ -600,7 +611,8 @@ const EUCapitals = () => {
                   <Button
                     onClick={() => setQuizState(null)}
                     size="lg"
-                    className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary shadow-lg transform hover:scale-105 transition-all duration-200"
+                    aria-label={t('projects.euCapitals.tryAgain') as string}
+                    className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     >
                       🔄 {t('projects.euCapitals.tryAgain')}
                     </Button>
@@ -653,7 +665,7 @@ const EUCapitals = () => {
               </div>
               
               <div className="flex flex-wrap gap-4 mb-8 justify-center">
-                <select 
+                <select
                   value={selectedRegion}
                   onChange={(e) => setSelectedRegion(e.target.value)}
                   className="h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
@@ -668,7 +680,8 @@ const EUCapitals = () => {
                   onClick={() => setActiveTiles([])}
                   variant="outline"
                   size="lg"
-                  className="h-12 px-6 text-lg rounded-xl font-semibold"
+                  aria-label={t('projects.euCapitals.reset') as string}
+                  className="h-12 px-6 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
                   🔄 {t('projects.euCapitals.reset')}
                 </Button>
@@ -685,7 +698,7 @@ const EUCapitals = () => {
                       key={country.code}
                       onClick={() => {
                         speak(`${name}. ${capital}`);
-                        setActiveTiles(prev => 
+                        setActiveTiles(prev =>
                           prev.includes(country.code)
                             ? prev.filter(c => c !== country.code)
                             : [...prev, country.code]
@@ -698,7 +711,8 @@ const EUCapitals = () => {
                       }}
                       variant={isActive ? "default" : "outline"}
                       size="lg"
-                      className={`h-20 p-4 text-center transition-all duration-300 rounded-2xl ${
+                      aria-label={`${name} ${capital}`}
+                      className={`h-20 p-4 text-center transition-all duration-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                         isActive
                           ? 'transform scale-105 shadow-lg bg-gradient-to-br from-orange-500 to-orange-600'
                           : 'hover:scale-105 hover:shadow-md'
