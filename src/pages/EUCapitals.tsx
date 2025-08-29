@@ -80,9 +80,6 @@ const EUCapitals = () => {
       const timer = setTimeout(() => {
         console.log('🔄 Moving to next question');
         setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
-        setShowResult(false);
-        setIsProcessing(false);
-        setTypedAnswer('');
       }, 1500);
 
       return () => {
@@ -91,6 +88,18 @@ const EUCapitals = () => {
       };
     }
   }, [showResult, isProcessing, quizState]);
+
+  // Reset interaction state whenever quiz state changes
+  useEffect(() => {
+    if (quizState) {
+      console.log('♻️ Resetting question state');
+    } else {
+      console.log('🧹 Quiz state cleared');
+    }
+    setShowResult(false);
+    setIsProcessing(false);
+    setTypedAnswer('');
+  }, [quizState]);
 
   // Helper functions
   const shuffle = (arr: any[]) => {
