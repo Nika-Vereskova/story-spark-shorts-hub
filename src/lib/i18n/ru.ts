@@ -483,7 +483,10 @@ Netflix выпустил первую экранную VFX-сцену в *El Ete
         western: "Западная Европа",
         central: "Центральная Европа",
         eastern: "Восточная Европа",
-        southern: "Южная Европа"
+        southern: "Южная Европа",
+        balkans: "Балканы",
+        caucasus: "Кавказ",
+        transcontinental: "Трансконтинентальные Страны"
       }
     },
     services: {
