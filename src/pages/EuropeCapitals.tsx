@@ -38,7 +38,7 @@ const EuropeCapitals = () => {
   const [showResult, setShowResult] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
-  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null)
+  const [answerStatus, setAnswerStatus] = useState<'correct' | 'incorrect' | null>(null)
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -75,7 +75,7 @@ const EuropeCapitals = () => {
     setIsProcessing(false);
     setTypedAnswer('');
     setSelectedAnswer(null);
-    setIsAnswerCorrect(null);
+    setAnswerStatus(null);
   }, [quizState]);
 
   // Helper functions
@@ -198,7 +198,7 @@ const EuropeCapitals = () => {
     console.log('✅ Answer Check:', { isCorrect, selected, correctAnswer });
 
     setSelectedAnswer(selected);
-    setIsAnswerCorrect(isCorrect);
+    setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
     
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
@@ -247,7 +247,7 @@ const EuropeCapitals = () => {
             const isSelected = selectedAnswer === option;
             const feedbackClass =
               isSelected && showResult
-                ? isAnswerCorrect
+                ? answerStatus === 'correct'
                   ? 'bg-green-500 border-green-500 text-white'
                   : 'bg-red-500 border-red-500 text-white'
                 : 'border-primary/50 bg-card hover:bg-primary/10 hover:border-primary';
@@ -275,7 +275,7 @@ const EuropeCapitals = () => {
               >
                 {option}
                 {isSelected && showResult && (
-                  <span className="ml-2">{isAnswerCorrect ? '✅' : '❌'}</span>
+                  <span className="ml-2">{answerStatus === 'correct' ? '✅' : '❌'}</span>
                 )}
               </Button>
             );
@@ -326,7 +326,7 @@ const EuropeCapitals = () => {
               size="lg"
               className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                 showResult
-                  ? isAnswerCorrect
+                  ? answerStatus === 'correct'
                     ? 'bg-green-500 text-white'
                     : 'bg-red-500 text-white'
                   : ''
@@ -337,7 +337,7 @@ const EuropeCapitals = () => {
               }`}
             >
               {t('projects.europeCapitals.checkAnswer')}{' '}
-              {showResult ? (isAnswerCorrect ? '✅' : '❌') : '✓'}
+              {showResult ? (answerStatus === 'correct' ? '✅' : '❌') : '✓'}
             </Button>
           </div>
         </div>
