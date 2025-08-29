@@ -52,5 +52,3 @@ export const EUROPE_COUNTRIES = [
   {code:'VA', country_en:'Vatican City', country_sv:'Vatikanstaten', country_ru:'Ватикан', capital_en:'Vatican City', capital_sv:'Vatikanstaten', capital_ru:'Ватикан', region:'Southern', hint_en:'Vatican City is the capital of Vatican City, holy and small', hint_sv:'Vatikanstaten är huvudstad i Vatikanstaten, helig och liten', hint_ru:'Ватикан — святой город и столица Ватикана'}
 ];
 
-export const REGIONS = ['All','Nordic','Baltic','Western','Central','Eastern','Southern','Balkans','Caucasus','Transcontinental'];
-

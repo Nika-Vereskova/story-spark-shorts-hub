@@ -15,13 +15,15 @@ import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
-import { EUROPE_COUNTRIES, REGIONS } from '@/data/europeCountries';
+import { EUROPE_COUNTRIES } from '@/data/europeCountries';
 import { cn } from '@/lib/utils';
 import GearIcon from '@/components/GearIcon';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const QUIZ_LENGTH = 10;
+
+const regions = ['All', ...Array.from(new Set(EUROPE_COUNTRIES.map(c => c.region))).sort()];
 
 
 const EuropeCapitals = () => {
@@ -742,7 +744,7 @@ const EuropeCapitals = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {REGIONS.map(region => (
+                    {regions.map(region => (
                       <SelectItem key={region} value={region}>
                         🌍 {t(`projects.europeCapitals.regions.${region.toLowerCase()}`)}
                       </SelectItem>
