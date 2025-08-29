@@ -320,6 +320,7 @@ const EUCapitals = () => {
               </div>
               
               <Button
+                type="button"
                 onClick={startQuiz}
                 size="lg"
                 className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
