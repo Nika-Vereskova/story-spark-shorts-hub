@@ -26,7 +26,7 @@ const ServicesTeaser = () => {
     {
       icon: Brain,
       title: "AI Consulting & Workshops",
-      description: "Custom GPT development, AI strategy consulting, and hands-on workshops for businesses and individuals."
+      description: "Custom GPT development, AI consulting, and hands-on workshops for businesses and individuals."
     },
     {
       icon: Palette,
