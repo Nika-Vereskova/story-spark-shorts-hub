@@ -132,6 +132,8 @@ const EuropeCapitals = () => {
     switch (locale) {
       case 'sv':
         return item.hint_sv;
+      case 'ru':
+        return item.hint_ru;
       default:
         return item.hint_en;
     }
