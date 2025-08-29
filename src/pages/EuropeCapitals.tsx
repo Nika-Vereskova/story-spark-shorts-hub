@@ -12,6 +12,8 @@ import GearIcon from '@/components/GearIcon';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+const QUIZ_LENGTH = 10;
+
 
 const EuropeCapitals = () => {
   const locale = getCurrentLocale();
@@ -159,10 +161,12 @@ const EuropeCapitals = () => {
   // Quiz functions
   const startQuiz = () => {
     console.log('🎯 Starting new quiz');
-    const questions = shuffle([...EUROPE_COUNTRIES]).map(item => ({
-      item,
-      answered: false
-    }));
+    const questions = shuffle([...EUROPE_COUNTRIES])
+      .slice(0, QUIZ_LENGTH)
+      .map(item => ({
+        item,
+        answered: false
+      }));
 
     setQuizState({
       mode: quizMode,
@@ -170,7 +174,7 @@ const EuropeCapitals = () => {
       questions,
       index: 0,
       correct: 0,
-      total: EUROPE_COUNTRIES.length
+      total: questions.length
     });
     setShowResult(false);
     setIsProcessing(false);
