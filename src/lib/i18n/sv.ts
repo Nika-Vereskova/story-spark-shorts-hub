@@ -449,7 +449,7 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       next: "Nästa Kort",
       flip: "Visa Svar",
       shuffle: "Blanda Korten",
-      showHints: "Visa minneshjälpare",
+      showHints: "Visa minnesknep",
       multipleChoice: "Välj från Alternativ",
       typed: "Skriv Svaret",
       reset: "Rensa Urval",
