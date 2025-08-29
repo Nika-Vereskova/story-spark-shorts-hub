@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { useToast } from '@/hooks/use-toast';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 // EU Countries Data
 const EU_COUNTRIES = [
   {code:'AT', country_en:'Austria',   capital_en:'Vienna',       country_sv:'Österrike', capital_sv:'Wien',        region:'Central', hint_en:'Austria → Wiener sausage → Vienna', hint_sv:'Österrike → wienerkorv → Wien'},
@@ -129,7 +131,7 @@ const EUCapitals = () => {
       item,
       answered: false
     }));
-    
+
     setQuizState({
       mode: quizMode,
       direction: quizDirection,
@@ -138,6 +140,7 @@ const EUCapitals = () => {
       correct: 0,
       total: 10
     });
+    setActiveTab('quiz');
   };
 
   const handleQuizAnswer = (selectedAnswer: string, item: any, correctAnswer: string) => {
@@ -204,7 +207,7 @@ const EUCapitals = () => {
               disabled={showResult}
               size="lg"
               variant="outline"
-              className="h-16 text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-200 font-semibold"
+              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-200 font-semibold whitespace-normal break-words"
             >
               {option}
             </Button>
@@ -237,7 +240,7 @@ const EUCapitals = () => {
             onChange={(e) => setTypedAnswer(e.target.value)}
             placeholder={t('projects.euCapitals.typeHere')}
             disabled={showResult}
-            className="w-full h-16 px-6 text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
+            className="w-full h-14 md:h-16 px-4 md:px-6 text-lg md:text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
             onKeyDown={(e) => {
               if (e.key === 'Enter' && typedAnswer.trim()) {
                 handleQuizAnswer(typedAnswer, item, answer);
@@ -250,7 +253,7 @@ const EUCapitals = () => {
               onClick={() => handleQuizAnswer(typedAnswer, item, answer)}
               disabled={!typedAnswer.trim() || showResult}
               size="lg"
-              className="h-12 px-8 text-lg rounded-2xl font-semibold"
+              className="h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold"
             >
               {t('projects.euCapitals.checkAnswer')} ✓
             </Button>
@@ -319,7 +322,7 @@ const EUCapitals = () => {
               <Button
                 onClick={startQuiz}
                 size="lg"
-                className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
+                className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
               >
                 🎯 {t('projects.euCapitals.startQuiz')}
               </Button>
@@ -338,7 +341,7 @@ const EUCapitals = () => {
                 onClick={() => setActiveTab(tab.id)}
                 size="lg"
                 variant={activeTab === tab.id ? "default" : "outline"}
-                className={`h-16 px-8 text-lg rounded-2xl font-bold transition-all duration-300 ${
+                className={`w-full sm:w-auto h-12 sm:h-14 md:h-16 px-4 sm:px-6 md:px-8 text-base sm:text-lg rounded-2xl font-bold transition-all duration-300 ${
                   activeTab === tab.id
                     ? `bg-gradient-to-r ${tab.color} text-white shadow-lg transform scale-105`
                     : 'border-2 hover:scale-105 hover:shadow-md'
