@@ -8,11 +8,11 @@ interface AdSenseUnitProps {
   style?: React.CSSProperties;
 }
 
-declare global {
-  interface Window {
-    adsbygoogle: any[];
+  declare global {
+    interface Window {
+      adsbygoogle: unknown[];
+    }
   }
-}
 
 const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   adSlot,
