@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
+import { useToast } from '@/hooks/use-toast';
 
 // EU Countries Data
 const EU_COUNTRIES = [
@@ -40,6 +42,7 @@ const REGIONS = ['All','Nordic','Baltic','Western','Central','Eastern','Southern
 const EUCapitals = () => {
   const locale = getCurrentLocale();
   const isEnglish = locale === 'en';
+  const { toast } = useToast();
   
   // State management
   const [activeTab, setActiveTab] = useState('study');
@@ -56,6 +59,8 @@ const EUCapitals = () => {
   const [quizState, setQuizState] = useState<any>(null);
   const [quizMode, setQuizMode] = useState('mc'); // 'mc' | 'typed'
   const [quizDirection, setQuizDirection] = useState('cc'); // 'cc' | 'cc_rev'
+  const [typedAnswer, setTypedAnswer] = useState('')
+  const [showResult, setShowResult] = useState(false)
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -135,6 +140,36 @@ const EUCapitals = () => {
     });
   };
 
+  const handleQuizAnswer = (selectedAnswer: string, item: any, correctAnswer: string) => {
+    const isCorrect = selectedAnswer.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
+    setShowResult(true);
+    
+    if (isCorrect) {
+      setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
+      toast({
+        title: "🎉 " + t('euCapitals.correct'),
+        description: t('euCapitals.wellDone'),
+        duration: 1500,
+      });
+    } else {
+      const newMissed = [...missed, item.code];
+      setMissed([...new Set(newMissed)]);
+      localStorage.setItem('eu_missed', JSON.stringify([...new Set(newMissed)]));
+      toast({
+        title: "❌ " + t('euCapitals.incorrect'),
+        description: `${t('euCapitals.correctAnswer')}: ${correctAnswer}`,
+        duration: 2000,
+        variant: "destructive"
+      });
+    }
+    
+    setTimeout(() => {
+      setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
+      setShowResult(false);
+      setTypedAnswer('');
+    }, 1500);
+  };
+
   const renderMultipleChoice = (question: string, answer: string, item: any) => {
     const wrongAnswers = shuffle(
       EU_COUNTRIES.filter(x => x !== item)
@@ -145,37 +180,81 @@ const EUCapitals = () => {
     });
     
     const allOptions = shuffle([answer, ...wrongAnswers]);
-    
-    const handleAnswer = (selectedAnswer: string) => {
-      const isCorrect = selectedAnswer === answer;
-      if (isCorrect) {
-        setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
-      } else {
-        const newMissed = [...missed, item.code];
-        setMissed([...new Set(newMissed)]);
-        localStorage.setItem('eu_missed', JSON.stringify([...new Set(newMissed)]));
-      }
-      
-      setTimeout(() => {
-        setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
-      }, 800);
-    };
 
     return (
-      <div className="w-full">
-        <div className="text-2xl md:text-3xl font-playfair text-center text-parchment mb-6">
-          {question}
+      <div className="w-full space-y-6">
+        {/* Decorative gears */}
+        <div className="flex justify-center items-center gap-4 mb-4">
+          <svg className="w-8 h-8 text-brass gear-clockwise" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+          </svg>
+          <div className="text-3xl md:text-4xl font-playfair text-center text-foreground font-bold">
+            {question}
+          </div>
+          <svg className="w-8 h-8 text-oxidized-teal gear-counter" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+          </svg>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {allOptions.map((option, idx) => (
-            <button
+            <Button
               key={idx}
-              onClick={() => handleAnswer(option)}
-              className="p-4 rounded-lg border border-teal/40 bg-oxidized-teal/10 hover:bg-teal/20 transition-all duration-200 text-parchment"
+              onClick={() => handleQuizAnswer(option, item, answer)}
+              disabled={showResult}
+              size="lg"
+              variant="outline"
+              className="h-16 text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-200 font-semibold"
             >
               {option}
-            </button>
+            </Button>
           ))}
+        </div>
+      </div>
+    );
+  };
+
+  const renderTypedAnswer = (question: string, answer: string, item: any) => {
+    return (
+      <div className="w-full space-y-6">
+        {/* Decorative gears */}
+        <div className="flex justify-center items-center gap-4 mb-4">
+          <svg className="w-8 h-8 text-brass gear-clockwise" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+          </svg>
+          <div className="text-3xl md:text-4xl font-playfair text-center text-foreground font-bold">
+            {question}
+          </div>
+          <svg className="w-8 h-8 text-oxidized-teal gear-counter" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+          </svg>
+        </div>
+
+        <div className="space-y-4">
+          <input
+            type="text"
+            value={typedAnswer}
+            onChange={(e) => setTypedAnswer(e.target.value)}
+            placeholder={t('euCapitals.typeHere')}
+            disabled={showResult}
+            className="w-full h-16 px-6 text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && typedAnswer.trim()) {
+                handleQuizAnswer(typedAnswer, item, answer);
+              }
+            }}
+          />
+          
+          <div className="flex justify-center">
+            <Button
+              onClick={() => handleQuizAnswer(typedAnswer, item, answer)}
+              disabled={!typedAnswer.trim() || showResult}
+              size="lg"
+              className="h-12 px-8 text-lg rounded-2xl font-semibold"
+            >
+              {t('euCapitals.checkAnswer')} ✓
+            </Button>
+          </div>
         </div>
       </div>
     );
@@ -194,157 +273,202 @@ const EUCapitals = () => {
     : EU_COUNTRIES.filter(c => c.region === selectedRegion);
 
   return (
-    <div className="min-h-screen vintage-paper-light parchment-scroll relative">
+    <div className="min-h-screen bg-background relative">
       <SEO 
         title={`${t('euCapitals.title')} | STEaM LOGIC Studio AB`}
         description={t('euCapitals.description')}
         keywords="EU capitals trainer, geography learning, European countries, capitals quiz, educational game, interactive learning"
       />
       
+      {/* Animated background elements */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden">
+        <svg className="absolute top-20 left-10 w-12 h-12 text-primary/20 gear-clockwise" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+        </svg>
+        <svg className="absolute top-32 right-16 w-16 h-16 text-secondary/15 gear-counter" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+        </svg>
+        <div className="absolute bottom-40 left-20 w-4 h-8 bg-accent/20 rounded-full steam-effect"></div>
+        <div className="absolute bottom-60 right-32 w-3 h-6 bg-accent/25 rounded-full steam-effect" style={{animationDelay: '1s'}}></div>
+      </div>
+      
       <Navigation currentPage="eu-capitals" />
       
-      <div className="pt-24 pb-12">
+      <div className="pt-24 pb-12 relative">
         <div className="container mx-auto px-6 max-w-6xl">
           {/* Header */}
-          <div className="bg-gradient-to-r from-teal/20 to-brass/20 rounded-2xl p-6 mb-6 border border-brass/30 backdrop-blur-sm">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-brass/20 flex items-center justify-center">
-                  <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" className="text-brass"/>
-                    <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2" className="text-teal"/>
+          <div className="steampunk-card p-8 mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div className="flex items-center gap-6">
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+                  <svg className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+                    <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2"/>
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-2xl md:text-3xl font-playfair text-parchment">
-                    {t('euCapitals.title')}
+                  <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
+                    {t('euCapitals.title')} 🏰
                   </h1>
-                  <p className="text-brass/80 text-sm">
+                  <p className="text-muted-foreground text-lg mt-2">
                     {t('euCapitals.subtitle')}
                   </p>
                 </div>
               </div>
               
-              <button
+              <Button
                 onClick={startQuiz}
-                className="px-6 py-3 bg-gradient-to-r from-teal to-oxidized-teal text-parchment rounded-lg hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-200 font-medium"
+                size="lg"
+                className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
               >
-                {t('euCapitals.startQuiz')}
-              </button>
+                🎯 {t('euCapitals.startQuiz')}
+              </Button>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-4 mb-8">
             {[
-              { id: 'study', icon: '📖', label: t('euCapitals.study') },
-              { id: 'quiz', icon: '🎯', label: t('euCapitals.quiz') },
-              { id: 'map', icon: '🗺️', label: t('euCapitals.map') }
+              { id: 'study', icon: '📚', label: t('euCapitals.study'), color: 'from-green-500 to-green-600' },
+              { id: 'quiz', icon: '🎯', label: t('euCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
+              { id: 'map', icon: '🗺️', label: t('euCapitals.map'), color: 'from-orange-500 to-orange-600' }
             ].map(tab => (
-              <button
+              <Button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-200 ${
+                size="lg"
+                variant={activeTab === tab.id ? "default" : "outline"}
+                className={`h-16 px-8 text-lg rounded-2xl font-bold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-brass/20 border-brass text-parchment'
-                    : 'bg-oxidized-teal/10 border-teal/40 text-parchment/80 hover:bg-teal/20'
+                    ? `bg-gradient-to-r ${tab.color} text-white shadow-lg transform scale-105`
+                    : 'border-2 hover:scale-105 hover:shadow-md'
                 }`}
               >
-                <span>{tab.icon}</span>
+                <span className="text-2xl mr-2">{tab.icon}</span>
                 {tab.label as string}
-              </button>
+              </Button>
             ))}
           </div>
 
           {/* Study Panel */}
           {activeTab === 'study' && (
-            <div className="bg-oxidized-teal/10 backdrop-blur-sm rounded-2xl p-6 border border-brass/30">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="steampunk-card p-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Flashcard */}
-                <div className="bg-gradient-to-br from-teal/20 to-brass/10 rounded-xl p-8 border-l-4 border-brass min-h-[200px] flex items-center justify-center text-center">
-                  <div>
-                    <div className="text-3xl md:text-4xl font-playfair text-parchment mb-3">
-                      {displayText}
-                    </div>
-                    {hintText && (
-                      <div className="text-brass/80 text-sm">
-                        {hintText}
+                <div className="relative">
+                  <div className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer" onClick={flipCard}>
+                    {/* Decorative gears */}
+                    <svg className="absolute top-4 left-4 w-8 h-8 text-secondary/30 gear-clockwise" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+                    </svg>
+                    <svg className="absolute top-4 right-4 w-6 h-6 text-primary/30 gear-counter" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 15.5A3.5 3.5 0 0 1 8.5 12A3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5a3.5 3.5 0 0 1-3.5 3.5m7.43-2.53c.04-.32.07-.64.07-.97c0-.33-.03-.66-.07-1L21.99 10c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43 6.2c-.04-.34-.07-.67-.07-1c0-.33.03-.65.07-.97L21.99 3.23c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L19.43.43C19.39.09 19.36-.24 19.36-.57c0-.33.03-.65.07-.97L17.87-2.54c-.35-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L13.57-.46c-.34.04-.67.07-1 .07c-.33 0-.66-.03-1-.07L10.07-2.54c-.36-.36-.85-.58-1.4-.58c-.55 0-1.04.22-1.4.58L5.73-.46c-.04.34-.07.67-.07 1c0 .33.03.66.07 1L4.13 2.54c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4L6.2 6.34c.04.32.07.64.07.97c0 .33-.03.65-.07.97L4.13 9.28c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.34.07.67.07 1c0 .33-.03.66-.07 1L4.13 16.6c-.35.36-.58.85-.58 1.4c0 .55.23 1.04.58 1.4l1.57 1.51c.04.32.07.64.07.97c0 .33-.03.65-.07.97l1.57 1.51c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58L12 21.89l1.53 1.49c.36.36.85.58 1.4.58c.55 0 1.04-.22 1.4-.58l1.57-1.51c.04-.32.07-.64.07-.97c0-.33-.03-.65-.07-.97L19.43 18.4c.35-.36.58-.85.58-1.4c0-.55-.23-1.04-.58-1.4L17.87 14.09z"/>
+                    </svg>
+                    
+                    <div>
+                      <div className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-4">
+                        {displayText}
                       </div>
-                    )}
+                      {hintText && showHints && (
+                        <div className="text-muted-foreground text-lg bg-card/50 rounded-lg p-3 border">
+                          💡 {hintText}
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Flip indicator */}
+                    <div className="absolute bottom-4 right-4 text-muted-foreground text-sm">
+                      ↻ {t('euCapitals.clickToFlip')}
+                    </div>
                   </div>
                 </div>
 
                 {/* Controls */}
-                <div className="space-y-4">
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      onClick={() => { setDirection('country'); setShowFront(true); }}
-                      className={`px-4 py-2 rounded-lg border transition-colors ${
-                        direction === 'country' 
-                          ? 'bg-brass/20 border-brass text-parchment'
-                          : 'border-teal/40 text-parchment/80 hover:bg-teal/10'
-                      }`}
-                    >
-                      {t('euCapitals.countryToCapital')}
-                    </button>
-                    <button
-                      onClick={() => { setDirection('capital'); setShowFront(true); }}
-                      className={`px-4 py-2 rounded-lg border transition-colors ${
-                        direction === 'capital' 
-                          ? 'bg-brass/20 border-brass text-parchment'
-                          : 'border-teal/40 text-parchment/80 hover:bg-teal/10'
-                      }`}
-                    >
-                      {t('euCapitals.capitalToCountry')}
-                    </button>
+                <div className="space-y-6">
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-foreground">{t('euCapitals.studyMode')}</h3>
+                    <div className="grid grid-cols-1 gap-2">
+                      <Button
+                        onClick={() => { setDirection('country'); setShowFront(true); }}
+                        variant={direction === 'country' ? 'default' : 'outline'}
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold justify-start"
+                      >
+                        🏛️ {t('euCapitals.countryToCapital')}
+                      </Button>
+                      <Button
+                        onClick={() => { setDirection('capital'); setShowFront(true); }}
+                        variant={direction === 'capital' ? 'default' : 'outline'}
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold justify-start"
+                      >
+                        🏰 {t('euCapitals.capitalToCountry')}
+                      </Button>
+                    </div>
                   </div>
 
-                  <div className="flex gap-2 flex-wrap">
-                    <button
-                      onClick={() => moveCard(studyIndex - 1)}
-                      className="px-4 py-2 rounded-lg border border-teal/40 text-parchment/80 hover:bg-teal/10 transition-colors"
-                    >
-                      ← {t('euCapitals.prev')}
-                    </button>
-                    <button
-                      onClick={flipCard}
-                      className="px-4 py-2 rounded-lg bg-gradient-to-r from-teal to-oxidized-teal text-parchment hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-200"
-                    >
-                      ⤿ {t('euCapitals.flip')}
-                    </button>
-                    <button
-                      onClick={() => moveCard(studyIndex + 1)}
-                      className="px-4 py-2 rounded-lg border border-teal/40 text-parchment/80 hover:bg-teal/10 transition-colors"
-                    >
-                      {t('euCapitals.next')} →
-                    </button>
-                    <button
-                      onClick={shuffleOrder}
-                      className="px-4 py-2 rounded-lg border border-teal/40 text-parchment/80 hover:bg-teal/10 transition-colors"
-                    >
-                      🔀 {t('euCapitals.shuffle')}
-                    </button>
+                  <div className="space-y-3">
+                    <h3 className="text-lg font-semibold text-foreground">{t('euCapitals.navigation')}</h3>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button
+                        onClick={() => moveCard(studyIndex - 1)}
+                        variant="outline"
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold"
+                      >
+                        ⬅️ {t('euCapitals.prev')}
+                      </Button>
+                      <Button
+                        onClick={() => moveCard(studyIndex + 1)}
+                        variant="outline"
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold"
+                      >
+                        {t('euCapitals.next')} ➡️
+                      </Button>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <Button
+                        onClick={flipCard}
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary"
+                      >
+                        🔄 {t('euCapitals.flip')}
+                      </Button>
+                      <Button
+                        onClick={shuffleOrder}
+                        variant="outline"
+                        size="lg"
+                        className="h-12 text-lg rounded-xl font-semibold"
+                      >
+                        🔀 {t('euCapitals.shuffle')}
+                      </Button>
+                    </div>
                   </div>
 
-                  <label className="flex items-center gap-2">
-                    <input 
-                      type="checkbox" 
-                      checked={showHints}
-                      onChange={(e) => setShowHints(e.target.checked)}
-                      className="accent-brass"
-                    />
-                    <span className="text-parchment/80 text-sm">
-                      {t('euCapitals.showHints')}
-                    </span>
-                  </label>
-
-                  <div className="text-parchment/60 text-sm">
-                    {studyIndex + 1}/{EU_COUNTRIES.length}
-                    {missed.length > 0 && (
-                      <span className="ml-2">
-                        • {t('euCapitals.reviewLater')}: {missed.length}
+                  <div className="space-y-3">
+                    <label className="flex items-center gap-3 text-lg">
+                      <input 
+                        type="checkbox" 
+                        checked={showHints}
+                        onChange={(e) => setShowHints(e.target.checked)}
+                        className="w-5 h-5 accent-secondary rounded"
+                      />
+                      <span className="text-foreground font-medium">
+                        💡 {t('euCapitals.showHints')}
                       </span>
-                    )}
+                    </label>
+
+                    <div className="bg-card/50 rounded-lg p-4 border">
+                      <div className="text-lg font-semibold text-foreground">
+                        📊 {t('euCapitals.progress')}: {studyIndex + 1}/{EU_COUNTRIES.length}
+                      </div>
+                      {missed.length > 0 && (
+                        <div className="text-muted-foreground mt-1">
+                          🔄 {t('euCapitals.reviewLater')}: {missed.length}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -353,62 +477,92 @@ const EUCapitals = () => {
 
           {/* Quiz Panel */}
           {activeTab === 'quiz' && (
-            <div className="bg-oxidized-teal/10 backdrop-blur-sm rounded-2xl p-6 border border-brass/30">
+            <div className="steampunk-card p-8">
               {!quizState ? (
-                <div className="space-y-4">
-                  <div className="flex flex-wrap gap-4 items-center">
-                    <label className="flex items-center gap-2">
-                      <input 
-                        type="radio" 
-                        name="qmode" 
-                        value="mc" 
-                        checked={quizMode === 'mc'}
-                        onChange={(e) => setQuizMode(e.target.value)}
-                        className="accent-brass"
-                      />
-                      <span className="text-parchment">{t('euCapitals.multipleChoice')}</span>
-                    </label>
-                    <label className="flex items-center gap-2">
-                      <input 
-                        type="radio" 
-                        name="qmode" 
-                        value="typed" 
-                        checked={quizMode === 'typed'}
-                        onChange={(e) => setQuizMode(e.target.value)}
-                        className="accent-brass"
-                      />
-                      <span className="text-parchment">{t('euCapitals.typed')}</span>
-                    </label>
-                    <select 
-                      value={quizDirection}
-                      onChange={(e) => setQuizDirection(e.target.value)}
-                      className="px-3 py-2 rounded-lg bg-oxidized-teal/20 border border-teal/40 text-parchment"
-                    >
-                      <option value="cc">{t('euCapitals.countryToCapital')}</option>
-                      <option value="cc_rev">{t('euCapitals.capitalToCountry')}</option>
-                    </select>
-                    <button
+                <div className="space-y-6">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
+                      🎯 {t('euCapitals.quizTime')}
+                    </h2>
+                    <p className="text-muted-foreground text-lg">
+                      {t('euCapitals.quizDescription')}
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-semibold text-foreground">{t('euCapitals.quizType')}</h3>
+                      <div className="space-y-3">
+                        <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
+                          <input 
+                            type="radio" 
+                            name="qmode" 
+                            value="mc" 
+                            checked={quizMode === 'mc'}
+                            onChange={(e) => setQuizMode(e.target.value)}
+                            className="w-5 h-5 accent-secondary"
+                          />
+                          <span className="text-lg font-medium text-foreground">🔘 {t('euCapitals.multipleChoice')}</span>
+                        </label>
+                        <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
+                          <input 
+                            type="radio" 
+                            name="qmode" 
+                            value="typed" 
+                            checked={quizMode === 'typed'}
+                            onChange={(e) => setQuizMode(e.target.value)}
+                            className="w-5 h-5 accent-secondary"
+                          />
+                          <span className="text-lg font-medium text-foreground">✏️ {t('euCapitals.typed')}</span>
+                        </label>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-semibold text-foreground">{t('euCapitals.direction')}</h3>
+                      <select 
+                        value={quizDirection}
+                        onChange={(e) => setQuizDirection(e.target.value)}
+                        className="w-full h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+                      >
+                        <option value="cc">🏛️ {t('euCapitals.countryToCapital')}</option>
+                        <option value="cc_rev">🏰 {t('euCapitals.capitalToCountry')}</option>
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center pt-4">
+                    <Button
                       onClick={startQuiz}
-                      className="px-6 py-2 bg-gradient-to-r from-teal to-oxidized-teal text-parchment rounded-lg hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-200"
+                      size="lg"
+                      className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200"
                     >
-                      {t('euCapitals.startQuiz')}
-                    </button>
+                      🚀 {t('euCapitals.startQuiz')}
+                    </Button>
                   </div>
                 </div>
               ) : quizState.index >= quizState.total ? (
-                <div className="text-center py-12">
-                  <div className="text-3xl font-playfair text-parchment mb-4">
+                <div className="text-center py-16">
+                  <div className="text-6xl mb-6">
+                    {quizState.correct >= 8 ? '🏆' : quizState.correct >= 6 ? '🥉' : '🎯'}
+                  </div>
+                  <div className="text-4xl font-playfair font-bold text-foreground mb-4">
                     {t('euCapitals.finalScore')}: {quizState.correct}/{quizState.total}
                   </div>
-                  <button
+                  <div className="text-xl text-muted-foreground mb-8">
+                    {quizState.correct >= 8 ? t('euCapitals.excellent') : 
+                     quizState.correct >= 6 ? t('euCapitals.good') : t('euCapitals.keepPracticing')}
+                  </div>
+                  <Button
                     onClick={() => setQuizState(null)}
-                    className="px-6 py-3 bg-gradient-to-r from-teal to-oxidized-teal text-parchment rounded-lg hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-200"
+                    size="lg"
+                    className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary shadow-lg transform hover:scale-105 transition-all duration-200"
                   >
-                    {t('euCapitals.tryAgain')}
-                  </button>
+                    🔄 {t('euCapitals.tryAgain')}
+                  </Button>
                 </div>
               ) : (
-                <div className="bg-gradient-to-br from-teal/20 to-brass/10 rounded-xl p-8 border-l-4 border-brass min-h-[200px] flex items-center justify-center">
+                <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
                   {(() => {
                     const currentQuestion = quizState.questions[quizState.index];
                     const isCountryToCapital = quizState.direction === 'cc';
@@ -419,14 +573,29 @@ const EUCapitals = () => {
                       ? (isEnglish ? currentQuestion.item.capital_en : currentQuestion.item.capital_sv)
                       : (isEnglish ? currentQuestion.item.country_en : currentQuestion.item.country_sv);
                     
-                    return renderMultipleChoice(questionText, answerText, currentQuestion.item);
+                    return quizState.mode === 'mc' 
+                      ? renderMultipleChoice(questionText, answerText, currentQuestion.item)
+                      : renderTypedAnswer(questionText, answerText, currentQuestion.item);
                   })()}
                 </div>
               )}
               
-              {quizState && (
-                <div className="mt-4 text-parchment/60 text-sm">
-                  {t('euCapitals.score')}: {quizState.correct}/{quizState.total}
+              {quizState && quizState.index < quizState.total && (
+                <div className="mt-6 bg-card/50 rounded-xl p-4 border">
+                  <div className="flex justify-between items-center">
+                    <div className="text-lg font-semibold text-foreground">
+                      📊 {t('euCapitals.question')} {quizState.index + 1}/{quizState.total}
+                    </div>
+                    <div className="text-lg font-semibold text-foreground">
+                      ⭐ {t('euCapitals.score')}: {quizState.correct}/{quizState.total}
+                    </div>
+                  </div>
+                  <div className="w-full bg-border rounded-full h-3 mt-2">
+                    <div 
+                      className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full transition-all duration-300"
+                      style={{ width: `${((quizState.index) / quizState.total) * 100}%` }}
+                    ></div>
+                  </div>
                 </div>
               )}
             </div>
@@ -434,37 +603,44 @@ const EUCapitals = () => {
 
           {/* Map Panel */}
           {activeTab === 'map' && (
-            <div className="bg-oxidized-teal/10 backdrop-blur-sm rounded-2xl p-6 border border-brass/30">
-              <p className="text-parchment/80 mb-4">{t('euCapitals.mapNote')}</p>
+            <div className="steampunk-card p-8">
+              <div className="text-center mb-8">
+                <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
+                  🗺️ {t('euCapitals.exploreMap')}
+                </h2>
+                <p className="text-muted-foreground text-lg">{t('euCapitals.mapNote')}</p>
+              </div>
               
-              <div className="flex gap-4 mb-6">
+              <div className="flex flex-wrap gap-4 mb-8 justify-center">
                 <select 
                   value={selectedRegion}
                   onChange={(e) => setSelectedRegion(e.target.value)}
-                  className="px-3 py-2 rounded-lg bg-oxidized-teal/20 border border-teal/40 text-parchment"
+                  className="h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                 >
                   {REGIONS.map(region => (
                     <option key={region} value={region}>
-                      {t(`euCapitals.regions.${region.toLowerCase()}`)}
+                      🌍 {t(`euCapitals.regions.${region.toLowerCase()}`)}
                     </option>
                   ))}
                 </select>
-                <button
+                <Button
                   onClick={() => setActiveTiles([])}
-                  className="px-4 py-2 rounded-lg border border-teal/40 text-parchment/80 hover:bg-teal/10 transition-colors"
+                  variant="outline"
+                  size="lg"
+                  className="h-12 px-6 text-lg rounded-xl font-semibold"
                 >
-                  {t('euCapitals.reset')}
-                </button>
+                  🔄 {t('euCapitals.reset')}
+                </Button>
               </div>
 
-              <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
                 {filteredCountries.map(country => {
                   const name = isEnglish ? country.country_en : country.country_sv;
                   const capital = isEnglish ? country.capital_en : country.capital_sv;
                   const isActive = activeTiles.includes(country.code);
                   
                   return (
-                    <button
+                    <Button
                       key={country.code}
                       onClick={() => {
                         speak(`${name}. ${capital}`);
@@ -473,25 +649,46 @@ const EUCapitals = () => {
                             ? prev.filter(c => c !== country.code)
                             : [...prev, country.code]
                         );
+                        toast({
+                          title: name,
+                          description: capital,
+                          duration: 2000
+                        });
                       }}
-                      className={`p-3 rounded-lg border text-center transition-all duration-200 ${
+                      variant={isActive ? "default" : "outline"}
+                      size="lg"
+                      className={`h-20 p-4 text-center transition-all duration-300 rounded-2xl ${
                         isActive
-                          ? 'bg-brass/20 border-brass text-parchment transform -translate-y-1'
-                          : 'bg-oxidized-teal/20 border-teal/40 text-parchment/80 hover:bg-teal/20 hover:-translate-y-0.5'
+                          ? 'transform scale-105 shadow-lg bg-gradient-to-br from-orange-500 to-orange-600'
+                          : 'hover:scale-105 hover:shadow-md'
                       }`}
                       title={`${name} → ${capital}`}
                     >
-                      <div className="font-bold text-sm">{country.code}</div>
-                      <div className="text-xs mt-1">{name}</div>
-                    </button>
+                      <div className="flex flex-col items-center gap-1">
+                        <div className="font-bold text-lg">{country.code}</div>
+                        <div className="text-xs">{name}</div>
+                      </div>
+                    </Button>
                   );
                 })}
+              </div>
+              
+              <div className="text-center mt-8 bg-card/50 rounded-xl p-4 border">
+                <p className="text-muted-foreground">
+                  🎵 {t('euCapitals.clickToHear')} • 
+                  ⭐ {t('euCapitals.selected')}: {activeTiles.length}
+                </p>
               </div>
             </div>
           )}
 
-          <div className="mt-8 text-center text-parchment/60 text-sm">
-            {t('euCapitals.tip')}
+          <div className="mt-8 text-center bg-card/30 rounded-xl p-6 border">
+            <div className="text-lg font-medium text-foreground mb-2">
+              💾 {t('euCapitals.tipTitle')}
+            </div>
+            <div className="text-muted-foreground">
+              {t('euCapitals.tip')}
+            </div>
           </div>
         </div>
       </div>
