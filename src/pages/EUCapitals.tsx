@@ -3,6 +3,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
@@ -608,7 +609,7 @@ const EUCapitals = () => {
                     {t('projects.euCapitals.finalScore')}: {quizState.correct}/{quizState.total}
                   </div>
                   <div className="text-xl text-muted-foreground mb-8">
-                    {quizState.correct >= 8 ? t('projects.euCapitals.excellent') : 
+                    {quizState.correct >= 8 ? t('projects.euCapitals.excellent') :
                      quizState.correct >= 6 ? t('projects.euCapitals.good') : t('projects.euCapitals.keepPracticing')}
                   </div>
                   <Button
@@ -620,41 +621,38 @@ const EUCapitals = () => {
                     </Button>
                 </div>
               ) : (
-                <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
-                  {(() => {
-                    const currentQuestion = quizState.questions[quizState.index];
-                    const isCountryToCapital = quizState.direction === 'cc';
-                    const questionText = isCountryToCapital
-                      ? getCountry(currentQuestion.item)
-                      : getCapital(currentQuestion.item);
-                    const answerText = isCountryToCapital
-                      ? getCapital(currentQuestion.item)
-                      : getCountry(currentQuestion.item);
-                    
-                    return quizState.mode === 'mc' 
-                      ? renderMultipleChoice(questionText, answerText, currentQuestion.item)
-                      : renderTypedAnswer(questionText, answerText, currentQuestion.item);
-                  })()}
-                </div>
-              )}
-              
-              {quizState && quizState.index < quizState.total && (
-                <div className="mt-6 bg-card/50 rounded-xl p-4 border">
-                  <div className="flex justify-between items-center">
-                    <div className="text-lg font-semibold text-foreground">
-                      📊 {t('projects.euCapitals.question')} {quizState.index + 1}/{quizState.total}
+                <>
+                  <div className="mb-6 bg-card/50 rounded-xl p-4 border">
+                    <div className="flex justify-between items-center">
+                      <div className="text-lg font-semibold text-foreground">
+                        📊 {t('projects.euCapitals.question')} {quizState.index + 1}/{quizState.total}
+                      </div>
+                      <div className="text-lg font-semibold text-foreground">
+                        ⭐ {t('projects.euCapitals.score')}: {quizState.correct}/{quizState.total}
+                      </div>
                     </div>
-                    <div className="text-lg font-semibold text-foreground">
-                      ⭐ {t('projects.euCapitals.score')}: {quizState.correct}/{quizState.total}
-                    </div>
+                    <Progress
+                      value={(quizState.index / quizState.total) * 100}
+                      className="h-6 md:h-8 mt-4 bg-amber-200 rounded-full [&>div]:bg-amber-500"
+                    />
                   </div>
-                  <div className="w-full bg-border rounded-full h-3 mt-2">
-                    <div 
-                      className="bg-gradient-to-r from-primary to-secondary h-3 rounded-full transition-all duration-300"
-                      style={{ width: `${((quizState.index) / quizState.total) * 100}%` }}
-                    ></div>
+                  <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
+                    {(() => {
+                      const currentQuestion = quizState.questions[quizState.index];
+                      const isCountryToCapital = quizState.direction === 'cc';
+                      const questionText = isCountryToCapital
+                        ? getCountry(currentQuestion.item)
+                        : getCapital(currentQuestion.item);
+                      const answerText = isCountryToCapital
+                        ? getCapital(currentQuestion.item)
+                        : getCountry(currentQuestion.item);
+
+                      return quizState.mode === 'mc'
+                        ? renderMultipleChoice(questionText, answerText, currentQuestion.item)
+                        : renderTypedAnswer(questionText, answerText, currentQuestion.item);
+                    })()}
                   </div>
-                </div>
+                </>
               )}
             </div>
           )}
