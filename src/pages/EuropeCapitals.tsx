@@ -246,18 +246,24 @@ const EuropeCapitals = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {allOptions.map((option, idx) => {
             const isSelected = selectedAnswer === option;
-            const feedbackClass =
-              isSelected && showResult
-                ? answerStatus === 'correct'
-                  ? 'bg-green-500 border-green-500 text-white'
-                  : 'bg-red-500 border-red-500 text-white'
-                : 'border-primary/50 bg-card hover:bg-primary/10 hover:border-primary';
+            const isCorrectOption = option === answer;
+
+            let feedbackClass = 'border-primary/50 bg-card hover:bg-primary/10 hover:border-primary';
+            if (showResult) {
+              if (isCorrectOption) {
+                feedbackClass = 'bg-green-500 border-green-500 text-white';
+              } else if (isSelected) {
+                feedbackClass = 'bg-red-500 border-red-500 text-white';
+              } else {
+                feedbackClass = 'border-primary/50 bg-card opacity-50';
+              }
+            }
+
             const disabledClass =
               showResult || isProcessing
-                ? isSelected && showResult
-                  ? 'cursor-not-allowed'
-                  : 'opacity-50 cursor-not-allowed'
+                ? 'cursor-not-allowed'
                 : 'hover:scale-[1.02] active:scale-[0.98]';
+
             return (
               <Button
                 key={`quiz-option-${idx}-${option}`}
@@ -276,7 +282,7 @@ const EuropeCapitals = () => {
               >
                 {option}
                 {isSelected && showResult && (
-                  <span className="ml-2">{answerStatus === 'correct' ? '✅' : '❌'}</span>
+                  <span className="ml-2">{isCorrectOption ? '✅' : '❌'}</span>
                 )}
               </Button>
             );
@@ -287,6 +293,18 @@ const EuropeCapitals = () => {
   };
 
   const renderTypedAnswer = (question: string, answer: string, item: any) => {
+    const buttonFeedbackClass =
+      showResult
+        ? answerStatus === 'correct'
+          ? 'bg-green-500 text-white'
+          : 'bg-red-500 text-white'
+        : '';
+
+    const buttonDisabledClass =
+      !typedAnswer.trim() || showResult || isProcessing
+        ? 'opacity-50 cursor-not-allowed'
+        : 'hover:scale-[1.02] active:scale-[0.98]';
+
     return (
       <div className="w-full space-y-6">
         {/* Decorative gears */}
@@ -312,7 +330,7 @@ const EuropeCapitals = () => {
               }
             }}
           />
-          
+
           <div className="flex justify-center">
             <Button
               type="button"
@@ -325,17 +343,7 @@ const EuropeCapitals = () => {
               }}
               disabled={!typedAnswer.trim() || showResult || isProcessing}
               size="lg"
-              className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                showResult
-                  ? answerStatus === 'correct'
-                    ? 'bg-green-500 text-white'
-                    : 'bg-red-500 text-white'
-                  : ''
-              } ${
-                (!typedAnswer.trim() || isProcessing)
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:scale-[1.02] active:scale-[0.98]'
-              }`}
+              className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${buttonFeedbackClass} ${buttonDisabledClass}`}
             >
               {t('projects.europeCapitals.checkAnswer')}{' '}
               {showResult ? (answerStatus === 'correct' ? '✅' : '❌') : '✓'}
