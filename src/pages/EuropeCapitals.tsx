@@ -2,13 +2,21 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
+import {
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+} from '@/components/ui/select';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { EUROPE_COUNTRIES, REGIONS } from '@/data/europeCountries';
+import { cn } from '@/lib/utils';
 import GearIcon from '@/components/GearIcon';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -724,17 +732,23 @@ const EuropeCapitals = () => {
               </div>
               
               <div className="flex flex-wrap gap-4 mb-8 justify-center">
-                <select
-                  value={selectedRegion}
-                  onChange={(e) => setSelectedRegion(e.target.value)}
-                  className="h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
-                >
-                  {REGIONS.map(region => (
-                    <option key={region} value={region}>
-                      🌍 {t(`projects.europeCapitals.regions.${region.toLowerCase()}`)}
-                    </option>
-                  ))}
-                </select>
+                <Select value={selectedRegion} onValueChange={setSelectedRegion}>
+                  <SelectTrigger
+                    className={cn(
+                      buttonVariants({ variant: 'outline', size: 'lg' }),
+                      'h-12 px-4 text-lg rounded-xl'
+                    )}
+                  >
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {REGIONS.map(region => (
+                      <SelectItem key={region} value={region}>
+                        🌍 {t(`projects.europeCapitals.regions.${region.toLowerCase()}`)}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
                 <Button
                   onClick={() => setActiveTiles([])}
                   variant="outline"
