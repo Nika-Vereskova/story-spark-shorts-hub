@@ -591,14 +591,7 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
   }
-  
-  .steampunk-card:hover {
-    transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
-    box-shadow: 
-      0 20px 40px rgba(177, 138, 70, 0.3),
-      0 0 20px rgba(33, 240, 255, 0.2);
-  }
-  
+
   .steampunk-card::before {
     content: '';
     position: absolute;
@@ -612,11 +605,20 @@
     opacity: 0;
     transition: opacity 0.3s ease;
   }
-  
-  .steampunk-card:hover::before {
-    opacity: 0.7;
+
+  @media (hover: hover) and (pointer: fine) {
+    .steampunk-card:hover {
+      transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+      box-shadow:
+        0 20px 40px rgba(177, 138, 70, 0.3),
+        0 0 20px rgba(33, 240, 255, 0.2);
+    }
+
+    .steampunk-card:hover::before {
+      opacity: 0.7;
+    }
   }
-  
+
   /* Mobile drawer animation */
   .drawer-enter {
     transform: translateX(-100%);
