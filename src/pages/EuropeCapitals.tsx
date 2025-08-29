@@ -39,6 +39,7 @@ const EuropeCapitals = () => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [answerStatus, setAnswerStatus] = useState<'correct' | 'incorrect' | null>(null)
+  const resultTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -52,17 +53,28 @@ const EuropeCapitals = () => {
   useEffect(() => {
     if (showResult && isProcessing) {
       console.log('⏰ Starting result timer');
-      const timer = setTimeout(
-        () => setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 })),
-        1500
-      );
+      resultTimer.current = setTimeout(() => {
+        setQuizState((prev: any) => {
+          const nextIndex = prev.index + 1;
+          let questions = prev.questions.map((q: any, i: number) =>
+            i === prev.index ? { ...q, answered: true } : q
+          );
+          if (questions[nextIndex] && questions[nextIndex].item === questions[prev.index].item) {
+            const remaining = questions.slice(nextIndex);
+            questions = [...questions.slice(0, nextIndex), ...shuffle(remaining)];
+            console.log('🔀 Reshuffled remaining questions');
+          }
+          console.log('➡️ Advancing', { index: nextIndex, questions });
+          return { ...prev, index: nextIndex, questions };
+        });
+      }, 1500)
 
       return () => {
-        console.log('🧹 Cleaning up timer');
-        clearTimeout(timer);
-      };
+        console.log('🧹 Cleaning up timer')
+        if (resultTimer.current) clearTimeout(resultTimer.current)
+      }
     }
-  }, [showResult, isProcessing]);
+  }, [showResult, isProcessing])
 
   // Reset interaction state whenever quiz state changes
   useEffect(() => {
@@ -74,6 +86,7 @@ const EuropeCapitals = () => {
       setSelectedAnswer(null);
       setAnswerStatus(null);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizState?.index]);
 
   // Helper functions
@@ -165,6 +178,7 @@ const EuropeCapitals = () => {
         item,
         answered: false
       }));
+    console.log('📝 Shuffled questions', questions.map((q: any) => q.item.code));
 
     setQuizState({
       mode: quizMode,
@@ -666,6 +680,7 @@ const EuropeCapitals = () => {
                   <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
                     {(() => {
                       const currentQuestion = quizState.questions[quizState.index];
+                      console.log('📝 Rendering question', quizState.index, currentQuestion);
                       const isCountryToCapital = quizState.direction === 'cc';
                       const questionText = isCountryToCapital
                         ? getCountry(currentQuestion.item)
