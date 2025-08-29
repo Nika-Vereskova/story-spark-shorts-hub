@@ -468,7 +468,7 @@ const EuropeCapitals = () => {
                 {/* Flashcard */}
                   <div className="relative">
                     <div
-                      className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer"
+                      className="steampunk-card min-h-[240px] sm:min-h-[300px] flex items-center justify-center text-center p-6 sm:p-8 cursor-pointer"
                       onClick={handleCardClick}
                       onTouchStart={handleCardTouch}
                     >
@@ -477,12 +477,19 @@ const EuropeCapitals = () => {
                     <GearIcon aria-hidden="true" className="absolute top-4 right-4" size={6} direction="counter" color="text-primary/30" />
                     
                     <div>
-                      <div className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-4">
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-playfair font-bold text-foreground mb-4">
                         {displayText}
                       </div>
                       {hintText && showHints && (
-                        <div className="text-muted-foreground text-lg bg-card/50 rounded-lg p-3 border">
-                          💡 {hintText}
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-muted-foreground text-sm sm:text-base md:text-lg bg-card/50 rounded-lg p-3 border">
+                          {currentItem.image ? (
+                            <img src={currentItem.image} alt={getCountry(currentItem)} className="w-10 h-10 object-contain" />
+                          ) : currentItem.emoji ? (
+                            <span className="text-2xl md:text-3xl">{currentItem.emoji}</span>
+                          ) : (
+                            <span className="text-2xl md:text-3xl">💡</span>
+                          )}
+                          <span className="text-center sm:text-left">{hintText}</span>
                         </div>
                       )}
                     </div>
