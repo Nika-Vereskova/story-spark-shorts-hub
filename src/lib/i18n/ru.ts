@@ -8,6 +8,7 @@ export const ru = {
     blog: "Блог/ AI Новости",
     contact: "Контакты",
     services: "Услуги",
+    euCapitals: "Столицы ЕС",
     signIn: "Войти",
     signOut: "Выйти"
   },

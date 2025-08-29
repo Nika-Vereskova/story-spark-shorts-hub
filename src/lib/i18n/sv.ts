@@ -8,6 +8,7 @@ export const sv = {
     blog: "Blogg/ AI Nyheter",
     contact: "Kontakt",
     services: "Tjänster",
+    euCapitals: "EU Huvudstäder",
     signIn: "Logga in",
     signOut: "Logga ut"
   },

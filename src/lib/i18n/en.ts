@@ -8,6 +8,7 @@ export const en = {
     blog: "Blog/ AI News",
     contact: "Contact",
     services: "Services",
+    euCapitals: "EU Capitals",
     signIn: "Sign In",
     signOut: "Sign Out"
   },

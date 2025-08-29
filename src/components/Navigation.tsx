@@ -46,6 +46,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
     { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
     { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
+    { name: t('nav.euCapitals'), path: `/${locale}/eu-capitals`, key: 'eu-capitals' },
     { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
     { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' },
     { name: t('nav.blog'), path: `/${locale}/blog`, key: 'blog' },
