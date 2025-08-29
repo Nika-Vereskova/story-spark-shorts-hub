@@ -7,6 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 import { EUROPE_COUNTRIES, REGIONS } from '@/data/europeCountries';
 import GearIcon from '@/components/GearIcon';
 
@@ -40,6 +41,17 @@ const EuropeCapitals = () => {
   const [answerStatus, setAnswerStatus] = useState<'correct' | 'incorrect' | null>(null)
   const [currentOptions, setCurrentOptions] = useState<string[]>([])
   const resultTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const studyRef = useRef<HTMLDivElement>(null);
+  const quizRef = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+    if (isMobile) {
+      ref.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -226,11 +238,12 @@ const EuropeCapitals = () => {
       correct: 0,
       total: questions.length
     });
-    setCurrentOptions(questions[0].options)
+    setCurrentOptions(questions[0].options);
     setShowResult(false);
     setIsProcessing(false);
     setTypedAnswer('');
     setActiveTab('quiz');
+    scrollToSection(quizRef);
   };
 
   const handleQuizAnswer = (selected: string, item: any, correctAnswer: string) => {
@@ -458,7 +471,11 @@ const EuropeCapitals = () => {
             ].map(tab => (
               <Button
                 key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
+                onClick={() => {
+                  setActiveTab(tab.id);
+                  const ref = tab.id === 'study' ? studyRef : tab.id === 'quiz' ? quizRef : mapRef;
+                  scrollToSection(ref);
+                }}
                 aria-label={tab.label as string}
                 size="lg"
                 variant={activeTab === tab.id ? "default" : "outline"}
@@ -476,7 +493,7 @@ const EuropeCapitals = () => {
 
           {/* Study Panel */}
           {activeTab === 'study' && (
-            <div className="steampunk-card p-8">
+            <div ref={studyRef} className="steampunk-card p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Flashcard */}
                   <div className="relative">
@@ -572,7 +589,7 @@ const EuropeCapitals = () => {
 
           {/* Quiz Panel */}
           {activeTab === 'quiz' && (
-            <div className="steampunk-card p-8">
+            <div ref={quizRef} className="steampunk-card p-8">
               {!quizState ? (
                 <div className="space-y-6">
                   <div className="text-center mb-8">
@@ -698,7 +715,7 @@ const EuropeCapitals = () => {
 
           {/* Map Panel */}
           {activeTab === 'map' && (
-            <div className="steampunk-card p-8">
+            <div ref={mapRef} className="steampunk-card p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
                   🗺️ {t('projects.europeCapitals.exploreMap')}
