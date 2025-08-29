@@ -147,8 +147,8 @@ const EUCapitals = () => {
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
       toast({
-        title: "🎉 " + t('euCapitals.correct'),
-        description: t('euCapitals.wellDone'),
+        title: "🎉 " + t('projects.euCapitals.correct'),
+        description: t('projects.euCapitals.wellDone'),
         duration: 1500,
       });
     } else {
@@ -156,8 +156,8 @@ const EUCapitals = () => {
       setMissed([...new Set(newMissed)]);
       localStorage.setItem('eu_missed', JSON.stringify([...new Set(newMissed)]));
       toast({
-        title: "❌ " + t('euCapitals.incorrect'),
-        description: `${t('euCapitals.correctAnswer')}: ${correctAnswer}`,
+        title: "❌ " + t('projects.euCapitals.incorrect'),
+        description: `${t('projects.euCapitals.correctAnswer')}: ${correctAnswer}`,
         duration: 2000,
         variant: "destructive"
       });
@@ -235,7 +235,7 @@ const EUCapitals = () => {
             type="text"
             value={typedAnswer}
             onChange={(e) => setTypedAnswer(e.target.value)}
-            placeholder={t('euCapitals.typeHere')}
+            placeholder={t('projects.euCapitals.typeHere')}
             disabled={showResult}
             className="w-full h-16 px-6 text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
             onKeyDown={(e) => {
@@ -252,7 +252,7 @@ const EUCapitals = () => {
               size="lg"
               className="h-12 px-8 text-lg rounded-2xl font-semibold"
             >
-              {t('euCapitals.checkAnswer')} ✓
+              {t('projects.euCapitals.checkAnswer')} ✓
             </Button>
           </div>
         </div>
@@ -275,8 +275,8 @@ const EUCapitals = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <SEO 
-        title={`${t('euCapitals.title')} | STEaM LOGIC Studio AB`}
-        description={t('euCapitals.description')}
+        title={`${t('projects.euCapitals.title')} | STEaM LOGIC Studio AB`}
+        description={t('projects.euCapitals.description')}
         keywords="EU capitals trainer, geography learning, European countries, capitals quiz, educational game, interactive learning"
       />
       
@@ -308,10 +308,10 @@ const EUCapitals = () => {
                 </div>
                 <div>
                   <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
-                    {t('euCapitals.title')} 🏰
+                    {t('projects.euCapitals.title')} 🏰
                   </h1>
                   <p className="text-muted-foreground text-lg mt-2">
-                    {t('euCapitals.subtitle')}
+                    {t('projects.euCapitals.subtitle')}
                   </p>
                 </div>
               </div>
@@ -321,7 +321,7 @@ const EUCapitals = () => {
                 size="lg"
                 className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200"
               >
-                🎯 {t('euCapitals.startQuiz')}
+                🎯 {t('projects.euCapitals.startQuiz')}
               </Button>
             </div>
           </div>
@@ -329,9 +329,9 @@ const EUCapitals = () => {
           {/* Tabs */}
           <div className="flex flex-wrap gap-4 mb-8">
             {[
-              { id: 'study', icon: '📚', label: t('euCapitals.study'), color: 'from-green-500 to-green-600' },
-              { id: 'quiz', icon: '🎯', label: t('euCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
-              { id: 'map', icon: '🗺️', label: t('euCapitals.map'), color: 'from-orange-500 to-orange-600' }
+              { id: 'study', icon: '📚', label: t('projects.euCapitals.study'), color: 'from-green-500 to-green-600' },
+              { id: 'quiz', icon: '🎯', label: t('projects.euCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
+              { id: 'map', icon: '🗺️', label: t('projects.euCapitals.map'), color: 'from-orange-500 to-orange-600' }
             ].map(tab => (
               <Button
                 key={tab.id}
@@ -378,7 +378,7 @@ const EUCapitals = () => {
                     
                     {/* Flip indicator */}
                     <div className="absolute bottom-4 right-4 text-muted-foreground text-sm">
-                      ↻ {t('euCapitals.clickToFlip')}
+                      ↻ {t('projects.euCapitals.clickToFlip')}
                     </div>
                   </div>
                 </div>
@@ -386,7 +386,7 @@ const EUCapitals = () => {
                 {/* Controls */}
                 <div className="space-y-6">
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-foreground">{t('euCapitals.studyMode')}</h3>
+                    <h3 className="text-lg font-semibold text-foreground">{t('projects.euCapitals.studyMode')}</h3>
                     <div className="grid grid-cols-1 gap-2">
                       <Button
                         onClick={() => { setDirection('country'); setShowFront(true); }}
@@ -394,7 +394,7 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold justify-start"
                       >
-                        🏛️ {t('euCapitals.countryToCapital')}
+                        🏛️ {t('projects.euCapitals.countryToCapital')}
                       </Button>
                       <Button
                         onClick={() => { setDirection('capital'); setShowFront(true); }}
@@ -402,13 +402,13 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold justify-start"
                       >
-                        🏰 {t('euCapitals.capitalToCountry')}
+                        🏰 {t('projects.euCapitals.capitalToCountry')}
                       </Button>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-foreground">{t('euCapitals.navigation')}</h3>
+                    <h3 className="text-lg font-semibold text-foreground">{t('projects.euCapitals.navigation')}</h3>
                     <div className="grid grid-cols-2 gap-2">
                       <Button
                         onClick={() => moveCard(studyIndex - 1)}
@@ -416,7 +416,7 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold"
                       >
-                        ⬅️ {t('euCapitals.prev')}
+                        ⬅️ {t('projects.euCapitals.prev')}
                       </Button>
                       <Button
                         onClick={() => moveCard(studyIndex + 1)}
@@ -424,7 +424,7 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold"
                       >
-                        {t('euCapitals.next')} ➡️
+                        {t('projects.euCapitals.next')} ➡️
                       </Button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
@@ -433,7 +433,7 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary"
                       >
-                        🔄 {t('euCapitals.flip')}
+                        🔄 {t('projects.euCapitals.flip')}
                       </Button>
                       <Button
                         onClick={shuffleOrder}
@@ -441,7 +441,7 @@ const EUCapitals = () => {
                         size="lg"
                         className="h-12 text-lg rounded-xl font-semibold"
                       >
-                        🔀 {t('euCapitals.shuffle')}
+                        🔀 {t('projects.euCapitals.shuffle')}
                       </Button>
                     </div>
                   </div>
@@ -455,20 +455,20 @@ const EUCapitals = () => {
                         className="w-5 h-5 accent-secondary rounded"
                       />
                       <span className="text-foreground font-medium">
-                        💡 {t('euCapitals.showHints')}
+                        💡 {t('projects.euCapitals.showHints')}
                       </span>
                     </label>
 
-                    <div className="bg-card/50 rounded-lg p-4 border">
-                      <div className="text-lg font-semibold text-foreground">
-                        📊 {t('euCapitals.progress')}: {studyIndex + 1}/{EU_COUNTRIES.length}
-                      </div>
-                      {missed.length > 0 && (
-                        <div className="text-muted-foreground mt-1">
-                          🔄 {t('euCapitals.reviewLater')}: {missed.length}
+                      <div className="bg-card/50 rounded-lg p-4 border">
+                        <div className="text-lg font-semibold text-foreground">
+                          📊 {t('projects.euCapitals.progress')}: {studyIndex + 1}/{EU_COUNTRIES.length}
                         </div>
-                      )}
-                    </div>
+                        {missed.length > 0 && (
+                          <div className="text-muted-foreground mt-1">
+                            🔄 {t('projects.euCapitals.reviewLater')}: {missed.length}
+                          </div>
+                        )}
+                      </div>
                   </div>
                 </div>
               </div>
@@ -482,16 +482,16 @@ const EUCapitals = () => {
                 <div className="space-y-6">
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
-                      🎯 {t('euCapitals.quizTime')}
+                      🎯 {t('projects.euCapitals.quizTime')}
                     </h2>
                     <p className="text-muted-foreground text-lg">
-                      {t('euCapitals.quizDescription')}
+                      {t('projects.euCapitals.quizDescription')}
                     </p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-foreground">{t('euCapitals.quizType')}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{t('projects.euCapitals.quizType')}</h3>
                       <div className="space-y-3">
                         <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
                           <input 
@@ -502,7 +502,7 @@ const EUCapitals = () => {
                             onChange={(e) => setQuizMode(e.target.value)}
                             className="w-5 h-5 accent-secondary"
                           />
-                          <span className="text-lg font-medium text-foreground">🔘 {t('euCapitals.multipleChoice')}</span>
+                          <span className="text-lg font-medium text-foreground">🔘 {t('projects.euCapitals.multipleChoice')}</span>
                         </label>
                         <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
                           <input 
@@ -513,20 +513,20 @@ const EUCapitals = () => {
                             onChange={(e) => setQuizMode(e.target.value)}
                             className="w-5 h-5 accent-secondary"
                           />
-                          <span className="text-lg font-medium text-foreground">✏️ {t('euCapitals.typed')}</span>
+                          <span className="text-lg font-medium text-foreground">✏️ {t('projects.euCapitals.typed')}</span>
                         </label>
                       </div>
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-foreground">{t('euCapitals.direction')}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{t('projects.euCapitals.direction')}</h3>
                       <select 
                         value={quizDirection}
                         onChange={(e) => setQuizDirection(e.target.value)}
                         className="w-full h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                       >
-                        <option value="cc">🏛️ {t('euCapitals.countryToCapital')}</option>
-                        <option value="cc_rev">🏰 {t('euCapitals.capitalToCountry')}</option>
+                        <option value="cc">🏛️ {t('projects.euCapitals.countryToCapital')}</option>
+                        <option value="cc_rev">🏰 {t('projects.euCapitals.capitalToCountry')}</option>
                       </select>
                     </div>
                   </div>
@@ -536,9 +536,9 @@ const EUCapitals = () => {
                       onClick={startQuiz}
                       size="lg"
                       className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200"
-                    >
-                      🚀 {t('euCapitals.startQuiz')}
-                    </Button>
+                      >
+                        🚀 {t('projects.euCapitals.startQuiz')}
+                      </Button>
                   </div>
                 </div>
               ) : quizState.index >= quizState.total ? (
@@ -547,19 +547,19 @@ const EUCapitals = () => {
                     {quizState.correct >= 8 ? '🏆' : quizState.correct >= 6 ? '🥉' : '🎯'}
                   </div>
                   <div className="text-4xl font-playfair font-bold text-foreground mb-4">
-                    {t('euCapitals.finalScore')}: {quizState.correct}/{quizState.total}
+                    {t('projects.euCapitals.finalScore')}: {quizState.correct}/{quizState.total}
                   </div>
                   <div className="text-xl text-muted-foreground mb-8">
-                    {quizState.correct >= 8 ? t('euCapitals.excellent') : 
-                     quizState.correct >= 6 ? t('euCapitals.good') : t('euCapitals.keepPracticing')}
+                    {quizState.correct >= 8 ? t('projects.euCapitals.excellent') : 
+                     quizState.correct >= 6 ? t('projects.euCapitals.good') : t('projects.euCapitals.keepPracticing')}
                   </div>
                   <Button
                     onClick={() => setQuizState(null)}
                     size="lg"
                     className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary shadow-lg transform hover:scale-105 transition-all duration-200"
-                  >
-                    🔄 {t('euCapitals.tryAgain')}
-                  </Button>
+                    >
+                      🔄 {t('projects.euCapitals.tryAgain')}
+                    </Button>
                 </div>
               ) : (
                 <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
@@ -584,10 +584,10 @@ const EUCapitals = () => {
                 <div className="mt-6 bg-card/50 rounded-xl p-4 border">
                   <div className="flex justify-between items-center">
                     <div className="text-lg font-semibold text-foreground">
-                      📊 {t('euCapitals.question')} {quizState.index + 1}/{quizState.total}
+                      📊 {t('projects.euCapitals.question')} {quizState.index + 1}/{quizState.total}
                     </div>
                     <div className="text-lg font-semibold text-foreground">
-                      ⭐ {t('euCapitals.score')}: {quizState.correct}/{quizState.total}
+                      ⭐ {t('projects.euCapitals.score')}: {quizState.correct}/{quizState.total}
                     </div>
                   </div>
                   <div className="w-full bg-border rounded-full h-3 mt-2">
@@ -606,9 +606,9 @@ const EUCapitals = () => {
             <div className="steampunk-card p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
-                  🗺️ {t('euCapitals.exploreMap')}
+                  🗺️ {t('projects.euCapitals.exploreMap')}
                 </h2>
-                <p className="text-muted-foreground text-lg">{t('euCapitals.mapNote')}</p>
+                <p className="text-muted-foreground text-lg">{t('projects.euCapitals.mapNote')}</p>
               </div>
               
               <div className="flex flex-wrap gap-4 mb-8 justify-center">
@@ -619,7 +619,7 @@ const EUCapitals = () => {
                 >
                   {REGIONS.map(region => (
                     <option key={region} value={region}>
-                      🌍 {t(`euCapitals.regions.${region.toLowerCase()}`)}
+                      🌍 {t(`projects.euCapitals.regions.${region.toLowerCase()}`)}
                     </option>
                   ))}
                 </select>
@@ -629,7 +629,7 @@ const EUCapitals = () => {
                   size="lg"
                   className="h-12 px-6 text-lg rounded-xl font-semibold"
                 >
-                  🔄 {t('euCapitals.reset')}
+                  🔄 {t('projects.euCapitals.reset')}
                 </Button>
               </div>
 
@@ -675,8 +675,8 @@ const EUCapitals = () => {
               
               <div className="text-center mt-8 bg-card/50 rounded-xl p-4 border">
                 <p className="text-muted-foreground">
-                  🎵 {t('euCapitals.clickToHear')} • 
-                  ⭐ {t('euCapitals.selected')}: {activeTiles.length}
+                  🎵 {t('projects.euCapitals.clickToHear')} • 
+                  ⭐ {t('projects.euCapitals.selected')}: {activeTiles.length}
                 </p>
               </div>
             </div>
@@ -684,10 +684,10 @@ const EUCapitals = () => {
 
           <div className="mt-8 text-center bg-card/30 rounded-xl p-6 border">
             <div className="text-lg font-medium text-foreground mb-2">
-              💾 {t('euCapitals.tipTitle')}
+              💾 {t('projects.euCapitals.tipTitle')}
             </div>
             <div className="text-muted-foreground">
-              {t('euCapitals.tip')}
+              {t('projects.euCapitals.tip')}
             </div>
           </div>
         </div>
