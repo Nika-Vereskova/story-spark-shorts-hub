@@ -35,6 +35,8 @@ const EUCapitals = () => {
   const [typedAnswer, setTypedAnswer] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
+  const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
+  const [isAnswerCorrect, setIsAnswerCorrect] = useState<boolean | null>(null)
 
   // Load missed items from localStorage
   useEffect(() => {
@@ -70,6 +72,8 @@ const EUCapitals = () => {
     setShowResult(false);
     setIsProcessing(false);
     setTypedAnswer('');
+    setSelectedAnswer(null);
+    setIsAnswerCorrect(null);
   }, [quizState]);
 
   // Helper functions
@@ -174,8 +178,8 @@ const EUCapitals = () => {
     setActiveTab('quiz');
   };
 
-  const handleQuizAnswer = (selectedAnswer: string, item: any, correctAnswer: string) => {
-    console.log('🔍 Quiz Answer Click:', { selectedAnswer, correctAnswer, isProcessing, showResult });
+  const handleQuizAnswer = (selected: string, item: any, correctAnswer: string) => {
+    console.log('🔍 Quiz Answer Click:', { selectedAnswer: selected, correctAnswer, isProcessing, showResult });
     
     // Prevent double clicks and processing conflicts
     if (isProcessing || showResult) {
@@ -186,8 +190,10 @@ const EUCapitals = () => {
     setIsProcessing(true);
     setShowResult(true);
     
-    const isCorrect = selectedAnswer.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
-    console.log('✅ Answer Check:', { isCorrect, selectedAnswer, correctAnswer });
+    const isCorrect = selected.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
+    setSelectedAnswer(selected);
+    setIsAnswerCorrect(isCorrect);
+    console.log('✅ Answer Check:', { isCorrect, selectedAnswer: selected, correctAnswer });
     
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
@@ -232,28 +238,36 @@ const EUCapitals = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {allOptions.map((option, idx) => (
-            <Button
-              key={`quiz-option-${idx}-${option}`}
-              type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('🖱️ Button clicked:', option);
-                handleQuizAnswer(option, item, answer);
-              }}
-              disabled={showResult || isProcessing}
-              size="lg"
-              variant="outline"
-              className={`w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words ${
-                showResult || isProcessing 
-                  ? 'opacity-50 cursor-not-allowed' 
-                  : 'hover:scale-[1.02] active:scale-[0.98]'
-              }`}
-            >
-              {option}
-            </Button>
-          ))}
+          {allOptions.map((option, idx) => {
+            const isSelected = selectedAnswer === option
+            return (
+              <Button
+                key={`quiz-option-${idx}-${option}`}
+                type="button"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('🖱️ Button clicked:', option);
+                  handleQuizAnswer(option, item, answer);
+                }}
+                disabled={showResult || isProcessing}
+                size="lg"
+                variant="outline"
+                className={`w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words ${
+                  showResult
+                    ? `cursor-not-allowed ${isSelected ? (isAnswerCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white') : ''}`
+                    : isProcessing
+                      ? 'cursor-not-allowed'
+                      : 'hover:scale-[1.02] active:scale-[0.98]'
+                }`}
+              >
+                {option}
+                {showResult && isSelected && (
+                  <span className="ml-2">{isAnswerCorrect ? '✅' : '❌'}</span>
+                )}
+              </Button>
+            )
+          })}
         </div>
       </div>
     );
@@ -285,7 +299,7 @@ const EUCapitals = () => {
               }
             }}
           />
-          
+
           <div className="flex justify-center">
             <Button
               type="button"
@@ -298,12 +312,17 @@ const EUCapitals = () => {
               disabled={!typedAnswer.trim() || showResult || isProcessing}
               size="lg"
               className={`h-12 md:h-14 px-6 md:px-8 text-base md:text-lg rounded-2xl font-semibold ${
-                (!typedAnswer.trim() || showResult || isProcessing)
-                  ? 'opacity-50 cursor-not-allowed'
-                  : 'hover:scale-[1.02] active:scale-[0.98]'
+                showResult
+                  ? `cursor-not-allowed ${isAnswerCorrect ? 'bg-green-500 text-white' : 'bg-red-500 text-white'}`
+                  : !typedAnswer.trim() || isProcessing
+                    ? 'opacity-50 cursor-not-allowed'
+                    : 'hover:scale-[1.02] active:scale-[0.98]'
               }`}
             >
-              {t('projects.euCapitals.checkAnswer')} ✓
+              {t('projects.euCapitals.checkAnswer')}
+              {showResult && (
+                <span className="ml-2">{isAnswerCorrect ? '✅' : '❌'}</span>
+              )}
             </Button>
           </div>
         </div>
