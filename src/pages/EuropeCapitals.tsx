@@ -50,33 +50,31 @@ const EuropeCapitals = () => {
 
   // Handle quiz progression after showing result
   useEffect(() => {
-    if (showResult && isProcessing && quizState) {
+    if (showResult && isProcessing) {
       console.log('⏰ Starting result timer');
-      const timer = setTimeout(() => {
-        console.log('🔄 Moving to next question');
-        setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 }));
-      }, 1500);
+      const timer = setTimeout(
+        () => setQuizState((prev: any) => ({ ...prev, index: prev.index + 1 })),
+        1500
+      );
 
       return () => {
         console.log('🧹 Cleaning up timer');
         clearTimeout(timer);
       };
     }
-  }, [showResult, isProcessing, quizState]);
+  }, [showResult, isProcessing]);
 
   // Reset interaction state whenever quiz state changes
   useEffect(() => {
     if (quizState) {
       console.log('♻️ Resetting question state');
-    } else {
-      console.log('🧹 Quiz state cleared');
+      setShowResult(false);
+      setIsProcessing(false);
+      setTypedAnswer('');
+      setSelectedAnswer(null);
+      setAnswerStatus(null);
     }
-    setShowResult(false);
-    setIsProcessing(false);
-    setTypedAnswer('');
-    setSelectedAnswer(null);
-    setAnswerStatus(null);
-  }, [quizState]);
+  }, [quizState?.index]);
 
   // Helper functions
   const shuffle = (arr: any[]) => {
