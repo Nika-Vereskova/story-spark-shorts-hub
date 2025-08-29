@@ -39,7 +39,7 @@ const EuropeCapitals = () => {
   const [missed, setMissed] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState('All');
   const [activeTiles, setActiveTiles] = useState<string[]>([]);
-  
+
   // Quiz state
   const [quizState, setQuizState] = useState<any>(null);
   const [quizMode, setQuizMode] = useState('mc'); // 'mc' | 'typed'
@@ -56,6 +56,22 @@ const EuropeCapitals = () => {
   const quizRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+  const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
+  const voiceCache = useRef<Record<string, SpeechSynthesisVoice | undefined>>({});
+  const femaleVoiceHints = [
+    'female',
+    'woman',
+    'girl',
+    'google',
+    'svetlana',
+    'zira',
+    'anna',
+    'irina',
+    'natalia',
+    'natasha',
+    'olga',
+    'maria',
+  ];
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
     if (isMobile) {
@@ -116,6 +132,31 @@ const EuropeCapitals = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizState?.index]);
 
+  useEffect(() => {
+    if (!('speechSynthesis' in window)) return;
+    const updateVoices = () => {
+      setVoices(window.speechSynthesis.getVoices());
+      voiceCache.current = {};
+    };
+    updateVoices();
+    window.speechSynthesis.addEventListener('voiceschanged', updateVoices);
+    return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', updateVoices);
+    };
+  }, []);
+
+  const getVoiceForLocale = (loc: string) => {
+    const lang = getSpeechLang(loc);
+    if (voiceCache.current[lang]) return voiceCache.current[lang];
+    const localeVoices = voices.filter(v => v.lang === lang);
+    const femaleVoices = localeVoices.filter(v =>
+      femaleVoiceHints.some(h => v.name.toLowerCase().includes(h))
+    );
+    const voice = femaleVoices[0] || localeVoices[0];
+    if (voice) voiceCache.current[lang] = voice;
+    return voice;
+  };
+
   // Helper functions
   const shuffle = (arr: any[]) => {
     const shuffled = [...arr];
@@ -174,6 +215,10 @@ const EuropeCapitals = () => {
       try {
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = getSpeechLang(locale);
+        const voice = getVoiceForLocale(locale);
+        if (voice) {
+          utterance.voice = voice;
+        }
         speechSynthesis.cancel();
         speechSynthesis.speak(utterance);
       } catch (e) {
