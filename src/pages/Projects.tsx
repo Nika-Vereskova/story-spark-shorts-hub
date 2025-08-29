@@ -18,10 +18,10 @@ const Projects = () => {
       gradient: 'from-brass/20 to-oxidized-teal/20'
     },
     {
-      title: t('projects.euCapitals.title'), 
-      description: t('projects.euCapitals.description'),
+      title: t('projects.europeCapitals.title'),
+      description: t('projects.europeCapitals.description'),
       icon: Globe,
-      link: `/${locale}/eu-capitals`,
+      link: `/${locale}/europe-capitals`,
       gradient: 'from-teal/20 to-brass/20'
     },
     {
@@ -45,7 +45,7 @@ const Projects = () => {
       <SEO 
         title={`${t('projects.title')} | STEaM LOGIC Studio AB`}
         description={t('projects.description')}
-        keywords="projects, AI consulting, storytelling, books, videos, EU capitals trainer, services, STEaM LOGIC Studio AB"
+        keywords="projects, AI consulting, storytelling, books, videos, Europe capitals trainer, services, STEaM LOGIC Studio AB"
       />
       
       <Navigation currentPage="projects" />

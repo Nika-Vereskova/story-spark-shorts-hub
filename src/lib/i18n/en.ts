@@ -9,7 +9,7 @@ export const en = {
     contact: "Contact",
     services: "Services",
     projects: "Projects",
-    euCapitals: "EU Capitals",
+    europeCapitals: "Europe Capitals",
     signIn: "Sign In",
     signOut: "Sign Out"
   },
@@ -435,10 +435,10 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
       title: 'Steampunk Books',
       description: 'Enchanting tales of young inventors and their magical adventures in a steampunk world.'
     },
-    euCapitals: {
-      title: "EU Capitals Trainer",
-      subtitle: "Learn European Countries and their Capitals",
-      description: "Interactive learning tool for European Union countries and capitals with study mode, quiz, and map.",
+    europeCapitals: {
+      title: "Europe Capitals Trainer",
+      subtitle: "Learn European countries and their capitals",
+      description: "Interactive learning tool for European countries and capitals with study mode, quiz, and map.",
       study: "Study",
       quiz: "Quiz",
       map: "Map",

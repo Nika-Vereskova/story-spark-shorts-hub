@@ -13,7 +13,7 @@ import GearIcon from '@/components/GearIcon';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 
-const EUCapitals = () => {
+const EuropeCapitals = () => {
   const locale = getCurrentLocale();
   const { toast } = useToast();
   
@@ -40,7 +40,7 @@ const EUCapitals = () => {
 
   // Load missed items from localStorage
   useEffect(() => {
-    const savedMissed = localStorage.getItem('eu_missed');
+    const savedMissed = localStorage.getItem('europe_missed');
     if (savedMissed) {
       setMissed(JSON.parse(savedMissed));
     }
@@ -159,7 +159,7 @@ const EUCapitals = () => {
   // Quiz functions
   const startQuiz = () => {
     console.log('🎯 Starting new quiz');
-    const questions = shuffle([...EUROPE_COUNTRIES]).slice(0, 10).map(item => ({
+    const questions = shuffle([...EUROPE_COUNTRIES]).map(item => ({
       item,
       answered: false
     }));
@@ -170,7 +170,7 @@ const EUCapitals = () => {
       questions,
       index: 0,
       correct: 0,
-      total: 10
+      total: EUROPE_COUNTRIES.length
     });
     setShowResult(false);
     setIsProcessing(false);
@@ -199,17 +199,17 @@ const EUCapitals = () => {
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
       toast({
-        title: "🎉 " + t('projects.euCapitals.correct'),
-        description: t('projects.euCapitals.wellDone'),
+        title: "🎉 " + t('projects.europeCapitals.correct'),
+        description: t('projects.europeCapitals.wellDone'),
         duration: 1500,
       });
     } else {
       const newMissed = [...missed, item.code];
       setMissed([...new Set(newMissed)]);
-      localStorage.setItem('eu_missed', JSON.stringify([...new Set(newMissed)]));
+      localStorage.setItem('europe_missed', JSON.stringify([...new Set(newMissed)]));
       toast({
-        title: "❌ " + t('projects.euCapitals.incorrect'),
-        description: `${t('projects.euCapitals.correctAnswer')}: ${correctAnswer}`,
+        title: "❌ " + t('projects.europeCapitals.incorrect'),
+        description: `${t('projects.europeCapitals.correctAnswer')}: ${correctAnswer}`,
         duration: 2000,
         variant: "destructive"
       });
@@ -298,7 +298,7 @@ const EUCapitals = () => {
             type="text"
             value={typedAnswer}
             onChange={(e) => setTypedAnswer(e.target.value)}
-            placeholder={t('projects.euCapitals.typeHere')}
+            placeholder={t('projects.europeCapitals.typeHere')}
             disabled={showResult}
             className="w-full h-14 md:h-16 px-4 md:px-6 text-lg md:text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
             onKeyDown={(e) => {
@@ -311,7 +311,7 @@ const EUCapitals = () => {
           <div className="flex justify-center">
             <Button
               type="button"
-              aria-label={t('projects.euCapitals.checkAnswer')}
+              aria-label={t('projects.europeCapitals.checkAnswer')}
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
@@ -332,7 +332,7 @@ const EUCapitals = () => {
                   : 'hover:scale-[1.02] active:scale-[0.98]'
               }`}
             >
-              {t('projects.euCapitals.checkAnswer')}{' '}
+              {t('projects.europeCapitals.checkAnswer')}{' '}
               {showResult ? (isAnswerCorrect ? '✅' : '❌') : '✓'}
             </Button>
           </div>
@@ -356,8 +356,8 @@ const EUCapitals = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <SEO 
-        title={`${t('projects.euCapitals.title')} | STEaM LOGIC Studio AB`}
-        description={t('projects.euCapitals.description')}
+        title={`${t('projects.europeCapitals.title')} | STEaM LOGIC Studio AB`}
+        description={t('projects.europeCapitals.description')}
         keywords="EU capitals trainer, geography learning, European countries, capitals quiz, educational game, interactive learning"
       />
       
@@ -369,7 +369,7 @@ const EUCapitals = () => {
         <div className="absolute bottom-60 right-32 w-3 h-6 bg-accent/25 rounded-full steam-effect" style={{animationDelay: '1s'}}></div>
       </div>
       
-      <Navigation currentPage="eu-capitals" />
+      <Navigation currentPage="europe-capitals" />
       
       <div className="pt-24 pb-12 relative">
         <div className="container mx-auto px-6 max-w-6xl">
@@ -385,10 +385,10 @@ const EUCapitals = () => {
                 </div>
                 <div>
                   <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
-                    {t('projects.euCapitals.title')} 🏰
+                    {t('projects.europeCapitals.title')} 🏰
                   </h1>
                   <p className="text-muted-foreground text-lg mt-2">
-                    {t('projects.euCapitals.subtitle')}
+                    {t('projects.europeCapitals.subtitle')}
                   </p>
                 </div>
               </div>
@@ -396,11 +396,11 @@ const EUCapitals = () => {
               <Button
                 type="button"
                 onClick={startQuiz}
-                aria-label={t('projects.euCapitals.startQuiz') as string}
+                aria-label={t('projects.europeCapitals.startQuiz') as string}
                 size="lg"
                 className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
               >
-                🎯 {t('projects.euCapitals.startQuiz')}
+                🎯 {t('projects.europeCapitals.startQuiz')}
               </Button>
             </div>
           </div>
@@ -408,9 +408,9 @@ const EUCapitals = () => {
           {/* Tabs */}
           <div className="flex flex-wrap gap-4 mb-8">
             {[
-              { id: 'study', icon: '📚', label: t('projects.euCapitals.study'), color: 'from-green-500 to-green-600' },
-              { id: 'quiz', icon: '🎯', label: t('projects.euCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
-              { id: 'map', icon: '🗺️', label: t('projects.euCapitals.map'), color: 'from-orange-500 to-orange-600' }
+              { id: 'study', icon: '📚', label: t('projects.europeCapitals.study'), color: 'from-green-500 to-green-600' },
+              { id: 'quiz', icon: '🎯', label: t('projects.europeCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
+              { id: 'map', icon: '🗺️', label: t('projects.europeCapitals.map'), color: 'from-orange-500 to-orange-600' }
             ].map(tab => (
               <Button
                 key={tab.id}
@@ -454,7 +454,7 @@ const EUCapitals = () => {
                     
                     {/* Flip indicator */}
                     <div className="absolute bottom-4 right-4 text-muted-foreground text-sm">
-                      ↻ {t('projects.euCapitals.clickToFlip')}
+                      ↻ {t('projects.europeCapitals.clickToFlip')}
                     </div>
                   </div>
                 </div>
@@ -462,68 +462,68 @@ const EUCapitals = () => {
                 {/* Controls */}
                 <div className="space-y-6">
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-foreground">{t('projects.euCapitals.studyMode')}</h3>
+                    <h3 className="text-lg font-semibold text-foreground">{t('projects.europeCapitals.studyMode')}</h3>
                     <div className="grid grid-cols-1 gap-2">
                       <Button
                         onClick={() => { setDirection('country'); setShowFront(true); }}
                         variant={direction === 'country' ? 'default' : 'outline'}
                         size="lg"
-                        aria-label={t('projects.euCapitals.countryToCapital') as string}
+                        aria-label={t('projects.europeCapitals.countryToCapital') as string}
                         className="h-12 text-lg rounded-xl font-semibold justify-start focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        🏛️ {t('projects.euCapitals.countryToCapital')}
+                        🏛️ {t('projects.europeCapitals.countryToCapital')}
                       </Button>
                       <Button
                         onClick={() => { setDirection('capital'); setShowFront(true); }}
                         variant={direction === 'capital' ? 'default' : 'outline'}
                         size="lg"
-                        aria-label={t('projects.euCapitals.capitalToCountry') as string}
+                        aria-label={t('projects.europeCapitals.capitalToCountry') as string}
                         className="h-12 text-lg rounded-xl font-semibold justify-start focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        🏰 {t('projects.euCapitals.capitalToCountry')}
+                        🏰 {t('projects.europeCapitals.capitalToCountry')}
                       </Button>
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-foreground">{t('projects.euCapitals.navigation')}</h3>
+                    <h3 className="text-lg font-semibold text-foreground">{t('projects.europeCapitals.navigation')}</h3>
                     <div className="grid grid-cols-2 gap-2">
                       <Button
                         onClick={() => moveCard(studyIndex - 1)}
                         variant="outline"
                         size="lg"
-                        aria-label={t('projects.euCapitals.prev') as string}
+                        aria-label={t('projects.europeCapitals.prev') as string}
                         className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        ⬅️ {t('projects.euCapitals.prev')}
+                        ⬅️ {t('projects.europeCapitals.prev')}
                       </Button>
                       <Button
                         onClick={() => moveCard(studyIndex + 1)}
                         variant="outline"
                         size="lg"
-                        aria-label={t('projects.euCapitals.next') as string}
+                        aria-label={t('projects.europeCapitals.next') as string}
                         className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        {t('projects.euCapitals.next')} ➡️
+                        {t('projects.europeCapitals.next')} ➡️
                       </Button>
                     </div>
                     <div className="grid grid-cols-2 gap-2">
                       <Button
                         onClick={flipCard}
                         size="lg"
-                        aria-label={t('projects.euCapitals.flip') as string}
+                        aria-label={t('projects.europeCapitals.flip') as string}
                         className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        🔄 {t('projects.euCapitals.flip')}
+                        🔄 {t('projects.europeCapitals.flip')}
                       </Button>
                       <Button
                         onClick={shuffleOrder}
                         variant="outline"
                         size="lg"
-                        aria-label={t('projects.euCapitals.shuffle') as string}
+                        aria-label={t('projects.europeCapitals.shuffle') as string}
                         className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        🔀 {t('projects.euCapitals.shuffle')}
+                        🔀 {t('projects.europeCapitals.shuffle')}
                       </Button>
                     </div>
                   </div>
@@ -537,17 +537,17 @@ const EUCapitals = () => {
                         className="w-5 h-5 accent-secondary rounded"
                       />
                       <span className="text-foreground font-medium">
-                        💡 {t('projects.euCapitals.showHints')}
+                        💡 {t('projects.europeCapitals.showHints')}
                       </span>
                     </label>
 
                       <div className="bg-card/50 rounded-lg p-4 border">
                         <div className="text-lg font-semibold text-foreground">
-                          📊 {t('projects.euCapitals.progress')}: {studyIndex + 1}/{EUROPE_COUNTRIES.length}
+                          📊 {t('projects.europeCapitals.progress')}: {studyIndex + 1}/{EUROPE_COUNTRIES.length}
                         </div>
                         {missed.length > 0 && (
                           <div className="text-muted-foreground mt-1">
-                            🔄 {t('projects.euCapitals.reviewLater')}: {missed.length}
+                            🔄 {t('projects.europeCapitals.reviewLater')}: {missed.length}
                           </div>
                         )}
                       </div>
@@ -564,16 +564,16 @@ const EUCapitals = () => {
                 <div className="space-y-6">
                   <div className="text-center mb-8">
                     <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
-                      🎯 {t('projects.euCapitals.quizTime')}
+                      🎯 {t('projects.europeCapitals.quizTime')}
                     </h2>
                     <p className="text-muted-foreground text-lg">
-                      {t('projects.euCapitals.quizDescription')}
+                      {t('projects.europeCapitals.quizDescription')}
                     </p>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-foreground">{t('projects.euCapitals.quizType')}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{t('projects.europeCapitals.quizType')}</h3>
                       <div className="space-y-3">
                         <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
                           <input 
@@ -584,7 +584,7 @@ const EUCapitals = () => {
                             onChange={(e) => setQuizMode(e.target.value)}
                             className="w-5 h-5 accent-secondary"
                           />
-                          <span className="text-lg font-medium text-foreground">🔘 {t('projects.euCapitals.multipleChoice')}</span>
+                          <span className="text-lg font-medium text-foreground">🔘 {t('projects.europeCapitals.multipleChoice')}</span>
                         </label>
                         <label className="flex items-center gap-3 p-4 rounded-xl border-2 cursor-pointer hover:bg-card/50 transition-colors">
                           <input 
@@ -595,20 +595,20 @@ const EUCapitals = () => {
                             onChange={(e) => setQuizMode(e.target.value)}
                             className="w-5 h-5 accent-secondary"
                           />
-                          <span className="text-lg font-medium text-foreground">✏️ {t('projects.euCapitals.typed')}</span>
+                          <span className="text-lg font-medium text-foreground">✏️ {t('projects.europeCapitals.typed')}</span>
                         </label>
                       </div>
                     </div>
                     
                     <div className="space-y-4">
-                      <h3 className="text-xl font-semibold text-foreground">{t('projects.euCapitals.direction')}</h3>
+                      <h3 className="text-xl font-semibold text-foreground">{t('projects.europeCapitals.direction')}</h3>
                       <select 
                         value={quizDirection}
                         onChange={(e) => setQuizDirection(e.target.value)}
                         className="w-full h-12 px-4 text-lg rounded-xl border-2 border-border bg-card text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
                       >
-                        <option value="cc">🏛️ {t('projects.euCapitals.countryToCapital')}</option>
-                        <option value="cc_rev">🏰 {t('projects.euCapitals.capitalToCountry')}</option>
+                        <option value="cc">🏛️ {t('projects.europeCapitals.countryToCapital')}</option>
+                        <option value="cc_rev">🏰 {t('projects.europeCapitals.capitalToCountry')}</option>
                       </select>
                     </div>
                   </div>
@@ -617,10 +617,10 @@ const EUCapitals = () => {
                     <Button
                       onClick={startQuiz}
                       size="lg"
-                      aria-label={t('projects.euCapitals.startQuiz') as string}
+                      aria-label={t('projects.europeCapitals.startQuiz') as string}
                       className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
-                        🚀 {t('projects.euCapitals.startQuiz')}
+                        🚀 {t('projects.europeCapitals.startQuiz')}
                       </Button>
                   </div>
                 </div>
@@ -630,19 +630,19 @@ const EUCapitals = () => {
                     {quizState.correct >= 8 ? '🏆' : quizState.correct >= 6 ? '🥉' : '🎯'}
                   </div>
                   <div className="text-4xl font-playfair font-bold text-foreground mb-4">
-                    {t('projects.euCapitals.finalScore')}: {quizState.correct}/{quizState.total}
+                    {t('projects.europeCapitals.finalScore')}: {quizState.correct}/{quizState.total}
                   </div>
                   <div className="text-xl text-muted-foreground mb-8">
-                    {quizState.correct >= 8 ? t('projects.euCapitals.excellent') :
-                     quizState.correct >= 6 ? t('projects.euCapitals.good') : t('projects.euCapitals.keepPracticing')}
+                    {quizState.correct >= 8 ? t('projects.europeCapitals.excellent') :
+                     quizState.correct >= 6 ? t('projects.europeCapitals.good') : t('projects.europeCapitals.keepPracticing')}
                   </div>
                   <Button
                     onClick={() => setQuizState(null)}
                     size="lg"
-                    aria-label={t('projects.euCapitals.tryAgain') as string}
+                    aria-label={t('projects.europeCapitals.tryAgain') as string}
                     className="h-16 px-8 text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                     >
-                      🔄 {t('projects.euCapitals.tryAgain')}
+                      🔄 {t('projects.europeCapitals.tryAgain')}
                     </Button>
                 </div>
               ) : (
@@ -650,10 +650,10 @@ const EUCapitals = () => {
                   <div className="mb-6 bg-card/50 rounded-xl p-4 border">
                     <div className="flex justify-between items-center">
                       <div className="text-lg font-semibold text-foreground">
-                        📊 {t('projects.euCapitals.question')} {quizState.index + 1}/{quizState.total}
+                        📊 {t('projects.europeCapitals.question')} {quizState.index + 1}/{quizState.total}
                       </div>
                       <div className="text-lg font-semibold text-foreground">
-                        ⭐ {t('projects.euCapitals.score')}: {quizState.correct}/{quizState.total}
+                        ⭐ {t('projects.europeCapitals.score')}: {quizState.correct}/{quizState.total}
                       </div>
                     </div>
                     <Progress
@@ -687,9 +687,9 @@ const EUCapitals = () => {
             <div className="steampunk-card p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
-                  🗺️ {t('projects.euCapitals.exploreMap')}
+                  🗺️ {t('projects.europeCapitals.exploreMap')}
                 </h2>
-                <p className="text-muted-foreground text-lg">{t('projects.euCapitals.mapNote')}</p>
+                <p className="text-muted-foreground text-lg">{t('projects.europeCapitals.mapNote')}</p>
               </div>
               
               <div className="flex flex-wrap gap-4 mb-8 justify-center">
@@ -700,7 +700,7 @@ const EUCapitals = () => {
                 >
                   {REGIONS.map(region => (
                     <option key={region} value={region}>
-                      🌍 {t(`projects.euCapitals.regions.${region.toLowerCase()}`)}
+                      🌍 {t(`projects.europeCapitals.regions.${region.toLowerCase()}`)}
                     </option>
                   ))}
                 </select>
@@ -708,10 +708,10 @@ const EUCapitals = () => {
                   onClick={() => setActiveTiles([])}
                   variant="outline"
                   size="lg"
-                  aria-label={t('projects.euCapitals.reset') as string}
+                  aria-label={t('projects.europeCapitals.reset') as string}
                   className="h-12 px-6 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                 >
-                  🔄 {t('projects.euCapitals.reset')}
+                  🔄 {t('projects.europeCapitals.reset')}
                 </Button>
               </div>
 
@@ -758,8 +758,8 @@ const EUCapitals = () => {
               
               <div className="text-center mt-8 bg-card/50 rounded-xl p-4 border">
                 <p className="text-muted-foreground">
-                  🎵 {t('projects.euCapitals.clickToHear')} • 
-                  ⭐ {t('projects.euCapitals.selected')}: {activeTiles.length}
+                  🎵 {t('projects.europeCapitals.clickToHear')} • 
+                  ⭐ {t('projects.europeCapitals.selected')}: {activeTiles.length}
                 </p>
               </div>
             </div>
@@ -767,10 +767,10 @@ const EUCapitals = () => {
 
           <div className="mt-8 text-center bg-card/30 rounded-xl p-6 border">
             <div className="text-lg font-medium text-foreground mb-2">
-              💾 {t('projects.euCapitals.tipTitle')}
+              💾 {t('projects.europeCapitals.tipTitle')}
             </div>
             <div className="text-muted-foreground">
-              {t('projects.euCapitals.tip')}
+              {t('projects.europeCapitals.tip')}
             </div>
           </div>
         </div>
@@ -781,4 +781,4 @@ const EUCapitals = () => {
   );
 };
 
-export default EUCapitals;
+export default EuropeCapitals;

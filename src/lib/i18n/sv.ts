@@ -9,7 +9,7 @@ export const sv = {
     contact: "Kontakt",
     services: "Tjänster",
     projects: "Projekt",
-    euCapitals: "EU Huvudstäder",
+    europeCapitals: "Europa Huvudstäder",
     signIn: "Logga in",
     signOut: "Logga ut"
   },
@@ -435,10 +435,10 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       title: 'Steampunk-böcker',
       description: 'Förtrollande berättelser om unga uppfinnare och deras magiska äventyr i en steampunk-värld.'
     },
-    euCapitals: {
-      title: "EU Huvudstadstränare",
+    europeCapitals: {
+      title: "Europa Huvudstadstränare",
       subtitle: "Lär dig europeiska länder och deras huvudstäder",
-      description: "Interaktivt lärverktyg för Europeiska unionens länder och huvudstäder med studieläge, quiz och karta.",
+      description: "Interaktivt lärverktyg för europeiska länder och huvudstäder med studieläge, quiz och karta.",
       study: "Studera",
       quiz: "Quiz",
       map: "Karta",
