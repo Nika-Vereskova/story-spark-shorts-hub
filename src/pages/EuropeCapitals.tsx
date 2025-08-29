@@ -24,7 +24,6 @@ const EuropeCapitals = () => {
   const [studyIndex, setStudyIndex] = useState(0);
   const [showFront, setShowFront] = useState(true);
   const [direction, setDirection] = useState('country'); // 'country' | 'capital'
-  const [order, setOrder] = useState([...Array(EUROPE_COUNTRIES.length).keys()]);
   const [showHints, setShowHints] = useState(true);
   const [missed, setMissed] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState('All');
@@ -99,7 +98,7 @@ const EuropeCapitals = () => {
     return shuffled;
   };
 
-  const getCurrentItem = () => EUROPE_COUNTRIES[order[studyIndex]];
+  const getCurrentItem = () => EUROPE_COUNTRIES[studyIndex];
 
   const getCountry = (item: any) => {
     switch (locale) {
@@ -159,14 +158,33 @@ const EuropeCapitals = () => {
     setShowFront(true);
   };
 
-  const flipCard = () => {
-    setShowFront(!showFront);
+  const handleCardClick = (e: React.MouseEvent) => {
+    if (showFront) {
+      setShowFront(false);
+    } else {
+      const { offsetX } = e.nativeEvent;
+      const width = (e.currentTarget as HTMLElement).clientWidth;
+      if (offsetX < width / 2) {
+        moveCard(studyIndex - 1);
+      } else {
+        moveCard(studyIndex + 1);
+      }
+    }
   };
 
-  const shuffleOrder = () => {
-    setOrder(shuffle([...Array(EUROPE_COUNTRIES.length).keys()]));
-    setStudyIndex(0);
-    setShowFront(true);
+  const handleCardTouch = (e: React.TouchEvent) => {
+    if (showFront) {
+      setShowFront(false);
+    } else {
+      const touch = e.touches[0];
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      const x = touch.clientX - rect.left;
+      if (x < rect.width / 2) {
+        moveCard(studyIndex - 1);
+      } else {
+        moveCard(studyIndex + 1);
+      }
+    }
   };
 
   // Quiz functions
@@ -448,8 +466,12 @@ const EuropeCapitals = () => {
             <div className="steampunk-card p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Flashcard */}
-                <div className="relative">
-                  <div className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer" onClick={flipCard}>
+                  <div className="relative">
+                    <div
+                      className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer"
+                      onClick={handleCardClick}
+                      onTouchStart={handleCardTouch}
+                    >
                     {/* Decorative gears */}
                     <GearIcon aria-hidden="true" className="absolute top-4 left-4" size={8} direction="clockwise" color="text-secondary/30" />
                     <GearIcon aria-hidden="true" className="absolute top-4 right-4" size={6} direction="counter" color="text-primary/30" />
@@ -498,48 +520,6 @@ const EuropeCapitals = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-3">
-                    <h3 className="text-lg font-semibold text-foreground">{t('projects.europeCapitals.navigation')}</h3>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Button
-                        onClick={() => moveCard(studyIndex - 1)}
-                        variant="outline"
-                        size="lg"
-                        aria-label={t('projects.europeCapitals.prev') as string}
-                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                      >
-                        ⬅️ {t('projects.europeCapitals.prev')}
-                      </Button>
-                      <Button
-                        onClick={() => moveCard(studyIndex + 1)}
-                        variant="outline"
-                        size="lg"
-                        aria-label={t('projects.europeCapitals.next') as string}
-                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                      >
-                        {t('projects.europeCapitals.next')} ➡️
-                      </Button>
-                    </div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <Button
-                        onClick={flipCard}
-                        size="lg"
-                        aria-label={t('projects.europeCapitals.flip') as string}
-                        className="h-12 text-lg rounded-xl font-semibold bg-gradient-to-r from-primary to-secondary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                      >
-                        🔄 {t('projects.europeCapitals.flip')}
-                      </Button>
-                      <Button
-                        onClick={shuffleOrder}
-                        variant="outline"
-                        size="lg"
-                        aria-label={t('projects.europeCapitals.shuffle') as string}
-                        className="h-12 text-lg rounded-xl font-semibold focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-                      >
-                        🔀 {t('projects.europeCapitals.shuffle')}
-                      </Button>
-                    </div>
-                  </div>
 
                   <div className="space-y-3">
                     <label className="flex items-center gap-3 text-lg">
