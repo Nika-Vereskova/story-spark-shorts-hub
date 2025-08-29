@@ -6,6 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 
 const About = () => {
   return (
@@ -18,6 +20,7 @@ const About = () => {
       <Navigation currentPage="about" />
 
       <div className="pt-24 pb-16 px-6">
+        <AdSenseBanner position="top" />
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
@@ -28,6 +31,8 @@ const About = () => {
               {t('about.subtitle')}
             </p>
           </div>
+
+          <AdSenseSquare size="medium" />
 
           {/* Main Content */}
           <div className="grid lg:grid-cols-3 gap-12 items-start">
@@ -75,6 +80,8 @@ const About = () => {
             </div>
           </div>
 
+          <AdSenseBanner position="middle" />
+
           {/* Contact Links */}
           <div className="mt-16 text-center">
             <h2 className="text-3xl text-oxidized-teal mb-8 font-playfair drop-shadow-text-drop">
@@ -99,6 +106,8 @@ const About = () => {
               </Button>
             </div>
           </div>
+          
+          <AdSenseBanner position="bottom" />
         </div>
       </div>
     </div>

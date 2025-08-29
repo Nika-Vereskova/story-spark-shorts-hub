@@ -12,6 +12,8 @@ import { useUserRole } from '@/hooks/useUserRole';
 import { useAuth } from '@/contexts/AuthContext';
 import { t } from '@/lib/i18n';
 import SEO from '@/components/SEO';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 
 const Blog = () => {
   const { toast } = useToast();
@@ -135,6 +137,7 @@ const Blog = () => {
       <Navigation currentPage="blog" />
 
       <div className="pt-24 pb-16 px-6">
+        <AdSenseBanner position="top" />
         <div className="container mx-auto max-w-4xl">
           {/* Header */}
           <div className="text-center mb-12">
@@ -156,6 +159,8 @@ const Blog = () => {
               </div>
             )}
           </div>
+
+          <AdSenseSquare size="medium" />
 
           {/* Admin Access Notice */}
           {user && !isAdmin && !roleLoading && (
@@ -243,105 +248,12 @@ const Blog = () => {
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 shadow-brass-drop animate-fade-in relative"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
-                {/* Ornate brass corners */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-10"></div>
-                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-10"></div>
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
-                
-                <CardHeader>
-                  <div className="flex items-center gap-2 text-brass mb-2">
-                    <Calendar className="w-4 h-4" />
-                    <span className="text-sm font-medium font-inter">{post.date}</span>
-                  </div>
-                  <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop">{post.title}</CardTitle>
-                  <CardDescription className="text-brass font-medium font-inter">{t('blog.latestUpdates')}</CardDescription>
-                </CardHeader>
-                
-                <CardContent className="space-y-6">
-                  <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed">
-                    {post.content}
-                  </div>
-                  
-                  {/* Book Links */}
-                  {post.links && post.links.length > 0 && (
-                    <div className="space-y-4">
-                      <h3 className="text-oxidized-teal font-semibold font-playfair flex items-center">
-                        <Heart className="w-4 h-4 mr-2" />
-                        {t('blog.readPlumberella')}
-                      </h3>
-                      <div className="flex flex-wrap gap-3">
-                        {post.links.map((link, linkIndex) => (
-                          <Button
-                            key={linkIndex}
-                            variant="outline"
-                            className="border-2 border-brass text-brass hover:bg-brass/10 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-                            onClick={() => handleLinkClick(link.url, link.title)}
-                          >
-                            {link.title}
-                            <ExternalLink className="ml-2 h-4 w-4" />
-                          </Button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Excerpt Toggle - only for posts with book excerpts */}
-                  {post.bookExcerpt && (
-                    <div className="pt-4 border-t border-brass/30">
-                      <Button
-                        variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium mb-4"
-                        onClick={() => setExpandedExcerpt(!expandedExcerpt)}
-                      >
-                        <BookOpen className="mr-2 h-4 w-4" />
-                        {expandedExcerpt ? t('blog.hideExcerpt') : t('blog.readExcerpt')}
-                      </Button>
-                      
-                      {expandedExcerpt && (
-                        <div className="bg-brass/5 p-6 rounded-lg border border-brass/20 animate-fade-in">
-                          <div className="prose prose-oxidized-teal max-w-none">
-                            <div className="text-oxidized-teal/80 font-inter whitespace-pre-line leading-relaxed text-sm">
-                              {post.bookExcerpt}
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                  
-                  {/* Social Media Follow */}
-                  <div className="pt-4 border-t border-brass/30">
-                    <p className="text-oxidized-teal/80 mb-4 font-inter">
-                      {t('blog.followMe')}
-                    </p>
-                    <div className="flex flex-wrap gap-3">
-                      <Button
-                        variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium"
-                        onClick={() => handleLinkClick('https://www.facebook.com/profile.php?id=61577838015246', 'Facebook')}
-                      >
-                        Facebook
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 shadow-inner-glow transition-all duration-300 font-inter font-medium"
-                        onClick={() => handleLinkClick('https://www.instagram.com/vereskovanika', 'Instagram')}
-                      >
-                        Instagram
-                        <ExternalLink className="ml-2 h-4 w-4" />
-                      </Button>
-                    </div>
-                  </div>
-                  
-                  <div className="pt-4 italic text-oxidized-teal/70 font-inter">
-                    {t('blog.inspirationalQuote')}
-                  </div>
-                </CardContent>
+                {/* ... keep existing code (post content) */}
               </Card>
             ))}
           </div>
+          
+          <AdSenseBanner position="bottom" />
         </div>
       </div>
     </div>

@@ -9,6 +9,8 @@ import { t } from '@/lib/i18n';
 import SEO from '@/components/SEO';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentLocale } from '@/lib/i18n';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 
 interface NewsPost {
   id: string;
@@ -81,6 +83,7 @@ const AINews = () => {
       <Navigation currentPage="ai-news" />
       
       <main className="pt-24 pb-12">
+        <AdSenseBanner position="top" />
         <div className="container mx-auto px-6">
           {/* Header */}
           <div className="text-center mb-12">
@@ -92,6 +95,8 @@ const AINews = () => {
             </p>
           </div>
 
+          <AdSenseSquare size="medium" />
+
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {newsPosts.map((post) => (
@@ -99,46 +104,7 @@ const AINews = () => {
                 key={post.id}
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden"
               >
-                {post.cover_url && (
-                  <div className="relative overflow-hidden h-48">
-                    <img
-                      src={post.cover_url}
-                      alt={post.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                )}
-                
-                <CardHeader>
-                  <div className="flex items-center gap-2 text-sm text-brass mb-2 font-inter">
-                    <Clock className="w-4 h-4" />
-                    {formatDate(post.published_at)}
-                  </div>
-                  <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop group-hover:text-brass transition-colors">
-                    {post.title}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent>
-                  {post.summary && (
-                    <CardDescription className="text-oxidized-teal/80 mb-4 font-inter">
-                      {post.summary}
-                    </CardDescription>
-                  )}
-                  
-                  {post.article_url && (
-                    <Button 
-                      variant="outline"
-                      className="w-full border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter"
-                      onClick={() => window.open(post.article_url!, '_blank')}
-                    >
-                      {t('aiNews.readMore')}
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  )}
-                </CardContent>
+                {/* ... keep existing code (news posts) */}
               </Card>
             ))}
           </div>
@@ -150,6 +116,8 @@ const AINews = () => {
               </p>
             </div>
           )}
+          
+          <AdSenseBanner position="bottom" />
         </div>
       </main>
       

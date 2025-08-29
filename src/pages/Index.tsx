@@ -9,6 +9,8 @@ const AINewsCarousel = React.lazy(() => import('@/components/AINewsCarousel'));
 const ContactCTA = React.lazy(() => import('@/components/ContactCTA'));
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 
 const Index = () => {
   if (process.env.NODE_ENV === 'development') {
@@ -28,9 +30,13 @@ const Index = () => {
 
       {/* Hero Section - Critical for SEO */}
       <NewHeroSection />
+      
+      <AdSenseBanner position="top" />
 
       {/* About Me Preview - Critical for SEO */}
       <AboutPreview />
+      
+      <AdSenseSquare size="medium" />
 
       {/* Services Teaser - Critical for SEO */}
       <ServicesTeaser />
@@ -39,14 +45,20 @@ const Index = () => {
       <Suspense fallback={<div>Loading...</div>}>
         <AINewsCarousel />
       </Suspense>
+      
+      <AdSenseBanner position="middle" />
 
       {/* Contact CTA */}
       <Suspense fallback={<div>Loading...</div>}>
         <ContactCTA />
       </Suspense>
+      
+      <AdSenseSquare size="small" />
 
       {/* Footer */}
       <Footer />
+      
+      <AdSenseBanner position="bottom" />
     </div>
   );
 };

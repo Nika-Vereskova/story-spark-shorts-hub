@@ -7,6 +7,8 @@ import EmailContactCard from '@/components/EmailContactCard';
 import SocialLinksGrid from '@/components/SocialLinksGrid';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import SEO from '@/components/SEO';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 
 const Contact = () => {
   return (
@@ -19,8 +21,11 @@ const Contact = () => {
       <Navigation currentPage="contact" />
 
       <div className="pt-24 pb-16 px-6">
+        <AdSenseBanner position="top" />
         <div className="container mx-auto max-w-4xl">
           <ContactHeader />
+          
+          <AdSenseSquare size="medium" />
           
           <div className="mb-12">
             <EmailContactCard />
@@ -29,6 +34,8 @@ const Contact = () => {
           <SocialLinksGrid />
 
           <NewsletterSignup />
+          
+          <AdSenseBanner position="bottom" />
         </div>
       </div>
     </div>
