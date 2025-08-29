@@ -207,7 +207,7 @@ const EUCapitals = () => {
               disabled={showResult}
               size="lg"
               variant="outline"
-              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary hover:scale-105 transition-all duration-200 font-semibold whitespace-normal break-words"
+              className="w-full h-16 text-base md:text-lg rounded-2xl border-2 border-primary/50 bg-card hover:bg-primary/10 hover:border-primary transition-all duration-200 font-semibold whitespace-normal break-words"
             >
               {option}
             </Button>
