@@ -491,9 +491,6 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
         southern: "Southern Europe"
       }
     },
-      title: 'EU Capitals Trainer',
-      description: 'Interactive learning tool to master European capitals through games and memory techniques.'
-    },
     services: {
       title: 'AI Services',
       description: 'Custom GPT development, AI strategy consulting, and automation solutions for businesses.'
