@@ -7,7 +7,7 @@ import { Progress } from '@/components/ui/progress';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
-import { EU_COUNTRIES, REGIONS } from '@/data/euCountries';
+import { EUROPE_COUNTRIES, REGIONS } from '@/data/europeCountries';
 import GearIcon from '@/components/GearIcon';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -22,7 +22,7 @@ const EUCapitals = () => {
   const [studyIndex, setStudyIndex] = useState(0);
   const [showFront, setShowFront] = useState(true);
   const [direction, setDirection] = useState('country'); // 'country' | 'capital'
-  const [order, setOrder] = useState([...Array(EU_COUNTRIES.length).keys()]);
+  const [order, setOrder] = useState([...Array(EUROPE_COUNTRIES.length).keys()]);
   const [showHints, setShowHints] = useState(true);
   const [missed, setMissed] = useState<string[]>([]);
   const [selectedRegion, setSelectedRegion] = useState('All');
@@ -86,7 +86,7 @@ const EUCapitals = () => {
     return shuffled;
   };
 
-  const getCurrentItem = () => EU_COUNTRIES[order[studyIndex]];
+  const getCurrentItem = () => EUROPE_COUNTRIES[order[studyIndex]];
 
   const getCountry = (item: any) => {
     switch (locale) {
@@ -142,7 +142,7 @@ const EUCapitals = () => {
 
   // Study functions
   const moveCard = (newIndex: number) => {
-    setStudyIndex((newIndex + EU_COUNTRIES.length) % EU_COUNTRIES.length);
+    setStudyIndex((newIndex + EUROPE_COUNTRIES.length) % EUROPE_COUNTRIES.length);
     setShowFront(true);
   };
 
@@ -151,7 +151,7 @@ const EUCapitals = () => {
   };
 
   const shuffleOrder = () => {
-    setOrder(shuffle([...Array(EU_COUNTRIES.length).keys()]));
+    setOrder(shuffle([...Array(EUROPE_COUNTRIES.length).keys()]));
     setStudyIndex(0);
     setShowFront(true);
   };
@@ -159,7 +159,7 @@ const EUCapitals = () => {
   // Quiz functions
   const startQuiz = () => {
     console.log('🎯 Starting new quiz');
-    const questions = shuffle([...EU_COUNTRIES]).slice(0, 10).map(item => ({
+    const questions = shuffle([...EUROPE_COUNTRIES]).slice(0, 10).map(item => ({
       item,
       answered: false
     }));
@@ -218,7 +218,7 @@ const EUCapitals = () => {
 
   const renderMultipleChoice = (question: string, answer: string, item: any) => {
     const wrongAnswers = shuffle(
-      EU_COUNTRIES.filter(x => x !== item)
+      EUROPE_COUNTRIES.filter(x => x !== item)
     ).slice(0, 3).map(x => {
       return quizDirection === 'cc'
         ? getCapital(x)
@@ -350,8 +350,8 @@ const EUCapitals = () => {
 
   // Filter countries by region
   const filteredCountries = selectedRegion === 'All' 
-    ? EU_COUNTRIES 
-    : EU_COUNTRIES.filter(c => c.region === selectedRegion);
+    ? EUROPE_COUNTRIES
+    : EUROPE_COUNTRIES.filter(c => c.region === selectedRegion);
 
   return (
     <div className="min-h-screen bg-background relative">
@@ -543,7 +543,7 @@ const EUCapitals = () => {
 
                       <div className="bg-card/50 rounded-lg p-4 border">
                         <div className="text-lg font-semibold text-foreground">
-                          📊 {t('projects.euCapitals.progress')}: {studyIndex + 1}/{EU_COUNTRIES.length}
+                          📊 {t('projects.euCapitals.progress')}: {studyIndex + 1}/{EUROPE_COUNTRIES.length}
                         </div>
                         {missed.length > 0 && (
                           <div className="text-muted-foreground mt-1">
