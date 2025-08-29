@@ -9,7 +9,7 @@ export const en = {
     contact: "Contact",
     services: "Services",
     projects: "Projects",
-    europeCapitals: "Europe Capitals",
+    europeCapitals: "Europe Capitals Trainer",
     signIn: "Sign In",
     signOut: "Sign Out"
   },

@@ -9,7 +9,7 @@ export const sv = {
     contact: "Kontakt",
     services: "Tjänster",
     projects: "Projekt",
-    europeCapitals: "Europa Huvudstäder",
+    europeCapitals: "Europa Huvudstadstränare",
     signIn: "Logga in",
     signOut: "Logga ut"
   },

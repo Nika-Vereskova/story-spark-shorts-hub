@@ -9,7 +9,7 @@ export const ru = {
     contact: "Контакты",
     services: "Услуги",
     projects: "Проекты",
-    europeCapitals: "Столицы Европы",
+    europeCapitals: "Тренажёр столиц Европы",
     signIn: "Войти",
     signOut: "Выйти"
   },
