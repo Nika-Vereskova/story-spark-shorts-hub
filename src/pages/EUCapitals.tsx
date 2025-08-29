@@ -4,6 +4,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
+import { getSpeechLang } from '@/lib/speech';
 import { useToast } from '@/hooks/use-toast';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -86,7 +87,7 @@ const EUCapitals = () => {
 
   const getDisplayText = (item: any, isQuestion: boolean, dir: string) => {
     if (dir === 'country') {
-      return isQuestion 
+      return isQuestion
         ? (isEnglish ? item.country_en : item.country_sv)
         : (isEnglish ? item.capital_en : item.capital_sv);
     } else {
@@ -100,7 +101,7 @@ const EUCapitals = () => {
     if ('speechSynthesis' in window) {
       try {
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = isEnglish ? 'en-GB' : 'sv-SE';
+        utterance.lang = getSpeechLang(locale);
         speechSynthesis.cancel();
         speechSynthesis.speak(utterance);
       } catch (e) {
