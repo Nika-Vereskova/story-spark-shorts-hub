@@ -387,7 +387,7 @@ const EuropeCapitals = () => {
       <div className="pt-24 pb-12 relative">
         <div className="container mx-auto px-6 max-w-6xl">
           {/* Header */}
-          <div className="steampunk-card p-8 mb-8">
+          <div className="steampunk-card p-6 sm:p-8 mb-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-6">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
@@ -445,11 +445,11 @@ const EuropeCapitals = () => {
 
           {/* Study Panel */}
           {activeTab === 'study' && (
-            <div className="steampunk-card p-8">
+            <div className="steampunk-card p-6 sm:p-8">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Flashcard */}
                 <div className="relative">
-                  <div className="steampunk-card min-h-[300px] flex items-center justify-center text-center p-8 cursor-pointer" onClick={flipCard}>
+                  <div className="steampunk-card min-h-[260px] sm:min-h-[300px] flex items-center justify-center text-center p-6 sm:p-8 cursor-pointer" onClick={flipCard}>
                     {/* Decorative gears */}
                     <GearIcon aria-hidden="true" className="absolute top-4 left-4" size={8} direction="clockwise" color="text-secondary/30" />
                     <GearIcon aria-hidden="true" className="absolute top-4 right-4" size={6} direction="counter" color="text-primary/30" />
@@ -459,8 +459,19 @@ const EuropeCapitals = () => {
                         {displayText}
                       </div>
                       {hintText && showHints && (
-                        <div className="text-muted-foreground text-lg bg-card/50 rounded-lg p-3 border">
-                          💡 {hintText}
+                        <div className="text-muted-foreground text-sm sm:text-lg bg-card/50 rounded-lg p-3 sm:p-4 border flex items-center gap-2 flex-wrap justify-center">
+                          <span aria-hidden="true">💡</span>
+                          {currentItem?.emoji && (
+                            <span aria-hidden="true" className="text-xl sm:text-2xl">{currentItem.emoji}</span>
+                          )}
+                          {currentItem?.image && (
+                            <img
+                              src={currentItem.image}
+                              alt=""
+                              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
+                            />
+                          )}
+                          <span dangerouslySetInnerHTML={{ __html: hintText }} />
                         </div>
                       )}
                     </div>
@@ -572,7 +583,7 @@ const EuropeCapitals = () => {
 
           {/* Quiz Panel */}
           {activeTab === 'quiz' && (
-            <div className="steampunk-card p-8">
+            <div className="steampunk-card p-6 sm:p-8">
               {!quizState ? (
                 <div className="space-y-6">
                   <div className="text-center mb-8">
@@ -674,7 +685,7 @@ const EuropeCapitals = () => {
                       className="h-6 md:h-8 mt-4 bg-amber-200 rounded-full [&>div]:bg-amber-500"
                     />
                   </div>
-                  <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
+                  <div className="steampunk-card min-h-[400px] flex items-center justify-center p-6 sm:p-8">
                     {(() => {
                       const currentQuestion = quizState.questions[quizState.index];
                       console.log('📝 Rendering question', quizState.index, currentQuestion);
@@ -698,7 +709,7 @@ const EuropeCapitals = () => {
 
           {/* Map Panel */}
           {activeTab === 'map' && (
-            <div className="steampunk-card p-8">
+            <div className="steampunk-card p-6 sm:p-8">
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-playfair font-bold text-foreground mb-2">
                   🗺️ {t('projects.europeCapitals.exploreMap')}
