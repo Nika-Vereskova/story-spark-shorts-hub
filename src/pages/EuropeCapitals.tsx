@@ -174,10 +174,26 @@ const EuropeCapitals = () => {
     console.log('🎯 Starting new quiz');
     const questions = shuffle([...EUROPE_COUNTRIES])
       .slice(0, QUIZ_LENGTH)
-      .map(item => ({
-        item,
-        answered: false
-      }));
+      .map(item => {
+        const questionText =
+          quizDirection === 'cc' ? getCountry(item) : getCapital(item);
+        const answerText =
+          quizDirection === 'cc' ? getCapital(item) : getCountry(item);
+        const wrongAnswers = shuffle(
+          EUROPE_COUNTRIES.filter(x => x !== item)
+        )
+          .slice(0, 3)
+          .map(x =>
+            quizDirection === 'cc' ? getCapital(x) : getCountry(x)
+          );
+        return {
+          item,
+          question: questionText,
+          answer: answerText,
+          answered: false,
+          options: shuffle([answerText, ...wrongAnswers])
+        };
+      });
     console.log('📝 Shuffled questions', questions.map((q: any) => q.item.code));
 
     setQuizState({
@@ -194,8 +210,9 @@ const EuropeCapitals = () => {
     setActiveTab('quiz');
   };
 
-  const handleQuizAnswer = (selected: string, item: any, correctAnswer: string) => {
-    console.log('🔍 Quiz Answer Click:', { selected, correctAnswer, isProcessing, showResult });
+  const handleQuizAnswer = (selected: string, q: any) => {
+    const { item, answer } = q;
+    console.log('🔍 Quiz Answer Click:', { selected, correctAnswer: answer, isProcessing, showResult });
 
     // Prevent double clicks and processing conflicts
     if (isProcessing || showResult) {
@@ -206,12 +223,12 @@ const EuropeCapitals = () => {
     setIsProcessing(true);
     setShowResult(true);
 
-    const isCorrect = selected.toLowerCase().trim() === correctAnswer.toLowerCase().trim();
-    console.log('✅ Answer Check:', { isCorrect, selected, correctAnswer });
+    const isCorrect = selected.toLowerCase().trim() === answer.toLowerCase().trim();
+    console.log('✅ Answer Check:', { isCorrect, selected, correctAnswer: answer });
 
     setSelectedAnswer(selected);
     setAnswerStatus(isCorrect ? 'correct' : 'incorrect');
-    
+
     if (isCorrect) {
       setQuizState((prev: any) => ({ ...prev, correct: prev.correct + 1 }));
     } else {
@@ -221,16 +238,9 @@ const EuropeCapitals = () => {
     }
   };
 
-  const renderMultipleChoice = (question: string, answer: string, item: any) => {
-    const wrongAnswers = shuffle(
-      EUROPE_COUNTRIES.filter(x => x !== item)
-    ).slice(0, 3).map(x => {
-      return quizDirection === 'cc'
-        ? getCapital(x)
-        : getCountry(x);
-    });
-    
-    const allOptions = shuffle([answer, ...wrongAnswers]);
+  const renderMultipleChoice = (q: any) => {
+    const { question, answer, options } = q;
+    const allOptions = options;
 
     return (
       <div className="w-full space-y-6">
@@ -273,7 +283,7 @@ const EuropeCapitals = () => {
                   e.preventDefault();
                   e.stopPropagation();
                   console.log('🖱️ Button clicked:', option);
-                  handleQuizAnswer(option, item, answer);
+                  handleQuizAnswer(option, q);
                 }}
                 disabled={showResult || isProcessing}
                 size="lg"
@@ -292,7 +302,8 @@ const EuropeCapitals = () => {
     );
   };
 
-  const renderTypedAnswer = (question: string, answer: string, item: any) => {
+  const renderTypedAnswer = (q: any) => {
+    const { question, answer, item } = q;
     const buttonFeedbackClass =
       showResult
         ? answerStatus === 'correct'
@@ -326,7 +337,7 @@ const EuropeCapitals = () => {
             className="w-full h-14 md:h-16 px-4 md:px-6 text-lg md:text-xl text-center rounded-2xl border-2 border-primary/50 bg-card focus:border-primary focus:ring-2 focus:ring-primary/20"
             onKeyDown={(e) => {
               if (e.key === 'Enter' && typedAnswer.trim()) {
-                handleQuizAnswer(typedAnswer, item, answer);
+                handleQuizAnswer(typedAnswer, q);
               }
             }}
           />
@@ -339,7 +350,7 @@ const EuropeCapitals = () => {
                 e.preventDefault();
                 e.stopPropagation();
                 console.log('🖱️ Typed answer submitted:', typedAnswer);
-                handleQuizAnswer(typedAnswer, item, answer);
+                handleQuizAnswer(typedAnswer, q);
               }}
               disabled={!typedAnswer.trim() || showResult || isProcessing}
               size="lg"
@@ -676,21 +687,14 @@ const EuropeCapitals = () => {
                   </div>
                   <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
                     {(() => {
-                      const currentQuestion = quizState.questions[quizState.index];
-                      console.log('📝 Rendering question', quizState.index, currentQuestion);
-                      const isCountryToCapital = quizState.direction === 'cc';
-                      const questionText = isCountryToCapital
-                        ? getCountry(currentQuestion.item)
-                        : getCapital(currentQuestion.item);
-                      const answerText = isCountryToCapital
-                        ? getCapital(currentQuestion.item)
-                        : getCountry(currentQuestion.item);
+                        const currentQuestion = quizState.questions[quizState.index];
+                        console.log('📝 Rendering question', quizState.index, currentQuestion);
 
-                      return quizState.mode === 'mc'
-                        ? renderMultipleChoice(questionText, answerText, currentQuestion.item)
-                        : renderTypedAnswer(questionText, answerText, currentQuestion.item);
-                    })()}
-                  </div>
+                        return quizState.mode === 'mc'
+                          ? renderMultipleChoice(currentQuestion)
+                          : renderTypedAnswer(currentQuestion);
+                      })()}
+                    </div>
                 </>
               )}
             </div>
