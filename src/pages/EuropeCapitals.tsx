@@ -38,6 +38,7 @@ const EuropeCapitals = () => {
   const [isProcessing, setIsProcessing] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null)
   const [answerStatus, setAnswerStatus] = useState<'correct' | 'incorrect' | null>(null)
+  const [currentOptions, setCurrentOptions] = useState<string[]>([])
   const resultTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   // Load missed items from localStorage
@@ -84,6 +85,11 @@ const EuropeCapitals = () => {
       setTypedAnswer('');
       setSelectedAnswer(null);
       setAnswerStatus(null);
+      if (quizState.index < quizState.questions.length) {
+        setCurrentOptions(quizState.questions[quizState.index].options);
+      } else {
+        setCurrentOptions([]);
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [quizState?.index]);
@@ -218,6 +224,7 @@ const EuropeCapitals = () => {
       correct: 0,
       total: questions.length
     });
+    setCurrentOptions(questions[0].options)
     setShowResult(false);
     setIsProcessing(false);
     setTypedAnswer('');
@@ -252,7 +259,7 @@ const EuropeCapitals = () => {
   };
 
   const renderMultipleChoice = (question: string, answer: string, q: any) => {
-    const allOptions = q.options;
+    const allOptions = currentOptions;
 
     return (
       <div className="w-full space-y-6">
