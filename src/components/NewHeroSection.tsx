@@ -78,12 +78,12 @@ const NewHeroSection = () => {
             className="hero-subtitle text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light"
             itemProp="description"
           >
-            Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions
+            STEaM LOGIC Studio AB offers custom GPT development, AI solutions, workshops, web design and animation.
           </p>
 
           {/* Key Services for SEO */}
           <div className="mb-8 text-oxidized-teal/70 font-inter">
-            <span className="font-medium">Key Services:</span> AI Strategy & Implementation | Custom GPT Development | AI Workshops & Training | Process Automation Solutions
+            <span className="font-medium">Key Services:</span> AI Solutions & Implementation | Custom GPT Development | AI Workshops & Training | Animation
           </div>
 
           {/* Call-to-Action Buttons */}
