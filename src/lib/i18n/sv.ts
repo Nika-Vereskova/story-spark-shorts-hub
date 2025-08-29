@@ -450,6 +450,7 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       flip: "Visa Svar",
       shuffle: "Blanda Korten",
       showHints: "Visa minneshjälpare",
+      hint: "Ledtråd",
       multipleChoice: "Välj från Alternativ",
       typed: "Skriv Svaret",
       reset: "Rensa Urval",

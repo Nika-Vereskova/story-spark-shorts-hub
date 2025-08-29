@@ -459,15 +459,21 @@ const EuropeCapitals = () => {
                         {displayText}
                       </div>
                       {hintText && showHints && (
-                        <div className="text-muted-foreground text-sm sm:text-lg bg-card/50 rounded-lg p-3 sm:p-4 border flex items-center gap-2 flex-wrap justify-center">
+                        <div
+                          className="text-muted-foreground text-sm sm:text-lg bg-card/50 rounded-lg p-3 sm:p-4 border flex items-center gap-2 flex-wrap justify-center"
+                          role="note"
+                        >
+                          <span className="sr-only">{t('projects.europeCapitals.hint')}</span>
                           <span aria-hidden="true">💡</span>
                           {currentItem?.emoji && (
-                            <span aria-hidden="true" className="text-xl sm:text-2xl">{currentItem.emoji}</span>
+                            <span aria-hidden="true" className="text-xl sm:text-2xl">
+                              {currentItem.emoji}
+                            </span>
                           )}
                           {currentItem?.image && (
                             <img
                               src={currentItem.image}
-                              alt=""
+                              alt={getCountry(currentItem)}
                               className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
                             />
                           )}

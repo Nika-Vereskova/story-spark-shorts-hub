@@ -1,4 +1,19 @@
-export const EUROPE_COUNTRIES = [
+export interface EuropeCountry {
+  code: string
+  country_en: string
+  country_sv: string
+  country_ru: string
+  capital_en: string
+  capital_sv: string
+  capital_ru: string
+  region: string
+  hint_en: string
+  hint_sv: string
+  emoji?: string
+  image?: string
+}
+
+export const EUROPE_COUNTRIES: EuropeCountry[] = [
   {code:'AL', country_en:'Albania', country_sv:'Albanien', country_ru:'Албания', capital_en:'Tirana', capital_sv:'Tirana', capital_ru:'Тирана', region:'Balkans', hint_en:'Albania → Tirana', hint_sv:'Albanien → Tirana', emoji:'🦅'},
   {code:'AD', country_en:'Andorra', country_sv:'Andorra', country_ru:'Андорра', capital_en:'Andorra la Vella', capital_sv:'Andorra la Vella', capital_ru:'Андорра-ла-Велья', region:'Western', hint_en:'Andorra → Andorra la Vella', hint_sv:'Andorra → Andorra la Vella'},
   {code:'AM', country_en:'Armenia', country_sv:'Armenien', country_ru:'Армения', capital_en:'Yerevan', capital_sv:'Jerevan', capital_ru:'Ереван', region:'Caucasus', hint_en:'Armenia → Yerevan', hint_sv:'Armenien → Jerevan'},
