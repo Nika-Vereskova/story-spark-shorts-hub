@@ -174,10 +174,22 @@ const EuropeCapitals = () => {
     console.log('🎯 Starting new quiz');
     const questions = shuffle([...EUROPE_COUNTRIES])
       .slice(0, QUIZ_LENGTH)
-      .map(item => ({
-        item,
-        answered: false
-      }));
+      .map(item => {
+        const correctAnswer =
+          quizDirection === 'cc' ? getCapital(item) : getCountry(item);
+        const wrongAnswers = shuffle(
+          EUROPE_COUNTRIES.filter(x => x !== item)
+        )
+          .slice(0, 3)
+          .map(x =>
+            quizDirection === 'cc' ? getCapital(x) : getCountry(x)
+          );
+        return {
+          item,
+          answered: false,
+          options: shuffle([correctAnswer, ...wrongAnswers])
+        };
+      });
     console.log('📝 Shuffled questions', questions.map((q: any) => q.item.code));
 
     setQuizState({
@@ -221,16 +233,8 @@ const EuropeCapitals = () => {
     }
   };
 
-  const renderMultipleChoice = (question: string, answer: string, item: any) => {
-    const wrongAnswers = shuffle(
-      EUROPE_COUNTRIES.filter(x => x !== item)
-    ).slice(0, 3).map(x => {
-      return quizDirection === 'cc'
-        ? getCapital(x)
-        : getCountry(x);
-    });
-    
-    const allOptions = shuffle([answer, ...wrongAnswers]);
+  const renderMultipleChoice = (question: string, answer: string, q: any) => {
+    const allOptions = q.options;
 
     return (
       <div className="w-full space-y-6">
@@ -273,7 +277,7 @@ const EuropeCapitals = () => {
                   e.preventDefault();
                   e.stopPropagation();
                   console.log('🖱️ Button clicked:', option);
-                  handleQuizAnswer(option, item, answer);
+                  handleQuizAnswer(option, q.item, answer);
                 }}
                 disabled={showResult || isProcessing}
                 size="lg"
@@ -687,7 +691,7 @@ const EuropeCapitals = () => {
                         : getCountry(currentQuestion.item);
 
                       return quizState.mode === 'mc'
-                        ? renderMultipleChoice(questionText, answerText, currentQuestion.item)
+                        ? renderMultipleChoice(questionText, answerText, currentQuestion)
                         : renderTypedAnswer(questionText, answerText, currentQuestion.item);
                     })()}
                   </div>
