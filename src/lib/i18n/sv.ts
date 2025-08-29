@@ -5,9 +5,10 @@ export const sv = {
     books: "Böcker",
     videos: "Videor",
     about: "Om mig",
-    blog: "Blogg/ AI Nyheter",
+    news: "Nyheter",
     contact: "Kontakt",
     services: "Tjänster",
+    projects: "Projekt",
     euCapitals: "EU Huvudstäder",
     signIn: "Logga in",
     signOut: "Logga ut"
@@ -425,6 +426,34 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       text: "Om du har några frågor om denna integritetspolicy, vänligen kontakta oss via vår kontaktsida."
     }
   },
+
+  projects: {
+    title: 'Projekt',
+    subtitle: 'Utforska mina kreativa och tekniska projekt som kombinerar berättande med intelligent teknik.',
+    description: 'Upptäck innovativa projekt som blandar kreativitet, teknik och utbildning.',
+    books: {
+      title: 'Steampunk-böcker',
+      description: 'Förtrollande berättelser om unga uppfinnare och deras magiska äventyr i en steampunk-värld.'
+    },
+    euCapitals: {
+      title: 'EU Huvudstäder Träning',
+      description: 'Interaktivt lärverktyg för att behärska europeiska huvudstäder genom spel och minnesknep.'
+    },
+    services: {
+      title: 'AI-tjänster',
+      description: 'Anpassad GPT-utveckling, AI-strategirådgivning och automatiseringslösningar för företag.'
+    },
+    videos: {
+      title: 'Videoinnehåll',
+      description: 'Utbildande och underhållande videor om AI, berättande och kreativ teknik.'
+    },
+    cta: {
+      title: 'Har du ett projekt i åtanke?',
+      description: 'Låt oss samarbeta för att förverkliga dina idéer med den perfekta blandningen av kreativitet och teknik.',
+      button: 'Starta en konversation'
+    }
+  },
+
   footer: {
     copyright: "© 2025 STEaM LOGIC Studio AB. Alla rättigheter förbehållna.",
     privacy: "Integritetspolicy",

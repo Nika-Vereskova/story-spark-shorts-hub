@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User, LogOut, Settings } from 'lucide-react';
+import { Menu, X, User, LogOut, Settings, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import AuthModal from './AuthModal';
@@ -16,10 +16,12 @@ interface NavigationProps {
 const Navigation = ({ currentPage }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [authModalOpen, setAuthModalOpen] = useState(false);
+  const [projectsDropdownOpen, setProjectsDropdownOpen] = useState(false);
   const { user, signOut, subscribed, subscriptionTier } = useAuth();
   const location = useLocation();
   const locale = getCurrentLocale();
   const isMobile = useIsMobile();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Handle modal accessibility and body scroll lock
   useEffect(() => {
@@ -42,14 +44,35 @@ const Navigation = ({ currentPage }: NavigationProps) => {
     }
   }, [isOpen]);
 
+  // Handle dropdown clicks outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setProjectsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
     { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
-    { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
-    { name: t('nav.euCapitals'), path: `/${locale}/eu-capitals`, key: 'eu-capitals' },
-    { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
-    { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' },
-    { name: t('nav.blog'), path: `/${locale}/blog`, key: 'blog' },
+    { 
+      name: t('nav.projects'), 
+      key: 'projects',
+      isDropdown: true,
+      items: [
+        { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
+        { name: t('nav.euCapitals'), path: `/${locale}/eu-capitals`, key: 'eu-capitals' },
+        { name: t('nav.services'), path: `/${locale}/services`, key: 'services' },
+        { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' }
+      ]
+    },
+    { name: t('nav.news'), path: `/${locale}/ai-news`, key: 'news' },
     { name: t('nav.contact'), path: `/${locale}/contact`, key: 'contact' },
   ];
 
@@ -82,6 +105,17 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       return location.pathname === '/' || location.pathname === `/${locale}` || location.pathname === `/${locale}/`;
     }
     
+    // Handle projects dropdown items
+    if (['books', 'eu-capitals', 'services', 'videos'].includes(itemKey)) {
+      return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
+    }
+    
+    // Handle news (formerly blog/ai-news)
+    if (itemKey === 'news') {
+      return location.pathname === `/${locale}/ai-news` || location.pathname === `/ai-news` || 
+             location.pathname === `/${locale}/blog` || location.pathname === `/blog`;
+    }
+    
     // Handle other pages
     return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
   };
@@ -106,17 +140,56 @@ const Navigation = ({ currentPage }: NavigationProps) => {
             
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
-                <Link
-                  key={item.key}
-                  to={item.path}
-                  className={`font-inter font-medium transition-colors hover:text-brass ${
-                    isCurrentPage(item.key) 
-                      ? 'text-brass border-b-2 border-brass' 
-                      : 'text-oxidized-teal'
-                  }`}
-                >
-                  {item.name as string}
-                </Link>
+                <div key={item.key} className="relative" ref={item.isDropdown ? dropdownRef : undefined}>
+                  {item.isDropdown ? (
+                    <>
+                      <button
+                        onClick={() => setProjectsDropdownOpen(!projectsDropdownOpen)}
+                        className={`font-inter font-medium transition-colors hover:text-brass flex items-center gap-1 ${
+                          item.items?.some(subItem => isCurrentPage(subItem.key)) 
+                            ? 'text-brass border-b-2 border-brass' 
+                            : 'text-oxidized-teal'
+                        }`}
+                      >
+                        {item.name as string}
+                        <ChevronDown 
+                          size={16} 
+                          className={`transition-transform ${projectsDropdownOpen ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      
+                      {projectsDropdownOpen && (
+                        <div className="absolute top-full left-0 mt-2 w-48 bg-parchment border border-brass/30 rounded-lg shadow-lg z-50 backdrop-blur-sm">
+                          {item.items?.map((subItem) => (
+                            <Link
+                              key={subItem.key}
+                              to={subItem.path}
+                              onClick={() => setProjectsDropdownOpen(false)}
+                              className={`block px-4 py-3 font-inter transition-colors hover:bg-brass/10 first:rounded-t-lg last:rounded-b-lg ${
+                                isCurrentPage(subItem.key) 
+                                  ? 'text-brass bg-brass/5 border-l-4 border-brass' 
+                                  : 'text-oxidized-teal hover:text-brass'
+                              }`}
+                            >
+                              {subItem.name as string}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      to={item.path}
+                      className={`font-inter font-medium transition-colors hover:text-brass ${
+                        isCurrentPage(item.key) 
+                          ? 'text-brass border-b-2 border-brass' 
+                          : 'text-oxidized-teal'
+                      }`}
+                    >
+                      {item.name as string}
+                    </Link>
+                  )}
+                </div>
               ))}
               
               <LanguageSwitcher />
@@ -208,18 +281,43 @@ const Navigation = ({ currentPage }: NavigationProps) => {
                   {/* Navigation Links */}
                   <nav className="flex flex-col p-4 space-y-2">
                     {navItems.map((item) => (
-                      <Link
-                        key={item.key}
-                        to={item.path}
-                        className={`flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
-                          isCurrentPage(item.key) 
-                            ? 'text-brass bg-brass/10 border-l-4 border-brass' 
-                            : 'text-oxidized-teal hover:text-brass hover:bg-gray-50'
-                        }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name as string}
-                      </Link>
+                      <div key={item.key}>
+                        {item.isDropdown ? (
+                          <>
+                            <div className="flex items-center px-4 py-3 font-inter font-medium text-oxidized-teal">
+                              {item.name as string}
+                            </div>
+                            <div className="ml-4 space-y-1">
+                              {item.items?.map((subItem) => (
+                                <Link
+                                  key={subItem.key}
+                                  to={subItem.path}
+                                  className={`flex items-center px-4 py-2 font-inter transition-all duration-200 rounded-lg text-sm ${
+                                    isCurrentPage(subItem.key) 
+                                      ? 'text-brass bg-brass/10 border-l-4 border-brass' 
+                                      : 'text-oxidized-teal hover:text-brass hover:bg-gray-50'
+                                  }`}
+                                  onClick={() => setIsOpen(false)}
+                                >
+                                  {subItem.name as string}
+                                </Link>
+                              ))}
+                            </div>
+                          </>
+                        ) : (
+                          <Link
+                            to={item.path}
+                            className={`flex items-center px-4 py-3 font-inter font-medium transition-all duration-200 rounded-lg ${
+                              isCurrentPage(item.key) 
+                                ? 'text-brass bg-brass/10 border-l-4 border-brass' 
+                                : 'text-oxidized-teal hover:text-brass hover:bg-gray-50'
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.name as string}
+                          </Link>
+                        )}
+                      </div>
                     ))}
                     
                     {/* Language Switcher */}

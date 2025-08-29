@@ -5,9 +5,10 @@ export const en = {
     books: "Books",
     videos: "Videos",
     about: "About",
-    blog: "Blog/ AI News",
+    news: "News",
     contact: "Contact",
     services: "Services",
+    projects: "Projects",
     euCapitals: "EU Capitals",
     signIn: "Sign In",
     signOut: "Sign Out"
@@ -425,6 +426,34 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
       text: "If you have any questions about this Privacy Policy, please contact us through our contact page."
     }
   },
+
+  projects: {
+    title: 'Projects',
+    subtitle: 'Explore my creative and technical projects combining storytelling with intelligent technology.',
+    description: 'Discover innovative projects that blend creativity, technology, and education.',
+    books: {
+      title: 'Steampunk Books',
+      description: 'Enchanting tales of young inventors and their magical adventures in a steampunk world.'
+    },
+    euCapitals: {
+      title: 'EU Capitals Trainer',
+      description: 'Interactive learning tool to master European capitals through games and memory techniques.'
+    },
+    services: {
+      title: 'AI Services',
+      description: 'Custom GPT development, AI strategy consulting, and automation solutions for businesses.'
+    },
+    videos: {
+      title: 'Video Content',
+      description: 'Educational and entertaining videos about AI, storytelling, and creative technology.'
+    },
+    cta: {
+      title: 'Have a Project in Mind?',
+      description: "Let's collaborate to bring your ideas to life with the perfect blend of creativity and technology.",
+      button: 'Start a Conversation'
+    }
+  },
+  
   footer: {
     copyright: "© 2025 STEaM LOGIC Studio AB. All rights reserved.",
     privacy: "Privacy Policy",
