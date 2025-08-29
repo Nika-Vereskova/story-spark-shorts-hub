@@ -38,9 +38,9 @@ const LanguageSwitcher = () => {
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent 
-        align="end" 
-        className="min-w-[120px] bg-parchment border-brass/30 shadow-brass-drop"
+      <DropdownMenuContent
+        align="end"
+        className="min-w-[120px] bg-parchment border-brass/30 shadow-brass-drop z-[1100]"
       >
         {languages.map((lang) => (
           <DropdownMenuItem
