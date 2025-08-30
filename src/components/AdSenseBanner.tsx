@@ -11,11 +11,12 @@ const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
   position = 'middle' 
 }) => {
   const getAdSlot = () => {
-    // You'll need to replace these with actual ad slot IDs from your AdSense account
+    // Actual ad slot ID from our AdSense account
     switch (position) {
-      case 'top': return '1234567890';
-      case 'bottom': return '2345678901';
-      default: return '3456789012';
+      case 'top':
+      case 'bottom':
+      default:
+        return '9759787900';
     }
   };
 
