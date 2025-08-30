@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 
 interface AdSenseUnitProps {
   adSlot: string;
-  adFormat?: 'auto' | 'rectangle' | 'vertical' | 'horizontal';
+  adFormat?: 'auto' | 'rectangle' | 'vertical' | 'horizontal' | 'autorelaxed';
   adLayout?: string;
   className?: string;
   style?: React.CSSProperties;
