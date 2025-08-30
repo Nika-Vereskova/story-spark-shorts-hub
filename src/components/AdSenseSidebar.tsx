@@ -11,8 +11,8 @@ const AdSenseSidebar: React.FC<AdSenseSidebarProps> = ({
   position = 'right' 
 }) => {
   const getAdSlot = () => {
-    // You'll need to replace these with actual ad slot IDs from your AdSense account
-    return position === 'left' ? '7890123456' : '8901234567';
+    // Actual ad slot ID from our AdSense account
+    return '9759787900';
   };
 
   return (

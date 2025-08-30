@@ -11,12 +11,8 @@ const AdSenseSquare: React.FC<AdSenseSquareProps> = ({
   size = 'medium' 
 }) => {
   const getAdSlot = () => {
-    // You'll need to replace these with actual ad slot IDs from your AdSense account
-    switch (size) {
-      case 'small': return '4567890123';
-      case 'large': return '5678901234';
-      default: return '6789012345';
-    }
+    // Actual ad slot ID from our AdSense account
+    return '9759787900';
   };
 
   const getSizeStyle = () => {
