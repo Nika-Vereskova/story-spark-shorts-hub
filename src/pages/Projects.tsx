@@ -5,6 +5,7 @@ import SEO from '@/components/SEO';
 import { Link } from 'react-router-dom';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { BookOpen, Cog, Play, Globe } from 'lucide-react';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const Projects = () => {
   const locale = getCurrentLocale();
@@ -104,9 +105,14 @@ const Projects = () => {
               {t('projects.cta.button')}
             </Link>
           </div>
+          <AdSenseUnit
+            adSlot="9759787900"
+            adFormat="autorelaxed"
+            className="my-8"
+          />
         </div>
       </div>
-      
+
       <Footer />
     </div>
   );

@@ -4,6 +4,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const NewsletterConfirmed = () => {
   const [searchParams] = useSearchParams();
@@ -128,6 +129,11 @@ const NewsletterConfirmed = () => {
           </div>
         </CardContent>
       </Card>
+      <AdSenseUnit
+        adSlot="9759787900"
+        adFormat="autorelaxed"
+        className="my-8"
+      />
     </div>
   );
 };

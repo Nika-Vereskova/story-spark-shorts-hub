@@ -18,6 +18,7 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { EUROPE_COUNTRIES } from '@/data/europeCountries';
 import { cn } from '@/lib/utils';
 import GearIcon from '@/components/GearIcon';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -868,8 +869,14 @@ const EuropeCapitals = () => {
         </div>
       </div>
       
-      <Footer />
-    </div>
+        <AdSenseUnit
+          adSlot="9759787900"
+          adFormat="autorelaxed"
+          className="my-8"
+        />
+
+        <Footer />
+      </div>
   );
 };
 

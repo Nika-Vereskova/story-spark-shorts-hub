@@ -9,6 +9,7 @@ import { supabase } from '@/integrations/supabase/client';
 import Navigation from '@/components/Navigation';
 import { Send, Users, Mail, Lock } from 'lucide-react';
 import { User } from '@supabase/supabase-js';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const Admin = () => {
   const [subject, setSubject] = useState('');
@@ -189,6 +190,11 @@ const Admin = () => {
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
               <p className="text-oxidized-teal mt-4 font-inter">Loading...</p>
             </div>
+            <AdSenseUnit
+              adSlot="9759787900"
+              adFormat="autorelaxed"
+              className="my-8"
+            />
           </div>
         </div>
       </div>
@@ -221,6 +227,11 @@ const Admin = () => {
                 </Button>
               </CardContent>
             </Card>
+            <AdSenseUnit
+              adSlot="9759787900"
+              adFormat="autorelaxed"
+              className="my-8"
+            />
           </div>
         </div>
       </div>
@@ -250,6 +261,11 @@ const Admin = () => {
                 </p>
               </CardContent>
             </Card>
+            <AdSenseUnit
+              adSlot="9759787900"
+              adFormat="autorelaxed"
+              className="my-8"
+            />
           </div>
         </div>
       </div>
@@ -366,6 +382,11 @@ const Admin = () => {
               </form>
             </CardContent>
           </Card>
+          <AdSenseUnit
+            adSlot="9759787900"
+            adFormat="autorelaxed"
+            className="my-8"
+          />
         </div>
       </div>
     </div>
