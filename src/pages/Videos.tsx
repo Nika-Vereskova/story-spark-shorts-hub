@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const Videos = () => {
   const videos = [
@@ -120,8 +121,8 @@ const Videos = () => {
             <p className="text-oxidized-teal/80 text-lg mb-6 font-inter">
               {t('videos.subscribeDesc')}
             </p>
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
               onClick={() => window.open('https://www.youtube.com/@NikaVereskova/videos', '_blank', 'noopener,noreferrer')}
             >
@@ -129,6 +130,11 @@ const Videos = () => {
               <ExternalLink className="ml-2 h-4 w-4" />
             </Button>
           </div>
+          <AdSenseUnit
+            adSlot="9759787900"
+            adFormat="autorelaxed"
+            className="my-8"
+          />
         </div>
       </div>
     </div>

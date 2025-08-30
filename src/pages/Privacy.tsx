@@ -3,6 +3,7 @@ import React from 'react';
 import Navigation from '@/components/Navigation';
 import { t } from '@/lib/i18n';
 import SEO from '@/components/SEO';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const Privacy = () => {
   return (
@@ -74,6 +75,11 @@ const Privacy = () => {
             <p>{t('privacyPage.contact.text')}</p>
           </section>
         </div>
+        <AdSenseUnit
+          adSlot="9759787900"
+          adFormat="autorelaxed"
+          className="my-8"
+        />
       </div>
     </div>
   );

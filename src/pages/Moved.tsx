@@ -2,6 +2,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { t, getCurrentLocale } from '@/lib/i18n';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const Moved = () => {
   const locale = getCurrentLocale();
@@ -41,10 +42,15 @@ const Moved = () => {
           
           <p className="text-sm text-oxidized-teal/80 mt-4">
             {t('moved.updateBookmarks')} <br />
-            <span className="font-mono text-brass">https://nika-vereskova.lovable.app/en/</span>
+          <span className="font-mono text-brass">https://nika-vereskova.lovable.app/en/</span>
           </p>
         </div>
       </div>
+      <AdSenseUnit
+        adSlot="9759787900"
+        adFormat="autorelaxed"
+        className="my-8"
+      />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { t, getCurrentLocale } from '@/lib/i18n';
+import AdSenseUnit from '@/components/AdSenseUnit';
 
 const NotFound = () => {
   const location = useLocation();
@@ -30,13 +31,18 @@ const NotFound = () => {
         <p className="text-xl text-brass mb-6 font-inter">
           {t('notFound.subtitle')}
         </p>
-        <Link 
-          to={`/${locale}`} 
+        <Link
+          to={`/${locale}`}
           className="inline-block bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium rounded"
         >
           {t('notFound.returnHome')}
         </Link>
       </div>
+      <AdSenseUnit
+        adSlot="9759787900"
+        adFormat="autorelaxed"
+        className="my-8"
+      />
     </div>
   );
 };
