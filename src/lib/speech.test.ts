@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest';
 import { getSpeechLang } from './speech';
 
 describe('getSpeechLang', () => {
-  it('returns en-GB for English locale', () => {
-    expect(getSpeechLang('en')).toBe('en-GB');
+  it('returns en-US for English locale', () => {
+    expect(getSpeechLang('en')).toBe('en-US');
   });
 
   it('returns sv-SE for Swedish locale', () => {
