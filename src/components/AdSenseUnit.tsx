@@ -6,6 +6,7 @@ interface AdSenseUnitProps {
   adLayout?: string;
   className?: string;
   style?: React.CSSProperties;
+  onLoad?: () => void;
 }
 
   declare global {
@@ -19,7 +20,8 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   adFormat = 'auto',
   adLayout,
   className = '',
-  style = {}
+  style = {},
+  onLoad
 }) => {
   const adRef = useRef<HTMLDivElement>(null);
 
@@ -41,17 +43,18 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
     >
       <ins
         className="adsbygoogle"
-        style={{ 
+        style={{
           display: 'block',
           border: '1px solid hsl(var(--brass) / 0.2)',
           background: 'hsl(var(--parchment) / 0.05)',
-          ...style 
+          ...style
         }}
         data-ad-client="ca-pub-4113128198241483"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-ad-layout={adLayout}
         data-full-width-responsive="true"
+        onLoad={onLoad}
       />
     </div>
   );

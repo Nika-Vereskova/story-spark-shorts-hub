@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AdSenseUnit from './AdSenseUnit';
 
 interface AdSenseBannerProps {
@@ -6,10 +6,12 @@ interface AdSenseBannerProps {
   position?: 'top' | 'bottom' | 'middle';
 }
 
-const AdSenseBanner: React.FC<AdSenseBannerProps> = ({ 
-  className = '', 
-  position = 'middle' 
+const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
+  className = '',
+  position = 'middle'
 }) => {
+  const [loaded, setLoaded] = useState(false);
+
   const getAdSlot = () => {
     // Actual ad slot ID from our AdSense account
     switch (position) {
@@ -21,17 +23,22 @@ const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
   };
 
   return (
-    <div className={`w-full flex justify-center my-8 ${className}`}>
+    <div
+      className={`w-full flex justify-center ${loaded ? 'my-8' : 'my-0'} ${className}`}
+    >
       <div className="max-w-4xl w-full">
         <AdSenseUnit
           adSlot={getAdSlot()}
           adFormat="auto"
-          className="steampunk-ad-banner"
+          className={`${
+            loaded ? 'min-h-[50px] sm:min-h-[100px]' : 'min-h-0'
+          } steampunk-ad-banner`}
+          onLoad={() => setLoaded(true)}
           style={{
-            minHeight: '100px',
             borderRadius: '4px',
             border: '2px solid hsl(var(--brass) / 0.3)',
-            background: 'linear-gradient(45deg, hsl(var(--parchment) / 0.02), hsl(var(--brass) / 0.05))'
+            background:
+              'linear-gradient(45deg, hsl(var(--parchment) / 0.02), hsl(var(--brass) / 0.05))'
           }}
         />
       </div>
@@ -40,3 +47,4 @@ const AdSenseBanner: React.FC<AdSenseBannerProps> = ({
 };
 
 export default AdSenseBanner;
+
