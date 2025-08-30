@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ExternalLink, Cog, Settings } from 'lucide-react';
+import { ExternalLink, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
@@ -75,9 +75,52 @@ const Books = () => {
                 className={`bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop animate-fade-in relative ${
                   book.featured ? 'ring-2 ring-brass/50' : ''
                 }`}
-                style={{animationDelay: `${index * 0.1}s`}}
+              style={{animationDelay: `${index * 0.1}s`}}
               >
-                {/* ... keep existing code (book content) */}
+                {/* Ornate brass corners */}
+                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-10"></div>
+                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-10"></div>
+                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
+
+                {/* Book Cover */}
+                <div className="relative overflow-hidden">
+                  <img
+                    src={book.coverUrl}
+                    alt={book.title}
+                    loading="lazy"
+                    className="w-full h-64 object-cover md:h-72 transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
+
+                <CardHeader className="text-center">
+                  <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop">
+                    {book.title}
+                  </CardTitle>
+                  <CardDescription className="text-oxidized-teal/80 font-inter mt-2">
+                    {book.blurb}
+                    <span className="block text-brass font-medium mt-2">{book.ageRange}</span>
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent className="space-y-4">
+                  <Button
+                    className="w-full bg-brass hover:bg-brass-dark text-parchment border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                    onClick={() => handleBuyBook(book.amazonUrl, book.title)}
+                  >
+                    {t('books.swedishVersion')}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                  {book.englishUrl && (
+                    <Button
+                      className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment border-2 border-oxidized-teal-light shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                      onClick={() => handleBuyBook(book.englishUrl!, book.title)}
+                    >
+                      {t('books.englishVersion')}
+                      <ExternalLink className="ml-2 h-4 w-4" />
+                    </Button>
+                  )}
+                </CardContent>
               </Card>
             ))}
           </div>
