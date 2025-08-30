@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 interface AdSenseUnitProps {
   adSlot: string;
@@ -23,7 +23,13 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   style = {},
   onLoad
 }) => {
-  const adRef = useRef<HTMLDivElement>(null);
+  const insRef = useRef<HTMLInsElement>(null);
+  const [hasAd, setHasAd] = useState(false);
+
+  const checkAd = useCallback(() => {
+    const height = insRef.current?.getBoundingClientRect().height ?? 0;
+    setHasAd(height > 0);
+  }, []);
 
   useEffect(() => {
     try {
@@ -33,28 +39,46 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
     } catch (error) {
       console.warn('AdSense error:', error);
     }
-  }, []);
+
+    const timer = setTimeout(checkAd, 5000);
+    return () => clearTimeout(timer);
+  }, [checkAd]);
+
+  const handleLoad = () => {
+    checkAd();
+    onLoad?.();
+  };
+
+  const wrapperStyle: React.CSSProperties = {
+    overflow: 'hidden',
+    minHeight: hasAd ? undefined : 0,
+    height: hasAd ? undefined : 0,
+    ...style
+  };
+
+  if (hasAd) {
+    wrapperStyle.border = style?.border ?? '1px solid hsl(var(--brass) / 0.2)';
+    wrapperStyle.background =
+      style?.background ?? 'hsl(var(--parchment) / 0.05)';
+  }
 
   return (
-    <div 
-      ref={adRef}
+    <div
       className={`adsense-container ${className}`}
-      style={style}
+      style={wrapperStyle}
     >
       <ins
+        ref={insRef}
         className="adsbygoogle"
         style={{
-          display: 'block',
-          border: '1px solid hsl(var(--brass) / 0.2)',
-          background: 'hsl(var(--parchment) / 0.05)',
-          ...style
+          display: 'block'
         }}
         data-ad-client="ca-pub-4113128198241483"
         data-ad-slot={adSlot}
         data-ad-format={adFormat}
         data-ad-layout={adLayout}
         data-full-width-responsive="true"
-        onLoad={onLoad}
+        onLoad={handleLoad}
       />
     </div>
   );
