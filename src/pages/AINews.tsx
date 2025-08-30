@@ -100,11 +100,45 @@ const AINews = () => {
           {/* News Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {newsPosts.map((post) => (
-              <Card 
+              <Card
                 key={post.id}
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden"
               >
-                {/* ... keep existing code (news posts) */}
+                {post.cover_url && (
+                  <img
+                    src={post.cover_url}
+                    alt={post.title}
+                    className="w-full h-48 object-cover"
+                  />
+                )}
+                <CardHeader>
+                  <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop">
+                    {post.title}
+                  </CardTitle>
+                  {post.summary && (
+                    <CardDescription className="text-oxidized-teal/70 text-sm font-inter">
+                      {post.summary}
+                    </CardDescription>
+                  )}
+                </CardHeader>
+                <CardContent className="flex items-center justify-between gap-4 flex-wrap">
+                  <div className="flex items-center text-sm text-oxidized-teal/80 font-inter">
+                    <Clock className="w-4 h-4 mr-1" />
+                    {formatDate(post.published_at)}
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 font-inter font-medium"
+                    onClick={() =>
+                      post.article_url
+                        ? window.open(post.article_url, '_blank')
+                        : navigate(`/ai-news/${post.slug}`)
+                    }
+                  >
+                    {t('aiNews.readMore')}
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </Button>
+                </CardContent>
               </Card>
             ))}
           </div>
