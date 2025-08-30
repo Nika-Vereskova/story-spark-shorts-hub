@@ -15,22 +15,24 @@ const AdSenseSquare: React.FC<AdSenseSquareProps> = ({
     return '9759787900';
   };
 
-  const getSizeStyle = () => {
+  const getSizeClasses = () => {
     switch (size) {
-      case 'small': return { width: '200px', height: '200px' };
-      case 'large': return { width: '336px', height: '280px' };
-      default: return { width: '300px', height: '250px' };
+      case 'small':
+        return 'w-full max-w-[200px] h-auto';
+      case 'large':
+        return 'w-full max-w-[336px] h-auto';
+      default:
+        return 'w-full max-w-[300px] h-auto';
     }
   };
 
   return (
-    <div className={`flex justify-center my-6 ${className}`}>
+    <div className={`w-full flex justify-center my-6 ${className}`}>
       <AdSenseUnit
         adSlot={getAdSlot()}
         adFormat="rectangle"
-        className="steampunk-ad-square"
+        className={`steampunk-ad-square ${getSizeClasses()}`}
         style={{
-          ...getSizeStyle(),
           borderRadius: '8px',
           border: '2px solid hsl(var(--brass) / 0.4)',
           background: 'linear-gradient(135deg, hsl(var(--parchment) / 0.03), hsl(var(--oxidized-teal) / 0.05))',
