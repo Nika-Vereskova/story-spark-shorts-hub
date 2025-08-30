@@ -72,6 +72,9 @@ const EuropeCapitals = () => {
     'natasha',
     'olga',
     'maria',
+    'allison',
+    'samantha',
+    'joanna',
   ];
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
@@ -149,11 +152,33 @@ const EuropeCapitals = () => {
   const getVoiceForLocale = (loc: string) => {
     const lang = getSpeechLang(loc);
     if (voiceCache.current[lang]) return voiceCache.current[lang];
-    const localeVoices = voices.filter(v => v.lang === lang);
-    const femaleVoices = localeVoices.filter(v =>
-      femaleVoiceHints.some(h => v.name.toLowerCase().includes(h))
+    let localeVoices = voices.filter(
+      v => v.lang === lang || v.lang.startsWith(`${lang}-`)
     );
-    const voice = femaleVoices[0] || localeVoices[0];
+
+    if (!localeVoices.length && lang === 'en-US') {
+      localeVoices = voices.filter(v => v.lang.startsWith('en'));
+    }
+
+    const preferredOrder = ['samantha', 'joanna', 'allison'];
+
+    const sortByPreference = (arr: SpeechSynthesisVoice[]) =>
+      [...arr].sort((a, b) => {
+        const ai = preferredOrder.findIndex(n =>
+          a.name.toLowerCase().includes(n)
+        );
+        const bi = preferredOrder.findIndex(n =>
+          b.name.toLowerCase().includes(n)
+        );
+        return (ai === -1 ? Infinity : ai) - (bi === -1 ? Infinity : bi);
+      });
+
+    const femaleVoices = sortByPreference(
+      localeVoices.filter(v =>
+        femaleVoiceHints.some(h => v.name.toLowerCase().includes(h))
+      )
+    );
+    const voice = femaleVoices[0] || sortByPreference(localeVoices)[0];
     if (voice) voiceCache.current[lang] = voice;
     return voice;
   };
