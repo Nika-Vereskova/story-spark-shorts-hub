@@ -7,7 +7,6 @@ export const en = {
     about: "About",
     news: "News",
     contact: "Contact",
-    services: "Services",
     projects: "Projects",
     europeCapitals: "Europe Capitals Trainer",
     signIn: "Sign In",
@@ -80,85 +79,6 @@ export const en = {
     bio5: "Welcome to my little world of stories and ideas—where imagination meets engineering, and every detail has a purpose.",
     connect: "Let's Connect!",
     followSocial: "Follow on Social"
-  },
-  services: {
-    title: "My Services",
-    subtitle: "From enchanting stories to cutting-edge technology, I offer a range of services that blend creativity with innovation. Whether you're looking to learn, build, or tell your own story, I'm here to help.",
-    disclaimer: {
-      title: "Services Available Now",
-      description: "Transform your ideas into reality with our range of creative and technical services. From storytelling workshops to AI animations, we're here to bring your vision to life."
-    },
-    webinars: {
-      title: "Interactive Webinars",
-      description: "Engaging workshops on storytelling, AI, and creative technology",
-      features: [
-        "Live interactive sessions with Q&A",
-        "Storytelling techniques for all ages",
-        "Creative writing with AI assistance"
-      ],
-      cta: "Book a Webinar"
-    },
-    websites: {
-      title: "Website Development",
-      description: "Beautiful, functional websites that tell your story",
-      features: [
-        "Custom design with steampunk flair",
-        "Responsive and mobile-friendly",
-        "SEO optimized and fast loading"
-      ],
-      cta: "Get Your Website"
-    },
-    chapters: {
-      title: "Book Chapters & Writing",
-      description: "Custom stories and book chapters for your projects",
-      features: [
-        "Personalized fairy tales and stories",
-        "Educational content with narrative",
-        "Character development and world-building"
-      ],
-      cta: "Order Your Story"
-    },
-    animation: {
-      title: "AI Animation Magic",
-      description: "Bring your favorite characters or child's drawings to life with AI animation",
-      features: [
-        "Transform drawings into animated characters",
-        "Create moving stories from static images",
-        "AI-powered character animation",
-        "Perfect for children's art and storytelling",
-        "Multiple animation styles available"
-      ],
-      cta: "Animate Your Art"
-    },
-    apps: {
-      title: "App Development",
-      description: "Interactive applications that bring ideas to life",
-      features: [
-        "Educational apps for children",
-        "Creative tools and utilities",
-        "AI-powered interactive experiences"
-      ],
-      cta: "Build Your App"
-    },
-    ai: {
-      title: "AI Courses & Consulting",
-      description: "Learn about artificial intelligence and its creative applications",
-      features: [
-        "Beginner-friendly AI workshops",
-        "Creative AI for storytellers",
-        "Custom AI solutions consulting"
-      ],
-      cta: "Contact for Details"
-    },
-    card: {
-      activePlan: "Active: {tier} plan",
-      monthlyPrice: "Monthly - 100 SEK",
-      yearlyPrice: "Yearly - 1,000 SEK",
-      loading: "Loading...",
-      buyNow: "Buy Now - {price}",
-      contact: "Contact for Details",
-      inquirySubject: "Inquiry about {title}"
-    }
   },
   featuredServices: {
     authorSpeaker: {
@@ -488,10 +408,6 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
         caucasus: "Caucasus",
         transcontinental: "Transcontinental Countries"
       }
-    },
-    services: {
-      title: 'AI Services',
-      description: 'Custom GPT development, AI strategy consulting, and automation solutions for businesses.'
     },
     videos: {
       title: 'Video Content',

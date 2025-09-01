@@ -7,7 +7,6 @@ export const sv = {
     about: "Om mig",
     news: "Nyheter",
     contact: "Kontakt",
-    services: "Tjänster",
     projects: "Projekt",
     europeCapitals: "Europa Huvudstadstränare",
     signIn: "Logga in",
@@ -80,85 +79,6 @@ export const sv = {
     bio5: "Välkommen till min lilla värld av berättelser och idéer—där fantasi möter teknik och varje detalj har ett syfte.",
     connect: "Låt Oss Höra Av Varandra!",
     followSocial: "Följ på Sociala Medier"
-  },
-  services: {
-    title: "Mina Tjänster",
-    subtitle: "Från förtrollande berättelser till banbrytande teknik erbjuder jag en rad tjänster som blandar kreativitet med innovation. Oavsett om du vill lära dig, bygga eller berätta din egen historia, jag är här för att hjälpa.",
-    disclaimer: {
-      title: "Tjänster Tillgängliga Nu",
-      description: "Förvandla dina idéer till verklighet med vårt utbud av kreativa och tekniska tjänster. Från berättande workshops till AI-animationer är vi här för att förverkliga din vision."
-    },
-    webinars: {
-      title: "Interaktiva Webbinarier",
-      description: "Engagerande workshops om berättande, AI och kreativ teknik",
-      features: [
-        "Livesändningar med frågor och svar",
-        "Berättartekniker för alla åldrar",
-        "Kreativt skrivande med AI-hjälp"
-      ],
-      cta: "Boka ett Webbinarium"
-    },
-    websites: {
-      title: "Webbutveckling",
-      description: "Vackra, funktionella webbplatser som berättar din historia",
-      features: [
-        "Anpassad design med steampunk-flärd",
-        "Responsiv och mobilvänlig",
-        "SEO-optimerad och snabbladdande"
-      ],
-      cta: "Få Din Webbplats"
-    },
-    chapters: {
-      title: "Bokkapitel och Skrivande",
-      description: "Anpassade berättelser och bokkapitel för dina projekt",
-      features: [
-        "Personliga sagor och berättelser",
-        "Pedagogiskt innehåll med narrativ",
-        "Karaktärsutveckling och världsbyggande"
-      ],
-      cta: "Beställ en Berättelse"
-    },
-    animation: {
-      title: "AI Animations Magi",
-      description: "Få dina favoritkaraktärer eller ditt barns teckningar att komma till liv med AI-animation",
-      features: [
-        "Förvandla teckningar till animerade karaktärer",
-        "Skapa rörliga berättelser från statiska bilder",
-        "AI-driven karaktärsanimation",
-        "Perfekt för barns konst och berättande",
-        "Flera animationsstilar tillgängliga"
-      ],
-      cta: "Animera Din Konst"
-    },
-    apps: {
-      title: "Apputveckling",
-      description: "Interaktiva applikationer som ger liv åt idéer",
-      features: [
-        "Pedagogiska appar för barn",
-        "Kreativa verktyg och hjälpmedel",
-        "AI-drivna interaktiva upplevelser"
-      ],
-      cta: "Bygg Din App"
-    },
-    ai: {
-      title: "AI-kurser och Rådgivning",
-      description: "Lär dig om artificiell intelligens och dess kreativa tillämpningar",
-      features: [
-        "Nybörjarvänliga AI-workshops",
-        "Kreativ AI för berättare",
-        "Anpassade AI-lösningar rådgivning"
-      ],
-      cta: "Kontakta för Detaljer"
-    },
-    card: {
-      activePlan: "Aktiv: {tier}-plan",
-      monthlyPrice: "Månadsvis - 100 SEK",
-      yearlyPrice: "Årsvis - 1 000 SEK",
-      loading: "Laddar...",
-      buyNow: "Köp nu - {price}",
-      contact: "Kontakta för detaljer",
-      inquirySubject: "Förfrågan om {title}"
-    }
   },
   featuredServices: {
     authorSpeaker: {
@@ -488,10 +408,6 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
         caucasus: "Kaukasus",
         transcontinental: "Transkontinentala Länderna"
       }
-    },
-    services: {
-      title: 'AI-tjänster',
-      description: 'Anpassad GPT-utveckling, AI-strategirådgivning och automatiseringslösningar för företag.'
     },
     videos: {
       title: 'Videoinnehåll',

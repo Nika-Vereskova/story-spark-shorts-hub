@@ -26,13 +26,6 @@ const Projects = () => {
       gradient: 'from-teal/20 to-brass/20'
     },
     {
-      title: t('projects.services.title'),
-      description: t('projects.services.description'), 
-      icon: Cog,
-      link: `/${locale}/services`,
-      gradient: 'from-oxidized-teal/20 to-teal/20'
-    },
-    {
       title: t('projects.videos.title'),
       description: t('projects.videos.description'),
       icon: Play,
