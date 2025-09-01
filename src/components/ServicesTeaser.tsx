@@ -14,7 +14,7 @@ const ServicesTeaser = () => {
     posthog.capture('view_all_services_clicked', {
       source: 'services_teaser'
     });
-    navigate(`/${locale}/services`);
+    navigate(`/${locale}/projects`);
   };
 
   const services = [
@@ -92,7 +92,7 @@ const ServicesTeaser = () => {
             onClick={handleViewAllServices}
             itemProp="mainEntityOfPage"
           >
-            View All AI Services
+            View All Projects
           </Button>
         </div>
       </div>

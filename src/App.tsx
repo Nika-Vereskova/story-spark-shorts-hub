@@ -10,7 +10,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import LocaleRouter from "@/components/LocaleRouter";
 const Index = React.lazy(() => import("./pages/Index"));
 const About = React.lazy(() => import("./pages/About"));
-const Services = React.lazy(() => import("./pages/Services"));
+
 const AIServices = React.lazy(() => import("./pages/AIServices"));
 const Projects = React.lazy(() => import("./pages/Projects"));
 const EuropeCapitals = React.lazy(() => import("./pages/EuropeCapitals"));
@@ -76,7 +76,7 @@ const App = () => {
               <Route path="/:locale" element={withSuspense(Index)} />
               <Route path="/:locale/about" element={withSuspense(About)} />
               <Route path="/:locale/projects" element={withSuspense(Projects)} />
-              <Route path="/:locale/services" element={withSuspense(Services)} />
+              
               <Route path="/:locale/ai-services" element={withSuspense(AIServices)} />
               <Route path="/:locale/europe-capitals" element={withSuspense(EuropeCapitals)} />
               <Route path="/:locale/ai-news" element={withSuspense(AINews)} />
@@ -93,7 +93,7 @@ const App = () => {
               {/* Non-localized routes for backward compatibility */}
               <Route path="/about" element={withSuspense(About)} />
               <Route path="/projects" element={withSuspense(Projects)} />
-              <Route path="/services" element={withSuspense(Services)} />
+              
               <Route path="/ai-services" element={withSuspense(AIServices)} />
               <Route path="/europe-capitals" element={withSuspense(EuropeCapitals)} />
               <Route path="/ai-news" element={withSuspense(AINews)} />

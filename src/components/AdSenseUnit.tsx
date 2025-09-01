@@ -23,7 +23,7 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   style = {},
   onLoad
 }) => {
-  const insRef = useRef<HTMLInsElement>(null);
+  const insRef = useRef<HTMLModElement>(null);
   const [hasAd, setHasAd] = useState(false);
 
   const checkAd = useCallback(() => {
