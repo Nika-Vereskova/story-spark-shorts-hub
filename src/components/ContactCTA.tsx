@@ -49,7 +49,7 @@ const ContactCTA = () => {
             <p className="text-oxidized-teal/80 text-lg font-inter mb-8 max-w-2xl mx-auto">
               Ready to explore the intersection of creativity and technology? 
               Whether you need storytelling magic, AI solutions, or innovative design, 
-              I'm here to help transform your vision into reality.
+              We're here to help transform your vision into reality.
             </p>
             
             <div className="flex justify-center mb-8">

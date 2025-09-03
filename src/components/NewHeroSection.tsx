@@ -78,7 +78,7 @@ const NewHeroSection = () => {
             className="hero-subtitle text-oxidized-teal/80 mb-8 sm:mb-12 font-inter font-light"
             itemProp="description"
           >
-            Expert AI consultant Nika Vereskova offers custom GPT development, AI strategy, workshops, and automation solutions
+            We fuse hand-crafted storytelling, playful illustration and AI tools to build memorable children’s worlds, learning apps and brand experiences.
           </p>
 
           {/* Key Services for SEO */}
