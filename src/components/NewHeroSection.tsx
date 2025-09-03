@@ -83,7 +83,7 @@ const NewHeroSection = () => {
 
           {/* Key Services for SEO */}
           <div className="mb-8 text-oxidized-teal/70 font-inter">
-            <span className="font-medium">Key Projects:</span> AI fused products for children | Custom GPT Development | AI Workshops & Training | Animation
+            <span className="font-medium">Key Projetcs:</span> AI fused education | Custom GPT Development | AI Workshops & Training | Animation
           </div>
 
           {/* Call-to-Action Buttons */}
