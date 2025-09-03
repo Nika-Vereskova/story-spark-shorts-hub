@@ -41,9 +41,7 @@ const AboutPreview = () => {
               <div className="md:col-span-2 text-center md:text-left">
                 <h2 className="text-3xl font-playfair text-oxidized-teal mb-4">About Me</h2>
                 <p className="text-oxidized-teal/80 text-lg font-inter leading-relaxed mb-6">
-                  I'm Nika Vereskova, a storyteller, AI enthusiast, and designer merging art and technology to create innovative solutions. 
-                  With a passion for bringing imagination to life through both traditional narratives and cutting-edge AI tools, 
-                  I help businesses and individuals harness the power of creative technology.
+At STEaM LOGIC Studio AB we blend steampunk whimsy, narrative craft and creative technology to design children’s books, interactive learning tools and brand experiences. We help businesses, schools and families turn curious ideas into playful products that teach, delight and stick.
                 </p>
                 <Button 
                   variant="outline" 
