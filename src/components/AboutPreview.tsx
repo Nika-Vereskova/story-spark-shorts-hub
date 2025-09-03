@@ -30,7 +30,7 @@ const AboutPreview = () => {
               <div className="flex justify-center">
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-brass shadow-lg">
                   <img
-                    src="/lovable-uploads/7eff3f10-f21e-4ffc-848e-a08813692928.png"
+                    src="/lovable-uploads/748ca51a-4b47-4a65-b445-e2681b77e612.png"
                     alt="Nika Vereskova - Storyteller and AI Enthusiast"
                     className="w-full h-full object-cover"
                   />
