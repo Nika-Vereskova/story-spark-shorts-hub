@@ -83,7 +83,7 @@ const NewHeroSection = () => {
 
           {/* Key Services for SEO */}
           <div className="mb-8 text-oxidized-teal/70 font-inter">
-            <span className="font-medium">Key Services:</span> AI Strategy & Implementation | Custom GPT Development | AI Workshops & Training | Process Automation Solutions
+            <span className="font-medium">Key Services:</span> AI fused education | Custom GPT Development | AI Workshops & Training | Animation
           </div>
 
           {/* Call-to-Action Buttons */}
@@ -95,7 +95,7 @@ const NewHeroSection = () => {
               onClick={handleExploreServices}
               itemProp="mainEntityOfPage"
             >
-              Explore AI Projects
+              Explore AI Services
             </Button>
             <Button 
               size="lg" 
