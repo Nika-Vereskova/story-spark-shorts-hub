@@ -75,7 +75,7 @@ const SteampunkProjectCard = ({
               
               <div className="flex-1">
                 <h3 className={cn(
-                  'text-2xl font-playfair text-parchment mb-3 leading-tight',
+                  'text-2xl font-playfair text-oxidized-teal mb-3 leading-tight',
                   'group-hover:text-brass transition-colors duration-300',
                   'drop-shadow-sm'
                 )}>
@@ -83,8 +83,8 @@ const SteampunkProjectCard = ({
                 </h3>
                 
                 <p className={cn(
-                  'text-parchment/85 leading-relaxed text-base',
-                  'group-hover:text-parchment/95 transition-colors duration-300'
+                  'text-oxidized-teal/80 leading-relaxed text-base',
+                  'group-hover:text-brass transition-colors duration-300'
                 )}>
                   {description}
                 </p>
@@ -97,8 +97,8 @@ const SteampunkProjectCard = ({
                 'inline-flex items-center gap-2 px-4 py-2 rounded-lg',
                 'bg-gradient-to-r from-teal/20 to-brass/20 border border-brass/30',
                 'group-hover:from-teal/30 group-hover:to-brass/30 group-hover:border-brass/50',
-                'transition-all duration-300 text-sm font-medium text-parchment/90',
-                'group-hover:text-parchment group-hover:shadow-lg'
+                'transition-all duration-300 text-sm font-medium text-oxidized-teal',
+                'group-hover:text-brass group-hover:shadow-lg'
               )}>
                 <span>Explore Project</span>
                 <GearIcon size={3} direction="clockwise" color="text-brass" />

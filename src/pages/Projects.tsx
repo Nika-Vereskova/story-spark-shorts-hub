@@ -84,7 +84,7 @@ const Projects = () => {
             }`}
           >
             <div className="relative inline-block">
-              <h1 className="text-5xl md:text-7xl font-playfair text-parchment mb-6 leading-tight drop-shadow-2xl">
+              <h1 className="text-5xl md:text-7xl font-playfair text-oxidized-teal mb-6 leading-tight drop-shadow-2xl">
                 {t('projects.title')}
               </h1>
               
@@ -99,7 +99,7 @@ const Projects = () => {
             
             <MechanicalDivider className="max-w-2xl mx-auto my-8" />
             
-            <p className="text-xl md:text-2xl text-parchment/90 max-w-4xl mx-auto leading-relaxed font-light">
+            <p className="text-xl md:text-2xl text-oxidized-teal/80 max-w-4xl mx-auto leading-relaxed font-light">
               {t('projects.subtitle')}
             </p>
           </div>
@@ -138,10 +138,10 @@ const Projects = () => {
             <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full bg-brass/50 border-2 border-brass/70 shadow-inner" />
             
             <div className="relative z-10">
-              <h2 className="text-3xl md:text-4xl font-playfair text-parchment mb-6 drop-shadow-lg">
+              <h2 className="text-3xl md:text-4xl font-playfair text-oxidized-teal mb-6 drop-shadow-lg">
                 {t('projects.cta.title')}
               </h2>
-              <p className="text-lg text-parchment/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-oxidized-teal/80 mb-8 max-w-3xl mx-auto leading-relaxed">
                 {t('projects.cta.description')}
               </p>
               <Link
