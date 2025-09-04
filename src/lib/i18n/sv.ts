@@ -9,6 +9,7 @@ export const sv = {
     contact: "Kontakt",
     projects: "Projekt",
     europeCapitals: "Europa Huvudstadstränare",
+    learnAI: "Lär AI",
     signIn: "Logga in",
     signOut: "Logga ut"
   },
@@ -417,6 +418,39 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       title: 'Har du ett projekt i åtanke?',
       description: 'Låt oss samarbeta för att förverkliga dina idéer med den perfekta blandningen av kreativitet och teknik.',
       button: 'Starta en konversation'
+    }
+  },
+
+  learnAI: {
+    title: "Lär AI",
+    subtitle: "Upptäck kraften i artificiell intelligens genom interaktiva lärupplevelser, utbildningsresurser och praktiska verktyg som är utformade för att avmystifiera AI för lärande på alla nivåer.",
+    introduction: {
+      title: "Välkommen till AI Lärcentrum",
+      description: "Din gateway till att förstå artificiell intelligens genom praktiska exempel, interaktiva demonstrationer och kurerat utbildningsinnehåll. Oavsett om du är nybörjare eller vill utveckla dina färdigheter är våra AI-lärverktyg utformade för att göra komplexa koncept tillgängliga och engagerande."
+    },
+    primaryWidget: {
+      title: "AI Lärverktyg"
+    },
+    secondaryWidget: {
+      title: "Interaktiv Träning"
+    },
+    resources: {
+      title: "Lärresurser",
+      beginner: {
+        title: "För Nybörjare",
+        description: "Börja din AI-resa med grundläggande koncept, basik terminologi och introduktionshandledningar designade för nykomlingar till artificiell intelligens."
+      },
+      intermediate: {
+        title: "Mellannivå",
+        description: "Fördjupa din förståelse med praktiska tillämpningar, verkliga exempel och mellannivå AI-koncept och tekniker."
+      },
+      advanced: {
+        title: "Avancerade Ämnen",
+        description: "Utforska banbrytande AI-forskning, komplexa algoritmer och avancerade implementeringsstrategier för erfarna utövare."
+      }
+    },
+    interactiveWidget: {
+      title: "Interaktiv AI Lekplats"
     }
   },
 

@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Link } from 'react-router-dom';
 import { t, getCurrentLocale } from '@/lib/i18n';
-import { BookOpen, Play, Globe } from 'lucide-react';
+import { BookOpen, Play, Globe, Brain } from 'lucide-react';
 import AdSenseUnit from '@/components/AdSenseUnit';
 import SteampunkGearCluster from '@/components/SteampunkGearCluster';
 import MechanicalDivider from '@/components/MechanicalDivider';
@@ -27,18 +27,25 @@ const Projects = () => {
       gradient: 'from-brass/20 to-oxidized-teal/20'
     },
     {
+      title: t('nav.learnAI'),
+      description: 'Discover the power of artificial intelligence through interactive learning experiences and hands-on educational tools.',
+      icon: Brain,
+      link: `/${locale}/learn-ai`,
+      gradient: 'from-teal/20 to-brass/30'
+    },
+    {
       title: t('projects.europeCapitals.title'),
       description: t('projects.europeCapitals.description'),
       icon: Globe,
       link: `/${locale}/europe-capitals`,
-      gradient: 'from-teal/20 to-brass/20'
+      gradient: 'from-brass/30 to-teal/20'
     },
     {
       title: t('projects.videos.title'),
       description: t('projects.videos.description'),
       icon: Play,
       link: `/${locale}/videos`, 
-      gradient: 'from-brass/20 to-oxidized-teal/20'
+      gradient: 'from-oxidized-teal/20 to-brass/20'
     }
   ];
 
@@ -105,7 +112,7 @@ const Projects = () => {
           </div>
 
           {/* Enhanced Projects Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 mb-16">
             {projects.map((project, index) => (
               <SteampunkProjectCard
                 key={index}

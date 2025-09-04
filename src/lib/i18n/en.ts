@@ -9,6 +9,7 @@ export const en = {
     contact: "Contact",
     projects: "Projects",
     europeCapitals: "Europe Capitals Trainer",
+    learnAI: "Learn AI",
     signIn: "Sign In",
     signOut: "Sign Out"
   },
@@ -417,6 +418,39 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
       title: 'Have a Project in Mind?',
       description: "Let's collaborate to bring your ideas to life with the perfect blend of creativity and technology.",
       button: 'Start a Conversation'
+    }
+  },
+  
+  learnAI: {
+    title: "Learn AI",
+    subtitle: "Discover the power of artificial intelligence through interactive learning experiences, educational resources, and hands-on tools designed to demystify AI for learners of all levels.",
+    introduction: {
+      title: "Welcome to AI Learning Hub",
+      description: "Your gateway to understanding artificial intelligence through practical examples, interactive demonstrations, and curated educational content. Whether you're a beginner or looking to advance your skills, our AI learning tools are designed to make complex concepts accessible and engaging."
+    },
+    primaryWidget: {
+      title: "AI Learning Toolkit"
+    },
+    secondaryWidget: {
+      title: "Interactive Practice"
+    },
+    resources: {
+      title: "Learning Resources",
+      beginner: {
+        title: "For Beginners",
+        description: "Start your AI journey with fundamental concepts, basic terminology, and introductory tutorials designed for newcomers to artificial intelligence."
+      },
+      intermediate: {
+        title: "Intermediate Level",
+        description: "Deepen your understanding with practical applications, real-world examples, and intermediate-level AI concepts and techniques."
+      },
+      advanced: {
+        title: "Advanced Topics",
+        description: "Explore cutting-edge AI research, complex algorithms, and advanced implementation strategies for experienced practitioners."
+      }
+    },
+    interactiveWidget: {
+      title: "Interactive AI Playground"
     }
   },
   
