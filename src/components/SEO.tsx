@@ -23,7 +23,7 @@ const SEO: React.FC<SEOProps> = ({
   description, 
   image, 
   noindex, 
-  keywords = "STEaM LOGIC Studio AB, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops",
+  keywords = "STEaM LOGIC Studio AB, Steam Logic Studio AB, Steam Logic, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops",
   type = 'website',
   publishedTime,
   modifiedTime,
@@ -32,20 +32,29 @@ const SEO: React.FC<SEOProps> = ({
   const locale = getCurrentLocale();
 
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
+  const origin = typeof window !== 'undefined' ? window.location.origin : BASE_URL;
+  const base = origin || BASE_URL;
   const pathWithoutLocale = pathname.replace(/^\/(en|sv|ru)/, '') || '/';
-  const canonical = `${BASE_URL}/${locale}${pathWithoutLocale}`.replace(/\/+/, '/');
+  const canonical = `${base}/${locale}${pathWithoutLocale}`.replace(/\/+/, '/');
 
   const alternates = locales.map((l) => ({
     hrefLang: l,
-    href: `${BASE_URL}/${l}${pathWithoutLocale}`,
+    href: `${base}/${l}${pathWithoutLocale}`,
   }));
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "STEaM LOGIC Studio AB",
-    "url": BASE_URL,
-    "logo": `${BASE_URL}${LOGO_URL}`,
+    "alternateName": [
+      "Steam Logic Studio AB",
+      "Steam Logic",
+      "STEaM LOGIC"
+    ],
+    "legalName": "STEaM LOGIC Studio AB",
+    "@id": `${base}/#organization`,
+    "url": base,
+    "logo": `${base}${LOGO_URL}`,
     "description": "Expert AI consulting services by STEaM LOGIC Studio AB. CEO Renata Khakimova combines inventive storytelling with intelligent technology. Custom GPT development, AI workshops, and automation solutions.",
     "founder": {
       "@type": "Person",
@@ -83,19 +92,15 @@ const SEO: React.FC<SEOProps> = ({
     "@type": "WebSite",
     "name": "STEaM LOGIC Studio AB",
     "alternateName": ["STEaM LOGIC Studio", "Steam Logic", "STEaM LOGIC"],
-    "url": BASE_URL,
+    "url": base,
     "description": description,
     "inLanguage": ["en", "sv", "ru"],
     "potentialAction": {
       "@type": "SearchAction",
-      "target": `${BASE_URL}/search?q={search_term_string}`,
+      "target": `${base}/search?q={search_term_string}`,
       "query-input": "required name=search_term_string"
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "STEaM LOGIC Studio AB",
-      "logo": `${BASE_URL}${LOGO_URL}`
-    }
+    "publisher": { "@id": `${base}/#organization` }
   };
 
   const personJsonLd = {
@@ -105,7 +110,7 @@ const SEO: React.FC<SEOProps> = ({
     "alternateName": "Nika Vereskova",
     "jobTitle": "CEO & AI Consultant at STEaM LOGIC Studio AB",
     "description": "CEO of STEaM LOGIC Studio AB and expert in AI strategy, custom GPT development, and creative storytelling. Published author under pseudonym Nika Vereskova.",
-    "url": BASE_URL,
+    "url": base,
     "knowsAbout": [
       "Artificial Intelligence",
       "Custom GPT Development",
@@ -138,7 +143,7 @@ const SEO: React.FC<SEOProps> = ({
     "provider": {
       "@type": "Organization", 
       "name": "STEaM LOGIC Studio AB",
-      "url": BASE_URL
+      "url": base
     },
     "areaServed": {
       "@type": "Place",
