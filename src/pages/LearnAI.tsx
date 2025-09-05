@@ -1,813 +1,504 @@
-import React from 'react';
-import { Brain, Settings } from 'lucide-react';
+import React, { useState } from 'react';
+import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp } from 'lucide-react';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
-import AdSenseBanner from '@/components/AdSenseBanner';
-import AdSenseSquare from '@/components/AdSenseSquare';
 import SteampunkGearCluster from '@/components/SteampunkGearCluster';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import ContactCTA from '@/components/ContactCTA';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const LearnAI = () => {
-  const { elementRef: headerRef } = useScrollAnimation();
+  const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  const capabilities = [
+    { icon: Brain, title: "Smart Email Writing", description: "Draft professional emails in seconds" },
+    { icon: BookOpen, title: "Content Summarization", description: "Turn long articles into key insights" },
+    { icon: Settings, title: "Process Automation", description: "Streamline repetitive tasks" },
+    { icon: Zap, title: "Creative Brainstorming", description: "Generate ideas and solutions fast" },
+    { icon: Users, title: "Meeting Preparation", description: "Create agendas and follow-ups" },
+    { icon: Star, title: "Learning Acceleration", description: "Break down complex topics simply" },
+    { icon: CheckCircle, title: "Quality Checking", description: "Review and improve your work" },
+    { icon: Clock, title: "Time Management", description: "Optimize schedules and priorities" },
+    { icon: Shield, title: "Safe AI Practices", description: "Use AI responsibly and securely" }
+  ];
+
+  const miniWins = [
+    {
+      id: "email-rewrite",
+      title: "Rewrite This Email",
+      description: "Transform a messy draft into professional communication",
+      prompt: "You are a professional assistant. Rewrite this email to be 130–160 words, warm but firm, with a clear ask and deadline. Keep my voice.\n\n[PASTE YOUR EMAIL DRAFT HERE]"
+    },
+    {
+      id: "meeting-agenda",
+      title: "Create Meeting Agenda", 
+      description: "Generate a structured agenda for your next meeting",
+      prompt: "Create a focused 45-minute meeting agenda for: [TOPIC]. Include: welcome (2 min), main discussion points with time allocations, decision items, and next steps. Format as a clean list."
+    },
+    {
+      id: "task-breakdown",
+      title: "Break Down Complex Task",
+      description: "Turn overwhelming projects into manageable steps",
+      prompt: "Break this goal into 5 actionable steps with time estimates and potential risks. Include a 30-minute first step I can do today.\n\nGoal: [DESCRIBE YOUR GOAL]"
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "Do I need any technical background?",
+      answer: "Not at all! Our lessons are designed for complete beginners. We use plain English and focus on practical applications anyone can understand."
+    },
+    {
+      question: "How much time do I need per day?",
+      answer: "Just 10 minutes daily for the Beginner track, or 15 minutes for Intermediate. Each lesson is bite-sized and designed to fit into busy schedules."
+    },
+    {
+      question: "Is this suitable for parents and families?",
+      answer: "Absolutely! We focus on family-friendly, ethical AI use. Many lessons help with everyday tasks like homework help, family planning, and household organization."
+    },
+    {
+      question: "What AI tools will I learn to use?",
+      answer: "We teach universal prompting techniques that work with ChatGPT, Claude, Gemini, and other major AI assistants. You choose your preferred tool."
+    },
+    {
+      question: "How do you ensure safety and accuracy?",
+      answer: "Every lesson includes safety guidelines, fact-checking reminders, and privacy best practices. We teach you to verify AI outputs and use placeholders for sensitive data."
+    },
+    {
+      question: "Can I access the content after finishing?",
+      answer: "Yes! Once you complete a track, you get lifetime access to all materials, updates, and our community notebook resources."
+    }
+  ];
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    // Could add a toast notification here
+  };
 
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern relative">
+    <div className="min-h-screen bg-background relative">
       <SEO 
-        title="Learn AI - Artificial Intelligence Education | STEaM LOGIC Studio AB" 
-        description="Learn AI fundamentals, advanced techniques, and practical applications. Educational resources, widgets, and interactive tools for AI learning."
+        title="Learn AI for Beginners (and Busy Parents) — STEaM LOGIC Studio AB"
+        description="Friendly, practical AI lessons in 10 minutes a day. Start free and level up to intermediate with real‑life projects."
       />
       
-      {/* Decorative Gear Clusters */}
+      {/* Decorative Elements */}
       <SteampunkGearCluster 
-        className="opacity-10" 
+        className="opacity-5" 
         size="lg" 
         position="top-left" 
       />
       <SteampunkGearCluster 
-        className="opacity-15" 
+        className="opacity-10" 
         size="md" 
         position="top-right" 
       />
-      <SteampunkGearCluster 
-        className="opacity-20" 
-        size="sm" 
-        position="bottom-left" 
-      />
-      <SteampunkGearCluster 
-        className="opacity-10" 
-        size="lg" 
-        position="bottom-right" 
-      />
-      
-      {/* Floating gears */}
-      <Settings className="absolute top-32 left-8 w-14 h-14 text-brass/15 animate-gear-rotation" style={{animationDelay: '1s'}} />
-      <Settings className="absolute top-1/3 right-8 w-10 h-10 text-brass/20 animate-gear-rotation" style={{animationDelay: '3s'}} />
-      <Settings className="absolute bottom-40 left-1/4 w-12 h-12 text-brass/10 animate-gear-rotation" style={{animationDelay: '5s'}} />
+      <Settings className="absolute top-32 right-8 w-12 h-12 text-muted-foreground/10 animate-spin" style={{animationDuration: '20s'}} />
+      <Settings className="absolute bottom-32 left-8 w-8 h-8 text-muted-foreground/15 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}} />
 
       <Navigation currentPage="learn-ai" />
 
-      <div className="pt-24 pb-16 px-6">
-        <AdSenseBanner position="top" />
-        
-        <div className="container mx-auto">
-          {/* Header Section */}
-          <div ref={headerRef} className="text-center mb-16 relative">
+      <main className="pt-24 pb-16">
+        {/* Hero Section */}
+        <section className="px-6 py-16 bg-gradient-to-br from-background to-muted/20">
+          <div className="container mx-auto max-w-6xl text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
-              <Brain className="w-16 h-16 text-brass animate-pulse" />
-              <Settings className="w-12 h-12 text-oxidized-teal animate-gear-rotation" />
+              <Brain className="w-16 h-16 text-primary" />
+              <Settings className="w-12 h-12 text-muted-foreground animate-spin" style={{animationDuration: '10s'}} />
             </div>
             
-            <h1 className="text-5xl md:text-6xl text-oxidized-teal mb-6 font-playfair drop-shadow-text-drop">
-              {t('learnAI.title')}
+            <h1 className="font-serif text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
+              Learn AI the Calm Way
             </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-3xl mx-auto font-inter leading-relaxed">
-              {t('learnAI.subtitle')}
+            
+            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto font-light">
+              10‑minute lessons. Real‑life tasks. No jargon.
             </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+              <Button size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
+                <a href="#beginner-start-anchor">Start Beginner Track (Free)</a>
+              </Button>
+              <Button variant="outline" size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
+                <a href="#demo">Try a 5‑min Demo</a>
+              </Button>
+            </div>
+            
+            {/* Badge Row */}
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+              <Badge variant="outline" className="px-3 py-1">Built by STEaM LOGIC Studio AB</Badge>
+              <Badge variant="outline" className="px-3 py-1">10k+ lesson plays</Badge>
+              <Badge variant="outline" className="px-3 py-1">Family‑friendly learning</Badge>
+            </div>
           </div>
+        </section>
 
-          <AdSenseSquare size="medium" />
-
-          {/* Introduction Section */}
-          <div className="mb-16 bg-parchment/90 border-2 border-brass/30 p-8 shadow-brass-drop relative">
-            {/* Ornate corners */}
-            <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-10"></div>
-            <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-10"></div>
-            <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
-            <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
-
-            <h2 className="text-3xl text-oxidized-teal mb-4 font-playfair text-center">
-              {t('learnAI.introduction.title')}
-            </h2>
-            <p className="text-lg text-oxidized-teal/80 font-inter text-center max-w-2xl mx-auto">
-              {t('learnAI.introduction.description')}
-            </p>
-          </div>
-
-          {/* Widget Areas */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
-            {/* Primary Widget Area */}
-            <div className="bg-gradient-to-br from-brass/10 to-oxidized-teal/10 border-2 border-brass/40 p-8 shadow-brass-drop relative">
-              <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
-              <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
-
-              <h3 className="text-2xl text-oxidized-teal mb-4 font-playfair">
-                {t('learnAI.primaryWidget.title')}
-              </h3>
+        {/* Two-Track Switcher */}
+        <section className="px-6 py-16" id="tracks">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-12">Choose Your Path</h2>
+            
+            <Tabs defaultValue="beginner" className="w-full">
+              <TabsList className="grid grid-cols-2 mb-8 h-16 rounded-2xl">
+                <TabsTrigger value="beginner" className="text-lg font-medium rounded-xl">
+                  Beginner 0→1
+                </TabsTrigger>
+                <TabsTrigger value="intermediate" className="text-lg font-medium rounded-xl">
+                  Intermediate 1→1.5
+                </TabsTrigger>
+              </TabsList>
               
-              {/* Widget Container - Replace with your widget code */}
-              <div className="min-h-[300px] bg-parchment/50 border border-brass/20 p-4 flex items-center justify-center">
-                <p className="text-oxidized-teal/60 font-inter italic">
-                  {/* Primary AI Learning Widget will be inserted here */}
-                  // STEaM‑Logic | AI Onboarding Course Widget (React)
-// Self‑contained component: no external UI libs required. Uses Tailwind classes.
-// Features: multilingual (EN/SV), lesson list, search/filter, progress tracking (localStorage),
-// streak counter, basic quiz support, practice prompts w/ copy, export/reset progress.
-// Drop into your site as a React component. Default export provided.
-
-import React, { useEffect, useMemo, useState } from "react";
-
-const COURSE_ID = "sl_ai_onboarding_v1";
-const LS_PROGRESS_KEY = `${COURSE_ID}_progress`;
-const LS_STREAK_KEY = `${COURSE_ID}_streak`;
-const LS_LANG_KEY = `${COURSE_ID}_lang`;
-
-/** Utility */
-const todayISO = () => new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-const isYesterday = (dateStr) => {
-  const d = new Date(dateStr);
-  const y = new Date();
-  y.setDate(y.getDate() - 1);
-  return d.toDateString() === y.toDateString();
-};
-
-/** Sample Course Data — expand or replace with your own */
-const lessons = [
-  {
-    id: "l1",
-    type: "read",
-    durationMin: 8,
-    title: {
-      en: "Welcome: What AI Can Do For You",
-      sv: "Välkommen: Vad AI kan göra för dig",
-    },
-    content: {
-      en:
-        "Quick idea: AI helps you draft, tidy and plan faster. You’ll keep a simple AI Log and do tiny, real tasks—no jargon.",
-      sv:
-        "Snabb idé: AI hjälper dig att skriva utkast, städa texter och planera snabbare. Du för ett enkelt AI‑logg och gör små, verkliga uppgifter—utan jargong.",
-    },
-    practice: {
-      en: "Create a note called ‘AI Log’. Add columns: date, task, prompt, result, one improvement.",
-      sv: "Skapa en anteckning ‘AI Logg’. Lägg till kolumner: datum, uppgift, prompt, resultat, en förbättring.",
-    },
-  },
-  {
-    id: "l2",
-    type: "read",
-    durationMin: 10,
-    title: { en: "The Sandwich Prompt", sv: "Sandwich‑prompten" },
-    content: {
-      en:
-        "Pattern: Role → Task → Constraints → Context → Format. Example: ‘You are a friendly editor…’",
-      sv:
-        "Mönster: Roll → Uppgift → Begränsningar → Kontext → Format. Exempel: ‘Du är en vänlig redaktör…’",
-    },
-    practice: {
-      en:
-        "Use the Sandwich to ask for a 150‑word email to reschedule a meeting. Tone warm, crisp.",
-      sv:
-        "Använd Sandwich för att be om ett 150‑ords mejl för att boka om ett möte. Ton varm och tydlig.",
-    },
-  },
-  {
-    id: "l3",
-    type: "practice",
-    durationMin: 10,
-    title: { en: "Email Rewrite (Day‑3 Win)", sv: "Omskrivning av mejl (Dag‑3)" },
-    content: {
-      en: "Paste a messy email draft. Ask AI to make it concise, kind, and action‑oriented.",
-      sv: "Klistra in ett rörigt mejlutkast. Be AI göra det kort, vänligt och åtgärdsinriktat.",
-    },
-    practice: {
-      en:
-        "Prompt: ‘You are a professional assistant. Rewrite this email to be 130–160 words, warm but firm, with a clear ask and deadline. Keep my voice.\n[PASTE]’",
-      sv:
-        "Prompt: ‘Du är en professionell assistent. Skriv om detta mejl till 130–160 ord, varmt men bestämt, med tydlig fråga och deadline. Behåll min röst.\n[KLIS TRA HÄR]’",
-    },
-  },
-  {
-    id: "l4",
-    type: "practice",
-    durationMin: 10,
-    title: { en: "Summarize an Article", sv: "Sammanfatta en artikel" },
-    content: {
-      en: "Pick any article. Get 5 bullets + 2 personal takeaways.",
-      sv: "Välj en artikel. Få 5 punkter + 2 personliga insikter.",
-    },
-    practice: {
-      en:
-        "‘Give me a 5‑bullet summary in plain English + 2 takeaways for me as a beginner. Link key terms.’",
-      sv:
-        "‘Ge mig en sammanfattning i 5 punkter + 2 insikter för mig som nybörjare. Länka nyckeltermer.’",
-    },
-  },
-  {
-    id: "l5",
-    type: "practice",
-    durationMin: 10,
-    title: { en: "Turn a Goal into a Mini‑Plan", sv: "Gör en mini‑plan av ett mål" },
-    content: {
-      en: "AI can break a goal into 5 steps with risks and a 30‑minute first step.",
-      sv: "AI kan bryta ner ett mål i 5 steg med risker och ett 30‑minuters första steg.",
-    },
-    practice: {
-      en:
-        "‘Turn this goal into a 5‑step mini‑plan with time estimates, risks, and a 30‑minute first step. Goal: [TEXT].’",
-      sv:
-        "‘Gör detta mål till en mini‑plan i 5 steg med tidsuppskattning, risker och ett första steg på 30 minuter. Mål: [TEXT].’",
-    },
-  },
-  {
-    id: "l6",
-    type: "quiz",
-    durationMin: 6,
-    title: { en: "Safety & Privacy Basics", sv: "Säkerhet & integritet" },
-    content: {
-      en: "What should you avoid pasting into a chat assistant?",
-      sv: "Vad bör du undvika att klistra in i en chattassistent?",
-    },
-    quiz: {
-      question: {
-        en: "Select the best answer:",
-        sv: "Välj bästa svaret:",
-      },
-      options: [
-        {
-          en: "Anything longer than 200 words",
-          sv: "Allt som är längre än 200 ord",
-        },
-        {
-          en: "Sensitive personal data (IDs, banking, private details)",
-          sv: "Känsliga personuppgifter (ID, bank, privata detaljer)",
-        },
-        { en: "Public blog posts", sv: "Offentliga blogginlägg" },
-      ],
-      correctIndex: 1,
-      explanation: {
-        en: "Avoid secrets. Use placeholders like [Name] and ask for sources when factual claims matter.",
-        sv: "Undvik hemligheter. Använd platshållare som [Namn] och be om källor när fakta är viktiga.",
-      },
-    },
-  },
-  {
-    id: "l7",
-    type: "read",
-    durationMin: 7,
-    title: { en: "Brainstorm + Score", sv: "Idégenerera + poängsätt" },
-    content: {
-      en: "Ask for 20 ideas, then score Impact/Effort/Fun (0–5) and pick the top 3.",
-      sv: "Be om 20 idéer, poängsätt Effekt/Insats/Kul (0–5) och välj topp 3.",
-    },
-    practice: {
-      en:
-        "‘List 20 ideas for [problem]. Score 0–5 on Impact, Effort, Fun. Return the top 3 with first steps.’",
-      sv:
-        "‘Lista 20 idéer för [problem]. Sätt 0–5 på Effekt, Insats, Kul. Ge topp 3 med första steg.’",
-    },
-  },
-  {
-    id: "l8",
-    type: "read",
-    durationMin: 6,
-    title: { en: "Graduate & Next Steps", sv: "Examen & nästa steg" },
-    content: {
-      en: "Pick a track (Work/Home/Creative). Create 3 reusable prompts for next month.",
-      sv: "Välj ett spår (Arbete/Hem/Kreativt). Skapa 3 återanvändbara promptar för nästa månad.",
-    },
-    practice: {
-      en: "Write your 3 golden prompts and pin them.",
-      sv: "Skriv dina 3 guld‑promptar och fäst dem.",
-    },
-  },
-];
-
-const TYPES = [
-  { id: "read", label: { en: "Read", sv: "Läs" } },
-  { id: "practice", label: { en: "Practice", sv: "Öva" } },
-  { id: "quiz", label: { en: "Quiz", sv: "Quiz" } },
-];
-
-export default function SteamLogicAICourseWidget() {
-  const [lang, setLang] = useState(() => localStorage.getItem(LS_LANG_KEY) || "en");
-  const [search, setSearch] = useState("");
-  const [typeFilter, setTypeFilter] = useState([]); // array of type ids
-  const [expanded, setExpanded] = useState(null); // lesson id
-  const [progress, setProgress] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(LS_PROGRESS_KEY) || "{}");
-    } catch {
-      return {};
-    }
-  });
-  const [streak, setStreak] = useState(() => {
-    try {
-      return (
-        JSON.parse(localStorage.getItem(LS_STREAK_KEY) || "null") || {
-          current: 0,
-          lastDate: null,
-        }
-      );
-    } catch {
-      return { current: 0, lastDate: null };
-    }
-  });
-  const t = (en, sv) => (lang === "en" ? en : sv);
-
-  useEffect(() => {
-    localStorage.setItem(LS_LANG_KEY, lang);
-  }, [lang]);
-
-  useEffect(() => {
-    localStorage.setItem(LS_PROGRESS_KEY, JSON.stringify(progress));
-  }, [progress]);
-
-  useEffect(() => {
-    localStorage.setItem(LS_STREAK_KEY, JSON.stringify(streak));
-  }, [streak]);
-
-  const total = lessons.length;
-  const completedCount = useMemo(
-    () => Object.values(progress).filter(Boolean).length,
-    [progress]
-  );
-  const percent = Math.round((completedCount / total) * 100);
-
-  const filtered = useMemo(() => {
-    const s = search.trim().toLowerCase();
-    return lessons.filter((les) => {
-      const matchesSearch = !s || les.title[lang].toLowerCase().includes(s);
-      const matchesType = !typeFilter.length || typeFilter.includes(les.type);
-      return matchesSearch && matchesType;
-    });
-  }, [search, typeFilter, lang]);
-
-  const markDone = (lessonId) => {
-    if (progress[lessonId]) return; // already done
-    const newProg = { ...progress, [lessonId]: true };
-    setProgress(newProg);
-    // Streak logic: if lastDate is yesterday or today, increment; else reset to 1
-    const today = todayISO();
-    setStreak((prev) => {
-      if (!prev.lastDate) return { current: 1, lastDate: today };
-      if (prev.lastDate === today || isYesterday(prev.lastDate)) {
-        const alreadyCountedToday = prev.lastDate === today;
-        return {
-          current: alreadyCountedToday ? prev.current : prev.current + 1,
-          lastDate: today,
-        };
-      }
-      return { current: 1, lastDate: today };
-    });
-  };
-
-  const resetProgress = () => {
-    if (!confirm(t("Reset all progress?", "Återställ all framsteg?"))) return;
-    setProgress({});
-    setStreak({ current: 0, lastDate: null });
-  };
-
-  const exportProgress = () => {
-    const data = {
-      courseId: COURSE_ID,
-      exportedAt: new Date().toISOString(),
-      lang,
-      progress,
-      streak,
-    };
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
-      type: "application/json",
-    });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${COURSE_ID}_progress.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-  };
-
-  const toggleType = (id) => {
-    setTypeFilter((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
-    );
-  };
-
-  return (
-    <div className="mx-auto max-w-5xl p-4 md:p-8">
-      {/* Header */}
-      <div className="rounded-2xl bg-gradient-to-r from-teal-50 to-cyan-50 border border-teal-100 p-6 mb-6">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-semibold tracking-tight text-teal-900">
-              STEaM‑Logic • AI Onboarding
-            </h1>
-            <p className="text-slate-700 mt-1">
-              {t(
-                "A tiny course for real‑life wins. 10 minutes a day.",
-                "En liten kurs för verkliga vinster. 10 minuter per dag."
-              )}
-            </p>
-          </div>
-          <div className="flex items-center gap-3">
-            <LangToggle lang={lang} setLang={setLang} />
-            <button
-              onClick={exportProgress}
-              className="px-3 py-2 rounded-xl border bg-white hover:bg-slate-50 text-slate-800"
-            >
-              {t("Export", "Exportera")}
-            </button>
-            <button
-              onClick={resetProgress}
-              className="px-3 py-2 rounded-xl border border-red-200 bg-red-50 hover:bg-red-100 text-red-800"
-            >
-              {t("Reset", "Återställ")}
-            </button>
-          </div>
-        </div>
-
-        {/* Progress */}
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-          <StatCard
-            label={t("Progress", "Framsteg")}
-            value={`${completedCount}/${total}`}
-            sub={<ProgressBar value={percent} />}
-          />
-          <StatCard
-            label={t("Streak", "Streak")}
-            value={`${streak.current} ${t("days", "dagar")}`}
-            sub={
-              <span className="text-xs text-slate-600">
-                {streak.lastDate
-                  ? t("Last activity:", "Senast aktiv:") + " " + streak.lastDate
-                  : t("No activity yet", "Ingen aktivitet ännu")}
-              </span>
-            }
-          />
-          <StatCard
-            label={t("Language", "Språk")}
-            value={lang === "en" ? "English" : "Svenska"}
-            sub={<span className="text-xs text-slate-600">{t("Toggle above","Byt ovan")}</span>}
-          />
-        </div>
-      </div>
-
-      {/* Controls */}
-      <div className="flex flex-col md:flex-row md:items-center gap-3 mb-4">
-        <input
-          type="text"
-          placeholder={t("Search lessons…", "Sök lektioner…")}
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full md:w-1/2 px-4 py-2 rounded-xl border focus:outline-none focus:ring-2 focus:ring-teal-300"
-        />
-        <div className="flex flex-wrap gap-2">
-          {TYPES.map((tp) => (
-            <button
-              key={tp.id}
-              onClick={() => toggleType(tp.id)}
-              className={`px-3 py-1.5 rounded-full border ${
-                typeFilter.includes(tp.id)
-                  ? "bg-teal-600 text-white border-teal-600"
-                  : "bg-white text-slate-800 hover:bg-slate-50"
-              }`}
-            >
-              {tp.label[lang]}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Lessons */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filtered.map((lesson) => (
-          <LessonCard
-            key={lesson.id}
-            lesson={lesson}
-            lang={lang}
-            expanded={expanded === lesson.id}
-            onExpand={() => setExpanded((prev) => (prev === lesson.id ? null : lesson.id))}
-            completed={!!progress[lesson.id]}
-            onDone={() => markDone(lesson.id)}
-          />
-        ))}
-      </div>
-
-      {/* Footer tip */}
-      <p className="text-sm text-slate-500 mt-6">
-        {t(
-          "Tip: Add a 10‑minute weekly calendar block to keep momentum.",
-          "Tips: Lägg in en 10‑minuters veckoblock i kalendern för att behålla farten."
-        )}
-      </p>
-    </div>
-  );
-}
-
-function StatCard({ label, value, sub }) {
-  return (
-    <div className="rounded-2xl border bg-white p-4">
-      <div className="text-sm text-slate-600">{label}</div>
-      <div className="text-xl font-semibold text-slate-900 mt-1">{value}</div>
-      {sub && <div className="mt-2">{sub}</div>}
-    </div>
-  );
-}
-
-function ProgressBar({ value = 0 }) {
-  return (
-    <div className="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden">
-      <div
-        className="h-full bg-teal-600"
-        style={{ width: `${Math.min(100, Math.max(0, value))}%` }}
-      />
-    </div>
-  );
-}
-
-function LangToggle({ lang, setLang }) {
-  return (
-    <div className="flex items-center gap-1 rounded-xl border bg-white">
-      <button
-        onClick={() => setLang("en")}
-        className={`px-3 py-2 rounded-xl ${
-          lang === "en" ? "bg-teal-600 text-white" : "hover:bg-slate-50"
-        }`}
-      >
-        EN
-      </button>
-      <button
-        onClick={() => setLang("sv")}
-        className={`px-3 py-2 rounded-xl ${
-          lang === "sv" ? "bg-teal-600 text-white" : "hover:bg-slate-50"
-        }`}
-      >
-        SV
-      </button>
-    </div>
-  );
-}
-
-function LessonCard({ lesson, lang, expanded, onExpand, completed, onDone }) {
-  const [copied, setCopied] = useState(false);
-  const [selected, setSelected] = useState(null); // quiz index
-  const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    setSelected(null);
-    setSubmitted(false);
-    setCopied(false);
-  }, [expanded]);
-
-  const canComplete = () => {
-    if (lesson.type !== "quiz") return true;
-    return submitted && selected === lesson.quiz.correctIndex;
-  };
-
-  const handleCopy = async (text) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1200);
-    } catch (e) {}
-  };
-
-  return (
-    <div className={`rounded-2xl border bg-white ${completed ? "opacity-90" : ""}`}>
-      <div className="p-4 flex items-start justify-between gap-3">
-        <div>
-          <div className="flex items-center gap-2">
-            <TypeBadge type={lesson.type} lang={lang} />
-            <span className="text-xs text-slate-500">{lesson.durationMin} min</span>
-          </div>
-          <h3 className="mt-1 text-lg font-semibold text-slate-900">
-            {lesson.title[lang]}
-          </h3>
-        </div>
-        <div className="flex items-center gap-2">
-          {completed && (
-            <span className="inline-flex items-center gap-1 text-teal-700 text-xs font-medium">
-              <CheckIcon /> Done
-            </span>
-          )}
-          <button
-            onClick={onExpand}
-            className="px-3 py-1.5 rounded-xl border bg-slate-50 hover:bg-slate-100 text-slate-700"
-          >
-            {expanded ? (lang === "en" ? "Close" : "Stäng") : lang === "en" ? "Open" : "Öppna"}
-          </button>
-        </div>
-      </div>
-
-      {expanded && (
-        <div className="px-4 pb-4">
-          <div className="rounded-xl bg-slate-50 p-4 text-slate-800 whitespace-pre-wrap">{lesson.content[lang]}</div>
-
-          {lesson.type !== "quiz" && lesson.practice && (
-            <div className="mt-3">
-              <div className="text-sm font-medium text-slate-700 mb-1">
-                {lang === "en" ? "Try this:" : "Testa detta:"}
-              </div>
-              <div className="rounded-xl bg-white border p-3 whitespace-pre-wrap">{lesson.practice[lang]}</div>
-              <div className="flex items-center gap-2 mt-2">
-                <button
-                  onClick={() => handleCopy(lesson.practice[lang])}
-                  className="px-3 py-1.5 rounded-xl border bg-white hover:bg-slate-50"
-                >
-                  {copied ? (lang === "en" ? "Copied!" : "Kopierat!") : lang === "en" ? "Copy prompt" : "Kopiera prompt"}
-                </button>
-                <a
-                  href="https://chat.openai.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="px-3 py-1.5 rounded-xl border bg-white hover:bg-slate-50"
-                >
-                  {lang === "en" ? "Open Chat" : "Öppna Chat"}
-                </a>
-              </div>
-            </div>
-          )}
-
-          {lesson.type === "quiz" && lesson.quiz && (
-            <div className="mt-3">
-              <div className="text-sm text-slate-700 mb-2">{lesson.quiz.question[lang]}</div>
-              <div className="space-y-2">
-                {lesson.quiz.options.map((opt, idx) => (
-                  <label key={idx} className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name={`q_${lesson.id}`}
-                      checked={selected === idx}
-                      onChange={() => setSelected(idx)}
-                    />
-                    <span>{opt[lang]}</span>
-                  </label>
-                ))}
-              </div>
-              <div className="mt-2 flex items-center gap-2">
-                <button
-                  onClick={() => setSubmitted(true)}
-                  className="px-3 py-1.5 rounded-xl border bg-white hover:bg-slate-50"
-                >
-                  {lang === "en" ? "Submit" : "Skicka"}
-                </button>
-                {submitted && (
-                  <span className={`text-sm ${selected === lesson.quiz.correctIndex ? "text-teal-700" : "text-rose-700"}`}>
-                    {selected === lesson.quiz.correctIndex
-                      ? tLocal(lang, "Correct!", "Rätt!")
-                      : tLocal(lang, "Try again.", "Försök igen.")}
-                  </span>
-                )}
-              </div>
-              {submitted && selected === lesson.quiz.correctIndex && (
-                <div className="mt-2 text-xs text-slate-600">
-                  {lesson.quiz.explanation[lang]}
-                </div>
-              )}
-            </div>
-          )}
-
-          <div className="mt-4 flex items-center gap-2">
-            <button
-              disabled={completed || !canComplete()}
-              onClick={onDone}
-              className={`px-3 py-2 rounded-xl border ${
-                completed || !canComplete()
-                  ? "bg-slate-100 text-slate-400"
-                  : "bg-white hover:bg-slate-50"
-              }`}
-            >
-              {completed
-                ? lang === "en" ? "Completed" : "Klar"
-                : lang === "en" ? "Mark as done" : "Markera klar"}
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function TypeBadge({ type, lang }) {
-  const map = {
-    read: { en: "Read", sv: "Läs" },
-    practice: { en: "Practice", sv: "Öva" },
-    quiz: { en: "Quiz", sv: "Quiz" },
-  };
-  return (
-    <span className="inline-flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-teal-600 text-white">
-      <BookIcon /> {map[type][lang]}
-    </span>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" className="text-teal-700">
-      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-7.25 7.25a1 1 0 01-1.414 0l-3-3a1 1 0 111.414-1.414l2.293 2.293 6.543-6.543a1 1 0 011.414 0z" clipRule="evenodd" />
-    </svg>
-  );
-}
-
-function BookIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M6 4h7a4 4 0 014 4v10a2 2 0 00-2-2H6a2 2 0 00-2 2V6a2 2 0 012-2z"/>
-    </svg>
-  );
-}
-
-function tLocal(lang, en, sv) {
-  return lang === "en" ? en : sv;
-}
-
-                </p>
-              </div>
-            </div>
-
-            {/* Secondary Widget Area */}
-            <div className="bg-gradient-to-br from-oxidized-teal/10 to-brass/10 border-2 border-oxidized-teal/40 p-8 shadow-brass-drop relative">
-              <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-oxidized-teal"></div>
-              <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-oxidized-teal"></div>
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-oxidized-teal"></div>
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-oxidized-teal"></div>
-
-              <h3 className="text-2xl text-oxidized-teal mb-4 font-playfair">
-                {t('learnAI.secondaryWidget.title')}
-              </h3>
+              <TabsContent value="beginner">
+                <Card className="rounded-2xl shadow-lg">
+                  <CardHeader className="text-center pb-6">
+                    <CardTitle className="font-serif text-3xl">Beginner Track</CardTitle>
+                    <CardDescription className="text-lg">Perfect for AI newcomers and busy parents</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid md:grid-cols-3 gap-6 text-center">
+                      <div>
+                        <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">8 Lessons</h4>
+                        <p className="text-sm text-muted-foreground">10 minutes each</p>
+                      </div>
+                      <div>
+                        <CheckCircle className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">Real Tasks</h4>
+                        <p className="text-sm text-muted-foreground">Immediate wins</p>
+                      </div>
+                      <div>
+                        <Shield className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">Safe & Ethical</h4>
+                        <p className="text-sm text-muted-foreground">Family-friendly</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Email writing & editing</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Article summarization</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Goal planning & breakdown</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Privacy & safety basics</span>
+                      </div>
+                    </div>
+                    
+                    <Button className="w-full py-6 text-lg rounded-xl" id="beginner-start-anchor">
+                      Start Beginner Track (Free)
+                    </Button>
+                  </CardContent>
+                </Card>
+              </TabsContent>
               
-              {/* Widget Container - Replace with your widget code */}
-              <div className="min-h-[300px] bg-parchment/50 border border-oxidized-teal/20 p-4 flex items-center justify-center">
-                <p className="text-oxidized-teal/60 font-inter italic">
-                  {/* Secondary AI Tool Widget will be inserted here */}
-                  Widget placeholder - Replace with your AI practice tool
-                </p>
-              </div>
-            </div>
+              <TabsContent value="intermediate">
+                <Card className="rounded-2xl shadow-lg">
+                  <CardHeader className="text-center pb-6">
+                    <CardTitle className="font-serif text-3xl">Intermediate Track</CardTitle>
+                    <CardDescription className="text-lg">For those ready to level up their AI skills</CardDescription>
+                  </CardHeader>
+                  <CardContent className="space-y-6">
+                    <div className="grid md:grid-cols-3 gap-6 text-center">
+                      <div>
+                        <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">12 Lessons</h4>
+                        <p className="text-sm text-muted-foreground">15 minutes each</p>
+                      </div>
+                      <div>
+                        <Zap className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">Advanced Prompts</h4>
+                        <p className="text-sm text-muted-foreground">Professional workflows</p>
+                      </div>
+                      <div>
+                        <Users className="w-8 h-8 text-primary mx-auto mb-2" />
+                        <h4 className="font-semibold">Team Projects</h4>
+                        <p className="text-sm text-muted-foreground">Collaborative AI</p>
+                      </div>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Multi-step workflows</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Custom prompt templates</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Data analysis & insights</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-green-500" />
+                        <span>Team collaboration strategies</span>
+                      </div>
+                    </div>
+                    
+                    <Button className="w-full py-6 text-lg rounded-xl" id="intermediate-start-anchor">
+                      Explore Intermediate
+                    </Button>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
           </div>
+        </section>
 
-          <AdSenseBanner position="middle" />
-
-          {/* Learning Resources Section */}
-          <div className="mb-16">
-            <h2 className="text-4xl text-oxidized-teal mb-8 font-playfair text-center">
-              {t('learnAI.resources.title')}
-            </h2>
+        {/* What You'll Be Able To Do */}
+        <section className="px-6 py-16 bg-muted/20">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-12">What You'll Be Able To Do</h2>
             
             <div className="grid md:grid-cols-3 gap-6">
-              {/* Beginner Resources */}
-              <div className="bg-parchment/90 border-2 border-brass/30 p-6 shadow-brass-drop">
-                <h3 className="text-xl text-brass mb-3 font-playfair">
-                  {t('learnAI.resources.beginner.title')}
-                </h3>
-                <p className="text-oxidized-teal/80 font-inter">
-                  {t('learnAI.resources.beginner.description')}
-                </p>
-              </div>
-
-              {/* Intermediate Resources */}
-              <div className="bg-parchment/90 border-2 border-oxidized-teal/30 p-6 shadow-brass-drop">
-                <h3 className="text-xl text-oxidized-teal mb-3 font-playfair">
-                  {t('learnAI.resources.intermediate.title')}
-                </h3>
-                <p className="text-oxidized-teal/80 font-inter">
-                  {t('learnAI.resources.intermediate.description')}
-                </p>
-              </div>
-
-              {/* Advanced Resources */}
-              <div className="bg-parchment/90 border-2 border-brass/30 p-6 shadow-brass-drop">
-                <h3 className="text-xl text-brass mb-3 font-playfair">
-                  {t('learnAI.resources.advanced.title')}
-                </h3>
-                <p className="text-oxidized-teal/80 font-inter">
-                  {t('learnAI.resources.advanced.description')}
-                </p>
-              </div>
+              {capabilities.map((capability, index) => (
+                <Card key={index} className="rounded-2xl hover:shadow-lg transition-shadow duration-300">
+                  <CardContent className="p-6 text-center">
+                    <capability.icon className="w-12 h-12 text-primary mx-auto mb-4" />
+                    <h3 className="font-semibold text-lg mb-2">{capability.title}</h3>
+                    <p className="text-muted-foreground">{capability.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
+        </section>
 
-          {/* Full-Width Interactive Widget Area */}
-          <div className="mb-16 bg-gradient-to-r from-brass/20 to-oxidized-teal/20 border-2 border-brass/30 p-8 shadow-brass-drop relative">
-            <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
-            <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
-
-            <h2 className="text-3xl text-oxidized-teal mb-6 font-playfair text-center">
-              {t('learnAI.interactiveWidget.title')}
-            </h2>
+        {/* Learn by Doing: Instant Mini-Wins */}
+        <section className="px-6 py-16">
+          <div className="container mx-auto max-w-6xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-4">Learn by Doing: Instant Mini‑Wins</h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">Try these prompts right now and see immediate results</p>
             
-            {/* Full-width widget container - Replace with your widget code */}
-            <div className="min-h-[400px] bg-parchment/50 border border-brass/20 p-6 flex items-center justify-center">
-              <p className="text-oxidized-teal/60 font-inter italic text-center">
-                {/* Interactive AI Learning Widget will be inserted here */}
-                Interactive widget placeholder - Replace with your main AI learning interface
-              </p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {miniWins.map((win) => (
+                <Card key={win.id} className="rounded-2xl hover:shadow-lg transition-all duration-300">
+                  <CardHeader>
+                    <CardTitle className="text-xl">{win.title}</CardTitle>
+                    <CardDescription>{win.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="w-full rounded-xl">Try Now</Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>{win.title}</DialogTitle>
+                          <DialogDescription>{win.description}</DialogDescription>
+                        </DialogHeader>
+                        <div className="space-y-4">
+                          <div className="bg-muted/50 p-4 rounded-xl">
+                            <p className="text-sm mb-2 font-medium">Copy this prompt:</p>
+                            <p className="text-sm font-mono leading-relaxed">{win.prompt}</p>
+                          </div>
+                          <Button 
+                            onClick={() => copyToClipboard(win.prompt)}
+                            className="w-full"
+                          >
+                            Copy to Clipboard
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
+        </section>
 
-          <ContactCTA />
-        </div>
-        
-        <AdSenseBanner position="bottom" />
-      </div>
+        {/* NotebookLM Section */}
+        <section className="px-6 py-16 bg-muted/20">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="font-serif text-4xl font-bold mb-6">Deep Dive with NotebookLM</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Explore Renata's curated knowledge bases for in-depth learning
+            </p>
+            
+            <div className="grid md:grid-cols-3 gap-4">
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl" asChild>
+                <a href="{{NOTEBOOK_BASICS_URL}}" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <BookOpen className="w-6 h-6 mx-auto mb-1" />
+                    <span>AI Basics Notebook</span>
+                  </div>
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl" asChild>
+                <a href="{{NOTEBOOK_BEGINNER_COURSE_URL}}" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <Brain className="w-6 h-6 mx-auto mb-1" />
+                    <span>Beginner Course</span>
+                  </div>
+                </a>
+              </Button>
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl" asChild>
+                <a href="{{NOTEBOOK_INTERMEDIATE_LAB_URL}}" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <Zap className="w-6 h-6 mx-auto mb-1" />
+                    <span>Intermediate Lab</span>
+                  </div>
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Trusted Tools */}
+        <section className="px-6 py-16">
+          <div className="container mx-auto max-w-6xl text-center">
+            <h2 className="font-serif text-4xl font-bold mb-12">Trusted Tools We Teach</h2>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 hover:opacity-80 transition-opacity">
+              <div className="space-y-2">
+                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
+                  <span className="font-semibold">ChatGPT</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Conversational AI</p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
+                  <span className="font-semibold">Claude</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Analytical AI</p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
+                  <span className="font-semibold">Gemini</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Multi-modal AI</p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
+                  <span className="font-semibold">NotebookLM</span>
+                </div>
+                <p className="text-sm text-muted-foreground">Research AI</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Safety & Ethics */}
+        <section className="px-6 py-16 bg-muted/20">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-12">Safety & Ethics First</h2>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="font-semibold text-xl mb-4">Our Safety Checklist</h3>
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                    <span>Never share sensitive personal data with AI</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                    <span>Always verify factual claims with original sources</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                    <span>Use placeholders for names and confidential info</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500 mt-0.5" />
+                    <span>Respect copyright and give credit where due</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex items-center justify-center">
+                <Card className="rounded-2xl p-6 text-center">
+                  <Shield className="w-16 h-16 text-primary mx-auto mb-4" />
+                  <h3 className="font-semibold text-lg mb-2">Fact-Checking Promise</h3>
+                  <p className="text-muted-foreground mb-4">
+                    We teach you to verify AI outputs and maintain critical thinking
+                  </p>
+                  <Button variant="outline" asChild>
+                    <a href="{{NOTEBOOK_SAFETY_URL}}" target="_blank" rel="noopener noreferrer">
+                      How we fact‑check
+                    </a>
+                  </Button>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="px-6 py-16">
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            
+            <Accordion type="single" collapsible className="space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem key={index} value={`item-${index}`} className="border rounded-2xl px-6">
+                  <AccordionTrigger className="text-left font-medium hover:no-underline">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground leading-relaxed">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </section>
+
+        {/* Final CTA */}
+        <section className="px-6 py-16 bg-gradient-to-br from-primary/5 to-primary/10">
+          <div className="container mx-auto max-w-4xl text-center">
+            <h2 className="font-serif text-4xl font-bold mb-6">Ready to Start Your AI Journey?</h2>
+            <p className="text-lg text-muted-foreground mb-8">
+              Join thousands who've transformed their daily workflow with calm, practical AI learning
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
+                <a href="#beginner-start-anchor">Start Free Today</a>
+              </Button>
+              <Button variant="outline" size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
+                <a href="#intermediate-start-anchor">Explore Intermediate</a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Signup */}
+        <section className="px-6 py-16 bg-muted/20">
+          <div className="container mx-auto max-w-md text-center">
+            <h3 className="font-serif text-2xl font-bold mb-4">Stay Updated</h3>
+            <p className="text-muted-foreground mb-6">Get weekly AI tips and new lesson notifications</p>
+            
+            <form className="flex gap-2">
+              <Input 
+                type="email" 
+                placeholder="your@email.com" 
+                className="rounded-xl"
+              />
+              <Button type="submit" className="rounded-xl">Subscribe</Button>
+            </form>
+            
+            <p className="text-xs text-muted-foreground mt-3">
+              We respect your privacy. Unsubscribe anytime.
+            </p>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </div>
