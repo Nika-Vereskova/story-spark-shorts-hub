@@ -42,7 +42,7 @@ const SEO: React.FC<SEOProps> = ({
 
   const organizationJsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
+    "@type": "Organization",
     "name": "STEaM LOGIC Studio AB",
     "url": BASE_URL,
     "logo": `${BASE_URL}${LOGO_URL}`,
@@ -50,11 +50,23 @@ const SEO: React.FC<SEOProps> = ({
     "founder": {
       "@type": "Person",
       "name": "Renata Khakimova",
-      "alternateName": "Nika Vereskova",
       "jobTitle": "CEO & AI Consultant",
       "expertise": ["AI Strategy", "Custom GPT Development", "AI Workshops", "Process Automation"],
       "url": "https://github.com/Nika-Vereskova"
     },
+    "employee": [
+      {
+        "@type": "Person",
+        "name": "Renata Khakimova",
+        "jobTitle": "Chief Executive Officer"
+      },
+      {
+        "@type": "Person",
+        "name": "Nika Vereskova",
+        "alternateName": "Nika Vereskova",
+        "jobTitle": "Author and Creator"
+      }
+    ],
     "address": {
       "@type": "PostalAddress",
       "addressCountry": "SE"
@@ -98,11 +110,34 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
+  // Breadcrumbs based on current path
+  const breadcrumbJsonLd = (() => {
+    const segments = pathWithoutLocale.split('/').filter(Boolean);
+    const items = [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${BASE_URL}/${locale}/`
+      },
+      ...segments.map((seg, index) => ({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+        "item": `${BASE_URL}/${locale}/${segments.slice(0, index + 1).join('/')}`
+      }))
+    ];
+    return {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    };
+  })();
+
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Renata Khakimova",
-    "alternateName": "Nika Vereskova",
     "jobTitle": "CEO & AI Consultant at STEaM LOGIC Studio AB",
     "description": "CEO of STEaM LOGIC Studio AB and expert in AI strategy, custom GPT development, and creative storytelling. Published author under pseudonym Nika Vereskova.",
     "url": BASE_URL,
@@ -127,6 +162,24 @@ const SEO: React.FC<SEOProps> = ({
       "name": "STEaM LOGIC Studio AB"
     },
     "email": "hello@steamlogic.studio"
+  };
+
+  // Separate Person schema for author pseudonym
+  const authorJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nika Vereskova",
+    "alternateName": ["Nika Vereskova"],
+    "jobTitle": "Author",
+    "description": "Author of steampunk children's books including Plumberella.",
+    "url": `${BASE_URL}/en/books`,
+    "sameAs": [
+      "https://www.instagram.com/nika.vereskova"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB"
+    }
   };
 
   // Enhanced Service structured data with more detail
@@ -306,7 +359,9 @@ const SEO: React.FC<SEOProps> = ({
       {/* Structured Data */}
       <script type="application/ld+json">{JSON.stringify(organizationJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(websiteJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(breadcrumbJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(personJsonLd)}</script>
+      <script type="application/ld+json">{JSON.stringify(authorJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(serviceJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
 

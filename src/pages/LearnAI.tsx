@@ -84,9 +84,44 @@ const LearnAI = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <SEO 
-        title="Learn AI for Beginners (and Busy Parents) — STEaM LOGIC Studio AB"
+        title="Learn AI for Beginners (and Busy Parents) | STEaM LOGIC Studio AB"
         description="Friendly, practical AI lessons in 10 minutes a day. Start free and level up to intermediate with real‑life projects."
+        keywords="Learn AI for beginners, AI education, family-friendly AI learning, beginner AI course, practical AI lessons, AI for parents"
       />
+      {/* Course Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Learn AI for Beginners (and Busy Parents)",
+        "description": "Friendly, practical AI lessons in 10 minutes a day. Start free and level up to intermediate with real‑life projects.",
+        "provider": {
+          "@type": "Organization",
+          "name": "STEaM LOGIC Studio AB",
+          "sameAs": "https://nika-vereskova.lovable.app/"
+        },
+        "hasCourseInstance": [
+          {
+            "@type": "CourseInstance",
+            "name": "Beginner 0→1",
+            "courseMode": "online",
+            "educationalLevel": "Beginner",
+            "isAccessibleForFree": true
+          },
+          {
+            "@type": "CourseInstance",
+            "name": "Intermediate 1→1.5",
+            "courseMode": "online",
+            "educationalLevel": "Intermediate",
+            "isAccessibleForFree": true
+          }
+        ],
+        "inLanguage": ["en", "sv", "ru"],
+        "audience": {
+          "@type": "Audience",
+          "audienceType": ["Beginners", "Parents", "Professionals"]
+        },
+        "url": typeof window !== 'undefined' ? window.location.href : 'https://nika-vereskova.lovable.app/en/learn-ai'
+      }) }} />
       
       {/* Decorative Elements */}
       <SteampunkGearCluster 
