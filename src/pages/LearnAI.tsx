@@ -149,7 +149,7 @@ const LearnAI = () => {
             </div>
             
             <h1 className="font-serif text-5xl md:text-7xl font-bold text-foreground mb-6 tracking-tight">
-             THE COURSR is UNDER CONSTRUCTION. Learn AI the Calm Way
+             THE COURSE is UNDER CONSTRUCTION. Learn AI the Calm Way
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto font-light">
