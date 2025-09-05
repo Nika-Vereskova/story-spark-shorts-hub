@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import { t } from '@/lib/i18n';
 
 const Footer = () => {
   const [visitCount, setVisitCount] = useState<number | null>(null);
+  const hasIncremented = useRef(false);
 
   const incrementVisits = async () => {
     try {
@@ -24,6 +25,8 @@ const Footer = () => {
   };
 
   useEffect(() => {
+    if (hasIncremented.current) return;
+    hasIncremented.current = true;
     incrementVisits();
   }, []);
 
@@ -60,7 +63,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="flex-1 flex justify-end">
-            {visitCount && (
+            {visitCount !== null && (
               <span className="text-oxidized-teal/60 font-inter text-xs">
                 {visitCount.toLocaleString()} {t('footer.visits')}
               </span>
