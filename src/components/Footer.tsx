@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
 
 const Footer = () => {
   const [visitCount, setVisitCount] = useState<number | null>(null);
@@ -29,6 +29,8 @@ const Footer = () => {
     hasIncremented.current = true;
     incrementVisits();
   }, []);
+
+  const locale = getCurrentLocale();
 
   return (
     <footer className="vintage-paper-dark weathered-edges py-8 px-6 border-t-4 border-brass/70">
@@ -88,6 +90,34 @@ const Footer = () => {
             className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
           >
             {t('footer.admin')}
+          </Link>
+        </div>
+
+        {/* Internal links for improved crawlability */}
+        <div className="flex justify-center space-x-6 mt-3">
+          <Link 
+            to={`/${locale}/books`} 
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+          >
+            {t('nav.books')}
+          </Link>
+          <Link 
+            to={`/${locale}/learn-ai`} 
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+          >
+            {t('nav.learnAI')}
+          </Link>
+          <Link 
+            to={`/${locale}/europe-capitals`} 
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+          >
+            {t('nav.europeCapitals')}
+          </Link>
+          <Link 
+            to={`/${locale}/ai-services`} 
+            className="text-oxidized-teal/80 hover:text-oxidized-teal transition-colors font-inter text-sm"
+          >
+            {t('nav.projects')}
           </Link>
         </div>
       </div>

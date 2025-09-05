@@ -494,10 +494,29 @@ const EuropeCapitals = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <SEO 
-        title="Europe Capitals Trainer | Interactive Geography Learning Tool | STEaM LOGIC Studio AB" 
+        title="Europe Capitals Trainer | Interactive Geography Learning Tool" 
         description="Master European capitals with our interactive trainer featuring flashcards, quizzes, and pronunciation. Free geography learning tool with study modes and progress tracking."
         keywords="Europe capitals trainer, European geography, capitals quiz, geography learning tool, interactive flashcards, Europe countries, STEaM LOGIC Studio AB"
       />
+      {/* Educational Content Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "Europe Capitals Trainer",
+        "description": "Interactive geography learning tool with flashcards, quizzes, and pronunciation to master European capitals.",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": ["Students", "Parents", "Teachers", "Lifelong Learners"]
+        },
+        "provider": {
+          "@type": "Organization",
+          "name": "STEaM LOGIC Studio AB"
+        },
+        "inLanguage": ["en", "sv", "ru"],
+        "educationalLevel": ["Beginner", "Intermediate"],
+        "isAccessibleForFree": true,
+        "url": typeof window !== 'undefined' ? window.location.href : 'https://nika-vereskova.lovable.app/en/europe-capitals'
+      }) }} />
       
       {/* Animated background elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">

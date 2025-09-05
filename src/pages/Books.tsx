@@ -55,6 +55,36 @@ const Books = () => {
         keywords="Nika Vereskova books, steampunk children's books, Plumberella, Swedish children's literature, fantasy books for kids, STEaM LOGIC Studio AB"
         author="Nika Vereskova"
       />
+      {/* Book Structured Data */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Book",
+        "name": books[0].title,
+        "bookFormat": "https://schema.org/EBook",
+        "image": `${books[0].coverUrl}`,
+        "author": {
+          "@type": "Person",
+          "name": "Nika Vereskova"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "STEaM LOGIC Studio AB"
+        },
+        "url": typeof window !== 'undefined' ? window.location.href : `${books[0].englishUrl || books[0].amazonUrl}`,
+        "offers": {
+          "@type": "Offer",
+          "url": books[0].amazonUrl,
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "workExample": [
+          books[0].englishUrl ? {
+            "@type": "Book",
+            "bookFormat": "https://schema.org/EBook",
+            "inLanguage": "en"
+          } : undefined
+        ].filter(Boolean)
+      }) }} />
       <Navigation currentPage="books" />
 
       <div className="pt-24 pb-16 px-6">

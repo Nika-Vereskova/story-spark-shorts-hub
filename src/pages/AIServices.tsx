@@ -11,7 +11,7 @@ import AdSenseSquare from '@/components/AdSenseSquare';
 const AIServices = () => {
   return (
     <div className="min-h-screen bg-parchment">
-      <SEO title="AI Consulting Services - STEaM LOGIC Studio AB | Expert AI Strategy & Automation" description="STEaM LOGIC Studio AB provides practical AI services: strategic roadmaps, custom GPT development, intelligent automation, and professional AI training worldwide." />
+      <SEO title="AI Consulting Services | STEaM LOGIC Studio AB" description="AI strategy, custom GPT development, automation, and training by STEaM LOGIC Studio AB. Led by CEO Renata Khakimova." />
       <Navigation currentPage="ai-services" />
       <main className="pt-20 pb-12">
         <AdSenseBanner position="top" />
