@@ -49,7 +49,12 @@ const Books = () => {
       <Settings className="absolute top-32 left-8 w-14 h-14 text-brass/15 animate-gear-rotation" style={{animationDelay: '1s'}} />
       <Settings className="absolute top-1/3 right-8 w-10 h-10 text-brass/20 animate-gear-rotation" style={{animationDelay: '3s'}} />
       <Settings className="absolute bottom-40 left-1/4 w-12 h-12 text-brass/10 animate-gear-rotation" style={{animationDelay: '5s'}} />
-      <SEO title="Steampunk Books & Stories - Plumberella Series | STEaM LOGIC Studio AB" description="Discover enchanting steampunk books and stories by Nika Vereskova from STEaM LOGIC Studio AB. The Plumberella series and more magical tales for curious minds." />
+      <SEO 
+        title="Steampunk Books by Nika Vereskova | STEaM LOGIC Studio AB" 
+        description="Award-winning steampunk children's books by author Nika Vereskova. Discover Plumberella and other magical adventures. Published by STEaM LOGIC Studio AB."
+        keywords="Nika Vereskova books, steampunk children's books, Plumberella, Swedish children's literature, fantasy books for kids, STEaM LOGIC Studio AB"
+        author="Nika Vereskova"
+      />
       <Navigation currentPage="books" />
 
       <div className="pt-24 pb-16 px-6">

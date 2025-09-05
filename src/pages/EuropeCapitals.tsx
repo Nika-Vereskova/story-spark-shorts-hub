@@ -494,9 +494,9 @@ const EuropeCapitals = () => {
   return (
     <div className="min-h-screen bg-background relative">
       <SEO 
-        title={`${t('projects.europeCapitals.title')} | STEaM LOGIC Studio AB`}
-        description={t('projects.europeCapitals.description')}
-        keywords="EU capitals trainer, geography learning, European countries, capitals quiz, educational game, interactive learning"
+        title="Europe Capitals Trainer | Interactive Geography Learning Tool | STEaM LOGIC Studio AB" 
+        description="Master European capitals with our interactive trainer featuring flashcards, quizzes, and pronunciation. Free geography learning tool with study modes and progress tracking."
+        keywords="Europe capitals trainer, European geography, capitals quiz, geography learning tool, interactive flashcards, Europe countries, STEaM LOGIC Studio AB"
       />
       
       {/* Animated background elements */}

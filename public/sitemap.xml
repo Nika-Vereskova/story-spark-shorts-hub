@@ -119,6 +119,64 @@
     <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/ai-services" />
   </url>
 
+  <!-- Learn AI Pages -->
+  <url>
+    <loc>https://nika-vereskova.lovable.app/en/learn-ai</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/learn-ai" />
+  </url>
+  <url>
+    <loc>https://nika-vereskova.lovable.app/sv/learn-ai</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/learn-ai" />
+  </url>
+  <url>
+    <loc>https://nika-vereskova.lovable.app/ru/learn-ai</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/learn-ai" />
+  </url>
+
+  <!-- Europe Capitals Pages -->
+  <url>
+    <loc>https://nika-vereskova.lovable.app/en/europe-capitals</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/europe-capitals" />
+  </url>
+  <url>
+    <loc>https://nika-vereskova.lovable.app/sv/europe-capitals</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/europe-capitals" />
+  </url>
+  <url>
+    <loc>https://nika-vereskova.lovable.app/ru/europe-capitals</loc>
+    <lastmod>2024-12-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://nika-vereskova.lovable.app/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://nika-vereskova.lovable.app/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://nika-vereskova.lovable.app/ru/europe-capitals" />
+  </url>
+
   <!-- Books Pages -->
   <url>
     <loc>https://nika-vereskova.lovable.app/en/books</loc>

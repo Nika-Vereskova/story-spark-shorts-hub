@@ -23,11 +23,11 @@ const SEO: React.FC<SEOProps> = ({
   description, 
   image, 
   noindex, 
-  keywords = "STEaM LOGIC Studio AB, Steam Logic, STEaM LOGIC Studio, STEaM LOGIC, AI consulting, custom GPT development, AI workshops, ChatGPT development, AI automation, AI strategy consultant, artificial intelligence consultant, Sweden, process automation, AI assistant development, GPT training workshops, AI process automation solutions, Nika Vereskova AI consultant",
+  keywords = "STEaM LOGIC Studio AB, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops",
   type = 'website',
   publishedTime,
   modifiedTime,
-  author = 'Nika Vereskova'
+  author = 'STEaM LOGIC Studio AB'
 }) => {
   const locale = getCurrentLocale();
 
@@ -46,11 +46,12 @@ const SEO: React.FC<SEOProps> = ({
     "name": "STEaM LOGIC Studio AB",
     "url": BASE_URL,
     "logo": `${BASE_URL}${LOGO_URL}`,
-    "description": "Expert AI consulting services combining inventive storytelling with intelligent technology. Custom GPT development, AI workshops, and automation solutions.",
+    "description": "Expert AI consulting services by STEaM LOGIC Studio AB. CEO Renata Khakimova combines inventive storytelling with intelligent technology. Custom GPT development, AI workshops, and automation solutions.",
     "founder": {
       "@type": "Person",
-      "name": "Nika Vereskova",
-      "jobTitle": "AI Consultant & Creative Storyteller",
+      "name": "Renata Khakimova",
+      "alternateName": "Nika Vereskova",
+      "jobTitle": "CEO & AI Consultant",
       "expertise": ["AI Strategy", "Custom GPT Development", "AI Workshops", "Process Automation"],
       "url": "https://github.com/Nika-Vereskova"
     },
@@ -65,8 +66,8 @@ const SEO: React.FC<SEOProps> = ({
     },
     "serviceType": [
       "AI Strategy & Implementation",
-      "Custom GPT Development",
-      "AI Training & Workshops", 
+      "Custom GPT Development", 
+      "AI Training & Workshops",
       "Process Automation Solutions"
     ],
     "areaServed": "Worldwide",
@@ -100,22 +101,25 @@ const SEO: React.FC<SEOProps> = ({
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Nika Vereskova",
-    "jobTitle": "AI Consultant & Creative Storyteller",
-    "description": "Expert in AI strategy, custom GPT development, and creative storytelling with extensive experience in artificial intelligence consulting and automation solutions.",
+    "name": "Renata Khakimova",
+    "alternateName": "Nika Vereskova",
+    "jobTitle": "CEO & AI Consultant at STEaM LOGIC Studio AB",
+    "description": "CEO of STEaM LOGIC Studio AB and expert in AI strategy, custom GPT development, and creative storytelling. Published author under pseudonym Nika Vereskova.",
     "url": BASE_URL,
     "knowsAbout": [
       "Artificial Intelligence",
-      "Custom GPT Development", 
-      "AI Strategy",
+      "Custom GPT Development",
+      "AI Strategy", 
       "Process Automation",
       "Machine Learning",
       "AI Workshops",
-      "Creative Storytelling"
+      "Creative Storytelling",
+      "Europe Geography Training",
+      "Educational Technology"
     ],
     "sameAs": [
       "https://www.youtube.com/@NikaVereskova",
-      "https://github.com/Nika-Vereskova",
+      "https://github.com/Nika-Vereskova", 
       "https://www.instagram.com/nika.vereskova"
     ],
     "worksFor": {
@@ -191,18 +195,26 @@ const SEO: React.FC<SEOProps> = ({
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "What AI consulting services does STEaM LOGIC Studio offer?",
+        "name": "What AI consulting services does STEaM LOGIC Studio AB offer?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We offer comprehensive AI consulting services including AI strategy & implementation, custom GPT development, AI workshops and training, and process automation solutions. Our expertise covers artificial intelligence consulting, ChatGPT development, and AI assistant development."
+          "text": "STEaM LOGIC Studio AB offers comprehensive AI consulting services including AI strategy & implementation, custom GPT development, AI workshops and training, and process automation solutions. Led by CEO Renata Khakimova, we specialize in artificial intelligence consulting, ChatGPT development, and AI assistant development."
         }
       },
       {
         "@type": "Question",
-        "name": "Who is Nika Vereskova and what are her AI qualifications?",
+        "name": "Who is Renata Khakimova and what are her qualifications?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Nika Vereskova is an expert AI consultant and creative storyteller with extensive experience in custom GPT development, AI workshops, and innovative technology solutions. She specializes in AI strategy consulting, process automation, and GPT training workshops."
+          "text": "Renata Khakimova is the CEO of STEaM LOGIC Studio AB, an expert AI consultant and creative storyteller with extensive experience in custom GPT development, AI workshops, and innovative technology solutions. She also publishes award-winning children's books under the pseudonym Nika Vereskova."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What educational tools does STEaM LOGIC Studio AB offer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "We offer Learn AI for beginners - friendly 10-minute lessons for practical AI learning, and Europe Capitals Trainer - an interactive geography learning tool with flashcards, quizzes, and pronunciation features for mastering European geography."
         }
       },
       {
@@ -215,18 +227,18 @@ const SEO: React.FC<SEOProps> = ({
       },
       {
         "@type": "Question",
-        "name": "What makes STEaM LOGIC Studio different from other AI consultants?",
+        "name": "What makes STEaM LOGIC Studio AB different from other AI consultants?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "We combine technical AI expertise with creative storytelling, offering a unique approach that merges inventive storytelling with intelligent technology. Our services blend art and science to create innovative AI solutions."
+          "text": "STEaM LOGIC Studio AB combines technical AI expertise with creative storytelling, offering a unique approach that merges inventive storytelling with intelligent technology. CEO Renata Khakimova's diverse background includes both AI consulting and award-winning children's book authorship under pseudonym Nika Vereskova."
         }
       },
       {
         "@type": "Question",
-        "name": "How can I contact STEaM LOGIC Studio for AI consulting?",
+        "name": "How can I contact STEaM LOGIC Studio AB for AI consulting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "You can reach us at hello@steamlogic.studio for project discussions, AI strategy consultations, and custom GPT development inquiries. We serve clients worldwide with our AI consulting services."
+          "text": "Contact us at hello@steamlogic.studio for AI consulting project discussions, custom GPT development inquiries, and educational tool access. We serve clients worldwide with our comprehensive AI services and educational platforms."
         }
       }
     ]
