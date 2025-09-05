@@ -73,10 +73,10 @@ export const en = {
     title: "Meet CEO",
     subtitle: "Author, Engineer, and AI enthusiast",
     myStory: "My Story",
-    bio1: "Hi, I'm Nika Vereskova—an engineer, author, and eternal coffee lover. I write modern fairy tales where strong heroines, clever machines, and timeless questions about truth and justice meet in whimsical, steampunk-inspired worlds.",
-    bio2: "I have a passion for Artificial Intelligence and love exploring how technology and creativity can work hand in hand. Beyond writing, I enjoy helping children discover their potential—encouraging them to think boldly, dream freely, and believe in their unique strengths.",
+    bio1: "Hi, I'm Renata Khakimova — an engineer, author, and eternal coffee lover. Under pseudonym Nika Vereskova I write under modern fairy tales where strong heroines, clever machines, and timeless questions about truth and justice meet in whimsical, steampunk-inspired worlds.",
+    bio2: "I have a passion for Artificial Intelligence and love exploring how technology and creativity can work hand in hand. Beyond writing, I enjoy helping children discover their potential—encouraging them to think boldly, dream freely, and believe in their unique strengths using AI powered tools.",
     bio3: "Storytelling has always been my way of exploring the world—not just as it is, but as it could be. In my writing, I weave together fantasy and real-life challenges, creating tales that inspire readers to think deeply, laugh freely, and believe in their own power to make change.",
-    bio4: "When I'm not writing or tinkering with ideas, you'll find me sketching new inventions, learning about AI, or sipping a perfectly brewed cup of coffee in a sunny corner of my garden.",
+    bio4: "When I'm not writing or tinkering with ideas, you'll find me sketching new applications, learning about AI, or sipping a perfectly brewed cup of coffee in a sunny corner of my garden.",
     bio5: "Welcome to my little world of stories and ideas—where imagination meets engineering, and every detail has a purpose.",
     connect: "Let's Connect!",
     followSocial: "Follow on Social"
