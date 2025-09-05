@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from 'react-helmet-async';
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -36,46 +36,7 @@ const withSuspense = (Component: React.LazyExoticComponent<React.ComponentType>)
   </Suspense>
 );
 
-declare global {
-  interface Window {
-    adsbygoogle: unknown[];
-    adsbygoogleInit?: boolean;
-  }
-}
-
 const App = () => {
-  useEffect(() => {
-    const scriptSrc =
-      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483";
-
-    const initAds = () => {
-      if (!window.adsbygoogleInit) {
-        try {
-          (window.adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-4113128198241483",
-            enable_page_level_ads: true
-          });
-          window.adsbygoogleInit = true;
-        } catch (e) {
-          console.error('AdSense initialization error:', e);
-        }
-      }
-    };
-
-    if (typeof window !== 'undefined') {
-      if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-        const script = document.createElement('script');
-        script.async = true;
-        script.src = scriptSrc;
-        script.crossOrigin = 'anonymous';
-        script.onload = initAds;
-        document.head.appendChild(script);
-      } else {
-        initAds();
-      }
-    }
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
