@@ -317,7 +317,6 @@ const SEO: React.FC<SEOProps> = ({
       
       {/* Resource hints for key assets */}
       <link rel="preload" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" as="image" />
-      <link rel="preload" href="/src/index.css" as="style" />
       
       {/* DNS prefetch for external domains */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
