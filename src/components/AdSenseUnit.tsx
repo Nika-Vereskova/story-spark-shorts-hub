@@ -33,8 +33,13 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
 
   useEffect(() => {
     try {
-      if (typeof window !== 'undefined' && window.adsbygoogle) {
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (typeof window !== 'undefined') {
+        // Ensure the adsbygoogle queue exists and push a request
+        // Some environments may not have the script loaded yet; pushing queues it
+        // The try/catch prevents runtime crashes on ad blockers
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (window as any).adsbygoogle = (window as any).adsbygoogle || [];
+        (window as any).adsbygoogle.push({});
       }
     } catch (error) {
       console.warn('AdSense error:', error);
