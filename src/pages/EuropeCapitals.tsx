@@ -22,7 +22,7 @@ import AdSenseUnit from '@/components/AdSenseUnit';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-const QUIZ_LENGTH = 10;
+const DEFAULT_QUIZ_LENGTH = 10;
 
 const regions = ['All', ...Array.from(new Set(EUROPE_COUNTRIES.map(c => c.region))).sort()];
 
@@ -45,6 +45,7 @@ const EuropeCapitals = () => {
   const [quizState, setQuizState] = useState<any>(null);
   const [quizMode, setQuizMode] = useState('mc'); // 'mc' | 'typed'
   const [quizDirection, setQuizDirection] = useState('cc'); // 'cc' | 'cc_rev'
+  const [quizLength, setQuizLength] = useState<number>(DEFAULT_QUIZ_LENGTH);
   const [typedAnswer, setTypedAnswer] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -193,6 +194,17 @@ const EuropeCapitals = () => {
     return shuffled;
   };
 
+  const countryCodeToFlagEmoji = (code: string) => {
+    if (!code || code.length !== 2) return '🏳️';
+    const base = 127397; // Regional Indicator Symbol Letter A
+    const upper = code.toUpperCase();
+    try {
+      return String.fromCodePoint(base + upper.charCodeAt(0)) + String.fromCodePoint(base + upper.charCodeAt(1));
+    } catch {
+      return '🏳️';
+    }
+  };
+
   const getCurrentItem = () => EUROPE_COUNTRIES[studyIndex];
 
   const getCountry = (item: any) => {
@@ -292,7 +304,7 @@ const EuropeCapitals = () => {
   const startQuiz = () => {
     console.log('🎯 Starting new quiz');
     const questions = shuffle([...EUROPE_COUNTRIES])
-      .slice(0, QUIZ_LENGTH)
+      .slice(0, quizLength)
       .map(item => {
         const correctAnswer =
           quizDirection === 'cc' ? getCapital(item) : getCountry(item);
@@ -565,9 +577,9 @@ const EuropeCapitals = () => {
           {/* Tabs */}
           <div className="flex flex-wrap gap-4 mb-8">
             {[
-              { id: 'study', icon: '📚', label: t('projects.europeCapitals.study'), color: 'from-green-500 to-green-600' },
-              { id: 'quiz', icon: '🎯', label: t('projects.europeCapitals.quiz'), color: 'from-blue-500 to-blue-600' },
-              { id: 'map', icon: '🗺️', label: t('projects.europeCapitals.map'), color: 'from-orange-500 to-orange-600' }
+              { id: 'study', icon: '📚', label: t('projects.europeCapitals.study'), color: 'from-oxidized-teal to-primary' },
+              { id: 'quiz', icon: '🎯', label: t('projects.europeCapitals.quiz'), color: 'from-brass to-oxidized-teal' },
+              { id: 'map', icon: '🗺️', label: t('projects.europeCapitals.map'), color: 'from-primary to-secondary' }
             ].map(tab => (
               <Button
                 key={tab.id}
@@ -701,7 +713,7 @@ const EuropeCapitals = () => {
                     </p>
                   </div>
                   
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="space-y-4">
                       <h3 className="text-xl font-semibold text-foreground">{t('projects.europeCapitals.quizType')}</h3>
                       <div className="space-y-3">
@@ -741,6 +753,24 @@ const EuropeCapitals = () => {
                         <option value="cc_rev">🏰 {t('projects.europeCapitals.capitalToCountry')}</option>
                       </select>
                     </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-xl font-semibold text-foreground">{t('projects.europeCapitals.questionCount')}</h3>
+                      <div className="grid grid-cols-3 gap-3">
+                        {[10, 20, 30].map(n => (
+                          <Button
+                            key={`ql-${n}`}
+                            onClick={() => setQuizLength(n)}
+                            variant={quizLength === n ? 'default' : 'outline'}
+                            size="lg"
+                            aria-label={`${n} ${t('projects.europeCapitals.question')}`}
+                            className="h-12 rounded-xl font-semibold"
+                          >
+                            {n}
+                          </Button>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="text-center pt-4">
@@ -748,7 +778,7 @@ const EuropeCapitals = () => {
                       onClick={startQuiz}
                       size="lg"
                       aria-label={t('projects.europeCapitals.startQuiz') as string}
-                      className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                      className="h-16 px-12 text-2xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
                       >
                         🚀 {t('projects.europeCapitals.startQuiz')}
                       </Button>
@@ -788,7 +818,7 @@ const EuropeCapitals = () => {
                     </div>
                     <Progress
                       value={(quizState.index / quizState.total) * 100}
-                      className="h-6 md:h-8 mt-4 bg-amber-200 rounded-full [&>div]:bg-amber-500"
+                      className="h-6 md:h-8 mt-4 bg-secondary/30 rounded-full [&>div]:bg-secondary"
                     />
                   </div>
                   <div className="steampunk-card min-h-[400px] flex items-center justify-center p-8">
@@ -879,12 +909,13 @@ const EuropeCapitals = () => {
                       aria-label={`${name} ${capital}`}
                       className={`h-20 p-4 text-center transition-all duration-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                         isActive
-                          ? 'transform scale-105 shadow-lg bg-gradient-to-br from-orange-500 to-orange-600'
+                          ? 'transform scale-105 shadow-lg bg-gradient-to-br from-primary to-secondary'
                           : 'hover:scale-105 hover:shadow-md'
                       }`}
                       title={`${name} → ${capital}`}
                     >
                       <div className="flex flex-col items-center gap-1">
+                        <div className="text-2xl">{countryCodeToFlagEmoji(country.code)}</div>
                         <div className="font-bold text-lg">{country.code}</div>
                         <div className="text-xs">{name}</div>
                       </div>

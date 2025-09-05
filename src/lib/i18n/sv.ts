@@ -383,6 +383,7 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       quizDescription: "Testa dina kunskaper med ett roligt quiz!",
       quizType: "Quiz-typ",
       direction: "Riktning",
+      questionCount: "Antal Frågor",
       question: "Fråga",
       exploreMap: "Utforska kartan",
       clickToHear: "Klicka på länder för att höra deras namn",
