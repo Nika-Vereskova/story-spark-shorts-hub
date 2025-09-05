@@ -79,7 +79,11 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap">
+    </noscript>
   </head>
 
   <body>
@@ -97,7 +101,7 @@
         <section class="hero p-8 text-center">
           <img src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png"
                alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics"
-               width="200" height="200" style="margin: 0 auto;" loading="eager">
+               width="200" height="200" style="margin: 0 auto;" loading="eager" fetchpriority="high" decoding="async">
           <h1>Inventive Storytelling × Intelligent Technology</h1>
           <p>Where story magic meets machine logic. AI consulting, storytelling, and creative technology solutions by Nika Vereskova.</p>
           <div style="margin-top: 20px;">
