@@ -86,7 +86,7 @@ const SEO: React.FC<SEOProps> = ({
     "sameAs": [
       "https://www.youtube.com/@NikaVereskova",
       "https://github.com/Nika-Vereskova",
-      "https://www.instagram.com/nika.vereskova"
+      "https://www.instagram.com/vereskovanika"
     ]
   };
 
@@ -155,7 +155,7 @@ const SEO: React.FC<SEOProps> = ({
     "sameAs": [
       "https://www.youtube.com/@NikaVereskova",
       "https://github.com/Nika-Vereskova", 
-      "https://www.instagram.com/nika.vereskova"
+      "https://www.instagram.com/vereskovanika"
     ],
     "worksFor": {
       "@type": "Organization",
@@ -174,7 +174,7 @@ const SEO: React.FC<SEOProps> = ({
     "description": "Author of steampunk children's books including Plumberella.",
     "url": `${BASE_URL}/en/books`,
     "sameAs": [
-      "https://www.instagram.com/nika.vereskova"
+      "https://www.instagram.com/vereskovanika"
     ],
     "worksFor": {
       "@type": "Organization",
