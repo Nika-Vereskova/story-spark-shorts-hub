@@ -118,7 +118,7 @@ const LearnAI = () => {
             </h1>
             
             <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto font-light">
-              10‑minute lessons. Real‑life tasks. No jargon.
+              THE COURSE IS UNDER CONSTRUCTION. 10‑minute lessons. Real‑life tasks. No jargon.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
