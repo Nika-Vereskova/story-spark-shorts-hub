@@ -19,7 +19,43 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://app.posthog.com https://us.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://srzxvvbxmcrxsplwutxv.supabase.co https://app.posthog.com https://us.i.posthog.com; frame-src https://pagead2.googlesyndication.com;" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval'
+        https://pagead2.googlesyndication.com
+        https://fundingchoicesmessages.google.com
+        https://fundingchoicesmessages.googleapis.com
+        https://googleads.g.doubleclick.net
+        https://www.googletagservices.com
+        https://www.googletagmanager.com
+        https://www.googleadservices.com
+        https://tpc.googlesyndication.com
+        https://www.gstatic.com
+        https://app.posthog.com https://us.i.posthog.com;
+      connect-src 'self'
+        https://fundingchoicesmessages.google.com
+        https://fundingchoicesmessages.googleapis.com
+        https://pagead2.googlesyndication.com
+        https://googleads.g.doubleclick.net
+        https://www.google-analytics.com
+        https://app.posthog.com https://us.i.posthog.com
+        https://srzxvvbxmcrxsplwutxv.supabase.co;
+      frame-src 'self'
+        https://fundingchoicesmessages.google.com
+        https://tpc.googlesyndication.com
+        https://googleads.g.doubleclick.net
+        https://adservice.google.com
+        https://adservice.google.se;
+      img-src 'self' data: blob:
+        https://pagead2.googlesyndication.com
+        https://googleads.g.doubleclick.net
+        https://tpc.googlesyndication.com;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+      font-src 'self' https://fonts.gstatic.com;
+      "
+    />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="STEaM LOGIC Studio AB | AI Consulting & Creative Technology by CEO Renata Khakimova" />
