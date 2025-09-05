@@ -25,7 +25,7 @@ const ContactCTA = () => {
     },
     {
       icon: Instagram,
-      href: "https://instagram.com/nikavereskova",
+      href: "https://www.instagram.com/vereskovanika",
       label: "Instagram"
     },
     {
