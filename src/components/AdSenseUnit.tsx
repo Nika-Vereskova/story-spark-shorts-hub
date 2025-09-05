@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface AdSenseUnitProps {
   adSlot: string;
@@ -26,17 +26,10 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   const insRef = useRef<HTMLModElement>(null);
   const [hasAd, setHasAd] = useState(false);
 
-  const checkAd = useCallback(() => {
-    const height = insRef.current?.getBoundingClientRect().height ?? 0;
-    setHasAd(height > 0);
-  }, []);
-
   useEffect(() => {
     try {
       if (typeof window !== 'undefined') {
         // Ensure the adsbygoogle queue exists and push a request
-        // Some environments may not have the script loaded yet; pushing queues it
-        // The try/catch prevents runtime crashes on ad blockers
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (window as any).adsbygoogle = (window as any).adsbygoogle || [];
         (window as any).adsbygoogle.push({});
@@ -45,12 +38,32 @@ const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
       console.warn('AdSense error:', error);
     }
 
-    const timer = setTimeout(checkAd, 5000);
-    return () => clearTimeout(timer);
-  }, [checkAd]);
+    // Observe size changes without forcing a layout
+    let ro: ResizeObserver | null = null;
+    const target = insRef.current as unknown as Element | null;
+    if (typeof window !== 'undefined' && target && 'ResizeObserver' in window) {
+      ro = new ResizeObserver((entries) => {
+        const entry = entries[0];
+        const height = entry?.contentRect?.height ?? 0;
+        setHasAd(height > 0);
+      });
+      ro.observe(target);
+    } else {
+      // Fallback: check later without tight loops
+      const fallbackTimer = setTimeout(() => {
+        const el = insRef.current as unknown as HTMLElement | null;
+        const height = el?.offsetHeight ?? 0;
+        setHasAd(height > 0);
+      }, 4000);
+      return () => clearTimeout(fallbackTimer);
+    }
+
+    return () => {
+      ro?.disconnect();
+    };
+  }, []);
 
   const handleLoad = () => {
-    checkAd();
     onLoad?.();
   };
 
