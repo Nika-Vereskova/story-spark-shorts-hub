@@ -39,20 +39,39 @@ const withSuspense = (Component: React.LazyExoticComponent<React.ComponentType>)
 declare global {
   interface Window {
     adsbygoogle: unknown[];
+    adsbygoogleInit?: boolean;
   }
 }
 
 const App = () => {
   useEffect(() => {
-    // Initialize Google AdSense Auto Ads
+    const scriptSrc =
+      "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483";
+
+    const initAds = () => {
+      if (!window.adsbygoogleInit) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4113128198241483",
+            enable_page_level_ads: true
+          });
+          window.adsbygoogleInit = true;
+        } catch (e) {
+          console.error('AdSense initialization error:', e);
+        }
+      }
+    };
+
     if (typeof window !== 'undefined') {
-      try {
-        (window.adsbygoogle = window.adsbygoogle || []).push({
-          google_ad_client: "ca-pub-4113128198241483",
-          enable_page_level_ads: true
-        });
-      } catch (e) {
-        console.error('AdSense initialization error:', e);
+      if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = scriptSrc;
+        script.crossOrigin = 'anonymous';
+        script.onload = initAds;
+        document.head.appendChild(script);
+      } else {
+        initAds();
       }
     }
   }, []);
