@@ -613,7 +613,7 @@ const EuropeCapitals = () => {
                       {hintText && showHints && (
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-muted-foreground text-sm sm:text-base md:text-lg bg-card/50 rounded-lg p-3 border">
                           {currentItem.image ? (
-                            <img src={currentItem.image} alt={getCountry(currentItem)} className="w-10 h-10 object-contain" />
+                            <img src={currentItem.image} alt={getCountry(currentItem)} className="w-10 h-10 object-contain" loading="lazy" decoding="async" />
                           ) : currentItem.emoji ? (
                             <span className="text-2xl md:text-3xl">{currentItem.emoji}</span>
                           ) : (
