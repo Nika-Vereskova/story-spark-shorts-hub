@@ -73,7 +73,7 @@ const SEO: React.FC<SEOProps> = ({
     },
     "contactPoint": {
       "@type": "ContactPoint",
-      "email": "hello@steamlogic.studio",
+      "email": "nika.vereskova@gmail.com",
       "contactType": "customer service"
     },
     "serviceType": [
@@ -161,7 +161,7 @@ const SEO: React.FC<SEOProps> = ({
       "@type": "Organization",
       "name": "STEaM LOGIC Studio AB"
     },
-    "email": "hello@steamlogic.studio"
+    "email": "nika.vereskova@gmail.com"
   };
 
   // Separate Person schema for author pseudonym
@@ -291,7 +291,7 @@ const SEO: React.FC<SEOProps> = ({
         "name": "How can I contact STEaM LOGIC Studio AB for AI consulting?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Contact us at hello@steamlogic.studio for AI consulting project discussions, custom GPT development inquiries, and educational tool access. We serve clients worldwide with our comprehensive AI services and educational platforms."
+          "text": "Contact us for AI consulting project discussions, custom GPT development inquiries, and educational tool access. We serve clients worldwide with our comprehensive AI services and educational platforms."
         }
       }
     ]
