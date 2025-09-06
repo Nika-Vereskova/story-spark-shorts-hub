@@ -371,7 +371,7 @@ const SEO: React.FC<SEOProps> = ({
       <link rel="preconnect" href="https://srzxvvbxmcrxsplwutxv.supabase.co" />
       
       {/* Resource hints for key assets */}
-      <link rel="preload" as="image" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp" imagesrcset="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-320.webp 320w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp 640w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp 1024w" imagesizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 320px" />
+      <link rel="preload" as="image" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp" imageSrcSet="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-320.webp 320w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp 640w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp 1024w" imageSizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 320px" />
       
       {/* DNS prefetch for external domains */}
       <link rel="dns-prefetch" href="//fonts.googleapis.com" />
