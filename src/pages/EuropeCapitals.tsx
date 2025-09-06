@@ -907,17 +907,16 @@ const EuropeCapitals = () => {
                       variant={isActive ? "default" : "outline"}
                       size="lg"
                       aria-label={`${name} ${capital}`}
-                      className={`h-20 p-4 text-center transition-all duration-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                      className={`h-16 p-3 text-center transition-all duration-300 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
                         isActive
                           ? 'transform scale-105 shadow-lg bg-gradient-to-br from-primary to-secondary'
                           : 'hover:scale-105 hover:shadow-md'
                       }`}
                       title={`${name} → ${capital}`}
                     >
-                      <div className="flex flex-col items-center gap-1">
-                        <div className="text-2xl">{countryCodeToFlagEmoji(country.code)}</div>
-                        <div className="font-bold text-lg">{country.code}</div>
-                        <div className="text-xs">{name}</div>
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="text-3xl">{countryCodeToFlagEmoji(country.code)}</div>
+                        <div className="font-bold text-base">{country.code}</div>
                       </div>
                     </Button>
                   );
