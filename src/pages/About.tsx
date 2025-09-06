@@ -46,8 +46,8 @@ const About = () => {
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-brass"></div>
                 
                 <img
-                  src="/lovable-uploads/8b2801e0-86c4-4ebc-9c8d-e51acaef11d8.png"
-                  alt="Nika Vereskova"
+                  src="/lovable-uploads/d64c33f0-606a-4552-8886-7b785cefacc0.png"
+                  alt="Renata Khakimova"
                   loading="lazy"
                   className="w-full h-80 object-cover border-4 border-brass shadow-brass-drop"
                 />
