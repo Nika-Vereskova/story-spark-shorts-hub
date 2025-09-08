@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => ({
     mode === 'development' && componentTagger(),
   ].filter(Boolean),
   build: {
+    target: 'es2020', // Target modern browsers to avoid transpiling supported features
     rollupOptions: {
       output: {
         manualChunks: {
