@@ -78,6 +78,20 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483"
          crossorigin="anonymous"></script>
 
+    <!-- Critical CSS for initial render -->
+    <style>
+      /* Critical above-the-fold styles to prevent render blocking */
+      body { font-family: system-ui, -apple-system, sans-serif; margin: 0; }
+      #root { min-height: 100vh; }
+      .min-h-screen { min-height: 100vh; }
+      .bg-white { background-color: #ffffff; }
+      .text-center { text-align: center; }
+      .p-4 { padding: 1rem; }
+      .p-8 { padding: 2rem; }
+      .bg-gray-900 { background-color: #111827; }
+      .text-white { color: #ffffff; }
+    </style>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
