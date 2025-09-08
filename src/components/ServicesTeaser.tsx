@@ -21,17 +21,20 @@ const ServicesTeaser = () => {
     {
       icon: BookOpen,
       title: "Steampunk Books",
-      description: "Enchanting tales of young inventors and their magical adventures in a steampunk world."
+      description: "Enchanting tales of young inventors and their magical adventures in a steampunk world.",
+      link: `/${locale}/books`
     },
     {
       icon: Globe,
       title: "Europe Capitals Trainer",
-      description: "Interactive learning tool for European countries and capitals with study mode, quiz, and map."
+      description: "Interactive learning tool for European countries and capitals with study mode, quiz, and map.",
+      link: `/${locale}/europe-capitals`
     },
     {
       icon: Play,
       title: "Video Content",
-      description: "Educational and entertaining videos about AI, storytelling, and creative technology."
+      description: "Educational and entertaining videos about AI, storytelling, and creative technology.",
+      link: `/${locale}/videos`
     }
   ];
 
@@ -62,9 +65,10 @@ const ServicesTeaser = () => {
             return (
               <article 
                 key={index} 
-                className="vintage-paper-dark weathered-edges border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop touch-target rounded-lg"
+                className="vintage-paper-dark weathered-edges border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop touch-target rounded-lg cursor-pointer"
                 itemScope
                 itemType="https://schema.org/CreativeWork"
+                onClick={() => navigate(project.link)}
               >
                 <header className="text-center p-6 pb-4">
                   <div className="w-16 h-16 bg-brass/20 rounded-full flex items-center justify-center mx-auto mb-4">

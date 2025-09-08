@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp, MessageSquare, Sparkles, Bot, FileText } from 'lucide-react';
+import chatgptLogo from '@/assets/chatgpt-logo.svg';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -403,7 +404,7 @@ const LearnAI = () => {
               <Button variant="outline" size="lg" className="h-20 rounded-2xl hover:bg-primary/5 transition-all duration-300" asChild>
                 <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">
                   <div className="space-y-2">
-                    <MessageSquare className="w-8 h-8 mx-auto text-green-600" />
+                    <img src={chatgptLogo} alt="ChatGPT" className="w-8 h-8 mx-auto" />
                     <div>
                       <span className="font-semibold block">ChatGPT</span>
                       <span className="text-xs text-muted-foreground">Conversational AI</span>
