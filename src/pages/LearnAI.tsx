@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp } from 'lucide-react';
+import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp, MessageSquare, Sparkles, Bot, FileText } from 'lucide-react';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
@@ -399,31 +399,54 @@ const LearnAI = () => {
           <div className="container mx-auto max-w-6xl text-center">
             <h2 className="font-serif text-4xl font-bold mb-12">Trusted Tools We Teach</h2>
             
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 opacity-60 hover:opacity-80 transition-opacity">
-              <div className="space-y-2">
-                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
-                  <span className="font-semibold">ChatGPT</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Conversational AI</p>
-              </div>
-              <div className="space-y-2">
-                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
-                  <span className="font-semibold">Claude</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Analytical AI</p>
-              </div>
-              <div className="space-y-2">
-                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
-                  <span className="font-semibold">Gemini</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Multi-modal AI</p>
-              </div>
-              <div className="space-y-2">
-                <div className="bg-muted/50 rounded-xl p-4 h-16 flex items-center justify-center">
-                  <span className="font-semibold">NotebookLM</span>
-                </div>
-                <p className="text-sm text-muted-foreground">Research AI</p>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl hover:bg-primary/5 transition-all duration-300" asChild>
+                <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer">
+                  <div className="space-y-2">
+                    <MessageSquare className="w-8 h-8 mx-auto text-green-600" />
+                    <div>
+                      <span className="font-semibold block">ChatGPT</span>
+                      <span className="text-xs text-muted-foreground">Conversational AI</span>
+                    </div>
+                  </div>
+                </a>
+              </Button>
+              
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl hover:bg-primary/5 transition-all duration-300" asChild>
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer">
+                  <div className="space-y-2">
+                    <Bot className="w-8 h-8 mx-auto text-orange-500" />
+                    <div>
+                      <span className="font-semibold block">Claude</span>
+                      <span className="text-xs text-muted-foreground">Analytical AI</span>
+                    </div>
+                  </div>
+                </a>
+              </Button>
+              
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl hover:bg-primary/5 transition-all duration-300" asChild>
+                <a href="https://gemini.google.com" target="_blank" rel="noopener noreferrer">
+                  <div className="space-y-2">
+                    <Sparkles className="w-8 h-8 mx-auto text-blue-500" />
+                    <div>
+                      <span className="font-semibold block">Gemini</span>
+                      <span className="text-xs text-muted-foreground">Multi-modal AI</span>
+                    </div>
+                  </div>
+                </a>
+              </Button>
+              
+              <Button variant="outline" size="lg" className="h-20 rounded-2xl hover:bg-primary/5 transition-all duration-300" asChild>
+                <a href="https://notebooklm.google.com" target="_blank" rel="noopener noreferrer">
+                  <div className="space-y-2">
+                    <FileText className="w-8 h-8 mx-auto text-purple-500" />
+                    <div>
+                      <span className="font-semibold block">NotebookLM</span>
+                      <span className="text-xs text-muted-foreground">Research AI</span>
+                    </div>
+                  </div>
+                </a>
+              </Button>
             </div>
           </div>
         </section>
