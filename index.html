@@ -35,14 +35,14 @@
         https://adservice.google.com
         https://adservice.google.se
         https://www.gstatic.com
-        https://app.posthog.com https://us.i.posthog.com;
+        https://app.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com;
       connect-src 'self'
         https://fundingchoicesmessages.google.com
         https://fundingchoicesmessages.googleapis.com
         https://pagead2.googlesyndication.com
         https://googleads.g.doubleclick.net
         https://www.google-analytics.com
-        https://app.posthog.com https://us.i.posthog.com
+        https://app.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com
         https://srzxvvbxmcrxsplwutxv.supabase.co
         https://adservice.google.com
         https://adservice.google.se
@@ -78,11 +78,14 @@
     <script>
       window.addEventListener('load', function() {
         setTimeout(function() {
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483';
-          script.crossOrigin = 'anonymous';
-          document.head.appendChild(script);
+          // Only load AdSense if ad containers exist
+          if (document.querySelector('.adsbygoogle')) {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4113128198241483';
+            script.crossOrigin = 'anonymous';
+            document.head.appendChild(script);
+          }
         }, 1000);
       });
     </script>
