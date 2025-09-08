@@ -91,10 +91,10 @@ const About = () => {
               <Button 
                 size="lg" 
                 className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
-                onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com'}
+                onClick={() => window.location.href = 'mailto:hello@steamlogic.se'}
               >
                 <Mail className="mr-2 h-5 w-5" />
-                nika.vereskova@gmail.com
+                hello@steamlogic.se
               </Button>
               <Button 
                 size="lg" 

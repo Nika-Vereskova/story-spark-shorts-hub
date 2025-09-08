@@ -145,7 +145,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <Button
               variant="outline"
               className="w-full border-2 border-brass text-brass hover:bg-brass/20 font-inter font-medium hover:scale-105 transition-all duration-300 vintage-glow"
-              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
+              onClick={() => window.location.href = 'mailto:hello@steamlogic.se?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
             >
               <Mail className="mr-2 h-4 w-4" />
               {t('services.card.contact')}
@@ -156,7 +156,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <Button
               variant="outline"
               className="w-full border-2 border-brass text-brass hover:bg-brass/20 font-inter font-medium hover:scale-105 transition-all duration-300 vintage-glow"
-              onClick={() => window.location.href = 'mailto:nika.vereskova@gmail.com?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
+              onClick={() => window.location.href = 'mailto:hello@steamlogic.se?subject=' + encodeURIComponent((t<string>('services.card.inquirySubject')).replace('{title}', title))}
             >
               <Mail className="mr-2 h-4 w-4" />
               {t('services.card.contact')}
