@@ -35,14 +35,20 @@
         https://adservice.google.com
         https://adservice.google.se
         https://www.gstatic.com
-        https://app.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com;
+        https://app.posthog.com
+        https://us.i.posthog.com
+        https://us-assets.i.posthog.com
+        *.posthog.com;
       connect-src 'self'
         https://fundingchoicesmessages.google.com
         https://fundingchoicesmessages.googleapis.com
         https://pagead2.googlesyndication.com
         https://googleads.g.doubleclick.net
         https://www.google-analytics.com
-        https://app.posthog.com https://us.i.posthog.com https://us-assets.i.posthog.com
+        https://app.posthog.com
+        https://us.i.posthog.com
+        https://us-assets.i.posthog.com
+        *.posthog.com
         https://srzxvvbxmcrxsplwutxv.supabase.co
         https://adservice.google.com
         https://adservice.google.se
@@ -59,6 +65,7 @@
         https://tpc.googlesyndication.com;
       style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
       font-src 'self' https://fonts.gstatic.com;
+      worker-src 'self' blob:;
       "
     />
 
