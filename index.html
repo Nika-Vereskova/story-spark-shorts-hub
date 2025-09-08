@@ -139,9 +139,14 @@
     <link rel="preconnect" href="https://app.posthog.com" crossorigin>
     <link rel="dns-prefetch" href="//app.posthog.com">
     <link rel="preload" as="image" href="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp" imagesrcset="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-320.webp 320w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp 640w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp 1024w" imagesizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 320px">
+    <!-- Preload main CSS to prevent render blocking -->
+    <link rel="preload" as="style" href="/src/index.css">
+    <link rel="stylesheet" href="/src/index.css" media="print" onload="this.media='all'">
+    
     <link rel="modulepreload" href="/src/main.tsx">
     <noscript>
       <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap">
+      <link rel="stylesheet" href="/src/index.css">
     </noscript>
   </head>
 
