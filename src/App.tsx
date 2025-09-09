@@ -16,6 +16,7 @@ const Projects = React.lazy(() => import("./pages/Projects"));
 const LearnAI = React.lazy(() => import("./pages/LearnAI"));
 const EuropeCapitals = React.lazy(() => import("./pages/EuropeCapitals"));
 const AINews = React.lazy(() => import("./pages/AINews"));
+const NewsArticle = React.lazy(() => import("./pages/NewsArticle"));
 const Books = React.lazy(() => import("./pages/Books"));
 const Videos = React.lazy(() => import("./pages/Videos"));
 const Blog = React.lazy(() => import("./pages/Blog"));
@@ -101,6 +102,7 @@ const App = () => {
               <Route path="/:locale/learn-ai" element={withSuspense(LearnAI)} />
               <Route path="/:locale/europe-capitals" element={withSuspense(EuropeCapitals)} />
               <Route path="/:locale/ai-news" element={withSuspense(AINews)} />
+              <Route path="/:locale/ai-news/:slug" element={withSuspense(NewsArticle)} />
               <Route path="/:locale/books" element={withSuspense(Books)} />
               <Route path="/:locale/videos" element={withSuspense(Videos)} />
               <Route path="/:locale/blog" element={withSuspense(Blog)} />
@@ -119,6 +121,7 @@ const App = () => {
               <Route path="/learn-ai" element={withSuspense(LearnAI)} />
               <Route path="/europe-capitals" element={withSuspense(EuropeCapitals)} />
               <Route path="/ai-news" element={withSuspense(AINews)} />
+              <Route path="/ai-news/:slug" element={withSuspense(NewsArticle)} />
               <Route path="/books" element={withSuspense(Books)} />
               <Route path="/videos" element={withSuspense(Videos)} />
               <Route path="/blog" element={withSuspense(Blog)} />

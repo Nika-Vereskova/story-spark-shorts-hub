@@ -1,6 +1,4 @@
 
-# The space above helps tools understand the schema
-
 project_id = "srzxvvbxmcrxsplwutxv"
 
 [api]
@@ -10,47 +8,94 @@ schemas = ["public", "graphql_public"]
 extra_search_path = ["public", "extensions"]
 max_rows = 1000
 
-[graphql]
+[auth]
 enabled = true
-port = 54322
-schemas = ["public", "graphql_public"]
-extra_search_path = ["public", "extensions"]
+# The base URL of your website. Used as an allow-list for redirects and for constructing URLs used
+# in emails.
+site_url = "http://localhost:3000"
+# A list of *exact* URLs that auth providers are permitted to redirect to post authentication.
+additional_redirect_urls = ["https://localhost:3000"]
+# How long tokens are valid for, in seconds. Defaults to 3600 (1 hour), maximum 604800 (1 week).
+jwt_expiry = 3600
+# If disabled, the refresh token will never expire.
+jwt_default_group_name = "authenticated"
+# Allow/disallow new user signups to your project.
+enable_signup = true
 
-[inbucket]
-enabled = true
-port = 54324
-# Uncomment to expose additional ports on localhost
-# smtp_port = 1025
-# pop3_port = 1110
+[auth.email]
+# Allow/disallow new user signups via email to your project.
+enable_signup = true
+# If enabled, a user will be required to confirm any email change on both the old, and new email.
+double_confirm_changes = true
+# If enabled, users need to confirm their email address before signing in.
+enable_confirmations = false
+
+[auth.sms]
+# Allow/disallow new user signups via SMS to your project.
+enable_signup = true
+# If enabled, users need to confirm their phone number before signing in.
+enable_confirmations = false
+# Template for sending OTP to users
+max_enrolled_devices = 10
+
+[db]
+# Port to use for the local database URL.
+port = 54322
+# Port used by db diff command to initialize the shadow database.
+shadow_port = 54320
+# The database major version to use. This has to be the same as your remote database's. Run `SHOW
+# server_version;` on the remote database to check.
+major_version = 15
+
+[db.pooler]
+enabled = false
+# Port to use for the local connection pooler.
+port = 54329
+# Specifies when a server connection can be reused by other clients.
+# Configure one of the supported pooler modes: `transaction`, `session`.
+pool_mode = "transaction"
+# How many server connections to allow per user/database pair.
+default_pool_size = 20
+# Maximum number of client connections allowed.
+max_client_conn = 100
 
 [realtime]
 enabled = true
-ip_version = "ipv4"
-port = 54323
-max_header_length = 4096
+# Bind realtime via either IPv4 or IPv6. (default: IPv6)
+# ip_version = "IPv6"
 
 [studio]
 enabled = true
+# Port to use for Supabase Studio.
 port = 54323
-api_url = "http://127.0.0.1:54321"
-openai_api_key = "env(OPENAI_API_KEY)"
+# External URL of the API server that frontend connects to.
+api_url = "http://localhost"
 
-# Email template
-[auth.email.template.invite]
-subject = "You have been invited"
-content_path = "./supabase/templates/invite.html"
+# Email testing server. Emails sent with the local dev setup are not actually sent - rather, they
+# are monitored, and you can view the emails that would have been sent from the web interface.
+[inbucket]
+enabled = true
+# Port to use for the email testing server web interface.
+port = 54324
 
-[auth.email.template.confirmation]
-subject = "Confirm your signup"
-content_path = "./supabase/templates/confirmation.html"
+[storage]
+enabled = true
+# The maximum file size allowed (e.g. "5MB", "500KB").
+file_size_limit = "50MiB"
 
-[auth.email.template.recovery]
-subject = "Reset your password"
-content_path = "./supabase/templates/recovery.html"
+[edge-runtime]
+enabled = true
+# Configure one of the supported request policies: `oneshot`, `per_worker`.
+# Use `oneshot` for hot-reloading, or `per_worker` for load testing.
+policy = "oneshot"
+inspector_port = 8083
 
-[auth.email.template.magic_link]
-subject = "Your magic link"
-content_path = "./supabase/templates/magic_link.html"
+[analytics]
+enabled = false
+port = 54327
+vector_port = 54328
+# Configure one of the supported backends: `postgres`, `bigquery`.
+backend = "postgres"
 
 # Make the send-newsletter-confirmation function public (no auth required)
 [functions.send-newsletter-confirmation]
@@ -63,3 +108,11 @@ verify_jwt = false
 # Make the unsubscribe function public (no auth required)
 [functions.unsubscribe]
 verify_jwt = false
+
+# Make the extract-ai-news function public (no auth required)
+[functions.extract-ai-news]
+verify_jwt = false
+
+# Require authentication for process-news-content function
+[functions.process-news-content]
+verify_jwt = true

@@ -1,24 +1,39 @@
-
 import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
-import Navigation from '@/components/Navigation';
-import { Send, Users, Mail, Lock } from 'lucide-react';
-import { User } from '@supabase/supabase-js';
-import AdSenseUnit from '@/components/AdSenseUnit';
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea';
+import { Input } from '@/components/ui/input';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useToast } from '@/hooks/use-toast';
+import { Loader2, Users, Send, LogIn, Plus, Edit, Trash2, Eye, Bot, Sparkles } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const Admin = () => {
-  const [subject, setSubject] = useState('');
-  const [content, setContent] = useState('');
-  const [isSending, setIsSending] = useState(false);
-  const [subscriberCount, setSubscriberCount] = useState<number | null>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [subscriberCount, setSubscriberCount] = useState(0);
+  const [loadingSubscribers, setLoadingSubscribers] = useState(false);
+  const [newsletterSubject, setNewsletterSubject] = useState('');
+  const [newsletterContent, setNewsletterContent] = useState('');
+  const [sending, setSending] = useState(false);
+  const [newsArticles, setNewsArticles] = useState([]);
+  const [loadingNews, setLoadingNews] = useState(false);
+  const [extractingNews, setExtractingNews] = useState(false);
+  const [newsPrompt, setNewsPrompt] = useState('');
+  const [editingArticle, setEditingArticle] = useState(null);
+  const [articleForm, setArticleForm] = useState({
+    title: '',
+    slug: '',
+    content: '',
+    summary: '',
+    meta_description: '',
+    status: 'draft'
+  });
+
   const { toast } = useToast();
 
   // Check authentication and admin status
@@ -30,7 +45,7 @@ const Admin = () => {
         if (!session?.user) {
           setUser(null);
           setIsAdmin(false);
-          setIsLoading(false);
+          setLoading(false);
           return;
         }
 
@@ -52,7 +67,7 @@ const Admin = () => {
         console.error('Auth check error:', error);
         setIsAdmin(false);
       } finally {
-        setIsLoading(false);
+        setLoading(false);
       }
     };
 
@@ -66,38 +81,216 @@ const Admin = () => {
       } else {
         setUser(null);
         setIsAdmin(false);
-        setIsLoading(false);
+        setLoading(false);
       }
     });
 
     return () => subscription.unsubscribe();
   }, []);
 
-  // Load subscriber count on component mount (only if admin)
+  // Load subscriber count and news when user becomes admin
   useEffect(() => {
     if (isAdmin) {
-      const loadSubscriberCount = async () => {
-        try {
-          const { count, error } = await supabase
-            .from('newsletter_subscribers')
-            .select('*', { count: 'exact', head: true })
-            .eq('is_active', true);
-
-          if (error) throw error;
-          setSubscriberCount(count || 0);
-        } catch (error) {
-          console.error('Error loading subscriber count:', error);
-        }
-      };
-
       loadSubscriberCount();
+      loadNewsArticles();
     }
   }, [isAdmin]);
+
+  const loadSubscriberCount = async () => {
+    setLoadingSubscribers(true);
+    try {
+      const { data, error } = await supabase
+        .from('newsletter_subscribers')
+        .select('id', { count: 'exact' })
+        .eq('is_active', true)
+        .eq('is_confirmed', true);
+
+      if (error) {
+        console.error('Error loading subscriber count:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load subscriber count",
+          variant: "destructive",
+        });
+      } else {
+        setSubscriberCount(data?.length || 0);
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+    } finally {
+      setLoadingSubscribers(false);
+    }
+  };
+
+  const loadNewsArticles = async () => {
+    setLoadingNews(true);
+    try {
+      const { data, error } = await supabase
+        .from('news_posts')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        console.error('Error loading news articles:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load news articles",
+          variant: "destructive",
+        });
+      } else {
+        setNewsArticles(data || []);
+      }
+    } catch (error) {
+      console.error('Unexpected error:', error);
+    } finally {
+      setLoadingNews(false);
+    }
+  };
+
+  const extractAINews = async () => {
+    setExtractingNews(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('extract-ai-news', {
+        body: {
+          prompt: newsPrompt || undefined,
+          autoPublish: false,
+          maxArticles: 3
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: `${data.articles?.length || 0} news articles extracted and saved as drafts`,
+      });
+
+      // Reload articles
+      loadNewsArticles();
+      setNewsPrompt('');
+    } catch (error) {
+      console.error('Error extracting news:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to extract news",
+        variant: "destructive",
+      });
+    } finally {
+      setExtractingNews(false);
+    }
+  };
+
+  const processNewsContent = async (articleId: string, action: string) => {
+    try {
+      const { data, error } = await supabase.functions.invoke('process-news-content', {
+        body: {
+          articleId,
+          action
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: `Article ${action}ed successfully`,
+      });
+
+      // Reload articles
+      loadNewsArticles();
+    } catch (error) {
+      console.error('Error processing article:', error);
+      toast({
+        title: "Error",
+        description: error.message || `Failed to ${action} article`,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const saveArticle = async () => {
+    try {
+      const articleData = {
+        ...articleForm,
+        slug: articleForm.slug || articleForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '')
+      };
+
+      if (editingArticle) {
+        const { error } = await supabase
+          .from('news_posts')
+          .update(articleData)
+          .eq('id', editingArticle.id);
+        
+        if (error) throw error;
+        
+        toast({
+          title: "Success",
+          description: "Article updated successfully",
+        });
+      } else {
+        const { error } = await supabase
+          .from('news_posts')
+          .insert([articleData]);
+        
+        if (error) throw error;
+        
+        toast({
+          title: "Success", 
+          description: "Article created successfully",
+        });
+      }
+
+      setEditingArticle(null);
+      setArticleForm({
+        title: '',
+        slug: '',
+        content: '',
+        summary: '',
+        meta_description: '',
+        status: 'draft'
+      });
+      loadNewsArticles();
+    } catch (error) {
+      console.error('Error saving article:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to save article",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const deleteArticle = async (articleId: string) => {
+    if (!confirm('Are you sure you want to delete this article?')) return;
+    
+    try {
+      const { error } = await supabase
+        .from('news_posts')
+        .delete()
+        .eq('id', articleId);
+      
+      if (error) throw error;
+      
+      toast({
+        title: "Success",
+        description: "Article deleted successfully",
+      });
+      
+      loadNewsArticles();
+    } catch (error) {
+      console.error('Error deleting article:', error);
+      toast({
+        title: "Error",
+        description: error.message || "Failed to delete article",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleSendNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!subject.trim() || !content.trim()) {
+    if (!newsletterSubject.trim() || !newsletterContent.trim()) {
       toast({
         title: 'Missing Information',
         description: 'Please provide both subject and content for the newsletter.',
@@ -106,7 +299,7 @@ const Admin = () => {
       return;
     }
 
-    setIsSending(true);
+    setSending(true);
 
     try {
       const { data: { session } } = await supabase.auth.getSession();
@@ -122,8 +315,8 @@ const Admin = () => {
 
       const { data, error } = await supabase.functions.invoke('send-newsletter', {
         body: {
-          subject: subject.trim(),
-          content: content.trim(),
+          subject: newsletterSubject.trim(),
+          content: newsletterContent.trim(),
         },
         headers: {
           Authorization: `Bearer ${session.access_token}`
@@ -139,8 +332,8 @@ const Admin = () => {
       });
 
       // Clear form
-      setSubject('');
-      setContent('');
+      setNewsletterSubject('');
+      setNewsletterContent('');
 
     } catch (error: unknown) {
       const err = error instanceof Error ? error : new Error('Unknown error');
@@ -151,7 +344,7 @@ const Admin = () => {
         variant: 'destructive'
       });
     } finally {
-      setIsSending(false);
+      setSending(false);
     }
   };
 
@@ -180,23 +373,10 @@ const Admin = () => {
   };
 
   // Loading state
-  if (isLoading) {
+  if (loading) {
     return (
-      <div className="min-h-screen bg-parchment bg-gear-pattern">
-        <Navigation currentPage="admin" />
-        <div className="pt-24 pb-16 px-6">
-          <div className="container mx-auto max-w-4xl">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-brass mx-auto"></div>
-              <p className="text-oxidized-teal mt-4 font-inter">Loading...</p>
-            </div>
-            <AdSenseUnit
-              adSlot="9759787900"
-              adFormat="autorelaxed"
-              className="my-8"
-            />
-          </div>
-        </div>
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
       </div>
     );
   }
@@ -204,36 +384,23 @@ const Admin = () => {
   // Not authenticated
   if (!user) {
     return (
-      <div className="min-h-screen bg-parchment bg-gear-pattern">
-        <Navigation currentPage="admin" />
-        <div className="pt-24 pb-16 px-6">
-          <div className="container mx-auto max-w-4xl">
-            <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
-              <CardHeader className="text-center">
-                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
-                  <Lock className="mr-2 h-6 w-6" />
-                  Authentication Required
-                </CardTitle>
-                <CardDescription className="text-oxidized-teal/80 font-inter">
-                  Please sign in to access the admin panel
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <Button
-                  onClick={handleSignIn}
-                  className="bg-brass hover:bg-brass-dark text-parchment px-8 py-3 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 font-inter font-medium"
-                >
-                  Sign In
-                </Button>
-              </CardContent>
-            </Card>
-            <AdSenseUnit
-              adSlot="9759787900"
-              adFormat="autorelaxed"
-              className="my-8"
-            />
-          </div>
-        </div>
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2">
+              <LogIn className="h-5 w-5" />
+              Authentication Required
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-muted-foreground mb-4">
+              Please sign in to access the admin panel
+            </p>
+            <Button onClick={handleSignIn}>
+              Sign In
+            </Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
@@ -241,153 +408,395 @@ const Admin = () => {
   // Not admin
   if (!isAdmin) {
     return (
-      <div className="min-h-screen bg-parchment bg-gear-pattern">
-        <Navigation currentPage="admin" />
-        <div className="pt-24 pb-16 px-6">
-          <div className="container mx-auto max-w-4xl">
-            <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
-              <CardHeader className="text-center">
-                <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center justify-center">
-                  <Lock className="mr-2 h-6 w-6" />
-                  Access Denied
-                </CardTitle>
-                <CardDescription className="text-oxidized-teal/80 font-inter">
-                  You don't have permission to access the admin panel
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="text-center">
-                <p className="text-oxidized-teal/70 font-inter">
-                  Only administrators can access this page. If you believe this is an error, please contact the site administrator.
-                </p>
-              </CardContent>
-            </Card>
-            <AdSenseUnit
-              adSlot="9759787900"
-              adFormat="autorelaxed"
-              className="my-8"
-            />
-          </div>
-        </div>
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 flex items-center justify-center">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-2">
+              <LogIn className="h-5 w-5" />
+              Access Denied
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="text-center">
+            <p className="text-muted-foreground">
+              You don't have permission to access the admin panel.
+            </p>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 
-  // Admin user - show full admin panel
+  // Admin Panel Content
   return (
-    <div className="min-h-screen bg-parchment bg-gear-pattern">
-      <Navigation currentPage="admin" />
-
-      <div className="pt-24 pb-16 px-6">
-        <div className="container mx-auto max-w-4xl">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">
-              Newsletter Admin
-            </h1>
-            <p className="text-xl text-oxidized-teal/80 max-w-2xl mx-auto font-inter">
-              Send updates to your Inventor's Guild subscribers
-            </p>
-          </div>
-
-          {/* Stats Card */}
-          <div className="mb-8">
-            <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop">
-              <CardHeader>
-                <CardTitle className="text-oxidized-teal text-xl font-playfair drop-shadow-text-drop flex items-center">
-                  <Users className="mr-2 h-5 w-5" />
-                  Subscriber Statistics
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center gap-2">
-                  <Mail className="h-4 w-4 text-brass" />
-                  <span className="font-inter text-oxidized-teal">
-                    Active Subscribers: <strong>{subscriberCount !== null ? subscriberCount : 'Loading...'}</strong>
-                  </span>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Newsletter Form */}
-          <Card className="bg-parchment/90 border-2 border-brass shadow-brass-drop relative">
-            {/* Ornate brass corners */}
-            <div className="absolute top-0 left-0 w-8 h-8 border-l-4 border-t-4 border-brass"></div>
-            <div className="absolute top-0 right-0 w-8 h-8 border-r-4 border-t-4 border-brass"></div>
-            <div className="absolute bottom-0 left-0 w-8 h-8 border-l-4 border-b-4 border-brass"></div>
-            <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
-            
-            <CardHeader>
-              <CardTitle className="text-oxidized-teal text-2xl font-playfair drop-shadow-text-drop flex items-center">
-                <Send className="mr-2 h-6 w-6" />
-                Compose Newsletter
-              </CardTitle>
-              <CardDescription className="text-oxidized-teal/80 font-inter">
-                Create and send a newsletter to all active subscribers
-              </CardDescription>
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+        
+        {/* Stats Cards */}
+        <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Newsletter Subscribers</CardTitle>
+              <Users className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSendNewsletter} className="space-y-6">
+              <div className="text-2xl font-bold">
+                {loadingSubscribers ? (
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                ) : (
+                  subscriberCount.toLocaleString()
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Active confirmed subscribers
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">News Articles</CardTitle>
+              <Bot className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {loadingNews ? (
+                  <Loader2 className="h-6 w-6 animate-spin" />
+                ) : (
+                  newsArticles.length
+                )}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Total articles in database
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Published Articles</CardTitle>
+              <Eye className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">
+                {newsArticles.filter(article => article.status === 'published').length}
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Live on website
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Tabs defaultValue="newsletter" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
+            <TabsTrigger value="news">AI News Management</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="newsletter">
+            <Card>
+              <CardHeader>
+                <CardTitle>Send Newsletter</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 <div>
-                  <label htmlFor="subject" className="block text-oxidized-teal font-inter font-medium mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
                     Subject Line
                   </label>
                   <Input
                     id="subject"
                     type="text"
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
                     placeholder="Enter newsletter subject..."
-                    disabled={isSending}
-                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter"
-                    maxLength={100}
+                    value={newsletterSubject}
+                    onChange={(e) => setNewsletterSubject(e.target.value)}
+                    className="w-full"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="content" className="block text-oxidized-teal font-inter font-medium mb-2">
+                  <label htmlFor="content" className="block text-sm font-medium mb-2">
                     Newsletter Content
                   </label>
                   <Textarea
                     id="content"
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)}
                     placeholder="Write your newsletter content here..."
-                    disabled={isSending}
-                    className="w-full px-4 py-3 bg-parchment border-2 border-brass focus:border-brass-dark focus:outline-none shadow-inner-glow font-inter min-h-[200px]"
-                    maxLength={5000}
+                    value={newsletterContent}
+                    onChange={(e) => setNewsletterContent(e.target.value)}
+                    className="w-full min-h-[200px]"
                   />
-                  <p className="text-sm text-oxidized-teal/60 mt-1 font-inter">
-                    {content.length}/5000 characters
-                  </p>
                 </div>
 
-                <Button
-                  type="submit"
-                  disabled={isSending || !subject.trim() || !content.trim()}
-                  className="w-full bg-brass hover:bg-brass-dark text-parchment px-8 py-4 border-2 border-brass-dark shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium disabled:opacity-50 text-lg"
+                <Button 
+                  onClick={handleSendNewsletter}
+                  disabled={sending || !newsletterSubject.trim() || !newsletterContent.trim()}
+                  className="w-full sm:w-auto"
                 >
-                  {isSending ? (
+                  {sending ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-parchment mr-2"></div>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                       Sending Newsletter...
                     </>
                   ) : (
                     <>
-                      <Send className="mr-2 h-5 w-5" />
-                      Send to {subscriberCount || 0} Subscribers
+                      <Send className="mr-2 h-4 w-4" />
+                      Send Newsletter
                     </>
                   )}
                 </Button>
-              </form>
-            </CardContent>
-          </Card>
-          <AdSenseUnit
-            adSlot="9759787900"
-            adFormat="autorelaxed"
-            className="my-8"
-          />
-        </div>
+                
+                <p className="text-sm text-muted-foreground">
+                  This will send to all {subscriberCount} active subscribers
+                </p>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="news">
+            <div className="space-y-6">
+              {/* AI News Extraction */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <Bot className="h-5 w-5" />
+                    AI News Extraction
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <label htmlFor="news-prompt" className="block text-sm font-medium mb-2">
+                      Custom Search Prompt (optional)
+                    </label>
+                    <Textarea
+                      id="news-prompt"
+                      placeholder="Leave empty for default AI news search, or specify custom topics like 'OpenAI developments', 'AI regulation updates', etc."
+                      value={newsPrompt}
+                      onChange={(e) => setNewsPrompt(e.target.value)}
+                      className="w-full min-h-[100px]"
+                    />
+                  </div>
+                  
+                  <Button 
+                    onClick={extractAINews}
+                    disabled={extractingNews}
+                    className="w-full sm:w-auto"
+                  >
+                    {extractingNews ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Extracting AI News...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="mr-2 h-4 w-4" />
+                        Extract Latest AI News
+                      </>
+                    )}
+                  </Button>
+                  
+                  <p className="text-sm text-muted-foreground">
+                    This will use Perplexity AI to find and extract the latest AI news, saving them as drafts for review.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Manual Article Creation */}
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center justify-between">
+                    <span className="flex items-center gap-2">
+                      <Plus className="h-5 w-5" />
+                      Create/Edit Article
+                    </span>
+                    
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline" size="sm">
+                          <Plus className="h-4 w-4 mr-1" />
+                          New Article
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-2xl">
+                        <DialogHeader>
+                          <DialogTitle>
+                            {editingArticle ? 'Edit Article' : 'Create New Article'}
+                          </DialogTitle>
+                        </DialogHeader>
+                        
+                        <div className="space-y-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Title</label>
+                            <Input
+                              value={articleForm.title}
+                              onChange={(e) => setArticleForm({...articleForm, title: e.target.value})}
+                              placeholder="Article title..."
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Slug (URL)</label>
+                            <Input
+                              value={articleForm.slug}
+                              onChange={(e) => setArticleForm({...articleForm, slug: e.target.value})}
+                              placeholder="article-url-slug (auto-generated if empty)"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Summary</label>
+                            <Textarea
+                              value={articleForm.summary}
+                              onChange={(e) => setArticleForm({...articleForm, summary: e.target.value})}
+                              placeholder="Brief summary..."
+                              className="min-h-[80px]"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Content</label>
+                            <Textarea
+                              value={articleForm.content}
+                              onChange={(e) => setArticleForm({...articleForm, content: e.target.value})}
+                              placeholder="Full article content..."
+                              className="min-h-[200px]"
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Meta Description</label>
+                            <Input
+                              value={articleForm.meta_description}
+                              onChange={(e) => setArticleForm({...articleForm, meta_description: e.target.value})}
+                              placeholder="SEO meta description..."
+                            />
+                          </div>
+                          
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Status</label>
+                            <Select 
+                              value={articleForm.status} 
+                              onValueChange={(value) => setArticleForm({...articleForm, status: value})}
+                            >
+                              <SelectTrigger>
+                                <SelectValue />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectItem value="draft">Draft</SelectItem>
+                                <SelectItem value="published">Published</SelectItem>
+                                <SelectItem value="archived">Archived</SelectItem>
+                              </SelectContent>
+                            </Select>
+                          </div>
+                          
+                          <Button onClick={saveArticle} className="w-full">
+                            {editingArticle ? 'Update Article' : 'Create Article'}
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
+                  </CardTitle>
+                </CardHeader>
+              </Card>
+
+              {/* Articles List */}
+              <Card>
+                <CardHeader>
+                  <CardTitle>News Articles</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {loadingNews ? (
+                    <div className="flex justify-center py-8">
+                      <Loader2 className="h-8 w-8 animate-spin" />
+                    </div>
+                  ) : newsArticles.length === 0 ? (
+                    <div className="text-center py-8 text-muted-foreground">
+                      No articles found. Extract some AI news to get started!
+                    </div>
+                  ) : (
+                    <div className="space-y-4">
+                      {newsArticles.map((article) => (
+                        <div key={article.id} className="border rounded-lg p-4 space-y-3">
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-lg">{article.title}</h3>
+                              <p className="text-sm text-muted-foreground mt-1">
+                                {article.summary || 'No summary available'}
+                              </p>
+                              <div className="flex items-center gap-2 mt-2">
+                                <Badge variant={article.status === 'published' ? 'default' : article.status === 'draft' ? 'secondary' : 'outline'}>
+                                  {article.status}
+                                </Badge>
+                                <Badge variant="outline">{article.source}</Badge>
+                                <span className="text-xs text-muted-foreground">
+                                  {new Date(article.created_at).toLocaleDateString()}
+                                </span>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center gap-2 ml-4">
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => {
+                                  setEditingArticle(article);
+                                  setArticleForm({
+                                    title: article.title,
+                                    slug: article.slug,
+                                    content: article.content || '',
+                                    summary: article.summary || '',
+                                    meta_description: article.meta_description || '',
+                                    status: article.status
+                                  });
+                                }}
+                              >
+                                <Edit className="h-4 w-4" />
+                              </Button>
+                              
+                              {article.status === 'draft' && (
+                                <Button 
+                                  size="sm" 
+                                  onClick={() => processNewsContent(article.id, 'publish')}
+                                >
+                                  Publish
+                                </Button>
+                              )}
+                              
+                              {article.status === 'published' && (
+                                <Button 
+                                  size="sm" 
+                                  variant="outline"
+                                  onClick={() => processNewsContent(article.id, 'archive')}
+                                >
+                                  Archive
+                                </Button>
+                              )}
+                              
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                onClick={() => processNewsContent(article.id, 'enhance')}
+                              >
+                                <Sparkles className="h-4 w-4" />
+                              </Button>
+                              
+                              <Button 
+                                size="sm" 
+                                variant="destructive"
+                                onClick={() => deleteArticle(article.id)}
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );

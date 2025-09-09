@@ -122,13 +122,11 @@ const AINewsCarousel = () => {
                 
                 {post.article_url && (
                   <Button 
+                    variant="outline" 
                     size="sm"
-                    variant="outline"
-                    className="w-full border border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 group-hover:animate-steam-puff font-inter text-xs"
-                    onClick={() => window.open(post.article_url!, '_blank')}
+                    onClick={() => navigate(`/ai-news/${post.slug}`)}
                   >
-                    {t('aiNews.readMore')}
-                    <ExternalLink className="ml-1 h-3 w-3" />
+                    Read More
                   </Button>
                 )}
               </CardContent>
