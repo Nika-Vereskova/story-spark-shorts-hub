@@ -17,33 +17,54 @@ export type Database = {
       news_posts: {
         Row: {
           article_url: string | null
+          author_id: string | null
+          content: string | null
           cover_url: string | null
           created_at: string
+          extraction_prompt: string | null
           id: string
+          meta_description: string | null
+          meta_keywords: string[] | null
           published_at: string
           slug: string
+          source: string | null
+          status: string | null
           summary: string | null
           title: string
           updated_at: string
         }
         Insert: {
           article_url?: string | null
+          author_id?: string | null
+          content?: string | null
           cover_url?: string | null
           created_at?: string
+          extraction_prompt?: string | null
           id?: string
+          meta_description?: string | null
+          meta_keywords?: string[] | null
           published_at?: string
           slug: string
+          source?: string | null
+          status?: string | null
           summary?: string | null
           title: string
           updated_at?: string
         }
         Update: {
           article_url?: string | null
+          author_id?: string | null
+          content?: string | null
           cover_url?: string | null
           created_at?: string
+          extraction_prompt?: string | null
           id?: string
+          meta_description?: string | null
+          meta_keywords?: string[] | null
           published_at?: string
           slug?: string
+          source?: string | null
+          status?: string | null
           summary?: string | null
           title?: string
           updated_at?: string
