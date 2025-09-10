@@ -116,3 +116,11 @@ verify_jwt = false
 # Require authentication for process-news-content function
 [functions.process-news-content]
 verify_jwt = true
+
+# Require authentication for generate-news-summary function
+[functions.generate-news-summary]
+verify_jwt = true
+
+# Make the schedule-newsletter function public (no auth required)
+[functions.schedule-newsletter]
+verify_jwt = false

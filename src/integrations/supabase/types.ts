@@ -25,13 +25,15 @@ export type Database = {
           id: string
           meta_description: string | null
           meta_keywords: string[] | null
+          publication_date: string | null
           published_at: string
           slug: string
-          source: string | null
-          status: string | null
+          source: string
+          status: string
           summary: string | null
           title: string
           updated_at: string
+          url: string | null
         }
         Insert: {
           article_url?: string | null
@@ -43,13 +45,15 @@ export type Database = {
           id?: string
           meta_description?: string | null
           meta_keywords?: string[] | null
+          publication_date?: string | null
           published_at?: string
           slug: string
-          source?: string | null
-          status?: string | null
+          source?: string
+          status?: string
           summary?: string | null
           title: string
           updated_at?: string
+          url?: string | null
         }
         Update: {
           article_url?: string | null
@@ -61,13 +65,57 @@ export type Database = {
           id?: string
           meta_description?: string | null
           meta_keywords?: string[] | null
+          publication_date?: string | null
           published_at?: string
           slug?: string
-          source?: string | null
-          status?: string | null
+          source?: string
+          status?: string
           summary?: string | null
           title?: string
           updated_at?: string
+          url?: string | null
+        }
+        Relationships: []
+      }
+      news_summaries: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          id: string
+          insights: string | null
+          newsletter_sent: boolean | null
+          period_end: string
+          period_start: string
+          story_count: number | null
+          summary_content: string
+          title: string
+          trending_topics: string[] | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          insights?: string | null
+          newsletter_sent?: boolean | null
+          period_end: string
+          period_start: string
+          story_count?: number | null
+          summary_content: string
+          title: string
+          trending_topics?: string[] | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          insights?: string | null
+          newsletter_sent?: boolean | null
+          period_end?: string
+          period_start?: string
+          story_count?: number | null
+          summary_content?: string
+          title?: string
+          trending_topics?: string[] | null
         }
         Relationships: []
       }
