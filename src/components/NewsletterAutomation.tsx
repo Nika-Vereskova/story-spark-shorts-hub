@@ -12,6 +12,9 @@ const NewsletterAutomation: React.FC = () => {
   const [zapierWebhookUrl, setZapierWebhookUrl] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
   const [isSettingUp, setIsSettingUp] = useState(false);
+  const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
+  const [summaries, setSummaries] = useState<any[]>([]);
+  const [loadingSummaries, setLoadingSummaries] = useState(false);
   const { toast } = useToast();
 
   const validateWebhookUrl = (url: string): boolean => {
@@ -21,6 +24,93 @@ const NewsletterAutomation: React.FC = () => {
              parsedUrl.hostname.endsWith('zapier.com');
     } catch {
       return false;
+    }
+  };
+
+  const loadSummaries = async () => {
+    setLoadingSummaries(true);
+    try {
+      const { data, error } = await supabase
+        .from('news_summaries')
+        .select('*')
+        .order('created_at', { ascending: false })
+        .limit(5);
+
+      if (error) throw error;
+      setSummaries(data || []);
+    } catch (error) {
+      console.error('Error loading summaries:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load news summaries",
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingSummaries(false);
+    }
+  };
+
+  React.useEffect(() => {
+    loadSummaries();
+  }, []);
+
+  const handleGenerateSummary = async () => {
+    setIsGeneratingSummary(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-news-summary', {
+        body: { daysBack: 4 }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "News Summary Generated! 📊",
+        description: `Analyzed ${data.storiesAnalyzed} stories from the last 4 days`,
+      });
+
+      loadSummaries(); // Refresh the list
+    } catch (error) {
+      console.error("Error generating summary:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate news summary. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGeneratingSummary(false);
+    }
+  };
+
+  const handleGenerateFromSummary = async (summaryId: string) => {
+    setIsGenerating(true);
+    
+    try {
+      const { data, error } = await supabase.functions.invoke('generate-newsletter', {
+        body: { 
+          useSummary: true,
+          summaryId: summaryId,
+          triggerZapier: false 
+        }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Newsletter Generated! 📧",
+        description: "Newsletter created from AI summary successfully.",
+      });
+
+      console.log("Generated Newsletter from Summary:", data);
+    } catch (error) {
+      console.error("Error generating newsletter from summary:", error);
+      toast({
+        title: "Error",
+        description: "Failed to generate newsletter from summary.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -113,10 +203,10 @@ const NewsletterAutomation: React.FC = () => {
         <CardHeader>
           <CardTitle className="text-2xl text-oxidized-teal flex items-center font-playfair">
             <Clock className="mr-3 h-6 w-6" />
-            Weekly Newsletter Automation
+            AI-Powered Newsletter Automation
           </CardTitle>
           <CardDescription className="text-oxidized-teal/80 font-inter">
-            Automate your weekly AI-powered newsletter with Zapier integration
+            Automated Tuesday/Friday newsletters with Perplexity AI analysis and optional Zapier integration
           </CardDescription>
         </CardHeader>
       </Card>
@@ -126,9 +216,9 @@ const NewsletterAutomation: React.FC = () => {
         <Card className="bg-parchment/90 border-2 border-brass">
           <CardContent className="p-6 text-center">
             <Mail className="w-12 h-12 text-brass mx-auto mb-3" />
-            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">AI-Generated Content</h3>
+            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">AI Summary Analysis</h3>
             <p className="text-sm text-oxidized-teal/80 font-inter">
-              Automatically includes latest AI news, YouTube highlights, and weekly tips
+              Perplexity AI analyzes your news stories to create intelligent summaries and insights
             </p>
           </CardContent>
         </Card>
@@ -136,9 +226,9 @@ const NewsletterAutomation: React.FC = () => {
         <Card className="bg-parchment/90 border-2 border-brass">
           <CardContent className="p-6 text-center">
             <Calendar className="w-12 h-12 text-brass mx-auto mb-3" />
-            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Weekly Schedule</h3>
+            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Automated Schedule</h3>
             <p className="text-sm text-oxidized-teal/80 font-inter">
-              Sends every Tuesday at 09:00 AM to your subscriber list
+              Automatically sends on Tuesdays & Fridays at 10:00 AM UTC via cron job
             </p>
           </CardContent>
         </Card>
@@ -146,26 +236,144 @@ const NewsletterAutomation: React.FC = () => {
         <Card className="bg-parchment/90 border-2 border-brass">
           <CardContent className="p-6 text-center">
             <Zap className="w-12 h-12 text-brass mx-auto mb-3" />
-            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Zapier Integration</h3>
+            <h3 className="font-semibold text-oxidized-teal mb-2 font-playfair">Smart Content</h3>
             <p className="text-sm text-oxidized-teal/80 font-inter">
-              Connects to MailerLite, Mailchimp, Gmail, or any email platform
+              Trending topics, key insights, and pattern recognition across multiple stories
             </p>
           </CardContent>
         </Card>
       </div>
 
-      {/* Newsletter Preview */}
+      {/* Automation Status */}
+      <Card className="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-300">
+        <CardHeader>
+          <CardTitle className="text-green-700 font-playfair">🤖 Automation Status</CardTitle>
+          <CardDescription className="text-green-600 font-inter">
+            Your automated newsletter system is active and running
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="font-inter text-green-700">Schedule:</span>
+              <span className="font-inter text-green-600">Tuesdays & Fridays, 10:00 AM UTC</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="font-inter text-green-700">Next Run:</span>
+              <span className="font-inter text-green-600">
+                {(() => {
+                  const now = new Date();
+                  const nextTuesday = new Date(now);
+                  nextTuesday.setDate(now.getDate() + ((2 - now.getDay() + 7) % 7));
+                  nextTuesday.setHours(10, 0, 0, 0);
+                  if (nextTuesday <= now) {
+                    nextTuesday.setDate(nextTuesday.getDate() + 7);
+                  }
+                  return nextTuesday.toLocaleDateString();
+                })()}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="font-inter text-green-700">AI Analysis:</span>
+              <span className="font-inter text-green-600">Perplexity AI Enabled</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* AI Summary Generation */}
       <Card className="bg-parchment/90 border-2 border-brass">
         <CardHeader>
-          <CardTitle className="text-oxidized-teal font-playfair">Newsletter Preview & Testing</CardTitle>
+          <CardTitle className="text-oxidized-teal font-playfair">AI News Summary Generator</CardTitle>
           <CardDescription className="font-inter">
-            Generate a test newsletter to see what your subscribers will receive
+            Generate intelligent summaries of your recent news stories using Perplexity AI
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="space-y-4">
             <div className="bg-brass/10 p-4 rounded border border-brass/30">
-              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Newsletter Includes:</h4>
+              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">AI Analysis Includes:</h4>
+              <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
+                <li>• Intelligent summary of the most important developments</li>
+                <li>• Key insights and deeper analysis from multiple stories</li>
+                <li>• Trending topics and emerging patterns identification</li>
+                <li>• Significance and potential impact explanations</li>
+                <li>• Connected narratives across related stories</li>
+              </ul>
+            </div>
+            
+            <Button 
+              onClick={handleGenerateSummary}
+              disabled={isGeneratingSummary}
+              className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-inter"
+            >
+              {isGeneratingSummary ? "Analyzing Stories..." : "Generate AI News Summary"}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Recent Summaries */}
+      <Card className="bg-parchment/90 border-2 border-brass">
+        <CardHeader>
+          <CardTitle className="text-oxidized-teal font-playfair">Recent AI Summaries</CardTitle>
+          <CardDescription className="font-inter">
+            View and use previously generated summaries for newsletters
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          {loadingSummaries ? (
+            <div className="text-center py-4">
+              <p className="text-oxidized-teal/80 font-inter">Loading summaries...</p>
+            </div>
+          ) : summaries.length === 0 ? (
+            <div className="text-center py-4">
+              <p className="text-oxidized-teal/80 font-inter">No summaries generated yet. Create your first summary above!</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {summaries.map((summary) => (
+                <div key={summary.id} className="border border-brass/30 rounded p-4 bg-brass/5">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="font-semibold text-oxidized-teal font-playfair">{summary.title}</h4>
+                    <span className={`text-xs px-2 py-1 rounded ${summary.newsletter_sent ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                      {summary.newsletter_sent ? 'Sent' : 'Available'}
+                    </span>
+                  </div>
+                  <p className="text-sm text-oxidized-teal/80 mb-2 font-inter">
+                    {summary.summary_content.substring(0, 150)}...
+                  </p>
+                  <div className="flex justify-between items-center text-xs text-oxidized-teal/60 font-inter">
+                    <span>{summary.story_count} stories analyzed</span>
+                    <span>{new Date(summary.created_at).toLocaleDateString()}</span>
+                  </div>
+                  <Button 
+                    onClick={() => handleGenerateFromSummary(summary.id)}
+                    disabled={isGenerating}
+                    size="sm"
+                    className="mt-3 bg-brass hover:bg-brass-dark text-parchment font-inter"
+                  >
+                    {isGenerating ? "Generating..." : "Create Newsletter from Summary"}
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+
+      {/* Traditional Newsletter Generation */}
+      <Card className="bg-parchment/90 border-2 border-brass">
+        <CardHeader>
+          <CardTitle className="text-oxidized-teal font-playfair">Traditional Newsletter Generation</CardTitle>
+          <CardDescription className="font-inter">
+            Generate a newsletter using the classic format with latest news items
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            <div className="bg-brass/10 p-4 rounded border border-brass/30">
+              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Traditional Format Includes:</h4>
               <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
                 <li>• Latest AI news and insights from your website</li>
                 <li>• YouTube video highlights and behind-the-scenes content</li>
@@ -180,32 +388,34 @@ const NewsletterAutomation: React.FC = () => {
               disabled={isGenerating}
               className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-inter"
             >
-              {isGenerating ? "Generating..." : "Generate Test Newsletter"}
+              {isGenerating ? "Generating..." : "Generate Traditional Newsletter"}
             </Button>
           </div>
         </CardContent>
       </Card>
 
-      {/* Zapier Setup */}
-      <Card className="bg-parchment/90 border-2 border-brass">
+      {/* Optional Zapier Integration */}
+      <Card className="bg-parchment/90 border-2 border-brass opacity-75">
         <CardHeader>
           <CardTitle className="text-oxidized-teal flex items-center font-playfair">
             <Settings className="mr-3 h-5 w-5" />
-            Zapier Automation Setup
+            Optional: Manual Zapier Integration
           </CardTitle>
           <CardDescription className="font-inter">
-            Connect your Zapier webhook to automate newsletter delivery
+            (Optional) Set up manual Zapier webhook for additional automation workflows
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="bg-brass/10 p-4 rounded border border-brass/30">
-            <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Setup Instructions:</h4>
+            <p className="text-sm text-oxidized-teal/80 font-inter mb-2">
+              <strong>Note:</strong> The automated system is already running via cron job. This Zapier integration is optional for additional workflows.
+            </p>
+            <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Manual Setup Instructions:</h4>
             <ol className="text-sm text-oxidized-teal/80 space-y-1 font-inter list-decimal list-inside">
               <li>Create a new Zap in Zapier</li>
               <li>Set trigger: "Webhooks by Zapier" → "Catch Hook"</li>
               <li>Copy the webhook URL and paste it below</li>
               <li>Set action: Your email platform (MailerLite, Mailchimp, etc.)</li>
-              <li>Schedule: Every Tuesday at 09:00 AM</li>
               <li>Test the setup using the button below</li>
             </ol>
           </div>
@@ -228,7 +438,7 @@ const NewsletterAutomation: React.FC = () => {
               disabled={isSettingUp || !zapierWebhookUrl}
               className="w-full bg-brass hover:bg-brass-dark text-parchment font-inter"
             >
-              {isSettingUp ? "Testing Webhook..." : "Test & Setup Automation"}
+              {isSettingUp ? "Testing Webhook..." : "Test Zapier Integration"}
             </Button>
           </div>
         </CardContent>
@@ -237,7 +447,7 @@ const NewsletterAutomation: React.FC = () => {
       {/* Brand Guidelines */}
       <Card className="bg-parchment/90 border-2 border-brass">
         <CardHeader>
-          <CardTitle className="text-oxidized-teal font-playfair">Brand Styling</CardTitle>
+          <CardTitle className="text-oxidized-teal font-playfair">Newsletter Brand Styling</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid md:grid-cols-2 gap-4">
