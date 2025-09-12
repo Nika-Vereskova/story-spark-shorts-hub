@@ -15,6 +15,8 @@ const NewsletterAutomation: React.FC = () => {
   const [isGeneratingSummary, setIsGeneratingSummary] = useState(false);
   const [summaries, setSummaries] = useState<any[]>([]);
   const [loadingSummaries, setLoadingSummaries] = useState(false);
+  const [generatedContent, setGeneratedContent] = useState<any>(null);
+  const [showPreview, setShowPreview] = useState(false);
   const { toast } = useToast();
 
   const validateWebhookUrl = (url: string): boolean => {
@@ -96,9 +98,13 @@ const NewsletterAutomation: React.FC = () => {
 
       if (error) throw error;
 
+      // Store the generated content for preview
+      setGeneratedContent(data);
+      setShowPreview(true);
+
       toast({
         title: "Newsletter Generated! 📧",
-        description: "Newsletter created from AI summary successfully.",
+        description: "Newsletter created from AI summary successfully. Review the content below.",
       });
 
       console.log("Generated Newsletter from Summary:", data);
@@ -126,9 +132,13 @@ const NewsletterAutomation: React.FC = () => {
 
       if (error) throw error;
 
+      // Store the generated content for preview
+      setGeneratedContent(data);
+      setShowPreview(true);
+
       toast({
         title: "Newsletter Generated! 📧",
-        description: "Preview generated successfully. Check console for details.",
+        description: "Preview generated successfully. Review the content below.",
       });
 
       console.log("Generated Newsletter:", data);
@@ -443,6 +453,99 @@ const NewsletterAutomation: React.FC = () => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Newsletter Preview */}
+      {showPreview && generatedContent && (
+        <Card className="bg-parchment/90 border-2 border-green-500">
+          <CardHeader className="pb-4">
+            <div className="flex justify-between items-center">
+              <CardTitle className="text-green-700 font-playfair">📧 Newsletter Preview</CardTitle>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowPreview(false)}
+                className="text-green-700 border-green-300 hover:bg-green-50"
+              >
+                ✕ Close
+              </Button>
+            </div>
+            <CardDescription className="text-green-600 font-inter">
+              Your generated newsletter content is ready to review and publish
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="bg-white p-4 rounded border-2 border-green-200">
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">Subject Line:</h3>
+              <p className="text-lg text-oxidized-teal font-inter bg-green-50 p-3 rounded">
+                {generatedContent.subject}
+              </p>
+            </div>
+            
+            <div className="bg-white p-4 rounded border-2 border-green-200">
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">Plain Text Content:</h3>
+              <div className="max-h-80 overflow-y-auto bg-gray-50 p-4 rounded border">
+                <pre className="whitespace-pre-wrap text-sm font-inter text-oxidized-teal">
+                  {generatedContent.content}
+                </pre>
+              </div>
+            </div>
+
+            <div className="bg-white p-4 rounded border-2 border-green-200">
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">HTML Preview:</h3>
+              <div className="max-h-96 overflow-y-auto border rounded">
+                <div 
+                  className="p-4"
+                  dangerouslySetInnerHTML={{ 
+                    __html: generatedContent.htmlContent || generatedContent.content 
+                  }} 
+                />
+              </div>
+            </div>
+
+            <div className="flex gap-3 pt-4">
+              <Button 
+                className="flex-1 bg-green-600 hover:bg-green-700 text-white font-inter"
+                onClick={() => {
+                  toast({
+                    title: "Newsletter Ready! ✅",
+                    description: "Your newsletter content has been generated and is ready to use.",
+                  });
+                }}
+              >
+                ✅ Approve Content
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                className="flex-1 border-green-300 text-green-700 hover:bg-green-50 font-inter"
+                onClick={() => {
+                  navigator.clipboard.writeText(generatedContent.content);
+                  toast({
+                    title: "Copied!",
+                    description: "Newsletter content copied to clipboard.",
+                  });
+                }}
+              >
+                📋 Copy Text
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                className="flex-1 border-green-300 text-green-700 hover:bg-green-50 font-inter"
+                onClick={() => {
+                  navigator.clipboard.writeText(generatedContent.htmlContent || generatedContent.content);
+                  toast({
+                    title: "Copied!",
+                    description: "Newsletter HTML copied to clipboard.",
+                  });
+                }}
+              >
+                📋 Copy HTML
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Brand Guidelines */}
       <Card className="bg-parchment/90 border-2 border-brass">
