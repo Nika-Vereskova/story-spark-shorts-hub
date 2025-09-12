@@ -7,8 +7,30 @@ const corsHeaders = {
 };
 
 const handler = async (req: Request): Promise<Response> => {
+  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  const startTime = new Date();
+  const requestId = crypto.randomUUID().substring(0, 8);
+  
+  console.log('=== NEWSLETTER AUTOMATION STARTED ===');
+  console.log(`Request ID: ${requestId}`);
+  console.log(`Timestamp: ${startTime.toISOString()}`);
+  console.log(`Request method: ${req.method}`);
+  console.log(`Request URL: ${req.url}`);
+  
+  // Parse request body for debugging
+  let requestBody = {};
+  try {
+    const text = await req.text();
+    if (text) {
+      requestBody = JSON.parse(text);
+      console.log(`Request body:`, JSON.stringify(requestBody));
+    }
+  } catch (e) {
+    console.log('No JSON body or invalid JSON, proceeding with empty body');
   }
 
   try {
