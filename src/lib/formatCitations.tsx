@@ -1,10 +1,10 @@
-import React from 'react';
+import { ReactNode } from 'react';
 
-export default function formatCitations(text: string): React.ReactNode[] {
+export default function formatCitations(text: string): ReactNode[] {
   if (!text) return [];
 
   const urlRegex = /https?:\/\/[^\s)]+/g;
-  const nodes: React.ReactNode[] = [];
+  const nodes: ReactNode[] = [];
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
