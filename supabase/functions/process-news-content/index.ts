@@ -149,10 +149,17 @@ Return as JSON with fields: enhanced_content, improved_summary, meta_description
 
     console.log(`Article ${articleId} successfully processed with action: ${action}`);
 
+    const actionPastTense: Record<string, string> = {
+      publish: 'published',
+      archive: 'archived',
+      draft: 'drafted',
+      enhance: 'enhanced',
+    };
+
     return new Response(
       JSON.stringify({
         success: true,
-        message: `Article ${action}ed successfully`,
+        message: `Article ${actionPastTense[action] ?? action} successfully`,
         article: updatedArticle
       }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
