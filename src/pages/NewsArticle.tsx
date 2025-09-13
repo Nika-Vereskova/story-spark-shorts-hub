@@ -6,6 +6,7 @@ import { ArrowLeft, Calendar, Clock, ExternalLink, Share2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
 import SEO from '@/components/SEO';
+import formatCitations from '@/lib/formatCitations';
 
 interface NewsArticle {
   id: string;
@@ -207,7 +208,7 @@ export default function NewsArticle() {
           <main className="prose prose-lg max-w-none prose-gray dark:prose-invert">
             {article.content.split('\n').map((paragraph, index) => {
               if (paragraph.trim() === '') return null;
-              
+
               // Check if paragraph starts with #, ##, etc. for headings
               if (paragraph.startsWith('# ')) {
                 return (
@@ -216,7 +217,7 @@ export default function NewsArticle() {
                   </h2>
                 );
               }
-              
+
               if (paragraph.startsWith('## ')) {
                 return (
                   <h3 key={index} className="text-2xl font-semibold mt-6 mb-3">
@@ -235,7 +236,7 @@ export default function NewsArticle() {
 
               return (
                 <p key={index} className="mb-4 leading-relaxed">
-                  {paragraph}
+                  {formatCitations(paragraph)}
                 </p>
               );
             })}
