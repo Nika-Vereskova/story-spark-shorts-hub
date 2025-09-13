@@ -91,10 +91,15 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (!stories || stories.length === 0) {
+      console.log(`No stories found between ${startDate.toISOString()} and ${endDate.toISOString()}`);
       return new Response(JSON.stringify({ 
-        error: 'No stories found for the specified period',
-        periodStart: startDate.toISOString(),
-        periodEnd: endDate.toISOString()
+        error: `No stories found for the specified period`,
+        details: {
+          periodStart: startDate.toISOString(),
+          periodEnd: endDate.toISOString(),
+          daysSearched: daysBack,
+          suggestion: 'Try increasing the daysBack parameter or check if articles are published with status "published"'
+        }
       }), {
         status: 404,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -103,8 +108,30 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Found ${stories.length} stories to analyze`);
 
-    // Prepare content for Perplexity analysis with full article content
-    const storiesText = stories.map((story, index) => 
+    // Validate stories have sufficient content
+    const storiesWithContent = stories.filter(story => 
+      story.content && story.content.length > 100
+    );
+
+    if (storiesWithContent.length === 0) {
+      console.log(`All ${stories.length} stories lack sufficient content for analysis`);
+      return new Response(JSON.stringify({ 
+        error: `Found ${stories.length} articles but none have sufficient content for analysis`,
+        details: {
+          totalArticles: stories.length,
+          articlesWithContent: 0,
+          suggestion: 'Ensure articles have detailed content (>100 characters) before generating summaries'
+        }
+      }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+      });
+    }
+
+    console.log(`${storiesWithContent.length} stories have sufficient content for analysis`);
+
+    // Prepare content for Perplexity analysis using only stories with sufficient content
+    const storiesText = storiesWithContent.map((story, index) => 
       `Story ${index + 1}:
 Title: ${story.title}
 Summary: ${story.summary || 'No summary available'}
@@ -256,9 +283,11 @@ Ensure each individual summary is comprehensive, uses the full article content, 
     return new Response(JSON.stringify({
       success: true,
       summary: savedSummary,
-      storiesAnalyzed: stories.length,
+      storiesAnalyzed: storiesWithContent.length,
+      totalStoriesFound: stories.length,
       periodStart: startDate.toISOString(),
-      periodEnd: endDate.toISOString()
+      periodEnd: endDate.toISOString(),
+      hasIndividualSummaries: formattedIndividualSummaries.length > 0
     }), {
       status: 200,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }

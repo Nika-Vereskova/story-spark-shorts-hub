@@ -4,9 +4,10 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Clock, Zap, Mail, Calendar, Settings } from 'lucide-react';
+import { Clock, Zap, Mail, Calendar, Settings, AlertCircle } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { sanitizeInput } from '@/lib/security';
+import { useUserRole } from '@/hooks/useUserRole';
 
 const NewsletterAutomation: React.FC = () => {
   const [zapierWebhookUrl, setZapierWebhookUrl] = useState('');
@@ -18,6 +19,7 @@ const NewsletterAutomation: React.FC = () => {
   const [generatedContent, setGeneratedContent] = useState<any>(null);
   const [showPreview, setShowPreview] = useState(false);
   const { toast } = useToast();
+  const { isAdmin, loading: adminLoading } = useUserRole();
 
   const validateWebhookUrl = (url: string): boolean => {
     try {
@@ -56,27 +58,128 @@ const NewsletterAutomation: React.FC = () => {
     loadSummaries();
   }, []);
 
+  const validateBeforeGeneration = async (): Promise<{ valid: boolean; message: string; articlesCount?: number }> => {
+    try {
+      // Check recent articles (last 4 days)
+      const endDate = new Date();
+      const startDate = new Date(endDate.getTime() - (4 * 24 * 60 * 60 * 1000));
+      
+      const { data: articles, error } = await supabase
+        .from('news_posts')
+        .select('title, content, article_url, published_at')
+        .eq('status', 'published')
+        .gte('published_at', startDate.toISOString())
+        .lte('published_at', endDate.toISOString())
+        .order('published_at', { ascending: false });
+
+      if (error) throw error;
+
+      if (!articles || articles.length === 0) {
+        return {
+          valid: false,
+          message: `No published articles found in the last 4 days (${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()})`
+        };
+      }
+
+      const articlesWithContent = articles.filter(article => 
+        article.content && article.content.length > 100
+      );
+
+      if (articlesWithContent.length === 0) {
+        return {
+          valid: false,
+          message: `Found ${articles.length} articles but none have sufficient content for analysis`
+        };
+      }
+
+      const articlesWithUrls = articlesWithContent.filter(article => article.article_url);
+
+      return {
+        valid: true,
+        message: `✅ Validation passed: ${articlesWithContent.length} articles with content, ${articlesWithUrls.length} with source URLs`,
+        articlesCount: articlesWithContent.length
+      };
+
+    } catch (error) {
+      console.error('Validation error:', error);
+      return {
+        valid: false,
+        message: 'Failed to validate articles. Please check your database connection.'
+      };
+    }
+  };
+
   const handleGenerateSummary = async () => {
     setIsGeneratingSummary(true);
     
     try {
+      // Pre-flight validation
+      toast({
+        title: "Validating articles...",
+        description: "Checking recent articles for analysis",
+      });
+
+      const validation = await validateBeforeGeneration();
+      
+      if (!validation.valid) {
+        toast({
+          title: "Validation Failed ❌",
+          description: validation.message,
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Articles validated ✅",
+        description: validation.message,
+      });
+
+      // Call the summary generation function
       const { data, error } = await supabase.functions.invoke('generate-news-summary', {
         body: { daysBack: 4 }
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error("Summary generation error details:", error);
+        
+        // Enhanced error handling based on error type
+        let errorMessage = "Failed to generate news summary";
+        
+        if (error.message?.includes('PERPLEXITY_API_KEY')) {
+          errorMessage = "Perplexity API key not configured. Please contact administrator.";
+        } else if (error.message?.includes('Admin access required')) {
+          errorMessage = "Admin access required. You don't have permission to generate summaries.";
+        } else if (error.message?.includes('No stories found')) {
+          errorMessage = "No stories found in the specified period. Try adjusting the date range.";
+        } else if (error.message?.includes('Invalid token')) {
+          errorMessage = "Authentication failed. Please sign in again.";
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+
+        toast({
+          title: "Summary Generation Failed ❌",
+          description: errorMessage,
+          variant: "destructive",
+        });
+        return;
+      }
 
       toast({
         title: "News Summary Generated! 📊",
-        description: `Analyzed ${data.storiesAnalyzed} stories from the last 4 days`,
+        description: `Successfully analyzed ${data.storiesAnalyzed} stories from the last 4 days with individual summaries and citations`,
       });
 
       loadSummaries(); // Refresh the list
     } catch (error) {
       console.error("Error generating summary:", error);
+      
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+      
       toast({
-        title: "Error",
-        description: "Failed to generate news summary. Please try again.",
+        title: "Unexpected Error ❌",
+        description: `Summary generation failed: ${errorMessage}`,
         variant: "destructive",
       });
     } finally {
@@ -315,67 +418,74 @@ const NewsletterAutomation: React.FC = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4">
-            <div className="bg-brass/10 p-4 rounded border border-brass/30">
-              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Enhanced AI Analysis Includes:</h4>
-              <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
-                <li>• <strong>Individual Article Summaries:</strong> Detailed analysis of each news story with full content review</li>
-                <li>• <strong>Source Citations:</strong> Direct links to original articles for fact-checking and attribution</li>
-                <li>• <strong>Key Point Extraction:</strong> Bullet-point highlights of the most important developments</li>
-                <li>• <strong>Cross-Story Analysis:</strong> Connections and patterns between related stories</li>
-                <li>• <strong>Trending Topics:</strong> Emerging themes and keywords across all analyzed content</li>
-                <li>• <strong>Impact Assessment:</strong> Analysis of significance and potential industry implications</li>
-              </ul>
+          {!isAdmin ? (
+            <div className="bg-red-50 border border-red-200 rounded p-4 mb-4">
+              <div className="flex items-center mb-2">
+                <AlertCircle className="h-5 w-5 text-red-600 mr-2" />
+                <h4 className="font-semibold text-red-800 font-playfair">Admin Access Required</h4>
+              </div>
+              <p className="text-sm text-red-700 font-inter">
+                You need administrator privileges to generate AI news summaries. Please contact an administrator for access.
+              </p>
             </div>
-            
-            <Button 
-              onClick={handleGenerateSummary}
-              disabled={isGeneratingSummary}
-              className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-inter"
-            >
-              {isGeneratingSummary ? "Analyzing Stories..." : "Generate AI News Summary"}
-            </Button>
-
-            {/* Test Validation Button */}
-            <div className="pt-2">
+          ) : (
+            <div className="space-y-4">
+              <div className="bg-brass/10 p-4 rounded border border-brass/30">
+                <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Enhanced AI Analysis Includes:</h4>
+                <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
+                  <li>• <strong>Individual Article Summaries:</strong> Detailed analysis of each news story with full content review</li>
+                  <li>• <strong>Source Citations:</strong> Direct links to original articles for fact-checking and attribution</li>
+                  <li>• <strong>Key Point Extraction:</strong> Bullet-point highlights of the most important developments</li>
+                  <li>• <strong>Cross-Story Analysis:</strong> Connections and patterns between related stories</li>
+                  <li>• <strong>Trending Topics:</strong> Emerging themes and keywords across all analyzed content</li>
+                  <li>• <strong>Impact Assessment:</strong> Analysis of significance and potential industry implications</li>
+                </ul>
+              </div>
+              
               <Button 
-                onClick={async () => {
-                  try {
-                    const { data, error } = await supabase
-                      .from('news_posts')
-                      .select('title, content, article_url, summary')
-                      .eq('status', 'published')
-                      .not('content', 'is', null)
-                      .not('article_url', 'is', null)
-                      .order('published_at', { ascending: false })
-                      .limit(3);
-
-                    if (error) throw error;
-
-                    const articlesWithContent = data?.filter(article => 
-                      article.content && article.content.length > 100
-                    ) || [];
-
-                    toast({
-                      title: `✅ Content Validation Complete`,
-                      description: `Found ${articlesWithContent.length} articles with full content and ${data?.filter(a => a.article_url).length || 0} with source URLs ready for analysis.`,
-                    });
-                  } catch (error) {
-                    toast({
-                      title: "Validation Error",
-                      description: "Failed to validate content. Please check your news articles.",
-                      variant: "destructive",
-                    });
-                  }
-                }}
-                variant="outline"
-                size="sm"
-                className="w-full border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 font-inter"
+                onClick={handleGenerateSummary}
+                disabled={isGeneratingSummary}
+                className="w-full bg-oxidized-teal hover:bg-oxidized-teal-light text-parchment font-inter"
               >
-                🔍 Test Content Validation
+                {isGeneratingSummary ? "🔄 Validating & Analyzing..." : "🤖 Generate AI News Summary"}
               </Button>
+
+              {/* Enhanced Validation Button */}
+              <div className="pt-2">
+                <Button 
+                  onClick={async () => {
+                    try {
+                      const validation = await validateBeforeGeneration();
+                      
+                      if (validation.valid) {
+                        toast({
+                          title: `✅ Validation Passed`,
+                          description: validation.message,
+                        });
+                      } else {
+                        toast({
+                          title: "⚠️ Validation Issues",
+                          description: validation.message,
+                          variant: "destructive",
+                        });
+                      }
+                    } catch (error) {
+                      toast({
+                        title: "Validation Error",
+                        description: "Failed to validate content. Please check your news articles.",
+                        variant: "destructive",
+                      });
+                    }
+                  }}
+                  variant="outline"
+                  size="sm"
+                  className="w-full border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 font-inter"
+                >
+                  🔍 Test Articles & Content Validation
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </CardContent>
       </Card>
 
