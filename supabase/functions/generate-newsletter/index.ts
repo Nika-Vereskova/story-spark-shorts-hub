@@ -35,6 +35,20 @@ interface NewsSummary {
   individual_summaries?: string; // JSON string containing individual article summaries
 }
 
+function formatCitations(text: string): string {
+  if (!text) return text;
+  const urlRegex = /https?:\/\/[^\s)]+/g;
+  return text.replace(urlRegex, (url) => {
+    try {
+      const hostname = new URL(url).hostname.replace(/^www\./, "");
+      const label = hostname || "Source";
+      return `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+    } catch {
+      return `<a href="${url}" target="_blank" rel="noopener">Source</a>`;
+    }
+  });
+}
+
 const handler = async (req: Request): Promise<Response> => {
   console.log("Generate newsletter function called");
 
@@ -234,9 +248,9 @@ function generateSummaryNewsletterContent(summary: NewsSummary): string {
 
 ${individualSummaries.map((item, index) => `
 **${index + 1}. ${item.title}**
-${item.summary}
+${formatCitations(item.summary)}
 
-🔗 **Source:** ${item.source_url || 'Source not available'}
+🔗 **Source:** ${item.source_url ? formatCitations(item.source_url) : 'Source not available'}
 ${item.key_points && item.key_points.length > 0 ? `
 📋 **Key Points:**
 ${item.key_points.map(point => `• ${point}`).join('\n')}
@@ -254,7 +268,7 @@ Welcome to this week's Clockwork Chronicles! Where cutting-edge AI meets thought
 
 📊 **${summary.title}**
 
-${summary.summary_content}
+${formatCitations(summary.summary_content)}
 
 ${individualSummariesSection}
 
@@ -317,8 +331,8 @@ function generateSummaryHTMLContent(summary: NewsSummary): string {
       <div style="background: rgba(255,255,255,0.9); padding: 25px; border-radius: 8px; border: 2px solid #8b7355; margin-bottom: 25px;">
         <h2 style="color: #2c5530; margin: 0 0 15px 0; font-size: 22px;">${summary.title}</h2>
         <div style="color: #2c5530; font-size: 16px; line-height: 1.7;">
-          ${summary.summary_content.split('\n').map(paragraph => 
-            paragraph.trim() ? `<p style="margin-bottom: 15px;">${paragraph}</p>` : ''
+          ${summary.summary_content.split('\n').map(paragraph =>
+            paragraph.trim() ? `<p style="margin-bottom: 15px;">${formatCitations(paragraph)}</p>` : ''
           ).join('')}
         </div>
       </div>
@@ -337,14 +351,12 @@ function generateSummaryHTMLContent(summary: NewsSummary): string {
                       ${index + 1}. ${item.title}
                     </h4>
                     <div style="color: #2c5530; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
-                      ${item.summary}
+                      ${formatCitations(item.summary)}
                     </div>
                     ${item.source_url ? `
                       <div style="margin-bottom: 12px;">
-                        <strong style="color: #8b7355;">🔗 Source:</strong> 
-                        <a href="${item.source_url}" style="color: #2c5530; text-decoration: underline;" target="_blank">
-                          Read Full Article
-                        </a>
+                        <strong style="color: #8b7355;">🔗 Source:</strong>
+                        ${formatCitations(item.source_url)}
                       </div>
                     ` : ''}
                     ${item.key_points && item.key_points.length > 0 ? `
@@ -458,7 +470,7 @@ function generateHTMLContent(subject: string, content: string, news: NewsItem[])
       ${news.map(item => `
         <div style="margin-bottom: 10px; padding: 10px; background: rgba(176, 196, 175, 0.1); border-left: 3px solid #8b7355;">
           <strong style="color: #2c5530;">${item.title}</strong>
-          ${item.summary ? `<p style="margin: 5px 0; color: #2c5530; font-size: 14px;">${item.summary.substring(0, 150)}...</p>` : ''}
+          ${item.summary ? `<p style="margin: 5px 0; color: #2c5530; font-size: 14px;">${formatCitations(item.summary.substring(0, 150))}...</p>` : ''}
           ${item.article_url ? `<a href="${item.article_url}" style="color: #8b7355; text-decoration: none; font-size: 12px;">Read more →</a>` : ''}
         </div>
       `).join('')}
