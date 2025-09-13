@@ -238,7 +238,10 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               {isOpen ? (
                 <X size={28} className="animate-in spin-in-90 duration-200" />
               ) : (
-                <Settings size={28} className="animate-spin duration-[8s] hover:duration-[2s]" />
+                <Settings
+                  size={28}
+                  className="animate-spin [animation-duration:8s] hover:[animation-duration:2s]"
+                />
               )}
             </button>
           </div>
