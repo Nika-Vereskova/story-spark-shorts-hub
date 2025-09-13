@@ -112,7 +112,8 @@ Return as JSON with fields: enhanced_content, improved_summary, meta_description
         let enhancedContent = enhanceData.choices[0].message.content;
 
         try {
-          const jsonMatch = enhancedContent.match(/\{[\s\S]*\}/);
+          const cleaned = enhancedContent.replace(/```json\n?/g, '').replace(/```/g, '').trim();
+          const jsonMatch = cleaned.match(/\{[\s\S]*\}/);
           if (jsonMatch) {
             const parsed = JSON.parse(jsonMatch[0]);
             updateData = {
