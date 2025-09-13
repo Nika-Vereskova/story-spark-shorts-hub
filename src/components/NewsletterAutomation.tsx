@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -705,9 +706,9 @@ const NewsletterAutomation: React.FC = () => {
                       <h4 className="font-semibold text-blue-800 mb-2 font-playfair">
                         {index + 1}. {article.title}
                       </h4>
-                      <p className="text-sm text-blue-700 mb-3 font-inter leading-relaxed">
-                        {article.summary}
-                      </p>
+                      <div className="text-sm text-blue-700 mb-3 font-inter leading-relaxed prose prose-sm max-w-none prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
+                        <ReactMarkdown>{article.summary}</ReactMarkdown>
+                      </div>
                       
                       {/* Source Citation */}
                       {article.source_url && (
