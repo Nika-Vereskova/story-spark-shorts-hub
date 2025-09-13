@@ -109,7 +109,12 @@ Return as JSON with fields: enhanced_content, improved_summary, meta_description
         }
 
         const enhanceData = await enhanceResponse.json();
-        let enhancedContent = enhanceData.choices[0].message.content;
+
+        if (!enhanceData.choices || !enhanceData.choices[0]?.message?.content) {
+          throw new Error('Unexpected Perplexity response format');
+        }
+
+        const enhancedContent = enhanceData.choices[0].message.content;
 
         try {
           const jsonMatch = enhancedContent.match(/\{[\s\S]*\}/);
