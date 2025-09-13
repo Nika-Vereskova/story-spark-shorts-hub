@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { getCurrentLocale } from '@/lib/i18n';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
+import { formatCitations } from '@/lib/formatCitations';
 
 interface NewsPost {
   id: string;
@@ -117,7 +118,7 @@ const AINews = () => {
                   </CardTitle>
                   {post.summary && (
                     <CardDescription className="text-oxidized-teal/70 text-sm font-inter">
-                      {post.summary}
+                      <span>{formatCitations(post.summary)}</span>
                     </CardDescription>
                   )}
                 </CardHeader>
