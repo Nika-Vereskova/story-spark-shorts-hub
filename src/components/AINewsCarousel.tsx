@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { supabase } from '@/integrations/supabase/client';
 import { t, getCurrentLocale } from '@/lib/i18n';
+import { formatCitations } from '@/lib/formatCitations';
 import { useNavigate } from 'react-router-dom';
 
 interface NewsPost {
@@ -116,7 +117,7 @@ const AINewsCarousel = () => {
               <CardContent className="pt-0">
                 {post.summary && (
                   <CardDescription className="text-oxidized-teal/70 text-xs mb-3 font-inter line-clamp-2">
-                    {post.summary}
+                    <span>{formatCitations(post.summary)}</span>
                   </CardDescription>
                 )}
                 
