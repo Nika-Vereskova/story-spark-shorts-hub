@@ -82,6 +82,7 @@ export type Database = {
           created_at: string
           created_by: string | null
           id: string
+          individual_summaries: string | null
           insights: string | null
           newsletter_sent: boolean | null
           period_end: string
@@ -95,6 +96,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          individual_summaries?: string | null
           insights?: string | null
           newsletter_sent?: boolean | null
           period_end: string
@@ -108,6 +110,7 @@ export type Database = {
           created_at?: string
           created_by?: string | null
           id?: string
+          individual_summaries?: string | null
           insights?: string | null
           newsletter_sent?: boolean | null
           period_end?: string
