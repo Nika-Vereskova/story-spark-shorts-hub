@@ -103,7 +103,9 @@ Return as JSON with fields: enhanced_content, improved_summary, meta_description
         });
 
         if (!enhanceResponse.ok) {
-          throw new Error('Failed to enhance content with Perplexity');
+          const errorText = await enhanceResponse.text();
+          console.error('Perplexity API error:', enhanceResponse.status, errorText);
+          throw new Error(`Perplexity API error: ${enhanceResponse.status} - ${errorText}`);
         }
 
         const enhanceData = await enhanceResponse.json();
