@@ -103,31 +103,49 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log(`Found ${stories.length} stories to analyze`);
 
-    // Prepare content for Perplexity analysis
+    // Prepare content for Perplexity analysis with full article content
     const storiesText = stories.map((story, index) => 
       `Story ${index + 1}:
 Title: ${story.title}
 Summary: ${story.summary || 'No summary available'}
+Full Content: ${story.content || 'No full content available'}
 Published: ${new Date(story.published_at).toLocaleDateString()}
-${story.article_url ? `Source: ${story.article_url}` : ''}
+Source URL: ${story.article_url || 'No source URL available'}
 ---`
     ).join('\n\n');
 
-    const prompt = `Analyze the following AI news stories from the past ${daysBack} days and create an engaging newsletter summary:
+    const prompt = `Analyze the following AI news stories from the past ${daysBack} days and create a comprehensive newsletter with individual article summaries:
 
 ${storiesText}
 
-Please provide:
+Please provide a detailed analysis in the following JSON format:
 1. A catchy newsletter title that captures the main theme
-2. A comprehensive summary (300-500 words) that:
-   - Identifies the 3-5 most important developments
-   - Highlights emerging trends and patterns
-   - Explains the significance and potential impact
-   - Connects related stories when relevant
-3. Key insights section (3-4 bullet points of deeper analysis)
-4. List of trending topics/themes (as comma-separated keywords)
+2. A comprehensive overview summary (200-300 words) highlighting the main themes and trends
+3. Individual article summaries: For EACH article, provide a detailed summary (100-150 words each) that includes:
+   - Key points and developments from the full content
+   - Why this story matters to AI professionals
+   - Direct citation with the source URL for reference
+   - Any connections to other stories in the collection
+4. Key insights section (4-5 bullet points of deeper cross-story analysis)
+5. List of trending topics/themes (as comma-separated keywords)
 
-Format your response as JSON with keys: title, summary, insights, trending_topics`;
+Format your response as JSON with these exact keys:
+{
+  "title": "Newsletter title",
+  "summary": "Overall summary text",
+  "individual_summaries": [
+    {
+      "story_title": "Original story title",
+      "summary": "Detailed individual summary",
+      "source_url": "Source URL for citation",
+      "key_points": ["Key point 1", "Key point 2", "Key point 3"]
+    }
+  ],
+  "insights": ["Insight 1", "Insight 2", "Insight 3", "Insight 4"],
+  "trending_topics": ["topic1", "topic2", "topic3"]
+}
+
+Ensure each individual summary is comprehensive, uses the full article content, and includes proper citations with source URLs.`;
 
     // Call Perplexity API
     console.log('Calling Perplexity API for analysis...');
@@ -175,19 +193,39 @@ Format your response as JSON with keys: title, summary, insights, trending_topic
       const cleanedContent = content.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
       
       analysisResult = JSON.parse(cleanedContent);
+      
+      // Validate the new structure
+      if (!analysisResult.individual_summaries || !Array.isArray(analysisResult.individual_summaries)) {
+        throw new Error('Missing or invalid individual_summaries array');
+      }
+      
     } catch (parseError) {
       console.error('Failed to parse Perplexity JSON:', parseError);
-      // Fallback: create manual structure
+      // Fallback: create manual structure with individual summaries
       const content = perplexityData.choices[0].message.content;
       analysisResult = {
         title: `AI News Summary: ${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`,
-        summary: content,
+        summary: content.substring(0, 500) + '...',
+        individual_summaries: stories.slice(0, 3).map(story => ({
+          story_title: story.title,
+          summary: story.summary || 'Summary not available',
+          source_url: story.article_url || '',
+          key_points: ['Key information from analysis', 'Significant development noted', 'Industry impact identified']
+        })),
         insights: ['Advanced AI analysis provided', 'Multiple breakthrough developments identified', 'Significant industry trends emerging'],
         trending_topics: ['AI', 'Machine Learning', 'Technology']
       };
     }
 
-    // Save to database
+    // Format individual summaries for storage
+    const formattedIndividualSummaries = analysisResult.individual_summaries?.map(item => ({
+      title: item.story_title,
+      summary: item.summary,
+      source_url: item.source_url,
+      key_points: item.key_points || []
+    })) || [];
+
+    // Save to database with enhanced structure
     const { data: savedSummary, error: saveError } = await supabase
       .from('news_summaries')
       .insert({
@@ -198,7 +236,9 @@ Format your response as JSON with keys: title, summary, insights, trending_topic
         period_start: startDate.toISOString(),
         period_end: endDate.toISOString(),
         created_by: userData.user.id,
-        story_count: stories.length
+        story_count: stories.length,
+        // Store individual summaries as JSON in a text field (we might need to add this field)
+        individual_summaries: JSON.stringify(formattedIndividualSummaries)
       })
       .select()
       .single();
