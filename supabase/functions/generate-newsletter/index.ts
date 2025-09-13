@@ -171,6 +171,14 @@ STEaM LOGIC Studio AB`;
       subject,
       content,
       htmlContent,
+      individualSummaries: useSummary && summary?.individual_summaries ? (() => {
+        try {
+          return JSON.parse(summary.individual_summaries);
+        } catch (error) {
+          console.error('Error parsing individual summaries for response:', error);
+          return [];
+        }
+      })() : [],
     }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },

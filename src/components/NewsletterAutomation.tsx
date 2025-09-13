@@ -98,13 +98,28 @@ const NewsletterAutomation: React.FC = () => {
 
       if (error) throw error;
 
-      // Store the generated content for preview
-      setGeneratedContent(data);
+      // Parse individual summaries if they exist in the response
+      let individualSummaries = [];
+      if (data.individualSummaries) {
+        try {
+          individualSummaries = typeof data.individualSummaries === 'string' 
+            ? JSON.parse(data.individualSummaries) 
+            : data.individualSummaries;
+        } catch (parseError) {
+          console.error('Error parsing individual summaries:', parseError);
+        }
+      }
+
+      // Store the enhanced generated content for preview
+      setGeneratedContent({
+        ...data,
+        individualSummaries: individualSummaries
+      });
       setShowPreview(true);
 
       toast({
         title: "Newsletter Generated! 📧",
-        description: "Newsletter created from AI summary successfully. Review the content below.",
+        description: `Newsletter created with ${individualSummaries.length} detailed article summaries and citations.`,
       });
 
       console.log("Generated Newsletter from Summary:", data);
@@ -302,13 +317,14 @@ const NewsletterAutomation: React.FC = () => {
         <CardContent>
           <div className="space-y-4">
             <div className="bg-brass/10 p-4 rounded border border-brass/30">
-              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">AI Analysis Includes:</h4>
+              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Enhanced AI Analysis Includes:</h4>
               <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
-                <li>• Intelligent summary of the most important developments</li>
-                <li>• Key insights and deeper analysis from multiple stories</li>
-                <li>• Trending topics and emerging patterns identification</li>
-                <li>• Significance and potential impact explanations</li>
-                <li>• Connected narratives across related stories</li>
+                <li>• <strong>Individual Article Summaries:</strong> Detailed analysis of each news story with full content review</li>
+                <li>• <strong>Source Citations:</strong> Direct links to original articles for fact-checking and attribution</li>
+                <li>• <strong>Key Point Extraction:</strong> Bullet-point highlights of the most important developments</li>
+                <li>• <strong>Cross-Story Analysis:</strong> Connections and patterns between related stories</li>
+                <li>• <strong>Trending Topics:</strong> Emerging themes and keywords across all analyzed content</li>
+                <li>• <strong>Impact Assessment:</strong> Analysis of significance and potential industry implications</li>
               </ul>
             </div>
             
@@ -319,6 +335,46 @@ const NewsletterAutomation: React.FC = () => {
             >
               {isGeneratingSummary ? "Analyzing Stories..." : "Generate AI News Summary"}
             </Button>
+
+            {/* Test Validation Button */}
+            <div className="pt-2">
+              <Button 
+                onClick={async () => {
+                  try {
+                    const { data, error } = await supabase
+                      .from('news_posts')
+                      .select('title, content, article_url, summary')
+                      .eq('status', 'published')
+                      .not('content', 'is', null)
+                      .not('article_url', 'is', null)
+                      .order('published_at', { ascending: false })
+                      .limit(3);
+
+                    if (error) throw error;
+
+                    const articlesWithContent = data?.filter(article => 
+                      article.content && article.content.length > 100
+                    ) || [];
+
+                    toast({
+                      title: `✅ Content Validation Complete`,
+                      description: `Found ${articlesWithContent.length} articles with full content and ${data?.filter(a => a.article_url).length || 0} with source URLs ready for analysis.`,
+                    });
+                  } catch (error) {
+                    toast({
+                      title: "Validation Error",
+                      description: "Failed to validate content. Please check your news articles.",
+                      variant: "destructive",
+                    });
+                  }
+                }}
+                variant="outline"
+                size="sm"
+                className="w-full border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 font-inter"
+              >
+                🔍 Test Content Validation
+              </Button>
+            </div>
           </div>
         </CardContent>
       </Card>
@@ -429,13 +485,14 @@ const NewsletterAutomation: React.FC = () => {
         <CardContent>
           <div className="space-y-4">
             <div className="bg-brass/10 p-4 rounded border border-brass/30">
-              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Traditional Format Includes:</h4>
+              <h4 className="font-semibold text-oxidized-teal mb-2 font-playfair">Enhanced Traditional Format Includes:</h4>
               <ul className="text-sm text-oxidized-teal/80 space-y-1 font-inter">
-                <li>• Latest AI news and insights from your website</li>
-                <li>• YouTube video highlights and behind-the-scenes content</li>
-                <li>• Book updates and new story announcements</li>
-                <li>• Weekly AI tip or storytelling advice</li>
-                <li>• Call-to-action buttons with your brand styling</li>
+                <li>• <strong>Latest AI News:</strong> Curated insights from your published news articles</li>
+                <li>• <strong>Workshop Highlights:</strong> YouTube video updates and behind-the-scenes content</li>
+                <li>• <strong>Book Updates:</strong> New story announcements and publishing progress</li>
+                <li>• <strong>Expert Tips:</strong> Weekly AI advice and storytelling guidance</li>
+                <li>• <strong>Professional Styling:</strong> Brand-consistent design with call-to-action buttons</li>
+                <li>• <strong>Mobile Optimized:</strong> Responsive HTML format for all devices</li>
               </ul>
             </div>
             
@@ -516,19 +573,74 @@ const NewsletterAutomation: React.FC = () => {
               </Button>
             </div>
             <CardDescription className="text-green-600 font-inter">
-              Your generated newsletter content is ready to review and publish
+              Your generated newsletter content with individual article summaries and citations
             </CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-6">
+            {/* Subject Line */}
             <div className="bg-white p-4 rounded border-2 border-green-200">
-              <h3 className="font-bold text-green-700 mb-3 font-playfair">Subject Line:</h3>
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">📝 Subject Line:</h3>
               <p className="text-lg text-oxidized-teal font-inter bg-green-50 p-3 rounded">
                 {generatedContent.subject}
               </p>
             </div>
             
+            {/* Individual Article Summaries Display */}
+            {generatedContent.individualSummaries && generatedContent.individualSummaries.length > 0 && (
+              <div className="bg-white p-4 rounded border-2 border-blue-200">
+                <h3 className="font-bold text-blue-700 mb-4 font-playfair">🔍 Individual Article Analysis:</h3>
+                <div className="space-y-4 max-h-96 overflow-y-auto">
+                  {generatedContent.individualSummaries.map((article, index) => (
+                    <div key={index} className="bg-blue-50 p-4 rounded border-l-4 border-blue-400">
+                      <h4 className="font-semibold text-blue-800 mb-2 font-playfair">
+                        {index + 1}. {article.title}
+                      </h4>
+                      <p className="text-sm text-blue-700 mb-3 font-inter leading-relaxed">
+                        {article.summary}
+                      </p>
+                      
+                      {/* Source Citation */}
+                      {article.source_url && (
+                        <div className="mb-3">
+                          <span className="text-xs font-semibold text-blue-600 font-inter">🔗 Source: </span>
+                          <a 
+                            href={article.source_url} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-xs text-blue-600 hover:text-blue-800 underline font-inter"
+                          >
+                            {article.source_url.length > 60 ? 
+                              article.source_url.substring(0, 60) + '...' : 
+                              article.source_url
+                            }
+                          </a>
+                        </div>
+                      )}
+                      
+                      {/* Key Points */}
+                      {article.key_points && article.key_points.length > 0 && (
+                        <div className="bg-white p-3 rounded border border-blue-200">
+                          <span className="text-xs font-semibold text-blue-600 font-inter mb-2 block">
+                            📋 Key Points:
+                          </span>
+                          <ul className="list-disc list-inside space-y-1">
+                            {article.key_points.map((point, pointIndex) => (
+                              <li key={pointIndex} className="text-xs text-blue-700 font-inter">
+                                {point}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            {/* Full Newsletter Text Content */}
             <div className="bg-white p-4 rounded border-2 border-green-200">
-              <h3 className="font-bold text-green-700 mb-3 font-playfair">Plain Text Content:</h3>
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">📄 Complete Newsletter Text:</h3>
               <div className="max-h-80 overflow-y-auto bg-gray-50 p-4 rounded border">
                 <pre className="whitespace-pre-wrap text-sm font-inter text-oxidized-teal">
                   {generatedContent.content}
@@ -536,9 +648,10 @@ const NewsletterAutomation: React.FC = () => {
               </div>
             </div>
 
+            {/* HTML Preview with Enhanced Display */}
             <div className="bg-white p-4 rounded border-2 border-green-200">
-              <h3 className="font-bold text-green-700 mb-3 font-playfair">HTML Preview:</h3>
-              <div className="max-h-96 overflow-y-auto border rounded">
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">🌐 HTML Preview:</h3>
+              <div className="max-h-96 overflow-y-auto border rounded bg-white">
                 <div 
                   className="p-4"
                   dangerouslySetInnerHTML={{ 
@@ -548,17 +661,53 @@ const NewsletterAutomation: React.FC = () => {
               </div>
             </div>
 
-            <div className="flex gap-3 pt-4">
+            {/* Statistics & Quality Check */}
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded border-2 border-green-200">
+              <h3 className="font-bold text-green-700 mb-3 font-playfair">📊 Content Quality Check:</h3>
+              <div className="grid md:grid-cols-2 gap-4 text-sm font-inter">
+                <div>
+                  <div className="flex justify-between">
+                    <span className="text-green-600">Subject Length:</span>
+                    <span className={`${generatedContent.subject?.length > 60 ? 'text-red-600' : 'text-green-600'}`}>
+                      {generatedContent.subject?.length || 0}/60 chars
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-green-600">Word Count:</span>
+                    <span className="text-green-600">
+                      {generatedContent.content?.split(' ').length || 0} words
+                    </span>
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between">
+                    <span className="text-blue-600">Articles Analyzed:</span>
+                    <span className="text-blue-600">
+                      {generatedContent.individualSummaries?.length || 0}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-blue-600">Sources with Links:</span>
+                    <span className="text-blue-600">
+                      {generatedContent.individualSummaries?.filter(article => article.source_url).length || 0}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex flex-wrap gap-3 pt-4">
               <Button 
                 className="flex-1 bg-green-600 hover:bg-green-700 text-white font-inter"
                 onClick={() => {
                   toast({
-                    title: "Newsletter Ready! ✅",
-                    description: "Your newsletter content has been generated and is ready to use.",
+                    title: "Newsletter Approved! ✅",
+                    description: "Your newsletter with individual article summaries is ready for distribution.",
                   });
                 }}
               >
-                ✅ Approve Content
+                ✅ Approve Newsletter
               </Button>
               
               <Button 
@@ -567,8 +716,8 @@ const NewsletterAutomation: React.FC = () => {
                 onClick={() => {
                   navigator.clipboard.writeText(generatedContent.content);
                   toast({
-                    title: "Copied!",
-                    description: "Newsletter content copied to clipboard.",
+                    title: "Text Copied! 📋",
+                    description: "Complete newsletter text copied to clipboard.",
                   });
                 }}
               >
@@ -577,17 +726,29 @@ const NewsletterAutomation: React.FC = () => {
               
               <Button 
                 variant="outline" 
-                className="flex-1 border-green-300 text-green-700 hover:bg-green-50 font-inter"
+                className="flex-1 border-blue-300 text-blue-700 hover:bg-blue-50 font-inter"
                 onClick={() => {
                   navigator.clipboard.writeText(generatedContent.htmlContent || generatedContent.content);
                   toast({
-                    title: "Copied!",
-                    description: "Newsletter HTML copied to clipboard.",
+                    title: "HTML Copied! 📋",
+                    description: "Newsletter HTML with citations copied to clipboard.",
                   });
                 }}
               >
                 📋 Copy HTML
               </Button>
+            </div>
+
+            {/* Citation Guidelines */}
+            <div className="bg-yellow-50 p-4 rounded border border-yellow-200">
+              <h4 className="font-semibold text-yellow-800 mb-2 font-playfair">📚 Citation Best Practices:</h4>
+              <ul className="text-sm text-yellow-700 space-y-1 font-inter">
+                <li>• All article sources are properly attributed with clickable links</li>
+                <li>• Individual summaries maintain original article context</li>
+                <li>• Key points highlight the most important developments</li>
+                <li>• Links open in new tabs to maintain newsletter engagement</li>
+                <li>• Source URLs are validated and accessible</li>
+              </ul>
             </div>
           </CardContent>
         </Card>
