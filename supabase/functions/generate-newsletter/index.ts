@@ -32,6 +32,7 @@ interface NewsSummary {
   story_count: number;
   period_start: string;
   period_end: string;
+  individual_summaries?: string; // JSON string containing individual article summaries
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -60,7 +61,7 @@ const handler = async (req: Request): Promise<Response> => {
       
       const { data: summary, error: summaryError } = await supabaseClient
         .from('news_summaries')
-        .select('*')
+        .select('*, individual_summaries')
         .eq('id', summaryId)
         .single();
 
@@ -214,6 +215,31 @@ function generateBookUpdatesSection(): string {
 }
 
 function generateSummaryNewsletterContent(summary: NewsSummary): string {
+  // Parse individual summaries if available
+  let individualSummariesSection = '';
+  if (summary.individual_summaries) {
+    try {
+      const individualSummaries = JSON.parse(summary.individual_summaries);
+      if (Array.isArray(individualSummaries) && individualSummaries.length > 0) {
+        individualSummariesSection = `
+🔍 **DETAILED STORY ANALYSIS:**
+
+${individualSummaries.map((item, index) => `
+**${index + 1}. ${item.title}**
+${item.summary}
+
+🔗 **Source:** ${item.source_url || 'Source not available'}
+${item.key_points && item.key_points.length > 0 ? `
+📋 **Key Points:**
+${item.key_points.map(point => `• ${point}`).join('\n')}
+` : ''}
+---`).join('\n')}`;
+      }
+    } catch (error) {
+      console.error('Error parsing individual summaries:', error);
+    }
+  }
+
   const content = `Dear Fellow Inventors,
 
 Welcome to this week's Clockwork Chronicles! Where cutting-edge AI meets thoughtful analysis.
@@ -221,6 +247,8 @@ Welcome to this week's Clockwork Chronicles! Where cutting-edge AI meets thought
 📊 **${summary.title}**
 
 ${summary.summary_content}
+
+${individualSummariesSection}
 
 🔍 **Key Insights:**
 ${summary.insights ? summary.insights.split('\n').filter(i => i.trim()).map(insight => `• ${insight.replace('• ', '')}`).join('\n') : '• Advanced AI developments identified'}
@@ -286,6 +314,49 @@ function generateSummaryHTMLContent(summary: NewsSummary): string {
           ).join('')}
         </div>
       </div>
+      
+      <!-- Individual Article Summaries -->
+      ${summary.individual_summaries ? (() => {
+        try {
+          const individualSummaries = JSON.parse(summary.individual_summaries);
+          if (Array.isArray(individualSummaries) && individualSummaries.length > 0) {
+            return `
+              <div style="background: rgba(220, 240, 255, 0.7); padding: 25px; border-radius: 8px; margin-bottom: 25px; border: 2px solid #8b7355;">
+                <h3 style="color: #2c5530; margin: 0 0 20px 0; font-size: 20px;">🔍 Detailed Story Analysis</h3>
+                ${individualSummaries.map((item, index) => `
+                  <div style="background: rgba(255,255,255,0.9); padding: 20px; border-radius: 6px; margin-bottom: 20px; border-left: 4px solid #8b7355;">
+                    <h4 style="color: #2c5530; margin: 0 0 12px 0; font-size: 16px; font-weight: bold;">
+                      ${index + 1}. ${item.title}
+                    </h4>
+                    <div style="color: #2c5530; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
+                      ${item.summary}
+                    </div>
+                    ${item.source_url ? `
+                      <div style="margin-bottom: 12px;">
+                        <strong style="color: #8b7355;">🔗 Source:</strong> 
+                        <a href="${item.source_url}" style="color: #2c5530; text-decoration: underline;" target="_blank">
+                          Read Full Article
+                        </a>
+                      </div>
+                    ` : ''}
+                    ${item.key_points && item.key_points.length > 0 ? `
+                      <div style="background: rgba(139, 115, 85, 0.1); padding: 12px; border-radius: 4px;">
+                        <strong style="color: #8b7355; font-size: 13px;">📋 Key Points:</strong>
+                        <ul style="margin: 8px 0 0 0; padding-left: 20px;">
+                          ${item.key_points.map(point => `<li style="color: #2c5530; font-size: 13px; margin-bottom: 4px;">${point}</li>`).join('')}
+                        </ul>
+                      </div>
+                    ` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.error('Error parsing individual summaries for HTML:', error);
+        }
+        return '';
+      })() : ''}
       
       <!-- Key Insights -->
       <div style="background: rgba(176, 196, 175, 0.3); padding: 20px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #8b7355;">

@@ -34,7 +34,7 @@ const NewsletterAutomation: React.FC = () => {
     try {
       const { data, error } = await supabase
         .from('news_summaries')
-        .select('*')
+        .select('*, individual_summaries')
         .order('created_at', { ascending: false })
         .limit(5);
 
@@ -342,31 +342,77 @@ const NewsletterAutomation: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {summaries.map((summary) => (
-                <div key={summary.id} className="border border-brass/30 rounded p-4 bg-brass/5">
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="font-semibold text-oxidized-teal font-playfair">{summary.title}</h4>
-                    <span className={`text-xs px-2 py-1 rounded ${summary.newsletter_sent ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
-                      {summary.newsletter_sent ? 'Sent' : 'Available'}
-                    </span>
+              {summaries.map((summary) => {
+                // Parse individual summaries if available
+                let individualSummaries = [];
+                try {
+                  if (summary.individual_summaries) {
+                    individualSummaries = JSON.parse(summary.individual_summaries);
+                  }
+                } catch (error) {
+                  console.error('Error parsing individual summaries:', error);
+                }
+
+                return (
+                  <div key={summary.id} className="border border-brass/30 rounded p-4 bg-brass/5">
+                    <div className="flex justify-between items-start mb-2">
+                      <h4 className="font-semibold text-oxidized-teal font-playfair">{summary.title}</h4>
+                      <span className={`text-xs px-2 py-1 rounded ${summary.newsletter_sent ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                        {summary.newsletter_sent ? 'Sent' : 'Available'}
+                      </span>
+                    </div>
+                    
+                    <p className="text-sm text-oxidized-teal/80 mb-3 font-inter">
+                      {summary.summary_content.substring(0, 150)}...
+                    </p>
+
+                    {/* Show individual articles if available */}
+                    {individualSummaries.length > 0 && (
+                      <div className="bg-white/50 p-3 rounded mb-3 border border-brass/20">
+                        <h5 className="text-xs font-semibold text-oxidized-teal mb-2 font-playfair">
+                          📰 Articles Analyzed ({individualSummaries.length})
+                        </h5>
+                        <div className="space-y-2">
+                          {individualSummaries.slice(0, 2).map((article, index) => (
+                            <div key={index} className="text-xs text-oxidized-teal/70 font-inter">
+                              <div className="font-medium">{article.title}</div>
+                              {article.source_url && (
+                                <a 
+                                  href={article.source_url} 
+                                  target="_blank" 
+                                  rel="noopener noreferrer"
+                                  className="text-brass hover:underline"
+                                >
+                                  🔗 Source
+                                </a>
+                              )}
+                            </div>
+                          ))}
+                          {individualSummaries.length > 2 && (
+                            <div className="text-xs text-oxidized-teal/50 font-inter">
+                              +{individualSummaries.length - 2} more articles...
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    <div className="flex justify-between items-center text-xs text-oxidized-teal/60 font-inter mb-3">
+                      <span>{summary.story_count} stories analyzed</span>
+                      <span>{new Date(summary.created_at).toLocaleDateString()}</span>
+                    </div>
+                    
+                    <Button 
+                      onClick={() => handleGenerateFromSummary(summary.id)}
+                      disabled={isGenerating}
+                      size="sm"
+                      className="mt-3 bg-brass hover:bg-brass-dark text-parchment font-inter"
+                    >
+                      {isGenerating ? "Generating..." : "Create Newsletter from Summary"}
+                    </Button>
                   </div>
-                  <p className="text-sm text-oxidized-teal/80 mb-2 font-inter">
-                    {summary.summary_content.substring(0, 150)}...
-                  </p>
-                  <div className="flex justify-between items-center text-xs text-oxidized-teal/60 font-inter">
-                    <span>{summary.story_count} stories analyzed</span>
-                    <span>{new Date(summary.created_at).toLocaleDateString()}</span>
-                  </div>
-                  <Button 
-                    onClick={() => handleGenerateFromSummary(summary.id)}
-                    disabled={isGenerating}
-                    size="sm"
-                    className="mt-3 bg-brass hover:bg-brass-dark text-parchment font-inter"
-                  >
-                    {isGenerating ? "Generating..." : "Create Newsletter from Summary"}
-                  </Button>
-                </div>
-              ))}
+                );
+              })}
             </div>
           )}
         </CardContent>
