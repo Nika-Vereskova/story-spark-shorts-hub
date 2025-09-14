@@ -1,15 +1,23 @@
 
 import React from 'react';
 import { Mail, ExternalLink, Wrench, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { t } from '@/lib/i18n';
+import { t, getCurrentLocale } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
 
 const About = () => {
+  const navigate = useNavigate();
+  const locale = getCurrentLocale();
+
+  const handleFollowSocial = () => {
+    navigate(`/${locale}/contact`);
+  };
+
   return (
     <div className="min-h-screen bg-parchment bg-gear-pattern relative">
       {/* Clockwork Gear Decorations */}
@@ -100,6 +108,7 @@ const About = () => {
                 size="lg" 
                 variant="outline" 
                 className="border-2 border-oxidized-teal text-oxidized-teal hover:bg-oxidized-teal/10 px-8 py-3 shadow-inner-glow transition-all duration-300 hover:animate-steam-puff font-inter font-medium"
+                onClick={handleFollowSocial}
               >
                 <ExternalLink className="mr-2 h-5 w-5" />
                 {t('about.followSocial')}
