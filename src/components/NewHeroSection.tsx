@@ -13,11 +13,7 @@ const NewHeroSection = () => {
     posthog.capture('explore_services_clicked', {
       source: 'hero_section'
     });
-    // Scroll to services section
-    const servicesSection = document.getElementById('services-section');
-    if (servicesSection) {
-      servicesSection.scrollIntoView({ behavior: 'smooth' });
-    }
+    navigate(`/${locale}/projects`);
   };
 
   const handleReadSample = () => {
