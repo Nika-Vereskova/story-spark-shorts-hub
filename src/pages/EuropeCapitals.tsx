@@ -542,83 +542,35 @@ const EuropeCapitals = () => {
       
       <div className="pt-24 pb-12 relative">
         <div className="container mx-auto px-6 max-w-6xl">
-          {/* Enhanced Steampunk Header */}
-          <div className="relative steampunk-card p-8 mb-8 overflow-hidden">
-            {/* Animated background gears and steam */}
-            <div className="absolute inset-0 pointer-events-none">
-              {/* Corner gear clusters */}
-              <div className="absolute top-4 left-4 opacity-20 hover:opacity-40 transition-opacity duration-500">
-                <GearIcon size={6} direction="clockwise" color="text-brass" className="animate-spin" style={{ animationDuration: '8s' }} />
-              </div>
-              <div className="absolute top-6 right-6 opacity-15 hover:opacity-35 transition-opacity duration-500">
-                <GearIcon size={8} direction="counter" color="text-oxidized-teal" className="animate-spin" style={{ animationDuration: '12s' }} />
-              </div>
-              <div className="absolute bottom-4 left-8 opacity-25 hover:opacity-45 transition-opacity duration-500">
-                <GearIcon size={4} direction="clockwise" color="text-brass/70" className="animate-spin" style={{ animationDuration: '6s' }} />
-              </div>
-              <div className="absolute bottom-6 right-4 opacity-20 hover:opacity-40 transition-opacity duration-500">
-                <GearIcon size={5} direction="counter" color="text-oxidized-teal/80" className="animate-spin" style={{ animationDuration: '10s' }} />
-              </div>
-              
-              {/* Steam effects */}
-              <div className="absolute top-1/2 left-1/4 w-2 h-6 bg-brass/30 rounded-full animate-steam-puff" style={{animationDelay: '0s'}}></div>
-              <div className="absolute top-2/3 right-1/3 w-1.5 h-4 bg-oxidized-teal/25 rounded-full animate-steam-puff" style={{animationDelay: '2s'}}></div>
-              <div className="absolute bottom-1/3 left-1/2 w-1 h-3 bg-brass/20 rounded-full animate-steam-puff" style={{animationDelay: '4s'}}></div>
-            </div>
-            
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          {/* Header */}
+          <div className="steampunk-card p-8 mb-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-6">
-                {/* Enhanced main gear with layered animation */}
-                <div className="relative w-20 h-20">
-                  <div className="w-full h-full rounded-full bg-gradient-to-br from-brass to-oxidized-teal flex items-center justify-center shadow-brass-drop animate-pulse">
-                    <GearIcon size={12} direction="clockwise" color="text-parchment" className="drop-shadow-lg animate-spin" style={{ animationDuration: '15s' }} />
-                  </div>
-                  {/* Overlapping accent gears */}
-                  <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-gradient-to-br from-oxidized-teal to-brass flex items-center justify-center">
-                    <GearIcon size={6} direction="counter" color="text-parchment" className="animate-spin" style={{ animationDuration: '8s' }} />
-                  </div>
-                  <div className="absolute -bottom-1 -left-1 w-6 h-6 rounded-full bg-gradient-to-br from-brass/80 to-oxidized-teal/80 flex items-center justify-center">
-                    <GearIcon size={4} direction="clockwise" color="text-parchment" className="animate-spin" style={{ animationDuration: '6s' }} />
-                  </div>
+                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+                  <svg aria-hidden="true" className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+                    <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2"/>
+                  </svg>
                 </div>
-                
-                <div className="relative">
-                  <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold animate-fade-in">
+                <div>
+                  <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
                     {t('projects.europeCapitals.title')} 🏰
                   </h1>
-                  <p className="text-muted-foreground text-lg mt-2 animate-fade-in" style={{animationDelay: '0.2s'}}>
+                  <p className="text-muted-foreground text-lg mt-2">
                     {t('projects.europeCapitals.subtitle')}
                   </p>
-                  {/* Decorative pipe accent */}
-                  <div className="absolute -bottom-2 left-0 w-3/4 h-px bg-gradient-to-r from-brass/60 via-oxidized-teal/40 to-transparent"></div>
                 </div>
               </div>
               
-              {/* Enhanced CTA button with gear accents */}
-              <div className="relative">
-                {/* Rotating gears around button */}
-                <div className="absolute -top-3 -left-3 opacity-60">
-                  <GearIcon size={3} direction="counter" color="text-brass" className="animate-spin" style={{ animationDuration: '4s' }} />
-                </div>
-                <div className="absolute -bottom-2 -right-2 opacity-50">
-                  <GearIcon size={4} direction="clockwise" color="text-oxidized-teal" className="animate-spin" style={{ animationDuration: '5s' }} />
-                </div>
-                
-                <Button
-                  type="button"
-                  onClick={startQuiz}
-                  aria-label={t('projects.europeCapitals.startQuiz') as string}
-                  size="lg"
-                  className="relative w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-brass to-oxidized-teal hover:from-brass-dark hover:to-oxidized-teal-light border-2 border-brass-dark shadow-brass-drop transform hover:scale-105 hover:animate-steam-puff transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-brass focus:ring-offset-2 text-parchment group overflow-hidden"
-                >
-                  {/* Button internal gear animation */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-brass/20 to-oxidized-teal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute top-1 right-1 opacity-30 group-hover:opacity-60 transition-opacity duration-300">
-                    <GearIcon size={2} direction="clockwise" color="text-parchment" className="animate-spin" style={{ animationDuration: '3s' }} />
-                  </div>
-                  <span className="relative z-10">🎯 {t('projects.europeCapitals.startQuiz')}</span>
-                </Button>
-              </div>
+              <Button
+                type="button"
+                onClick={startQuiz}
+                aria-label={t('projects.europeCapitals.startQuiz') as string}
+                size="lg"
+                className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+              >
+                🎯 {t('projects.europeCapitals.startQuiz')}
+              </Button>
             </div>
           </div>
 
