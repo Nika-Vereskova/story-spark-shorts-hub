@@ -544,34 +544,22 @@ const EuropeCapitals = () => {
         <div className="container mx-auto px-6 max-w-6xl">
           {/* Header */}
           <div className="steampunk-card p-8 mb-8">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
-                  <svg aria-hidden="true" className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
-                    <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
-                    <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
-                </div>
-                <div>
-                  <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
-                    {t('projects.europeCapitals.title')} 🏰
-                  </h1>
-                  <p className="text-muted-foreground text-lg mt-2">
-                    {t('projects.europeCapitals.subtitle')}
-                  </p>
-                </div>
-              </div>
-              
-              <Button
-                type="button"
-                onClick={startQuiz}
-                aria-label={t('projects.europeCapitals.startQuiz') as string}
-                size="lg"
-                className="w-full md:w-auto h-14 md:h-16 px-6 md:px-8 text-lg md:text-xl rounded-2xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-lg transform hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              >
-                🎯 {t('projects.europeCapitals.startQuiz')}
-              </Button>
+          <div className="flex items-center gap-6">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-lg">
+              <svg aria-hidden="true" className="w-12 h-12 text-background gear-clockwise" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2"/>
+                <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24" stroke="currentColor" strokeWidth="2"/>
+              </svg>
             </div>
+            <div>
+              <h1 className="text-4xl md:text-5xl font-playfair text-foreground font-bold">
+                {t('projects.europeCapitals.title')} 🏰
+              </h1>
+              <p className="text-muted-foreground text-lg mt-2">
+                {t('projects.europeCapitals.subtitle')}
+              </p>
+            </div>
+          </div>
           </div>
 
           {/* Tabs */}
