@@ -5,6 +5,7 @@ export const en = {
     books: "Books",
     videos: "Videos",
     about: "About",
+    aiResourceHub: "AI Resource Hub",
     news: "News",
     contact: "Contact",
     projects: "Projects",

@@ -27,6 +27,7 @@ const Privacy = React.lazy(() => import("./pages/Privacy"));
 const Terms = React.lazy(() => import("./pages/Terms"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const Moved = React.lazy(() => import("./pages/Moved"));
+const AIResourceHub = React.lazy(() => import("./pages/AIResourceHub"));
 const NewsletterConfirmed = React.lazy(() => import("./pages/NewsletterConfirmed"));
 
 const queryClient = new QueryClient();
@@ -98,6 +99,7 @@ const App = () => {
               <Route path="/:locale/about" element={withSuspense(About)} />
               <Route path="/:locale/projects" element={withSuspense(Projects)} />
               
+              <Route path="/:locale/ai-resource-hub" element={withSuspense(AIResourceHub)} />
               <Route path="/:locale/ai-services" element={withSuspense(AIServices)} />
               <Route path="/:locale/learn-ai" element={withSuspense(LearnAI)} />
               <Route path="/:locale/europe-capitals" element={withSuspense(EuropeCapitals)} />
@@ -117,6 +119,7 @@ const App = () => {
               <Route path="/about" element={withSuspense(About)} />
               <Route path="/projects" element={withSuspense(Projects)} />
               
+              <Route path="/ai-resource-hub" element={withSuspense(AIResourceHub)} />
               <Route path="/ai-services" element={withSuspense(AIServices)} />
               <Route path="/learn-ai" element={withSuspense(LearnAI)} />
               <Route path="/europe-capitals" element={withSuspense(EuropeCapitals)} />

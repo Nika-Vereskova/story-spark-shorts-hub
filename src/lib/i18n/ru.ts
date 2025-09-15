@@ -5,6 +5,7 @@ export const ru = {
     books: "Книги",
     videos: "Видео",
     about: "Обо мне",
+    aiResourceHub: "ИИ Ресурсы",
     news: "Новости",
     contact: "Контакты",
     projects: "Проекты",

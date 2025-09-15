@@ -5,6 +5,7 @@ export const sv = {
     books: "Böcker",
     videos: "Videor",
     about: "Om mig",
+    aiResourceHub: "AI Resurshub",
     news: "Nyheter",
     contact: "Kontakt",
     projects: "Projekt",

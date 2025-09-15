@@ -61,6 +61,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
   const navItems = [
     { name: t('nav.home'), path: `/${locale}`, key: 'home' },
     { name: t('nav.about'), path: `/${locale}/about`, key: 'about' }, 
+    { name: t('nav.aiResourceHub'), path: `/${locale}/ai-resource-hub`, key: 'ai-resource-hub' },
     { 
       name: t('nav.projects'), 
       key: 'projects',
