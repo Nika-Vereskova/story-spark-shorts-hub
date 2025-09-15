@@ -17,11 +17,11 @@ const AIResourceHub = () => {
 
   const templates = [
     {
-      title: "AI Policy Template for Businesses",
-      description: "Comprehensive AI governance policy template covering data usage, ethics, and compliance requirements for modern businesses.",
+      title: "AI Policy Template for Schools",
+      description: "Complete AI usage policy template for Swedish schools with GDPR compliance, age-appropriate guidelines, and practical implementation guidance.",
       category: "Policy",
-      downloadUrl: "#",
-      keywords: "AI policy template, business AI governance, AI ethics policy"
+      downloadUrl: "/downloads/ai-usage-policy-schools-template-2025.pdf",
+      keywords: "AI policy template for schools, school AI governance, AI in education policy, GDPR school policy"
     },
     {
       title: "AI Implementation Checklist",
