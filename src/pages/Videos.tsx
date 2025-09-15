@@ -21,7 +21,7 @@ const Videos = () => {
     {
       id: 2,
       title: "Introduction to Large Language Models (LLMs)",
-      description: "Educational video explaining the prompt fundamentals for Large Language Models, their applications, and how they work in AI systems",
+      description: "Educational video explaining prompt fundamentals for Large Language Models, their applications, and how they work to achieve the best result",
       youtubeUrl: "https://youtu.be/FCA37YlJVPE",
       embedId: "FCA37YlJVPE",
       type: "Educational"
