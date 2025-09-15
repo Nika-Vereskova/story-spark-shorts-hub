@@ -17,6 +17,14 @@ const Videos = () => {
       youtubeUrl: "https://www.youtube.com/@NikaVereskova/videos",
       embedId: "5H1QWVRqPBU",
       type: t('common.short')
+    },
+    {
+      id: 2,
+      title: "Introduction to Large Language Models (LLMs)",
+      description: "Educational video explaining the fundamentals of Large Language Models, their applications, and how they work in AI systems",
+      youtubeUrl: "https://youtu.be/FCA37YlJVPE",
+      embedId: "FCA37YlJVPE",
+      type: "Educational"
     }
   ];
 
