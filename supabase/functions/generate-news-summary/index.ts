@@ -31,37 +31,48 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
     
-    // Get user from request
+    // Check if this is a service-to-service call (automated)
+    const isAutomatedCall = req.headers.get('x-automated-call') === 'true';
     const authHeader = req.headers.get('Authorization');
-    if (!authHeader) {
-      return new Response(JSON.stringify({ error: 'No authorization header' }), {
-        status: 401,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
-    }
-
-    const token = authHeader.replace('Bearer ', '');
-    const { data: userData, error: userError } = await supabase.auth.getUser(token);
     
-    if (userError || !userData.user) {
-      return new Response(JSON.stringify({ error: 'Invalid token' }), {
-        status: 401,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
-    }
+    console.log(`Request type: ${isAutomatedCall ? 'Automated' : 'Manual'}`);
+    
+    // Skip user authentication for automated calls
+    if (!isAutomatedCall) {
+      if (!authHeader) {
+        return new Response(JSON.stringify({ error: 'No authorization header' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
 
-    // Check if user is admin
-    const { data: isAdmin } = await supabase
-      .rpc('has_role', { 
-        _user_id: userData.user.id, 
-        _role: 'admin' 
-      });
+      const token = authHeader.replace('Bearer ', '');
+      const { data: userData, error: userError } = await supabase.auth.getUser(token);
+      
+      if (userError || !userData.user) {
+        return new Response(JSON.stringify({ error: 'Invalid token' }), {
+          status: 401,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
 
-    if (!isAdmin) {
-      return new Response(JSON.stringify({ error: 'Admin access required' }), {
-        status: 403,
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
-      });
+      // Check if user is admin
+      const { data: isAdmin } = await supabase
+        .rpc('has_role', { 
+          _user_id: userData.user.id, 
+          _role: 'admin' 
+        });
+
+      if (!isAdmin) {
+        return new Response(JSON.stringify({ error: 'Admin access required' }), {
+          status: 403,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+        });
+      }
+      
+      console.log('Manual call authenticated successfully for admin user');
+    } else {
+      console.log('Automated call - skipping user authentication');
     }
 
     const { daysBack = 4 } = await req.json().catch(() => ({}));
@@ -262,7 +273,7 @@ Ensure each individual summary is comprehensive, uses the full article content, 
         trending_topics: Array.isArray(analysisResult.trending_topics) ? analysisResult.trending_topics : analysisResult.trending_topics?.split(',').map(t => t.trim()),
         period_start: startDate.toISOString(),
         period_end: endDate.toISOString(),
-        created_by: userData.user.id,
+        created_by: isAutomatedCall ? null : userData.user.id,
         story_count: stories.length,
         // Store individual summaries as JSON in a text field (we might need to add this field)
         individual_summaries: JSON.stringify(formattedIndividualSummaries)
