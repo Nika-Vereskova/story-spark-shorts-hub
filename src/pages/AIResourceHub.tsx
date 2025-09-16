@@ -24,20 +24,6 @@ const AIResourceHub = () => {
       keywords: "AI policy template for schools, school AI governance, AI in education policy, GDPR school policy"
     },
     {
-      title: "AI Implementation Checklist",
-      description: "Step-by-step checklist for safely implementing AI tools in your organization with best practices and risk assessment.",
-      category: "Checklist",
-      downloadUrl: "#",
-      keywords: "AI implementation guide, AI deployment checklist"
-    },
-    {
-      title: "AI Risk Assessment Framework",
-      description: "Complete framework for evaluating AI risks, including bias detection, privacy concerns, and mitigation strategies.",
-      category: "Framework",
-      downloadUrl: "#",
-      keywords: "AI risk assessment, AI bias detection, AI safety framework"
-    },
-    {
       title: "Educational AI Guidelines",
       description: "Guidelines for teachers and schools on responsible AI use in education, including student privacy and academic integrity.",
       category: "Education",
@@ -62,28 +48,22 @@ const AIResourceHub = () => {
 
   const customGPTs = [
     {
-      title: "AI Policy Writer GPT",
-      description: "Custom GPT specialized in drafting comprehensive AI policies for businesses of all sizes.",
-      url: "https://chat.openai.com/g/g-example1",
-      category: "Policy"
+      title: "Custom GPT Prompt Generator",
+      description: "AI-powered tool to generate effective prompts for ChatGPT and other AI systems to maximize your results.",
+      url: "#",
+      category: "Productivity"
     },
     {
-      title: "AI Ethics Advisor GPT",
-      description: "Expert guidance on AI ethics, bias detection, and responsible AI implementation strategies.",
-      url: "https://chat.openai.com/g/g-example2",
-      category: "Ethics"
+      title: "Life Coach for Overwhelmed Parents",
+      description: "Specialized GPT providing support, strategies, and guidance for parents dealing with overwhelm and stress.",
+      url: "https://chatgpt.com/g/g-6881ebb859948191a470d4f026ec951e-life-coach",
+      category: "Parental Support"
     },
     {
-      title: "Educational AI Assistant GPT",
-      description: "Specialized GPT for educators to integrate AI tools safely and effectively in learning environments.",
-      url: "https://chat.openai.com/g/g-example3",
+      title: "Swedish Driver License Support",
+      description: "Expert assistance for Swedish driving theory test preparation with comprehensive guidance and practice.",
+      url: "https://chatgpt.com/g/g-6890da1841cc8191b1567d38687f4c38-swedish-driving-theory-coach",
       category: "Education"
-    },
-    {
-      title: "AI Risk Assessment GPT",
-      description: "Comprehensive risk evaluation tool for AI implementations, covering security, privacy, and compliance.",
-      url: "https://chat.openai.com/g/g-example4",
-      category: "Risk Management"
     }
   ];
 
