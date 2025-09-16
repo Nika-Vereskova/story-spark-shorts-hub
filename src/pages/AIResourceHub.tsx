@@ -50,7 +50,7 @@ const AIResourceHub = () => {
     {
       title: "Custom GPT Prompt Generator",
       description: "AI-powered tool to generate effective prompts for ChatGPT and other AI systems to maximize your results.",
-      url: "#",
+      url: "https://chatgpt.com/g/g-68c83884a80c8191a4f82a802887bab1-prompt-studio-pro-generalist",
       category: "Productivity"
     },
     {
