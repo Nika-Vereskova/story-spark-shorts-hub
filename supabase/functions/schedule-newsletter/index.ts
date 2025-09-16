@@ -87,21 +87,15 @@ const handler = async (req: Request): Promise<Response> => {
     // Step 1: Generate news summary
     console.log('Step 1: Generating news summary...');
     const summaryResponse = await supabase.functions.invoke('generate-news-summary', {
-      body: { daysBack: 4 }, // Analyze last 4 days
-      headers: {
-        'x-automated-call': 'true', // Flag for service-to-service call
-        'Content-Type': 'application/json'
-      }
+      body: { daysBack: 4 } // Analyze last 4 days
     });
 
     if (summaryResponse.error) {
       console.error('Failed to generate summary:', summaryResponse.error);
-      console.error('Summary response details:', JSON.stringify(summaryResponse, null, 2));
       return new Response(JSON.stringify({ 
         error: 'Failed to generate news summary',
         details: summaryResponse.error,
-        timestamp: new Date().toISOString(),
-        step: 'generate-news-summary'
+        timestamp: new Date().toISOString()
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -109,14 +103,11 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const summaryData = summaryResponse.data;
-    console.log('Summary generation response:', JSON.stringify(summaryData, null, 2));
-    
     if (!summaryData.success) {
       console.error('Summary generation unsuccessful:', summaryData);
       return new Response(JSON.stringify({ 
         error: 'Summary generation was not successful',
-        details: summaryData,
-        step: 'validate-summary-response'
+        details: summaryData
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -124,7 +115,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const summaryId = summaryData.summary.id;
-    console.log('Summary generated successfully with ID:', summaryId);
+    console.log('Summary generated successfully:', summaryId);
 
     // Step 2: Generate and send newsletter using the summary
     console.log('Step 2: Generating newsletter with summary ID:', summaryId);
@@ -138,13 +129,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (newsletterResponse.error) {
       console.error('Failed to generate newsletter:', newsletterResponse.error);
-      console.error('Newsletter response details:', JSON.stringify(newsletterResponse, null, 2));
       return new Response(JSON.stringify({ 
         error: 'Failed to generate newsletter',
         details: newsletterResponse.error,
         summaryId: summaryId,
-        timestamp: new Date().toISOString(),
-        step: 'generate-newsletter'
+        timestamp: new Date().toISOString()
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -153,7 +142,6 @@ const handler = async (req: Request): Promise<Response> => {
 
     const newsletterData = newsletterResponse.data;
     console.log('Newsletter generated successfully, proceeding to send...');
-    console.log('Newsletter data:', JSON.stringify({ subject: newsletterData.subject, contentLength: newsletterData.content?.length }));
 
     // Step 3: Send the newsletter
     console.log('Step 3: Sending newsletter to subscribers...');
@@ -167,13 +155,11 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (sendResponse.error) {
       console.error('Failed to send newsletter:', sendResponse.error);
-      console.error('Send response details:', JSON.stringify(sendResponse, null, 2));
       return new Response(JSON.stringify({ 
         error: 'Failed to send newsletter',
         details: sendResponse.error,
         summaryId: summaryId,
-        timestamp: new Date().toISOString(),
-        step: 'send-newsletter'
+        timestamp: new Date().toISOString()
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
@@ -195,17 +181,11 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     const sendData = sendResponse.data;
-    const completionSummary = {
+    console.log('Newsletter automation completed successfully:', {
       summaryId,
       emailsSent: sendData.emailsSent || 0,
-      errors: sendData.errors || [],
-      completedAt: new Date().toISOString(),
-      dayOfWeek,
-      automatedRun: true
-    };
-    
-    console.log('=== NEWSLETTER AUTOMATION COMPLETED SUCCESSFULLY ===');
-    console.log('Completion summary:', JSON.stringify(completionSummary, null, 2));
+      errors: sendData.errors || []
+    });
 
     return new Response(JSON.stringify({
       success: true,
