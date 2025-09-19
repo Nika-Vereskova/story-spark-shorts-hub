@@ -263,6 +263,39 @@ export type Database = {
         }
         Relationships: []
       }
+      site_settings: {
+        Row: {
+          created_at: string
+          id: string
+          logo_url: string | null
+          meta_keywords: string[] | null
+          seo_image_url: string | null
+          site_description: string
+          site_title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          meta_keywords?: string[] | null
+          seo_image_url?: string | null
+          site_description?: string
+          site_title?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          logo_url?: string | null
+          meta_keywords?: string[] | null
+          seo_image_url?: string | null
+          site_description?: string
+          site_title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       subscribers: {
         Row: {
           created_at: string

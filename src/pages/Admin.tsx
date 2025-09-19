@@ -10,6 +10,7 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import SiteSettingsManager from '@/components/SiteSettingsManager';
 
 const Admin = () => {
   const [user, setUser] = useState(null);
@@ -489,9 +490,10 @@ const Admin = () => {
         </div>
 
         <Tabs defaultValue="newsletter" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="newsletter">Newsletter</TabsTrigger>
             <TabsTrigger value="news">AI News Management</TabsTrigger>
+            <TabsTrigger value="settings">Website Settings</TabsTrigger>
           </TabsList>
 
           <TabsContent value="newsletter">
@@ -795,6 +797,17 @@ const Admin = () => {
                 </CardContent>
               </Card>
             </div>
+          </TabsContent>
+          
+          <TabsContent value="settings">
+            <Card>
+              <CardHeader>
+                <CardTitle>Website Settings</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <SiteSettingsManager />
+              </CardContent>
+            </Card>
           </TabsContent>
         </Tabs>
       </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { getCurrentLocale, locales } from '@/lib/i18n';
+import { useSiteSettings } from '@/hooks/useSiteSettings';
 
 interface SEOProps {
   title: string;
@@ -23,12 +24,13 @@ const SEO: React.FC<SEOProps> = ({
   description, 
   image, 
   noindex, 
-  keywords = "STEaM LOGIC Studio AB, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops",
+  keywords,
   type = 'website',
   publishedTime,
   modifiedTime,
   author = 'STEaM LOGIC Studio AB'
 }) => {
+  const { settings } = useSiteSettings();
   const locale = getCurrentLocale();
 
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
@@ -297,16 +299,21 @@ const SEO: React.FC<SEOProps> = ({
     ]
   };
 
-  const ogImage = image || DEFAULT_IMAGE;
+  const ogImage = image || (settings?.seo_image_url ? `${BASE_URL}${settings.seo_image_url}` : DEFAULT_IMAGE);
+  
+  // Dynamic title, description, and keywords from database
+  const finalTitle = title || settings?.site_title || 'STEaM LOGIC Studio AB | AI Consulting & Creative Technology by CEO Renata Khakimova';
+  const finalDescription = description || settings?.site_description || 'Expert AI consulting services by STEaM LOGIC Studio AB. CEO Renata Khakimova specializes in custom GPT development, AI strategy, and automation solutions. Award-winning books by Nika Vereskova.';
+  const finalKeywords = keywords || (settings?.meta_keywords?.join(', ')) || "STEaM LOGIC Studio AB, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops";
 
   return (
     <Helmet prioritizeSeoTags>
       {/* Enhanced Meta Tags for AI Consulting */}
       {noindex ? <meta name="robots" content="noindex,nofollow" /> : <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />}
-      <title>{title}</title>
-      <meta name="title" content={title} />
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
+      <title>{finalTitle}</title>
+      <meta name="title" content={finalTitle} />
+      <meta name="description" content={finalDescription} />
+      <meta name="keywords" content={finalKeywords} />
       <meta name="author" content={author} />
       <meta name="language" content={locale} />
       <meta name="geo.region" content="SE" />
@@ -327,13 +334,13 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
+      <meta property="og:title" content={finalTitle} />
+      <meta property="og:description" content={finalDescription} />
       <meta property="og:url" content={canonical} />
       <meta property="og:image" content={`${BASE_URL}${ogImage}`} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
+      <meta property="og:image:alt" content={finalTitle} />
       <meta property="og:site_name" content="STEaM LOGIC Studio AB" />
       <meta property="og:locale" content={locale} />
       {publishedTime && <meta property="article:published_time" content={publishedTime} />}
@@ -342,10 +349,10 @@ const SEO: React.FC<SEOProps> = ({
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={finalTitle} />
+      <meta name="twitter:description" content={finalDescription} />
       <meta name="twitter:image" content={`${BASE_URL}${ogImage}`} />
-      <meta name="twitter:image:alt" content={title} />
+      <meta name="twitter:image:alt" content={finalTitle} />
       <meta name="twitter:creator" content="@NikaVereskova" />
       <meta name="twitter:site" content="@NikaVereskova" />
 
