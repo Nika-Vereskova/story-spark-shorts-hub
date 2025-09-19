@@ -30,36 +30,49 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? ""
     );
 
-    // Get the authorization header
+    // Check if this is a service-to-service call (automated) or user call
     const authHeader = req.headers.get("authorization");
+    let user = null;
+    let isServiceCall = false;
+
     if (!authHeader) {
-      return new Response(JSON.stringify({ error: "No authorization header" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
+      // No auth header - this could be a service-to-service call
+      // Check if we're using the service role key (automated call)
+      const serviceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+      if (supabaseClient.supabaseKey === serviceKey) {
+        isServiceCall = true;
+        console.log("Service-to-service call detected, bypassing authentication");
+      } else {
+        return new Response(JSON.stringify({ error: "No authorization header" }), {
+          status: 401,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        });
+      }
+    } else {
+      // Has auth header - verify user authentication and admin role
+      const { data: { user: authUser }, error: authError } = await supabaseClient.auth.getUser(
+        authHeader.replace("Bearer ", "")
+      );
 
-    // Verify the user is authenticated and has admin role
-    const { data: { user }, error: authError } = await supabaseClient.auth.getUser(
-      authHeader.replace("Bearer ", "")
-    );
+      if (authError || !authUser) {
+        return new Response(JSON.stringify({ error: "Invalid authentication" }), {
+          status: 401,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        });
+      }
 
-    if (authError || !user) {
-      return new Response(JSON.stringify({ error: "Invalid authentication" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
-    }
+      // Check if user has admin role
+      const { data: roleData, error: roleError } = await supabaseClient
+        .rpc('has_role', { _user_id: authUser.id, _role: 'admin' });
 
-    // Check if user has admin role
-    const { data: roleData, error: roleError } = await supabaseClient
-      .rpc('has_role', { _user_id: user.id, _role: 'admin' });
+      if (roleError || !roleData) {
+        return new Response(JSON.stringify({ error: "Admin access required" }), {
+          status: 403,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        });
+      }
 
-    if (roleError || !roleData) {
-      return new Response(JSON.stringify({ error: "Admin access required" }), {
-        status: 403,
-        headers: { "Content-Type": "application/json", ...corsHeaders },
-      });
+      user = authUser;
     }
 
     const { subject, content, htmlContent }: NewsletterRequest = await req.json();
@@ -179,7 +192,7 @@ const handler = async (req: Request): Promise<Response> => {
         subject,
         content,
         recipient_count: sentCount,
-        created_by: user.id
+        created_by: user?.id || null // Handle service calls where user might be null
       }]);
 
     if (saveError) {
@@ -192,7 +205,7 @@ const handler = async (req: Request): Promise<Response> => {
     
     return new Response(JSON.stringify({ 
       success: true, 
-      sent_count: sentCount,
+      emailsSent: sentCount, // Changed from sent_count to match schedule-newsletter expectations
       total_subscribers: subscribers.length,
       errors: errors.length > 0 ? errors : undefined
     }), {
