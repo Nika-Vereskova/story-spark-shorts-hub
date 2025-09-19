@@ -11,11 +11,8 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
-import { useSiteSettings } from '@/hooks/useSiteSettings';
 
 const Index = () => {
-  const { settings } = useSiteSettings();
-  
   if (process.env.NODE_ENV === 'development') {
     console.log('Rendering revamped Index page');
   }
@@ -23,10 +20,9 @@ const Index = () => {
   return (
     <div className="min-h-screen vintage-paper-light parchment-scroll relative">
       <SEO 
-        title={settings?.site_title}
-        description={settings?.site_description}
-        keywords={settings?.meta_keywords?.join(', ')}
-        image={settings?.seo_image_url}
+        title="STEaM LOGIC Studio AB | AI Consulting & Creative Technology by CEO Renata Khakimova" 
+        description="Expert AI consulting services by STEaM LOGIC Studio AB. WE specialize in custom GPT development, AI strategy, and automation solutions." 
+        keywords="STEaM LOGIC Studio AB, Renata Khakimova CEO, AI consulting, custom GPT development, AI strategy consultant, Nika Vereskova books, steampunk children's books, Europe capitals trainer, Learn AI beginners, artificial intelligence consultant Sweden, process automation, ChatGPT development, AI workshops"
       />
       
       {/* Navigation */}
