@@ -24,15 +24,13 @@ const MathMentor = () => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   useEffect(() => {
-    // Set a timeout to detect if iframe fails to load
+    // Replit usually blocks embedding, so show error immediately
     const timer = setTimeout(() => {
-      if (!iframeLoaded) {
-        setIframeError(true);
-      }
-    }, 10000); // 10 seconds timeout
+      setIframeError(true);
+    }, 3000); // 3 seconds timeout
 
     return () => clearTimeout(timer);
-  }, [iframeLoaded]);
+  }, []);
 
   return (
     <div className="min-h-screen vintage-paper-light parchment-scroll relative overflow-hidden">
