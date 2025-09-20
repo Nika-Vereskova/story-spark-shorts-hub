@@ -105,7 +105,7 @@ const SteampunkProjectCard = ({
                   'inline-flex items-center gap-2 px-4 py-2 rounded-lg',
                   'bg-gradient-to-r from-teal/20 to-brass/20 border border-brass/30',
                   'group-hover:from-teal/30 group-hover:to-brass/30 group-hover:border-brass/50',
-                  'transition-all duration-300 text-sm font-medium text-oxidized-teal',
+                  'transition-all duration-300 text-sm font-medium text-oxidized-teal-light',
                   'group-hover:text-brass group-hover:shadow-lg'
                 )}>
                   <span>{isExternalLink ? 'Launch App' : 'Explore Project'}</span>
@@ -189,7 +189,7 @@ const SteampunkProjectCard = ({
                   'inline-flex items-center gap-2 px-4 py-2 rounded-lg',
                   'bg-gradient-to-r from-teal/20 to-brass/20 border border-brass/30',
                   'group-hover:from-teal/30 group-hover:to-brass/30 group-hover:border-brass/50',
-                  'transition-all duration-300 text-sm font-medium text-oxidized-teal',
+                  'transition-all duration-300 text-sm font-medium text-oxidized-teal-light',
                   'group-hover:text-brass group-hover:shadow-lg'
                 )}>
                   <span>{isExternalLink ? 'Launch App' : 'Explore Project'}</span>
