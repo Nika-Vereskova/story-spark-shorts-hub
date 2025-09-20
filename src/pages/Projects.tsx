@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
 import { Link } from 'react-router-dom';
 import { t, getCurrentLocale } from '@/lib/i18n';
-import { BookOpen, Play, Globe, Brain } from 'lucide-react';
+import { BookOpen, Play, Globe, Brain, Calculator } from 'lucide-react';
 import AdSenseUnit from '@/components/AdSenseUnit';
 import SteampunkGearCluster from '@/components/SteampunkGearCluster';
 import MechanicalDivider from '@/components/MechanicalDivider';
@@ -25,6 +25,13 @@ const Projects = () => {
       icon: BookOpen,
       link: `/${locale}/books`,
       gradient: 'from-brass/20 to-oxidized-teal/20'
+    },
+    {
+      title: t('projects.mathMentor.title'),
+      description: t('projects.mathMentor.description'),
+      icon: Calculator,
+      link: `/${locale}/math-mentor`,
+      gradient: 'from-teal/30 to-brass/20'
     },
     {
       title: t('nav.learnAI'),

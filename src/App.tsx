@@ -13,6 +13,7 @@ const About = React.lazy(() => import("./pages/About"));
 
 const AIServices = React.lazy(() => import("./pages/AIServices"));
 const Projects = React.lazy(() => import("./pages/Projects"));
+const MathMentor = React.lazy(() => import("./pages/MathMentor"));
 const LearnAI = React.lazy(() => import("./pages/LearnAI"));
 const EuropeCapitals = React.lazy(() => import("./pages/EuropeCapitals"));
 const AINews = React.lazy(() => import("./pages/AINews"));
@@ -98,6 +99,7 @@ const App = () => {
               <Route path="/:locale" element={withSuspense(Index)} />
               <Route path="/:locale/about" element={withSuspense(About)} />
               <Route path="/:locale/projects" element={withSuspense(Projects)} />
+              <Route path="/:locale/math-mentor" element={withSuspense(MathMentor)} />
               
               <Route path="/:locale/ai-resource-hub" element={withSuspense(AIResourceHub)} />
               <Route path="/:locale/ai-services" element={withSuspense(AIServices)} />
@@ -118,6 +120,7 @@ const App = () => {
               {/* Non-localized routes for backward compatibility */}
               <Route path="/about" element={withSuspense(About)} />
               <Route path="/projects" element={withSuspense(Projects)} />
+              <Route path="/math-mentor" element={withSuspense(MathMentor)} />
               
               <Route path="/ai-resource-hub" element={withSuspense(AIResourceHub)} />
               <Route path="/ai-services" element={withSuspense(AIServices)} />

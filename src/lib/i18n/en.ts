@@ -412,6 +412,44 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
         transcontinental: "Transcontinental Countries"
       }
     },
+    mathMentor: {
+      title: 'Math Machine',
+      subtitle: 'Interactive math support and mentoring for grades 4-6',
+      description: 'Advanced AI-powered math tutor that provides personalized support and step-by-step guidance for elementary students.',
+      aboutTitle: 'About Math Machine',
+      featuresTitle: 'Key Features',
+      features: [
+        'Problem-solving guidance with step-by-step explanations',
+        'Grade-appropriate content for levels 4-6',
+        'Interactive practice sessions',
+        'Personalized learning paths',
+        'Real-time feedback and hints'
+      ],
+      benefitsTitle: 'Educational Benefits',
+      benefits: [
+        {
+          title: 'Build Confidence',
+          description: 'Students gain confidence through positive reinforcement and gradual skill building.'
+        },
+        {
+          title: 'Develop Problem-Solving Skills',
+          description: 'Learn systematic approaches to tackling mathematical challenges.'
+        },
+        {
+          title: 'Practice at Your Own Pace',
+          description: 'Self-paced learning that adapts to individual student needs and abilities.'
+        },
+        {
+          title: 'Master Core Concepts',
+          description: 'Strengthen foundational math skills essential for future academic success.'
+        }
+      ],
+      launchApp: 'Launch Math Machine',
+      tryHere: 'Try Embedded Version',
+      tryEmbedded: 'Try Math Machine Here',
+      embedDescription: 'Experience the full Math Machine directly in your browser. Perfect for quick practice sessions or exploring the features.',
+      embedNote: 'For the best experience, click "Launch Math Machine" to open in a new window.'
+    },
     videos: {
       title: 'Video Content',
       description: 'Educational and entertaining videos about AI, storytelling, and creative technology.'

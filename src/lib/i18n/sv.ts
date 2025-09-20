@@ -412,6 +412,44 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
         transcontinental: "Transkontinentala Länderna"
       }
     },
+    mathMentor: {
+      title: 'Math Machine',
+      subtitle: 'Interaktivt mathestöd och mentorskap för årskurs 4-6',
+      description: 'Avancerad AI-driven mathlärare som ger personligt stöd och steg-för-steg vägledning för grundskoleelever.',
+      aboutTitle: 'Om Math Machine',
+      featuresTitle: 'Huvudfunktioner',
+      features: [
+        'Problemlösningsvägledning med steg-för-steg förklaringar',
+        'Åldersanpassat innehåll för årskurs 4-6',
+        'Interaktiva övningssessioner',
+        'Personliga inlärningsvägar',
+        'Realtidsfeedback och tips'
+      ],
+      benefitsTitle: 'Pedagogiska fördelar',
+      benefits: [
+        {
+          title: 'Bygg självförtroende',
+          description: 'Elever får självförtroende genom positiv förstärkning och gradvis färdighetsuppbyggnad.'
+        },
+        {
+          title: 'Utveckla problemlösningsförmåga',
+          description: 'Lär dig systematiska tillvägagångssätt för att tackla matematiska utmaningar.'
+        },
+        {
+          title: 'Öva i din egen takt',
+          description: 'Självstudier som anpassas till individuella elevbehov och förmågor.'
+        },
+        {
+          title: 'Bemästra grundläggande koncept',
+          description: 'Stärk grundläggande matematikfärdigheter som är viktiga för framtida akademisk framgång.'
+        }
+      ],
+      launchApp: 'Starta Math Machine',
+      tryHere: 'Prova inbäddad version',
+      tryEmbedded: 'Prova Math Machine här',
+      embedDescription: 'Upplev hela Math Machine direkt i din webbläsare. Perfekt för snabba övningssessioner eller utforska funktionerna.',
+      embedNote: 'För bästa upplevelse, klicka "Starta Math Machine" för att öppna i nytt fönster.'
+    },
     videos: {
       title: 'Videoinnehåll',
       description: 'Utbildande och underhållande videor om AI, berättande och kreativ teknik.'
