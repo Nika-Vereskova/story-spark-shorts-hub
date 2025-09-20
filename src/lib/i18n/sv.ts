@@ -449,7 +449,9 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       tryHere: 'Prova inbäddad version',
       tryEmbedded: 'Prova Math Machine här',
       embedDescription: 'Upplev hela Math Machine direkt i din webbläsare. Perfekt för snabba övningssessioner eller utforska funktionerna.',
-      embedNote: 'För bästa upplevelse, klicka "Starta Math Machine" för att öppna i nytt fönster.'
+      embedNote: 'För bästa upplevelse, klicka "Starta Math Machine" för att öppna i nytt fönster.',
+      embedErrorTitle: 'Kan inte ladda inbäddad version',
+      embedErrorMessage: 'Math Machine kan inte visas här på grund av säkerhetsbegränsningar. Klicka på knappen nedan för att öppna den i en ny flik för fullständig upplevelse.'
     },
     videos: {
       title: 'Videoinnehåll',

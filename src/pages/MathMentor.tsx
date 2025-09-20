@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -20,6 +20,19 @@ const MathMentor = () => {
   });
 
   const mathMentorUrl = 'https://math-mentor-renatakhakimova.replit.app/';
+  const [iframeError, setIframeError] = useState(false);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  useEffect(() => {
+    // Set a timeout to detect if iframe fails to load
+    const timer = setTimeout(() => {
+      if (!iframeLoaded) {
+        setIframeError(true);
+      }
+    }, 10000); // 10 seconds timeout
+
+    return () => clearTimeout(timer);
+  }, [iframeLoaded]);
 
   return (
     <div className="min-h-screen vintage-paper-light parchment-scroll relative overflow-hidden">
@@ -185,13 +198,46 @@ const MathMentor = () => {
             {/* Iframe Container */}
             <div className="relative w-full bg-white rounded-xl overflow-hidden shadow-2xl border-4 border-brass/20">
               <div className="aspect-[4/3] w-full">
-                <iframe
-                  src={mathMentorUrl}
-                  title={t('projects.mathMentor.title')}
-                  className="w-full h-full border-0"
-                  allow="fullscreen"
-                  loading="lazy"
-                />
+                {!iframeError ? (
+                  <iframe
+                    src={mathMentorUrl}
+                    title={t('projects.mathMentor.title')}
+                    className="w-full h-full border-0"
+                    allow="fullscreen"
+                    loading="lazy"
+                    onLoad={() => setIframeLoaded(true)}
+                    onError={() => setIframeError(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-brass/10 to-teal/10 p-8">
+                    <div className="text-center space-y-6">
+                      <div className="w-16 h-16 bg-brass/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <Calculator className="w-8 h-8 text-brass" />
+                      </div>
+                      <h3 className="text-2xl font-playfair text-oxidized-teal mb-4">
+                        {t('projects.mathMentor.embedErrorTitle')}
+                      </h3>
+                      <p className="text-oxidized-teal/80 mb-6 max-w-md">
+                        {t('projects.mathMentor.embedErrorMessage')}
+                      </p>
+                      <a
+                        href={mathMentorUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={cn(
+                          'inline-flex items-center justify-center gap-3 px-8 py-4',
+                          'bg-gradient-to-r from-teal to-oxidized-teal text-muted-oxidized-teal rounded-xl',
+                          'hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-300',
+                          'font-semibold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1',
+                          'border border-teal/30'
+                        )}
+                      >
+                        <ExternalLink className="w-5 h-5" />
+                        <span>{t('projects.mathMentor.launchApp')}</span>
+                      </a>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 

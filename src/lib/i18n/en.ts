@@ -449,7 +449,9 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
       tryHere: 'Try Embedded Version',
       tryEmbedded: 'Try Math Machine Here',
       embedDescription: 'Experience the full Math Machine directly in your browser. Perfect for quick practice sessions or exploring the features.',
-      embedNote: 'For the best experience, click "Launch Math Machine" to open in a new window.'
+      embedNote: 'For the best experience, click "Launch Math Machine" to open in a new window.',
+      embedErrorTitle: 'Unable to Load Embedded Version',
+      embedErrorMessage: 'The Math Machine cannot be displayed here due to security restrictions. Please click the button below to open it in a new tab for the full experience.'
     },
     videos: {
       title: 'Video Content',
