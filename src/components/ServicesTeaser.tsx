@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, Globe, Play, Settings } from 'lucide-react';
+import { BookOpen, Globe, Play, Settings, Calculator } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,12 @@ const ServicesTeaser = () => {
       title: "Steampunk Books",
       description: "Enchanting tales of young inventors and their magical adventures in a steampunk world.",
       link: `/${locale}/books`
+    },
+    {
+      icon: Calculator,
+      title: "Math Machine",
+      description: "Interactive AI-powered math tutor providing step-by-step guidance for grades 4-6.",
+      link: `/${locale}/math-mentor`
     },
     {
       icon: Globe,

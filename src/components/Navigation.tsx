@@ -69,6 +69,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
       items: [
         { name: t('nav.books'), path: `/${locale}/books`, key: 'books' },
         { name: t('nav.learnAI'), path: `/${locale}/learn-ai`, key: 'learn-ai' },
+        { name: t('nav.mathMentor'), path: `/${locale}/math-mentor`, key: 'math-mentor' },
         { name: t('nav.europeCapitals'), path: `/${locale}/europe-capitals`, key: 'europe-capitals' },
         { name: t('nav.videos'), path: `/${locale}/videos`, key: 'videos' }
       ]
@@ -107,7 +108,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
     }
     
     // Handle projects dropdown items
-    if (['books', 'learn-ai', 'europe-capitals', 'videos'].includes(itemKey)) {
+    if (['books', 'learn-ai', 'math-mentor', 'europe-capitals', 'videos'].includes(itemKey)) {
       return location.pathname === `/${locale}/${itemKey}` || location.pathname === `/${itemKey}`;
     }
     

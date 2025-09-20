@@ -11,6 +11,7 @@ export const en = {
     projects: "Projects",
     europeCapitals: "Europe Capitals Trainer",
     learnAI: "Learn AI",
+    mathMentor: "Math Machine",
     signIn: "Sign In",
     signOut: "Sign Out"
   },

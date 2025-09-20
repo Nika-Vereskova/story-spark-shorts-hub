@@ -2,6 +2,8 @@ import React from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
+import AdSenseBanner from '@/components/AdSenseBanner';
+import AdSenseSquare from '@/components/AdSenseSquare';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { Calculator, ExternalLink, Play } from 'lucide-react';
 import GearIcon from '@/components/GearIcon';
@@ -40,6 +42,8 @@ const MathMentor = () => {
       />
       
       <Navigation currentPage="projects" />
+      
+      <AdSenseBanner position="top" />
       
       <div className="pt-32 pb-16">
         <div className="container mx-auto px-8 max-w-6xl relative">
@@ -164,6 +168,8 @@ const MathMentor = () => {
           </div>
 
           <MechanicalDivider className="my-12" />
+          
+          <AdSenseSquare size="medium" />
 
           {/* Embedded App Section */}
           <div id="embed-section" className="bg-gradient-to-br from-teal/10 to-brass/10 rounded-2xl p-8 border-2 border-brass/30 backdrop-blur-sm">
@@ -198,6 +204,8 @@ const MathMentor = () => {
           </div>
         </div>
       </div>
+      
+      <AdSenseBanner position="bottom" />
 
       <Footer />
     </div>

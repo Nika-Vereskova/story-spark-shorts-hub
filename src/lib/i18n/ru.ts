@@ -11,6 +11,7 @@ export const ru = {
     projects: "Проекты",
     europeCapitals: "Тренажёр столиц Европы",
     learnAI: "Изучение ИИ",
+    mathMentor: "Math Machine",
     signIn: "Войти",
     signOut: "Выйти"
   },

@@ -11,6 +11,7 @@ export const sv = {
     projects: "Projekt",
     europeCapitals: "Europa Huvudstadstränare",
     learnAI: "Lär AI",
+    mathMentor: "Math Machine",
     signIn: "Logga in",
     signOut: "Logga ut"
   },
