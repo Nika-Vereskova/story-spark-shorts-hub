@@ -108,7 +108,7 @@ const MathMentor = () => {
                   rel="noopener noreferrer"
                   className={cn(
                     'flex-1 inline-flex items-center justify-center gap-3 px-8 py-4',
-                    'bg-gradient-to-r from-teal to-oxidized-teal text-parchment rounded-xl',
+                    'bg-gradient-to-r from-teal to-oxidized-teal text-muted-foreground rounded-xl',
                     'hover:from-teal/90 hover:to-oxidized-teal/90 transition-all duration-300',
                     'font-semibold text-lg shadow-xl hover:shadow-2xl hover:-translate-y-1',
                     'border border-teal/30'
@@ -125,7 +125,7 @@ const MathMentor = () => {
                   }}
                   className={cn(
                     'flex-1 inline-flex items-center justify-center gap-3 px-8 py-4',
-                    'bg-gradient-to-r from-brass/20 to-teal/20 text-oxidized-teal rounded-xl',
+                    'bg-gradient-to-r from-brass/20 to-teal/20 text-muted-foreground rounded-xl',
                     'hover:from-brass/30 hover:to-teal/30 border-2 border-brass/40',
                     'hover:border-brass/60 transition-all duration-300',
                     'font-semibold text-lg hover:shadow-lg'
