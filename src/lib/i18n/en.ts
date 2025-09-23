@@ -467,6 +467,52 @@ That's your snapshot of the AI frontier! Want illustrational memes, poll ideas, 
   learnAI: {
     title: "Learn AI",
     subtitle: "Discover the power of artificial intelligence through interactive learning experiences, educational resources, and hands-on tools designed to demystify AI for learners of all levels.",
+    choosePath: {
+      title: "Choose Your Path"
+    },
+    track: {
+      title: "AI Learning Track",
+      description: "Master AI tools and techniques for real-world applications",
+      features: {
+        lessons: "12 Lessons",
+        duration: "15 minutes each",
+        prompts: "Advanced Prompts",
+        workflows: "Professional workflows",
+        projects: "Team Projects",
+        collaborative: "Collaborative AI"
+      },
+      benefits: {
+        workflows: "Multi-step workflows",
+        templates: "Custom prompt templates",
+        analysis: "Data analysis & insights",
+        collaboration: "Team collaboration strategies"
+      },
+      cta: "Start Learning AI"
+    },
+    videoSection: {
+      title: "Learn from Experts",
+      subtitle: "Watch our comprehensive AI learning guide",
+      videoTitle: "AI Learning Masterclass",
+      videoDescription: "Essential skills for the AI-powered future",
+      watchVideo: "Watch Video"
+    },
+    orderForm: {
+      title: "Order Education Service",
+      subtitle: "Get personalized AI education for your organization",
+      fields: {
+        name: "Full Name",
+        email: "Email Address",
+        organization: "Organization/School",
+        message: "Requirements & Message",
+        messagePlaceholder: "Tell us about your specific needs, group size, and learning objectives..."
+      },
+      submit: "Submit Order",
+      submitting: "Submitting...",
+      success: "Order Submitted Successfully!",
+      successDesc: "Thank you for your interest! We'll contact you within 24 hours to discuss your AI education needs.",
+      error: "Submission Failed",
+      errorDesc: "Please try again or contact us directly."
+    },
     introduction: {
       title: "Welcome to AI Learning Hub",
       description: "Your gateway to understanding artificial intelligence through practical examples, interactive demonstrations, and curated educational content. Whether you're a beginner or looking to advance your skills, our AI learning tools are designed to make complex concepts accessible and engaging."

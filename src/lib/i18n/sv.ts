@@ -493,7 +493,7 @@ Det är din ögonblicksbild av AI-fronten! Vill du ha illustrativa memes, omrös
       }
     },
     interactiveWidget: {
-      title: "Interaktiv AI Lekplats"
+      title: "Interaktiv AI-lekplats"
     }
   },
 

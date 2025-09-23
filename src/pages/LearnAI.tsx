@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp, MessageSquare, Sparkles, Bot, FileText } from 'lucide-react';
+import { Brain, Settings, Play, CheckCircle, Shield, BookOpen, Users, Zap, Clock, Star, ChevronDown, ChevronUp, MessageSquare, Sparkles, Bot, FileText, Send } from 'lucide-react';
 import chatgptLogo from '@/assets/chatgpt-logo.svg';
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
@@ -12,22 +12,21 @@ import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
 const LearnAI = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
-
-  const capabilities = [
-    { icon: Brain, title: "Smart Email Writing", description: "Draft professional emails in seconds" },
-    { icon: BookOpen, title: "Content Summarization", description: "Turn long articles into key insights" },
-    { icon: Settings, title: "Process Automation", description: "Streamline repetitive tasks" },
-    { icon: Zap, title: "Creative Brainstorming", description: "Generate ideas and solutions fast" },
-    { icon: Users, title: "Meeting Preparation", description: "Create agendas and follow-ups" },
-    { icon: Star, title: "Learning Acceleration", description: "Break down complex topics simply" },
-    { icon: CheckCircle, title: "Quality Checking", description: "Review and improve your work" },
-    { icon: Clock, title: "Time Management", description: "Optimize schedules and priorities" },
-    { icon: Shield, title: "Safe AI Practices", description: "Use AI responsibly and securely" }
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    organization: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
 
   const miniWins = [
     {
@@ -79,7 +78,63 @@ const LearnAI = () => {
 
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    // Could add a toast notification here
+    toast({
+      title: "Copied!",
+      description: "Prompt copied to clipboard",
+    });
+  };
+
+  const openVideo = () => {
+    window.open('https://youtu.be/FCA37YlJVPE?si=Vok6iI_5Fk0FUV7J', '_blank');
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.name || !formData.email) {
+      toast({
+        title: t('learnAI.orderForm.error'),
+        description: "Please fill in all required fields",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    try {
+      // Here you would typically send the form data to your backend
+      // For now, we'll just simulate a successful submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      toast({
+        title: t('learnAI.orderForm.success'),
+        description: t('learnAI.orderForm.successDesc'),
+      });
+      
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        organization: '',
+        message: ''
+      });
+    } catch (error) {
+      toast({
+        title: t('learnAI.orderForm.error'),
+        description: t('learnAI.orderForm.errorDesc'),
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -159,7 +214,7 @@ const LearnAI = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Button size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
-                <a href="#beginner-start-anchor">Start Beginner Track (Free)</a>
+                <a href="#intermediate-start-anchor">Start Learning AI</a>
               </Button>
               <Button variant="outline" size="lg" className="px-8 py-6 text-lg rounded-2xl" asChild>
                 <a href="#demo">Try a 5‑min Demo</a>
@@ -175,142 +230,172 @@ const LearnAI = () => {
           </div>
         </section>
 
-        {/* Two-Track Switcher */}
+        {/* Choose Your Path - Simplified */}
         <section className="px-6 py-16" id="tracks">
           <div className="container mx-auto max-w-4xl">
-            <h2 className="font-serif text-4xl font-bold text-center mb-12">Choose Your Path</h2>
+            <h2 className="font-serif text-4xl font-bold text-center mb-12">{t('learnAI.choosePath.title')}</h2>
             
-            <Tabs defaultValue="beginner" className="w-full">
-              <TabsList className="grid grid-cols-2 mb-8 h-16 rounded-2xl">
-                <TabsTrigger value="beginner" className="text-lg font-medium rounded-xl">
-                  Beginner 0→1
-                </TabsTrigger>
-                <TabsTrigger value="intermediate" className="text-lg font-medium rounded-xl">
-                  Intermediate 1→1.5
-                </TabsTrigger>
-              </TabsList>
-              
-              <TabsContent value="beginner">
-                <Card className="rounded-2xl shadow-lg">
-                  <CardHeader className="text-center pb-6">
-                    <CardTitle className="font-serif text-3xl">Beginner Track</CardTitle>
-                    <CardDescription className="text-lg">Perfect for AI newcomers and busy parents</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid md:grid-cols-3 gap-6 text-center">
-                      <div>
-                        <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">8 Lessons</h4>
-                        <p className="text-sm text-muted-foreground">10 minutes each</p>
-                      </div>
-                      <div>
-                        <CheckCircle className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">Real Tasks</h4>
-                        <p className="text-sm text-muted-foreground">Immediate wins</p>
-                      </div>
-                      <div>
-                        <Shield className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">Safe & Ethical</h4>
-                        <p className="text-sm text-muted-foreground">Family-friendly</p>
-                      </div>
+            {/* AI Learning Track */}
+            <Card className="rounded-2xl shadow-lg mb-8">
+              <CardHeader className="text-center pb-6">
+                <CardTitle className="font-serif text-3xl">{t('learnAI.track.title')}</CardTitle>
+                <CardDescription className="text-lg">{t('learnAI.track.description')}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="grid md:grid-cols-3 gap-6 text-center">
+                  <div>
+                    <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <h4 className="font-semibold">{t('learnAI.track.features.lessons')}</h4>
+                    <p className="text-sm text-muted-foreground">{t('learnAI.track.features.duration')}</p>
+                  </div>
+                  <div>
+                    <Zap className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <h4 className="font-semibold">{t('learnAI.track.features.prompts')}</h4>
+                    <p className="text-sm text-muted-foreground">{t('learnAI.track.features.workflows')}</p>
+                  </div>
+                  <div>
+                    <Users className="w-8 h-8 text-primary mx-auto mb-2" />
+                    <h4 className="font-semibold">{t('learnAI.track.features.projects')}</h4>
+                    <p className="text-sm text-muted-foreground">{t('learnAI.track.features.collaborative')}</p>
+                  </div>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>{t('learnAI.track.benefits.workflows')}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>{t('learnAI.track.benefits.templates')}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>{t('learnAI.track.benefits.analysis')}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <span>{t('learnAI.track.benefits.collaboration')}</span>
+                  </div>
+                </div>
+                
+                <Button className="w-full py-6 text-lg rounded-xl" id="intermediate-start-anchor">
+                  {t('learnAI.track.cta')}
+                </Button>
+              </CardContent>
+            </Card>
+
+            {/* Education Service Order Form */}
+            <Card className="rounded-2xl shadow-lg">
+              <CardHeader className="text-center pb-6">
+                <CardTitle className="font-serif text-3xl">{t('learnAI.orderForm.title')}</CardTitle>
+                <CardDescription className="text-lg">{t('learnAI.orderForm.subtitle')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">{t('learnAI.orderForm.fields.name')} *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="rounded-xl"
+                      />
                     </div>
-                    
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Email writing & editing</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Article summarization</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Goal planning & breakdown</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Privacy & safety basics</span>
-                      </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">{t('learnAI.orderForm.fields.email')} *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="rounded-xl"
+                      />
                     </div>
-                    
-                    <Button className="w-full py-6 text-lg rounded-xl" id="beginner-start-anchor">
-                      Start Beginner Track (Free)
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-              
-              <TabsContent value="intermediate">
-                <Card className="rounded-2xl shadow-lg">
-                  <CardHeader className="text-center pb-6">
-                    <CardTitle className="font-serif text-3xl">Intermediate Track</CardTitle>
-                    <CardDescription className="text-lg">For those ready to level up their AI skills</CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="grid md:grid-cols-3 gap-6 text-center">
-                      <div>
-                        <Clock className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">12 Lessons</h4>
-                        <p className="text-sm text-muted-foreground">15 minutes each</p>
-                      </div>
-                      <div>
-                        <Zap className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">Advanced Prompts</h4>
-                        <p className="text-sm text-muted-foreground">Professional workflows</p>
-                      </div>
-                      <div>
-                        <Users className="w-8 h-8 text-primary mx-auto mb-2" />
-                        <h4 className="font-semibold">Team Projects</h4>
-                        <p className="text-sm text-muted-foreground">Collaborative AI</p>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Multi-step workflows</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Custom prompt templates</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Data analysis & insights</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-green-500" />
-                        <span>Team collaboration strategies</span>
-                      </div>
-                    </div>
-                    
-                    <Button className="w-full py-6 text-lg rounded-xl" id="intermediate-start-anchor">
-                      Explore Intermediate
-                    </Button>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-            </Tabs>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="organization">{t('learnAI.orderForm.fields.organization')}</Label>
+                    <Input
+                      id="organization"
+                      name="organization"
+                      value={formData.organization}
+                      onChange={handleInputChange}
+                      className="rounded-xl"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="message">{t('learnAI.orderForm.fields.message')}</Label>
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      className="rounded-xl min-h-[120px]"
+                      placeholder={t('learnAI.orderForm.fields.messagePlaceholder')}
+                    />
+                  </div>
+                  
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full py-6 text-lg rounded-xl"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Settings className="w-4 h-4 mr-2 animate-spin" />
+                        {t('learnAI.orderForm.submitting')}
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        {t('learnAI.orderForm.submit')}
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </section>
 
-        {/* What You'll Be Able To Do */}
+        {/* YouTube Video Section */}
         <section className="px-6 py-16 bg-muted/20">
-          <div className="container mx-auto max-w-6xl">
-            <h2 className="font-serif text-4xl font-bold text-center mb-12">What You'll Be Able To Do</h2>
+          <div className="container mx-auto max-w-4xl">
+            <h2 className="font-serif text-4xl font-bold text-center mb-4">{t('learnAI.videoSection.title')}</h2>
+            <p className="text-center text-muted-foreground mb-12 text-lg">{t('learnAI.videoSection.subtitle')}</p>
             
-            <div className="grid md:grid-cols-3 gap-6">
-              {capabilities.map((capability, index) => (
-                <Card key={index} className="rounded-2xl hover:shadow-lg transition-shadow duration-300">
-                  <CardContent className="p-6 text-center">
-                    <capability.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                    <h3 className="font-semibold text-lg mb-2">{capability.title}</h3>
-                    <p className="text-muted-foreground">{capability.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <Card className="rounded-2xl shadow-lg overflow-hidden cursor-pointer hover:shadow-xl transition-shadow duration-300" onClick={openVideo}>
+              <div className="relative aspect-video bg-gradient-to-br from-primary/10 to-muted/30">
+                {/* YouTube thumbnail placeholder with video ID */}
+                <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-background/80 to-muted/60">
+                  <div className="text-center">
+                    <div className="relative mb-4">
+                      <div className="w-24 h-24 bg-primary/20 rounded-full flex items-center justify-center mx-auto">
+                        <Play className="w-12 h-12 text-primary ml-1" />
+                      </div>
+                      <div className="absolute inset-0 w-24 h-24 bg-primary/10 rounded-full animate-ping mx-auto"></div>
+                    </div>
+                    <h3 className="font-serif text-2xl font-bold mb-2">{t('learnAI.videoSection.videoTitle')}</h3>
+                    <p className="text-muted-foreground mb-4">{t('learnAI.videoSection.videoDescription')}</p>
+                    <Badge variant="outline" className="px-4 py-2">
+                      <Play className="w-4 h-4 mr-2" />
+                      {t('learnAI.videoSection.watchVideo')}
+                    </Badge>
+                  </div>
+                </div>
+                
+                {/* Decorative gears */}
+                <Settings className="absolute top-4 right-4 w-8 h-8 text-primary/30 animate-spin" style={{animationDuration: '20s'}} />
+                <Settings className="absolute bottom-4 left-4 w-6 h-6 text-primary/20 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}} />
+              </div>
+            </Card>
           </div>
         </section>
 
