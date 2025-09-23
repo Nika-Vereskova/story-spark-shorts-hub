@@ -16,6 +16,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { supabase } from '@/integrations/supabase/client';
 
 const LearnAI = () => {
   const [activeModal, setActiveModal] = useState<string | null>(null);
@@ -110,13 +111,18 @@ const LearnAI = () => {
     setIsSubmitting(true);
     
     try {
-      // Here you would typically send the form data to your backend
-      // For now, we'll just simulate a successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const { data, error } = await supabase.functions.invoke('send-contact-form', {
+        body: {
+          ...formData,
+          serviceType: 'Education Service'
+        }
+      });
+
+      if (error) throw error;
       
       toast({
         title: t('learnAI.orderForm.success'),
-        description: t('learnAI.orderForm.successDesc'),
+        description: "We'll contact you within 24 hours.",
       });
       
       // Reset form
@@ -127,9 +133,10 @@ const LearnAI = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Form submission error:', error);
       toast({
         title: t('learnAI.orderForm.error'),
-        description: t('learnAI.orderForm.errorDesc'),
+        description: "Please try again or contact hello@steamlogic.se",
         variant: "destructive",
       });
     } finally {
