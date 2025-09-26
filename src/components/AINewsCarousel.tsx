@@ -115,11 +115,11 @@ const AINewsCarousel = () => {
               </CardHeader>
               
               <CardContent className="pt-0">
-                {post.summary && (
+                {post.summary ? (
                   <CardDescription className="text-oxidized-teal/70 text-xs mb-3 font-inter line-clamp-2">
                     <span>{formatCitations(post.summary)}</span>
                   </CardDescription>
-                )}
+                ) : null}
                 
                 {post.article_url && (
                   <Button 
