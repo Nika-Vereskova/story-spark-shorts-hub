@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Homepage -->
+  <url>
+    <loc>https://steamlogic.se/en/</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://steamlogic.se/" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://steamlogic.se/" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://steamlogic.se/" />
+  </url>
+
+  <!-- About Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/about</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/about" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/about" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/about</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/about" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/about" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/about</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/about" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/about" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/about" />
+  </url>
+
+  <!-- Services Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/services" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/services" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/services" />
+  </url>
+
+  <!-- AI Services Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/ai-services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-services" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/ai-services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-services" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/ai-services</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-services" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-services" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-services" />
+  </url>
+
+  <!-- Learn AI Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/learn-ai</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/learn-ai" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/learn-ai</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/learn-ai" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/learn-ai</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/learn-ai" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/learn-ai" />
+  </url>
+
+  <!-- Europe Capitals Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/europe-capitals</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/europe-capitals" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/europe-capitals</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/europe-capitals" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/europe-capitals</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/europe-capitals" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/europe-capitals" />
+  </url>
+
+  <!-- Books Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/books</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/books" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/books" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/books" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/books</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/books" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/books" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/books" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/books</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/books" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/books" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/books" />
+  </url>
+
+  <!-- Videos Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/videos</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/videos" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/videos" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/videos" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/videos</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/videos" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/videos" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/videos" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/videos</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/videos" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/videos" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/videos" />
+  </url>
+
+  <!-- AI News Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/ai-news</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-news" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-news" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-news" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/ai-news</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-news" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-news" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-news" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/ai-news</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/ai-news" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/ai-news" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/ai-news" />
+  </url>
+
+  <!-- Contact Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/contact</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/contact" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/contact" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/contact</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/contact" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/contact" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/contact</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/contact" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/contact" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/contact" />
+  </url>
+
+  <!-- Newsletter Pages -->
+  <url>
+    <loc>https://steamlogic.se/en/newsletter</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/newsletter" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/newsletter" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/newsletter" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/sv/newsletter</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/newsletter" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/newsletter" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/newsletter" />
+  </url>
+  <url>
+    <loc>https://steamlogic.se/ru/newsletter</loc>
+    <lastmod>2025-09-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://steamlogic.se/en/newsletter" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://steamlogic.se/sv/newsletter" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://steamlogic.se/ru/newsletter" />
+  </url>
+</urlset>
