@@ -17,6 +17,17 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
     const pathParts = currentPath.split('/').filter(Boolean);
     const pathLocale = pathParts[0] as Locale;
     
+    // Static files that should not be redirected
+    const excludedPaths = [
+      '/sitemap-steamlogic.xml',
+      '/sitemap.xml',
+      '/robots.txt',
+      '/ads.txt'
+    ];
+    
+    // Check if current path is an excluded static file
+    const isExcludedPath = excludedPaths.includes(currentPath);
+    
     // Check if the current path starts with a locale
     const validLocales = ['en', 'sv', 'ru'];
     const hasLocaleInPath = validLocales.includes(pathLocale);
@@ -26,7 +37,7 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
       setCurrentLocale(pathLocale);
       setIsInitialized(true);
     } else {
-      // No locale in path, determine the locale but don't redirect for root path
+      // No locale in path, determine the locale
       const storedLocale = typeof window !== 'undefined' ? localStorage.getItem('preferred-locale') as Locale : null;
       const browserLocale = detectBrowserLocale();
       
@@ -40,8 +51,8 @@ const LocaleRouter: React.FC<LocaleRouterProps> = ({ children }) => {
       
       setCurrentLocale(targetLocale);
       
-      // Only redirect if we're not on the root path
-      if (currentPath !== '/') {
+      // Don't redirect for root path or excluded static files
+      if (currentPath !== '/' && !isExcludedPath) {
         const newPath = `/${targetLocale}${currentPath}`;
         navigate(newPath, { replace: true });
       }
