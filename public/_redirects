@@ -1,0 +1,8 @@
+# Static file redirects for deployment platforms
+/sitemap-steamlogic.xml /sitemap-steamlogic.xml 200
+/sitemap.xml /sitemap.xml 200
+/robots.txt /robots.txt 200
+/ads.txt /ads.txt 200
+
+# SPA fallback - redirect all other routes to index.html
+/* /index.html 200

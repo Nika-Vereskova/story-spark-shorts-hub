@@ -30,6 +30,7 @@ const NotFound = React.lazy(() => import("./pages/NotFound"));
 const Moved = React.lazy(() => import("./pages/Moved"));
 const AIResourceHub = React.lazy(() => import("./pages/AIResourceHub"));
 const NewsletterConfirmed = React.lazy(() => import("./pages/NewsletterConfirmed"));
+const StaticFileHandler = React.lazy(() => import("./components/StaticFileHandler"));
 
 const queryClient = new QueryClient();
 
@@ -89,6 +90,12 @@ const App = () => {
             <BrowserRouter>
             <LocaleRouter>
             <Routes>
+              {/* Static file routes - must come before locale routes */}
+              <Route path="/sitemap-steamlogic.xml" element={<StaticFileHandler fileName="sitemap-steamlogic.xml" />} />
+              <Route path="/sitemap.xml" element={<StaticFileHandler fileName="sitemap.xml" />} />
+              <Route path="/robots.txt" element={<StaticFileHandler fileName="robots.txt" />} />
+              <Route path="/ads.txt" element={<StaticFileHandler fileName="ads.txt" />} />
+
               {/* Root route - will be handled by LocaleRouter */}
               <Route path="/" element={withSuspense(Index)} />
 

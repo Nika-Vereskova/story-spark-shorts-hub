@@ -65,6 +65,8 @@ export default defineConfig(({ mode }) => ({
         drop_debugger: true,
       },
     },
+    // Ensure static files are copied correctly
+    copyPublicDir: true,
   },
   resolve: {
     alias: {
