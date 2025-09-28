@@ -111,7 +111,7 @@ const LearnAI = () => {
     setIsSubmitting(true);
     
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-form', {
+      const { data, error } = await supabase.functions.invoke('submit-to-notion', {
         body: {
           ...formData,
           serviceType: 'Education Service'
@@ -122,7 +122,7 @@ const LearnAI = () => {
       
       toast({
         title: t('learnAI.orderForm.success'),
-        description: "We'll contact you within 24 hours.",
+        description: "Your submission has been saved. We'll contact you within 24 hours.",
       });
       
       // Reset form
