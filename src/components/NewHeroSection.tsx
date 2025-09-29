@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
 import { useNavigate } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const NewHeroSection = () => {
   const navigate = useNavigate();
@@ -50,25 +51,16 @@ const NewHeroSection = () => {
         <header className="animate-fade-in">
           {/* 3D Company Logo */}
           <div className="flex justify-center mb-1 sm:mb-6">
-            <picture>
-              <source
-                type="image/webp"
-                srcSet="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-320.webp 320w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f-640.webp 640w, /lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.webp 1024w"
-                sizes="(max-width: 640px) 320px, (max-width: 1024px) 640px, 320px"
-              />
-              <img 
-                src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
-                alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics symbolizing the fusion of creativity and technology"
-                className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
-                style={{ animationDuration: '12s', animationDirection: 'reverse' }}
-                width="320"
-                height="320"
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
-                itemProp="logo"
-              />
-            </picture>
+            <OptimizedImage
+              src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
+              alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics symbolizing the fusion of creativity and technology"
+              className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain animate-spin"
+              style={{ animationDuration: '12s', animationDirection: 'reverse' }}
+              width={320}
+              height={320}
+              priority={true}
+              fetchPriority="high"
+            />
           </div>
           
           <h1 

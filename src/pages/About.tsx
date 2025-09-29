@@ -8,6 +8,7 @@ import { t, getCurrentLocale } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
 import AdSenseBanner from '@/components/AdSenseBanner';
+import OptimizedImage from '@/components/ui/optimized-image';
 import AdSenseSquare from '@/components/AdSenseSquare';
 
 const About = () => {
@@ -53,11 +54,12 @@ const About = () => {
                 <div className="absolute -bottom-2 -left-2 w-6 h-6 border-l-4 border-b-4 border-brass"></div>
                 <div className="absolute -bottom-2 -right-2 w-6 h-6 border-r-4 border-b-4 border-brass"></div>
                 
-                <img
+                <OptimizedImage
                   src="/lovable-uploads/d64c33f0-606a-4552-8886-7b785cefacc0.png"
-                  alt="Renata Khakimova"
-                  loading="lazy"
+                  alt="Renata Khakimova, CEO of STEaM LOGIC Studio AB"
                   className="w-full h-80 object-cover border-4 border-brass shadow-brass-drop"
+                  height={320}
+                  lazy={true}
                 />
               </div>
             </div>

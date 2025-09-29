@@ -12,6 +12,7 @@ import { getCurrentLocale } from '@/lib/i18n';
 import formatCitations from '@/lib/formatCitations';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface NewsPost {
   id: string;
@@ -106,10 +107,12 @@ const AINews = () => {
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop group overflow-hidden"
               >
                 {post.cover_url && (
-                  <img
+                  <OptimizedImage
                     src={post.cover_url}
-                    alt={post.title}
+                    alt={`${post.title} cover image`}
                     className="w-full h-48 object-cover"
+                    height={192}
+                    lazy={true}
                   />
                 )}
                 <CardHeader>

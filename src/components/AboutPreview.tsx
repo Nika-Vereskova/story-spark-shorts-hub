@@ -5,6 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useNavigate } from 'react-router-dom';
 import { getCurrentLocale } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 const AboutPreview = () => {
   const navigate = useNavigate();
@@ -29,10 +30,13 @@ const AboutPreview = () => {
               {/* Portrait */}
               <div className="flex justify-center">
                 <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-brass shadow-lg">
-                  <img
+                  <OptimizedImage
                     src="/lovable-uploads/748ca51a-4b47-4a65-b445-e2681b77e612.png"
                     alt="Nika Vereskova - Storyteller and AI Enthusiast"
                     className="w-full h-full object-cover"
+                    width={192}
+                    height={192}
+                    priority={true}
                   />
                 </div>
               </div>

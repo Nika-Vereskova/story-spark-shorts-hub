@@ -1,0 +1,3 @@
+// This would be the WebP version - placeholder for image conversion
+// In a real implementation, PNG files would be converted to WebP format
+// For now, the OptimizedImage component will handle format detection and fallbacks

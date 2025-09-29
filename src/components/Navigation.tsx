@@ -8,6 +8,7 @@ import AuthModal from './AuthModal';
 import LanguageSwitcher from './LanguageSwitcher';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import { useIsMobile } from '@/hooks/use-mobile';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface NavigationProps {
   currentPage?: string;
@@ -128,11 +129,13 @@ const Navigation = ({ currentPage }: NavigationProps) => {
         <div className="container mx-auto px-6 py-3">
           <div className="flex items-center justify-between">
             <Link to={`/${locale}`} className="flex items-center space-x-2 logo">
-              <img
+              <OptimizedImage
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
-                alt="STEaM LOGIC Studio AB"
-                loading="lazy"
+                alt="STEaM LOGIC Studio AB Logo"
                 className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                height={52}
+                width={52}
+                priority={true}
               />
               <div className="font-playfair text-teal">
                 <div className="text-xl leading-tight">STEaM LOGIC</div>

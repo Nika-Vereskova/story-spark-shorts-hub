@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { t } from '@/lib/i18n';
 import { posthog } from '@/lib/posthog';
+import OptimizedImage from '@/components/ui/optimized-image';
 
 interface HeroSectionProps {
   onReadExcerpt: () => void;
@@ -89,11 +90,12 @@ const HeroSection = ({ onReadExcerpt }: HeroSectionProps) => {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-r-4 border-b-4 border-brass"></div>
               
               <div className="relative overflow-hidden">
-                <img
+                <OptimizedImage
                   src="/lovable-uploads/64f9c8ed-7532-43d6-a694-85153b7cae57.png"
                   alt="Plumberella - Latest Children's Book"
-                  loading="lazy"
                   className="w-full h-80 object-cover transition-all duration-300 hover:scale-110 hover:sepia"
+                  height={320}
+                  lazy={true}
                 />
                 <div className="absolute top-4 right-4">
                   <span className="px-4 py-2 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter flex items-center">
