@@ -8,10 +8,19 @@ interface SEOProps {
   image?: string;
   noindex?: boolean;
   keywords?: string;
-  type?: 'website' | 'article' | 'profile';
+  type?: 'website' | 'article' | 'profile' | 'video';
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
+  // Article-specific properties
+  articleSection?: string;
+  tags?: string[];
+  // Video-specific properties
+  videoUrl?: string;
+  videoDuration?: string;
+  videoUploadDate?: string;
+  // LocalBusiness properties
+  isLocalBusiness?: boolean;
 }
 
 const BASE_URL = 'https://steamlogic.se';
@@ -27,7 +36,13 @@ const SEO: React.FC<SEOProps> = ({
   type = 'website',
   publishedTime,
   modifiedTime,
-  author = 'STEaM LOGIC Studio AB'
+  author = 'STEaM LOGIC Studio AB',
+  articleSection,
+  tags,
+  videoUrl,
+  videoDuration,
+  videoUploadDate,
+  isLocalBusiness = false
 }) => {
   const locale = getCurrentLocale();
 
@@ -119,7 +134,7 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
-  // Breadcrumbs based on current path
+  // Enhanced breadcrumb schema with better URL construction
   const breadcrumbJsonLd = (() => {
     const segments = pathWithoutLocale.split('/').filter(Boolean);
     const items = [
@@ -127,21 +142,151 @@ const SEO: React.FC<SEOProps> = ({
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": `${BASE_URL}/${locale}/`
-      },
-      ...segments.map((seg, index) => ({
+        "item": buildCanonicalUrl(locale, '/')
+      }
+    ];
+
+    // Add intermediate breadcrumb items
+    segments.forEach((seg, index) => {
+      const segmentPath = segments.slice(0, index + 1).join('/');
+      const segmentName = seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      
+      items.push({
         "@type": "ListItem",
         "position": index + 2,
-        "name": seg.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
-        "item": `${BASE_URL}/${locale}/${segments.slice(0, index + 1).join('/')}`
-      }))
-    ];
+        "name": segmentName,
+        "item": buildCanonicalUrl(locale, segmentPath)
+      });
+    });
+
     return {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": items
     };
   })();
+
+  // Article schema for blog posts and news articles
+  const articleJsonLd = type === 'article' ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": title,
+    "description": description,
+    "author": {
+      "@type": "Person",
+      "name": author,
+      "url": `${BASE_URL}/en/about`
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}${LOGO_URL}`
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": canonical
+    },
+    "datePublished": publishedTime || new Date().toISOString(),
+    "dateModified": modifiedTime || publishedTime || new Date().toISOString(),
+    "image": {
+      "@type": "ImageObject",
+      "url": `${BASE_URL}${image || DEFAULT_IMAGE}`,
+      "width": 1200,
+      "height": 630
+    },
+    ...(articleSection && { "articleSection": articleSection }),
+    ...(tags && { "keywords": tags.join(', ') }),
+    "inLanguage": locale,
+    "url": canonical
+  } : null;
+
+  // VideoObject schema for video pages
+  const videoJsonLd = type === 'video' && videoUrl ? {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": title,
+    "description": description,
+    "contentUrl": videoUrl,
+    "embedUrl": videoUrl,
+    "uploadDate": videoUploadDate || publishedTime || new Date().toISOString(),
+    ...(videoDuration && { "duration": videoDuration }),
+    "thumbnailUrl": `${BASE_URL}${image || DEFAULT_IMAGE}`,
+    "author": {
+      "@type": "Person",
+      "name": author,
+      "url": `${BASE_URL}/en/about`
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB",
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}${LOGO_URL}`
+      }
+    },
+    "inLanguage": locale,
+    "url": canonical
+  } : null;
+
+  // LocalBusiness schema for business-specific pages
+  const localBusinessJsonLd = isLocalBusiness ? {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "STEaM LOGIC Studio AB",
+    "description": "Expert AI consulting services combining inventive storytelling with intelligent technology. Custom GPT development, AI strategy, and automation solutions.",
+    "url": BASE_URL,
+    "telephone": "+46-XXX-XXX-XXX", // Add actual phone if available
+    "email": "hello@steamlogic.se",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "SE",
+      "addressRegion": "Sweden"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "59.3293", // Stockholm coordinates as default
+      "longitude": "18.0686"
+    },
+    "openingHours": "Mo-Fr 09:00-17:00",
+    "priceRange": "$$",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "10"
+    },
+    "serviceArea": {
+      "@type": "Place",
+      "name": "Worldwide"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "AI Consulting Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "AI Strategy & Implementation"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Custom GPT Development"
+          }
+        }
+      ]
+    },
+    "sameAs": [
+      "https://www.youtube.com/@NikaVereskova",
+      "https://github.com/Nika-Vereskova",
+      "https://www.instagram.com/vereskovanika"
+    ]
+  } : null;
 
   const personJsonLd = {
     "@context": "https://schema.org",
@@ -373,6 +518,9 @@ const SEO: React.FC<SEOProps> = ({
       <script type="application/ld+json">{JSON.stringify(authorJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(serviceJsonLd)}</script>
       <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+      {articleJsonLd && <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>}
+      {videoJsonLd && <script type="application/ld+json">{JSON.stringify(videoJsonLd)}</script>}
+      {localBusinessJsonLd && <script type="application/ld+json">{JSON.stringify(localBusinessJsonLd)}</script>}
 
       {/* Performance optimizations */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
