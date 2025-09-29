@@ -33,11 +33,20 @@ const SEO: React.FC<SEOProps> = ({
 
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const pathWithoutLocale = pathname.replace(/^\/(en|sv|ru)/, '') || '/';
-  const canonical = `${BASE_URL}/${locale}${pathWithoutLocale}`.replace(/\/+/g, '/').replace(/\/$/, '') || `${BASE_URL}/${locale}`;
+  // Improved canonical URL construction with better handling of edge cases
+  const buildCanonicalUrl = (locale: string, path: string) => {
+    // Normalize the path - remove leading/trailing slashes, handle empty paths
+    const normalizedPath = path.replace(/^\/+|\/+$/g, '') || '';
+    // Build URL - ensure single slashes, handle root case properly
+    const url = `${BASE_URL}/${locale}${normalizedPath ? `/${normalizedPath}` : ''}`;
+    return url.replace(/([^:]\/)\/+/g, '$1'); // Remove double slashes except after protocol
+  };
 
+  const canonical = buildCanonicalUrl(locale, pathWithoutLocale);
+  
   const alternates = locales.map((l) => ({
     hrefLang: l,
-    href: `${BASE_URL}/${l}${pathWithoutLocale}`.replace(/\/+/g, '/').replace(/\/$/, '') || `${BASE_URL}/${l}`,
+    href: buildCanonicalUrl(l, pathWithoutLocale),
   }));
 
   const organizationJsonLd = {
@@ -323,7 +332,7 @@ const SEO: React.FC<SEOProps> = ({
       {alternates.map((alt) => (
         <link key={alt.hrefLang} rel="alternate" hrefLang={alt.hrefLang} href={alt.href} />
       ))}
-      <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}${pathWithoutLocale}`} />
+      <link rel="alternate" hrefLang="x-default" href={BASE_URL} />
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
