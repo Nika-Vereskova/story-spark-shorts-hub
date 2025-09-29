@@ -128,7 +128,3 @@ verify_jwt = false
 # Make the send-newsletter function public (no auth required)
 [functions.send-newsletter]
 verify_jwt = false
-
-# Make the submit-to-notion function public (no auth required)
-[functions.submit-to-notion]
-verify_jwt = false
