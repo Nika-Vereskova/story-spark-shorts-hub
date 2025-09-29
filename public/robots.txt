@@ -1,9 +1,9 @@
 User-agent: *
 Allow: /
 
-# Important files
-Sitemap: https://steamlogic.se/sitemap-steamlogic.xml
+# Sitemaps
 Sitemap: https://steamlogic.se/sitemap.xml
+Sitemap: https://steamlogic.se/sitemap-steamlogic.xml
 
 # Block access to sensitive areas (if any)
 Disallow: /admin/

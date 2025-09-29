@@ -33,11 +33,11 @@ const SEO: React.FC<SEOProps> = ({
 
   const pathname = typeof window !== 'undefined' ? window.location.pathname : '/';
   const pathWithoutLocale = pathname.replace(/^\/(en|sv|ru)/, '') || '/';
-  const canonical = `${BASE_URL}/${locale}${pathWithoutLocale}`.replace(/\/+/, '/');
+  const canonical = `${BASE_URL}/${locale}${pathWithoutLocale}`.replace(/\/+/g, '/').replace(/\/$/, '') || `${BASE_URL}/${locale}`;
 
   const alternates = locales.map((l) => ({
     hrefLang: l,
-    href: `${BASE_URL}/${l}${pathWithoutLocale}`,
+    href: `${BASE_URL}/${l}${pathWithoutLocale}`.replace(/\/+/g, '/').replace(/\/$/, '') || `${BASE_URL}/${l}`,
   }));
 
   const organizationJsonLd = {
