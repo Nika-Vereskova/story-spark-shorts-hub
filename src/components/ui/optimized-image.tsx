@@ -72,7 +72,7 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   const responsiveSizes = sizes || generateSizes();
 
   return (
-    <div ref={imageRef} className={cn('relative', className)}>
+    <div ref={imageRef} className="relative">
       {shouldLoad && (
         <>
           {/* WebP version with fallback */}
@@ -95,7 +95,8 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
               className={cn(
                 'transition-opacity duration-300',
                 imageLoaded ? 'opacity-100' : 'opacity-0',
-                imageError && 'opacity-50'
+                imageError && 'opacity-50',
+                className
               )}
               style={style}
               onLoad={handleLoad}
