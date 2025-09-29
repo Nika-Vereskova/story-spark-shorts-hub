@@ -54,9 +54,9 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     rootMargin: '50px',
   });
 
+  // Simplified loading logic - priority images always load
   const shouldLoad = priority || !lazy || hasIntersected;
-  const imageSources = generateImageSources(src, alt, width && height ? { width, height } : undefined);
-
+  
   const handleLoad = () => {
     setImageLoaded(true);
     onLoad?.();
@@ -67,77 +67,56 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     onError?.();
   };
 
-  // Generate responsive srcSet if the image supports it
-  const responsiveSrcSet = src.includes('lovable-uploads') ? generateSrcSet(src) : undefined;
-  const responsiveSizes = sizes || generateSizes();
+  // For priority images, show them immediately
+  if (priority) {
+    return (
+      <img
+        ref={imageRef}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        loading="eager"
+        decoding={decoding}
+        fetchPriority="high"
+        className={className}
+        style={style}
+        onLoad={handleLoad}
+        onError={handleError}
+        role={role}
+        tabIndex={tabIndex}
+        aria-hidden={alt === '' ? 'true' : undefined}
+      />
+    );
+  }
 
   return (
     <div ref={imageRef} className="relative">
       {shouldLoad && (
-        <>
-          {/* WebP version with fallback */}
-          <picture>
-            {supportsWebP && imageSources.webp && (
-              <source
-                type="image/webp"
-                srcSet={responsiveSrcSet || imageSources.webp}
-                sizes={responsiveSizes}
-              />
-            )}
-            <img
-              src={imageSources.fallback}
-              alt={alt}
-              width={width}
-              height={height}
-              loading={loading || (priority ? 'eager' : 'lazy')}
-              decoding={decoding}
-              fetchPriority={fetchPriority || (priority ? 'high' : 'auto')}
-              className={cn(
-                'transition-opacity duration-300',
-                imageLoaded ? 'opacity-100' : 'opacity-0',
-                imageError && 'opacity-50',
-                className
-              )}
-              style={style}
-              onLoad={handleLoad}
-              onError={handleError}
-              role={role}
-              tabIndex={tabIndex}
-              // Accessibility improvements
-              aria-hidden={alt === '' ? 'true' : undefined}
-            />
-          </picture>
-
-          {/* Loading placeholder */}
-          {!imageLoaded && !imageError && (
-            <div
-              className={cn(
-                'absolute inset-0 bg-muted animate-pulse rounded',
-                'flex items-center justify-center text-muted-foreground text-sm'
-              )}
-              aria-hidden="true"
-            >
-              Loading...
-            </div>
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          loading={loading || 'lazy'}
+          decoding={decoding}
+          fetchPriority={fetchPriority || 'auto'}
+          className={cn(
+            'transition-opacity duration-300',
+            imageLoaded ? 'opacity-100' : 'opacity-0',
+            imageError && 'opacity-50',
+            className
           )}
-
-          {/* Error fallback */}
-          {imageError && (
-            <div
-              className={cn(
-                'absolute inset-0 bg-muted border-2 border-dashed border-muted-foreground',
-                'flex items-center justify-center text-muted-foreground text-sm'
-              )}
-              role="img"
-              aria-label={`Failed to load image: ${alt}`}
-            >
-              Image unavailable
-            </div>
-          )}
-        </>
+          style={style}
+          onLoad={handleLoad}
+          onError={handleError}
+          role={role}
+          tabIndex={tabIndex}
+          aria-hidden={alt === '' ? 'true' : undefined}
+        />
       )}
 
-      {/* Lazy loading placeholder */}
+      {/* Loading placeholder for lazy images */}
       {!shouldLoad && (
         <div
           className={cn(
