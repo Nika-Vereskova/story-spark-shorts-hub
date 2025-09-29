@@ -90,44 +90,39 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
     );
   }
 
-  return (
-    <div ref={imageRef} className="relative">
-      {shouldLoad && (
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={loading || 'lazy'}
-          decoding={decoding}
-          fetchPriority={fetchPriority || 'auto'}
-          className={cn(
-            'transition-opacity duration-300',
-            imageLoaded ? 'opacity-100' : 'opacity-0',
-            imageError && 'opacity-50',
-            className
-          )}
-          style={style}
-          onLoad={handleLoad}
-          onError={handleError}
-          role={role}
-          tabIndex={tabIndex}
-          aria-hidden={alt === '' ? 'true' : undefined}
-        />
+  return shouldLoad ? (
+    <img
+      ref={imageRef}
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      loading={loading || 'lazy'}
+      decoding={decoding}
+      fetchPriority={fetchPriority || 'auto'}
+      className={cn(
+        'transition-opacity duration-300',
+        imageLoaded ? 'opacity-100' : 'opacity-0',
+        imageError && 'opacity-50',
+        className
       )}
-
-      {/* Loading placeholder for lazy images */}
-      {!shouldLoad && (
-        <div
-          className={cn(
-            'bg-muted animate-pulse',
-            width && height ? '' : 'aspect-square'
-          )}
-          style={{ width, height }}
-          aria-hidden="true"
-        />
+      style={style}
+      onLoad={handleLoad}
+      onError={handleError}
+      role={role}
+      tabIndex={tabIndex}
+      aria-hidden={alt === '' ? 'true' : undefined}
+    />
+  ) : (
+    <div
+      ref={imageRef}
+      className={cn(
+        'bg-muted animate-pulse',
+        width && height ? '' : 'aspect-square'
       )}
-    </div>
+      style={{ width, height }}
+      aria-hidden="true"
+    />
   );
 };
 

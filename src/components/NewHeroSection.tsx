@@ -50,16 +50,18 @@ const NewHeroSection = () => {
         {/* Company Logo and Title */}
         <header className="animate-fade-in">
           {/* 3D Company Logo */}
-          <div className="flex justify-center mb-1 sm:mb-6 transition-transform duration-300 hover:rotate-12 hover:scale-110">
-            <OptimizedImage
-              src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
-              alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics symbolizing the fusion of creativity and technology"
-              className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain"
-              width={320}
-              height={320}
-              priority={true}
-              fetchPriority="high"
-            />
+          <div className="flex justify-center mb-1 sm:mb-6">
+            <div className="transition-transform duration-300 hover:rotate-12 hover:scale-110 cursor-pointer">
+              <OptimizedImage
+                src="/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png" 
+                alt="STEaM LOGIC Studio AB Logo - Gear and Quill featuring steampunk aesthetics symbolizing the fusion of creativity and technology"
+                className="w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 object-contain"
+                width={320}
+                height={320}
+                priority={true}
+                fetchPriority="high"
+              />
+            </div>
           </div>
           
           <h1 

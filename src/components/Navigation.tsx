@@ -132,7 +132,7 @@ const Navigation = ({ currentPage }: NavigationProps) => {
               <OptimizedImage
                 src="/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png"
                 alt="STEaM LOGIC Studio AB Logo"
-                className="h-[32px] sm:h-[36px] md:h-[52px] gear"
+                className="h-[32px] w-[32px] sm:h-[36px] sm:w-[36px] md:h-[52px] md:w-[52px] object-contain"
                 height={52}
                 width={52}
                 priority={true}
