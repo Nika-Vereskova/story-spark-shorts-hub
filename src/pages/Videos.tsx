@@ -65,39 +65,49 @@ const Videos = () => {
                 style={{animationDelay: `${index * 0.1}s`}}
               >
                 {/* Ornate brass corners */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-10"></div>
-                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-10"></div>
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-10"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-10"></div>
+                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-30"></div>
+                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-30"></div>
+                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-30"></div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-30"></div>
                 
                 <div className="relative overflow-hidden">
                   {/* YouTube Thumbnail */}
-                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
+                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative">
                     <img
                       src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
                       alt={video.title}
                       loading={index < 2 ? "eager" : "lazy"}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110 z-10"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      style={{ zIndex: 1 }}
+                      onLoad={() => {
+                        if (process.env.NODE_ENV === 'development') {
+                          console.log(`✅ Thumbnail loaded successfully: ${video.title}`);
+                        }
+                      }}
                       onError={(e) => {
                         const target = e.currentTarget;
-                        if (process.env.NODE_ENV === 'development') {
-                          console.warn(`YouTube thumbnail failed to load for video: ${video.title} (${video.embedId})`);
-                        }
+                        console.error(`❌ YouTube thumbnail failed to load for video: ${video.title} (${video.embedId})`);
+                        console.error(`Current src: ${target.src}`);
                         // Try multiple fallback thumbnail sizes
                         if (target.src.includes('maxresdefault')) {
+                          console.log('Trying sddefault...');
                           target.src = `https://img.youtube.com/vi/${video.embedId}/sddefault.jpg`;
                         } else if (target.src.includes('sddefault')) {
+                          console.log('Trying hqdefault...');
                           target.src = `https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg`;
                         } else if (target.src.includes('hqdefault')) {
+                          console.log('Trying mqdefault...');
                           target.src = `https://img.youtube.com/vi/${video.embedId}/mqdefault.jpg`;
+                        } else {
+                          console.error('All thumbnail fallbacks failed');
                         }
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20">
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center" style={{ zIndex: 2 }}>
                       <Play className="w-16 h-16 text-parchment opacity-80" />
                     </div>
                   </div>
-                  <div className="absolute top-4 right-4 z-20">
+                  <div className="absolute top-4 right-4" style={{ zIndex: 3 }}>
                     <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
                       {video.type as string}
                     </span>
