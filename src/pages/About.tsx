@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { t, getCurrentLocale } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import OptimizedImage from '@/components/ui/optimized-image';
 import AdSenseSquare from '@/components/AdSenseSquare';
@@ -31,6 +32,9 @@ const About = () => {
       <div className="pt-24 pb-16 px-6">
         <AdSenseBanner position="top" />
         <div className="container mx-auto max-w-4xl">
+          {/* Breadcrumbs */}
+          <BreadcrumbNav items={[{ label: t('about.title') }]} />
+          
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">

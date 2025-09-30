@@ -68,7 +68,7 @@ const NewHeroSection = () => {
             className="hero-title font-playfair text-oxidized-teal mb-6 leading-tight"
             itemProp="name"
           >
-            STEaM LOGIC Studio AB<br />AI Projects & Consulting
+            STEaM LOGIC Studio AB - AI Consulting
           </h1>
           
           {/* Subtitle with structured data */}

@@ -5,8 +5,10 @@ import ServicesHeader from '@/components/ServicesHeader';
 import ServicesDisclaimer from '@/components/ServicesDisclaimer';
 import ServicesGrid from '@/components/ServicesGrid';
 import SEO from '@/components/SEO';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
+import { t } from '@/lib/i18n';
 
 const AIServices = () => {
   return (
@@ -16,6 +18,7 @@ const AIServices = () => {
       <main className="pt-20 pb-12">
         <AdSenseBanner position="top" />
         <div className="container mx-auto px-6">
+          <BreadcrumbNav items={[{ label: t('nav.aiServices') || 'AI Services' }]} />
           <ServicesHeader />
           <AdSenseSquare size="medium" />
           <ServicesDisclaimer />

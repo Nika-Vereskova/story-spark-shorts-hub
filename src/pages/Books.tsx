@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import AdSenseSquare from '@/components/AdSenseSquare';
 
@@ -54,42 +55,22 @@ const Books = () => {
         description="Award-winning steampunk children's books by author Nika Vereskova. Discover Plumberella and other magical adventures. Published by STEaM LOGIC Studio AB."
         keywords="Nika Vereskova books, steampunk children's books, Plumberella, Swedish children's literature, fantasy books for kids, STEaM LOGIC Studio AB"
         author="Nika Vereskova"
+        type="book"
+        bookName={books[0].title}
+        bookFormat="EBook"
+        bookPublisher="STEaM LOGIC Studio AB"
+        bookOfferUrl={books[0].amazonUrl}
+        bookOfferCurrency="USD"
+        image={books[0].coverUrl}
       />
-      {/* Book Structured Data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{__html: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Book",
-        "name": books[0].title,
-        "bookFormat": "https://schema.org/EBook",
-        "image": `${books[0].coverUrl}`,
-        "author": {
-          "@type": "Person",
-          "name": "Nika Vereskova"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "STEaM LOGIC Studio AB"
-        },
-        "url": typeof window !== 'undefined' ? window.location.href : `${books[0].englishUrl || books[0].amazonUrl}`,
-        "offers": {
-          "@type": "Offer",
-          "url": books[0].amazonUrl,
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
-        },
-        "workExample": [
-          books[0].englishUrl ? {
-            "@type": "Book",
-            "bookFormat": "https://schema.org/EBook",
-            "inLanguage": "en"
-          } : undefined
-        ].filter(Boolean)
-      }) }} />
       <Navigation currentPage="books" />
 
       <div className="pt-24 pb-16 px-6">
         <AdSenseBanner position="top" />
         <div className="container mx-auto">
+          {/* Breadcrumbs */}
+          <BreadcrumbNav items={[{ label: t('books.title') }]} />
+          
           {/* Header */}
           <div className="text-center mb-12">
             <h1 className="text-5xl text-oxidized-teal mb-4 font-playfair drop-shadow-text-drop">

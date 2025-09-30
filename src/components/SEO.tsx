@@ -8,7 +8,7 @@ interface SEOProps {
   image?: string;
   noindex?: boolean;
   keywords?: string;
-  type?: 'website' | 'article' | 'profile' | 'video';
+  type?: 'website' | 'article' | 'profile' | 'video' | 'book';
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
@@ -21,6 +21,14 @@ interface SEOProps {
   videoUploadDate?: string;
   // LocalBusiness properties
   isLocalBusiness?: boolean;
+  // Book-specific properties
+  bookName?: string;
+  bookFormat?: string;
+  bookIsbn?: string;
+  bookPublisher?: string;
+  bookOfferUrl?: string;
+  bookOfferPrice?: string;
+  bookOfferCurrency?: string;
 }
 
 const BASE_URL = 'https://steamlogic.se';
@@ -42,7 +50,14 @@ const SEO: React.FC<SEOProps> = ({
   videoUrl,
   videoDuration,
   videoUploadDate,
-  isLocalBusiness = false
+  isLocalBusiness = false,
+  bookName,
+  bookFormat = 'EBook',
+  bookIsbn,
+  bookPublisher = 'STEaM LOGIC Studio AB',
+  bookOfferUrl,
+  bookOfferPrice,
+  bookOfferCurrency = 'USD'
 }) => {
   const locale = getCurrentLocale();
 
@@ -395,6 +410,41 @@ const SEO: React.FC<SEOProps> = ({
     }
   };
 
+  // Book schema for book pages
+  const bookJsonLd = type === 'book' && bookName ? {
+    "@context": "https://schema.org",
+    "@type": "Book",
+    "name": bookName,
+    "bookFormat": `https://schema.org/${bookFormat}`,
+    "image": `${BASE_URL}${image || DEFAULT_IMAGE}`,
+    "author": {
+      "@type": "Person",
+      "name": author,
+      "url": `${BASE_URL}/en/about`
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": bookPublisher,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${BASE_URL}${LOGO_URL}`
+      }
+    },
+    ...(bookIsbn && { "isbn": bookIsbn }),
+    "url": canonical,
+    ...(bookOfferUrl && {
+      "offers": {
+        "@type": "Offer",
+        "url": bookOfferUrl,
+        "priceCurrency": bookOfferCurrency,
+        ...(bookOfferPrice && { "price": bookOfferPrice }),
+        "availability": "https://schema.org/InStock"
+      }
+    }),
+    "inLanguage": locale,
+    "datePublished": publishedTime || "2024-01-01"
+  } : null;
+
   // Enhanced FAQ structured data with more questions
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -521,6 +571,7 @@ const SEO: React.FC<SEOProps> = ({
       {articleJsonLd && <script type="application/ld+json">{JSON.stringify(articleJsonLd)}</script>}
       {videoJsonLd && <script type="application/ld+json">{JSON.stringify(videoJsonLd)}</script>}
       {localBusinessJsonLd && <script type="application/ld+json">{JSON.stringify(localBusinessJsonLd)}</script>}
+      {bookJsonLd && <script type="application/ld+json">{JSON.stringify(bookJsonLd)}</script>}
 
       {/* Performance optimizations */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
