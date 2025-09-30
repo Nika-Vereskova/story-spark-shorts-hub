@@ -15,15 +15,15 @@ const Videos = () => {
       title: "Steampunk Story Time",
       description: "A quick steampunk tale from Nika's workshop",
       youtubeUrl: "https://www.youtube.com/@NikaVereskova/videos",
-      embedId: "5H1QWVRqPBU",
+      embedId: "dQw4w9WgXcQ",
       type: t('common.short')
     },
     {
       id: 2,
       title: "Introduction to Large Language Models (LLMs)",
       description: "Educational video explaining prompt fundamentals for Large Language Models, their applications, and how they work to achieve the best result",
-      youtubeUrl: "https://youtu.be/FCA37YlJVPE",
-      embedId: "FCA37YlJVPE",
+      youtubeUrl: "https://youtu.be/wkWuKx3aaPE",
+      embedId: "wkWuKx3aaPE",
       type: "Educational"
     }
   ];
@@ -64,50 +64,62 @@ const Videos = () => {
                 className="bg-parchment/90 border-2 border-brass hover:border-brass-dark transition-all duration-300 hover:scale-105 shadow-brass-drop animate-fade-in relative"
                 style={{animationDelay: `${index * 0.1}s`}}
               >
-                {/* Ornate brass corners */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-30"></div>
-                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-30"></div>
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-30"></div>
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-30"></div>
+                {/* Ornate brass corners - highest z-index */}
+                <div className="absolute top-0 left-0 w-6 h-6 border-l-2 border-t-2 border-brass z-40 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-6 h-6 border-r-2 border-t-2 border-brass z-40 pointer-events-none"></div>
+                <div className="absolute bottom-0 left-0 w-6 h-6 border-l-2 border-b-2 border-brass z-40 pointer-events-none"></div>
+                <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-40 pointer-events-none"></div>
                 
                 <div className="relative overflow-hidden">
-                  {/* YouTube Thumbnail */}
-                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative">
+                  {/* YouTube Thumbnail Container */}
+                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
                     <img
                       src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
-                      alt={video.title}
+                      alt={`${video.title} - YouTube Video Thumbnail`}
                       loading={index < 2 ? "eager" : "lazy"}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                      style={{ zIndex: 1 }}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110 z-10"
                       onLoad={() => {
-                        if (process.env.NODE_ENV === 'development') {
-                          console.log(`✅ Thumbnail loaded successfully: ${video.title}`);
-                        }
+                        console.log(`✅ Thumbnail loaded: ${video.title} (${video.embedId})`);
                       }}
                       onError={(e) => {
                         const target = e.currentTarget;
-                        console.error(`❌ YouTube thumbnail failed to load for video: ${video.title} (${video.embedId})`);
-                        console.error(`Current src: ${target.src}`);
-                        // Try multiple fallback thumbnail sizes
+                        console.error(`❌ Thumbnail failed: ${video.title} (${video.embedId}) - ${target.src}`);
+                        
+                        // Try fallback thumbnail sizes
                         if (target.src.includes('maxresdefault')) {
-                          console.log('Trying sddefault...');
-                          target.src = `https://img.youtube.com/vi/${video.embedId}/sddefault.jpg`;
-                        } else if (target.src.includes('sddefault')) {
                           console.log('Trying hqdefault...');
                           target.src = `https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg`;
                         } else if (target.src.includes('hqdefault')) {
                           console.log('Trying mqdefault...');
                           target.src = `https://img.youtube.com/vi/${video.embedId}/mqdefault.jpg`;
+                        } else if (target.src.includes('mqdefault')) {
+                          console.log('Trying default.jpg...');
+                          target.src = `https://img.youtube.com/vi/${video.embedId}/default.jpg`;
                         } else {
-                          console.error('All thumbnail fallbacks failed');
+                          console.error('All thumbnails failed - using placeholder');
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent && !parent.querySelector('.thumbnail-error')) {
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'thumbnail-error absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-brass/10 to-oxidized-teal/10 z-10';
+                            errorDiv.innerHTML = `
+                              <div class="text-center p-4">
+                                <div class="text-brass text-4xl mb-2">📹</div>
+                                <p class="text-muted-foreground text-sm">Thumbnail unavailable</p>
+                              </div>
+                            `;
+                            parent.appendChild(errorDiv);
+                          }
                         }
                       }}
                     />
-                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center" style={{ zIndex: 2 }}>
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20 pointer-events-none">
                       <Play className="w-16 h-16 text-parchment opacity-80" />
                     </div>
                   </div>
-                  <div className="absolute top-4 right-4" style={{ zIndex: 3 }}>
+                  {/* Video Type Badge */}
+                  <div className="absolute top-4 right-4 z-30">
                     <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
                       {video.type as string}
                     </span>
