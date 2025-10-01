@@ -74,7 +74,7 @@ const Videos = () => {
                   {/* YouTube Thumbnail Container */}
                   <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
                     <img
-                      src={`https://img.youtube.com/vi/${video.embedId}/maxresdefault.jpg`}
+                      src={`https://i.ytimg.com/vi/${video.embedId}/maxresdefault.jpg`}
                       alt={`${video.title} - YouTube Video Thumbnail`}
                       loading={index < 2 ? "eager" : "lazy"}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110 z-10"
@@ -88,13 +88,13 @@ const Videos = () => {
                         // Try fallback thumbnail sizes
                         if (target.src.includes('maxresdefault')) {
                           console.log('Trying hqdefault...');
-                          target.src = `https://img.youtube.com/vi/${video.embedId}/hqdefault.jpg`;
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/hqdefault.jpg`;
                         } else if (target.src.includes('hqdefault')) {
                           console.log('Trying mqdefault...');
-                          target.src = `https://img.youtube.com/vi/${video.embedId}/mqdefault.jpg`;
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/mqdefault.jpg`;
                         } else if (target.src.includes('mqdefault')) {
                           console.log('Trying default.jpg...');
-                          target.src = `https://img.youtube.com/vi/${video.embedId}/default.jpg`;
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/default.jpg`;
                         } else {
                           console.error('All thumbnails failed - using placeholder');
                           target.style.display = 'none';
