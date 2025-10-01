@@ -71,71 +71,53 @@ const Videos = () => {
                 <div className="absolute bottom-0 right-0 w-6 h-6 border-r-2 border-b-2 border-brass z-40 pointer-events-none"></div>
                 
                 <div className="relative overflow-hidden">
-                  {/* YouTube Embed or Thumbnail */}
-                  {video.id === 2 ? (
-                    // Embedded YouTube player for second video
-                    <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
-                      <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/wkWuKx3aaPE?si=X6LMqJp3NnNVd3dy"
-                        title="YouTube video player"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                        className="absolute inset-0 w-full h-full z-10"
-                      />
-                    </div>
-                  ) : (
-                    // Thumbnail for other videos
-                    <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
-                      <img
-                        src={`https://i.ytimg.com/vi/${video.embedId}/maxresdefault.jpg`}
-                        alt={`${video.title} - YouTube Video Thumbnail`}
-                        loading={index < 2 ? "eager" : "lazy"}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110 z-10"
-                        onLoad={() => {
-                          console.log(`✅ Thumbnail loaded: ${video.title} (${video.embedId})`);
-                        }}
-                        onError={(e) => {
-                          const target = e.currentTarget;
-                          console.error(`❌ Thumbnail failed: ${video.title} (${video.embedId}) - ${target.src}`);
-                          
-                          // Try fallback thumbnail sizes
-                          if (target.src.includes('maxresdefault')) {
-                            console.log('Trying hqdefault...');
-                            target.src = `https://i.ytimg.com/vi/${video.embedId}/hqdefault.jpg`;
-                          } else if (target.src.includes('hqdefault')) {
-                            console.log('Trying mqdefault...');
-                            target.src = `https://i.ytimg.com/vi/${video.embedId}/mqdefault.jpg`;
-                          } else if (target.src.includes('mqdefault')) {
-                            console.log('Trying default.jpg...');
-                            target.src = `https://i.ytimg.com/vi/${video.embedId}/default.jpg`;
-                          } else {
-                            console.error('All thumbnails failed - using placeholder');
-                            target.style.display = 'none';
-                            const parent = target.parentElement;
-                            if (parent && !parent.querySelector('.thumbnail-error')) {
-                              const errorDiv = document.createElement('div');
-                              errorDiv.className = 'thumbnail-error absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-brass/10 to-oxidized-teal/10 z-10';
-                              errorDiv.innerHTML = `
-                                <div class="text-center p-4">
-                                  <div class="text-brass text-4xl mb-2">📹</div>
-                                  <p class="text-muted-foreground text-sm">Thumbnail unavailable</p>
-                                </div>
-                              `;
-                              parent.appendChild(errorDiv);
-                            }
+                  {/* YouTube Thumbnail Container */}
+                  <div className="w-full h-48 bg-gradient-to-br from-brass/20 to-oxidized-teal/20 relative z-0">
+                    <img
+                      src={`https://i.ytimg.com/vi/${video.embedId}/maxresdefault.jpg`}
+                      alt={`${video.title} - YouTube Video Thumbnail`}
+                      loading={index < 2 ? "eager" : "lazy"}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-110 z-10"
+                      onLoad={() => {
+                        console.log(`✅ Thumbnail loaded: ${video.title} (${video.embedId})`);
+                      }}
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        console.error(`❌ Thumbnail failed: ${video.title} (${video.embedId}) - ${target.src}`);
+                        
+                        // Try fallback thumbnail sizes
+                        if (target.src.includes('maxresdefault')) {
+                          console.log('Trying hqdefault...');
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/hqdefault.jpg`;
+                        } else if (target.src.includes('hqdefault')) {
+                          console.log('Trying mqdefault...');
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/mqdefault.jpg`;
+                        } else if (target.src.includes('mqdefault')) {
+                          console.log('Trying default.jpg...');
+                          target.src = `https://i.ytimg.com/vi/${video.embedId}/default.jpg`;
+                        } else {
+                          console.error('All thumbnails failed - using placeholder');
+                          target.style.display = 'none';
+                          const parent = target.parentElement;
+                          if (parent && !parent.querySelector('.thumbnail-error')) {
+                            const errorDiv = document.createElement('div');
+                            errorDiv.className = 'thumbnail-error absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-brass/10 to-oxidized-teal/10 z-10';
+                            errorDiv.innerHTML = `
+                              <div class="text-center p-4">
+                                <div class="text-brass text-4xl mb-2">📹</div>
+                                <p class="text-muted-foreground text-sm">Thumbnail unavailable</p>
+                              </div>
+                            `;
+                            parent.appendChild(errorDiv);
                           }
-                        }}
-                      />
-                      {/* Play Button Overlay */}
-                      <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20 pointer-events-none">
-                        <Play className="w-16 h-16 text-parchment opacity-80" />
-                      </div>
+                        }
+                      }}
+                    />
+                    {/* Play Button Overlay */}
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center z-20 pointer-events-none">
+                      <Play className="w-16 h-16 text-parchment opacity-80" />
                     </div>
-                  )}
+                  </div>
                   {/* Video Type Badge */}
                   <div className="absolute top-4 right-4 z-30">
                     <span className="px-3 py-1 bg-brass/90 text-parchment border border-brass-dark font-medium font-inter">
