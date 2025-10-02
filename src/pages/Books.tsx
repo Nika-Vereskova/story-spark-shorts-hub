@@ -103,7 +103,7 @@ const Books = () => {
                 <div className="relative overflow-hidden">
                   <img
                     src={book.coverUrl}
-                    alt={book.title}
+                    alt={`${book.title} - Steampunk children's book cover by Nika Vereskova, featuring ${book.ageRange.toLowerCase()}`}
                     loading="lazy"
                     className="w-full h-64 object-cover md:h-72 transition-transform duration-300 hover:scale-110"
                   />

@@ -178,7 +178,7 @@ export default function NewsArticle() {
               <div className="mb-8">
                 <img
                   src={article.cover_url}
-                  alt={article.title}
+                  alt={`${article.title} - Featured cover image for AI news article about artificial intelligence developments and innovations`}
                   className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
                 />
               </div>

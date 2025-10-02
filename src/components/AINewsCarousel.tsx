@@ -96,7 +96,7 @@ const AINewsCarousel = () => {
                 <div className="relative overflow-hidden h-32">
                   <img
                     src={post.cover_url}
-                    alt={post.title}
+                    alt={`${post.title} - AI news article thumbnail image`}
                     loading="lazy"
                     className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110 group-hover:sepia"
                   />

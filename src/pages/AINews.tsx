@@ -109,7 +109,7 @@ const AINews = () => {
                 {post.cover_url && (
                   <OptimizedImage
                     src={post.cover_url}
-                    alt={`${post.title} cover image`}
+                    alt={`${post.title} - AI news article featured image showcasing latest developments in artificial intelligence`}
                     className="w-full h-48 object-cover"
                     height={192}
                     lazy={true}
