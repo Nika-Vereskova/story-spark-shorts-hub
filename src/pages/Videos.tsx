@@ -7,6 +7,7 @@ import { t } from '@/lib/i18n';
 import Navigation from '@/components/Navigation';
 import SEO from '@/components/SEO';
 import AdSenseUnit from '@/components/AdSenseUnit';
+import { Helmet } from 'react-helmet-async';
 
 const Videos = () => {
   const videos = [
@@ -14,9 +15,10 @@ const Videos = () => {
       id: 1,
       title: "Steampunk Story Time",
       description: "A quick steampunk tale from Nika's workshop",
-      youtubeUrl: "https://www.youtube.com/@NikaVereskova/videos",
-      embedId: "dQw4w9WgXcQ",
-      type: t('common.short')
+      youtubeUrl: "https://youtu.be/mnojs86KHTQ",
+      embedId: "mnojs86KHTQ",
+      type: t('common.short'),
+      uploadDate: "2024-01-15"
     },
     {
       id: 2,
@@ -24,9 +26,30 @@ const Videos = () => {
       description: "Educational video explaining prompt fundamentals for Large Language Models, their applications, and how they work to achieve the best result",
       youtubeUrl: "https://youtu.be/wkWuKx3aaPE",
       embedId: "wkWuKx3aaPE",
-      type: "Educational"
+      type: "Educational",
+      uploadDate: "2024-02-20"
     }
   ];
+
+  // Generate VideoObject schema for SEO
+  const videoSchemas = videos.map(video => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": video.title,
+    "description": video.description,
+    "thumbnailUrl": `https://i.ytimg.com/vi/${video.embedId}/maxresdefault.jpg`,
+    "uploadDate": video.uploadDate,
+    "contentUrl": video.youtubeUrl,
+    "embedUrl": `https://www.youtube.com/embed/${video.embedId}`,
+    "publisher": {
+      "@type": "Organization",
+      "name": "STEaM LOGIC Studio AB",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://steamlogic.se/lovable-uploads/bcf14b88-6d61-4550-9571-43f8bfc56b1f.png"
+      }
+    }
+  }));
 
   const handleWatchVideo = (youtubeUrl: string, title: string) => {
     if (process.env.NODE_ENV === 'development') {
@@ -42,6 +65,13 @@ const Videos = () => {
       <Settings className="absolute top-2/3 left-8 w-16 h-16 text-brass/10 animate-gear-rotation" style={{animationDelay: '2.5s'}} />
       <Settings className="absolute bottom-32 right-1/3 w-8 h-8 text-brass/20 animate-gear-rotation" style={{animationDelay: '4.5s'}} />
       <SEO title="AI Demonstrations & Story Time Videos | STEaM LOGIC Studio AB" description="Watch practical AI demonstrations and steampunk story time videos by Nika Vereskova from STEaM LOGIC Studio AB. Educational content on AI technology and creative storytelling." />
+      <Helmet>
+        {videoSchemas.map((schema, index) => (
+          <script key={index} type="application/ld+json">
+            {JSON.stringify(schema)}
+          </script>
+        ))}
+      </Helmet>
       <Navigation currentPage="videos" />
 
       <div className="pt-24 pb-16 px-6">
