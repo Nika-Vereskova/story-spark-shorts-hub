@@ -31,7 +31,7 @@ interface SEOProps {
   bookOfferCurrency?: string;
 }
 
-const BASE_URL = 'https://steamlogic.se';
+const BASE_URL = 'https://www.steamlogic.se';
 const DEFAULT_IMAGE = '/lovable-uploads/STEaM LOGIC Emblem with Quill.png';
 const LOGO_URL = '/lovable-uploads/db2e86b9-a90f-4ae7-8729-4b18872ca8dd.png';
 
