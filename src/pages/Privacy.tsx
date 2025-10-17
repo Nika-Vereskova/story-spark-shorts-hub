@@ -8,7 +8,7 @@ import AdSenseUnit from '@/components/AdSenseUnit';
 const Privacy = () => {
   return (
     <div className="min-h-screen bg-parchment">
-      <SEO title="Privacy Policy – STEaM LOGIC" description="Read our privacy practices and data protection policy." noindex />
+      <SEO title="Privacy Policy – STEaM LOGIC" description="Read our privacy practices and data protection policy." />
       <Navigation currentPage="privacy" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">

@@ -8,7 +8,7 @@ import AdSenseUnit from '@/components/AdSenseUnit';
 const Terms = () => {
   return (
     <div className="min-h-screen bg-parchment">
-      <SEO title="Terms of Service – STEaM LOGIC" description="Read our terms of service and usage guidelines." noindex />
+      <SEO title="Terms of Service – STEaM LOGIC" description="Read our terms of service and usage guidelines." />
       <Navigation currentPage="terms" />
       
       <div className="container mx-auto px-6 py-24 max-w-4xl">
