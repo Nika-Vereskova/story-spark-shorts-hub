@@ -1,3 +1,7 @@
+# Force www redirect - 301 permanent redirect from non-www to www
+https://steamlogic.se/* https://www.steamlogic.se/:splat 301!
+http://steamlogic.se/* https://www.steamlogic.se/:splat 301!
+
 # Static file redirects for deployment platforms
 /sitemap-steamlogic.xml /sitemap-steamlogic.xml 200
 /sitemap.xml /sitemap.xml 200
