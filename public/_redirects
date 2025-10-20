@@ -1,6 +1,7 @@
-# Force www redirect - 301 permanent redirect from non-www to www
-https://steamlogic.se/* https://www.steamlogic.se/:splat 301!
+# Force www and HTTPS redirect - 301 permanent redirect
+# Non-www to www redirect (must be first)
 http://steamlogic.se/* https://www.steamlogic.se/:splat 301!
+https://steamlogic.se/* https://www.steamlogic.se/:splat 301!
 
 # Remove trailing slashes - redirect to canonical version without trailing slash
 /en/ /en 301!
