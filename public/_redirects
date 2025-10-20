@@ -9,6 +9,22 @@ https://steamlogic.se/* https://www.steamlogic.se/:splat 301!
 /ru/ /ru 301!
 /*/  /:splat 301!
 
+# Redirect non-localized paths to English locale to prevent duplicates
+/about /en/about 301!
+/books /en/books 301!
+/videos /en/videos 301!
+/blog /en/blog 301!
+/contact /en/contact 301!
+/projects /en/projects 301!
+/ai-resource-hub /en/ai-resource-hub 301!
+/ai-services /en/ai-services 301!
+/math-mentor /en/math-mentor 301!
+/europe-capitals /en/europe-capitals 301!
+/ai-news /en/ai-news 301!
+/newsletter /en/newsletter 301!
+/privacy /en/privacy 301!
+/terms /en/terms 301!
+
 # Static file redirects for deployment platforms
 /sitemap-steamlogic.xml /sitemap-steamlogic.xml 200
 /sitemap.xml /sitemap.xml 200
