@@ -26,7 +26,6 @@ https://steamlogic.se/* https://www.steamlogic.se/:splat 301!
 /terms /en/terms 301!
 
 # Static file redirects for deployment platforms
-/sitemap-steamlogic.xml /sitemap-steamlogic.xml 200
 /sitemap.xml /sitemap.xml 200
 /robots.txt /robots.txt 200
 /ads.txt /ads.txt 200
