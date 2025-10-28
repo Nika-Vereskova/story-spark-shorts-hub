@@ -2,34 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage -->
   <url>
-    <loc>https://www.steamlogic.se/en/</loc>
+    <loc>https://www.steamlogic.se/en</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en/" />
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/en" />
   </url>
   <url>
-    <loc>https://www.steamlogic.se/sv/</loc>
+    <loc>https://www.steamlogic.se/sv</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en/" />
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/en" />
   </url>
   <url>
-    <loc>https://www.steamlogic.se/ru/</loc>
+    <loc>https://www.steamlogic.se/ru</loc>
     <lastmod>2025-09-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en/" />
-    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv/" />
-    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.steamlogic.se/en" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://www.steamlogic.se/sv" />
+    <xhtml:link rel="alternate" hreflang="ru" href="https://www.steamlogic.se/ru" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.steamlogic.se/en" />
   </url>
 
   <!-- About Pages -->
