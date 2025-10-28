@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import SEO from '@/components/SEO';
@@ -499,9 +499,12 @@ const EuropeCapitals = () => {
   const hintText = showHints ? getHint(currentItem) : '';
 
   // Filter countries by region
-  const filteredCountries = selectedRegion === 'All' 
-    ? EUROPE_COUNTRIES
-    : EUROPE_COUNTRIES.filter(c => c.region === selectedRegion);
+  const filteredCountries = useMemo(() => 
+    selectedRegion === 'All' 
+      ? EUROPE_COUNTRIES
+      : EUROPE_COUNTRIES.filter(c => c.region === selectedRegion),
+    [selectedRegion]
+  );
 
   return (
     <div className="min-h-screen bg-background relative">
